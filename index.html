@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digit Keystroke Capture</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+    }
+    input {
+      font-size: 1.5em;
+      width: 200px;
+      padding: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <h2>Type digits 1–4</h2>
+  <input type="text" id="digitBox" readonly placeholder="Press 1–4 keys..." />
+
+  <script>
+    document.addEventListener('keydown', function(event) {
+      const digitBox = document.getElementById('digitBox');
+      if (['1', '2', '3', '4'].includes(event.key)) {
+        digitBox.value += event.key;
+      }
+    });
+  </script>
+</body>
+</html>
