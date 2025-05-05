@@ -36,7 +36,7 @@ let currentWordOptLst = { };
 let gWrdOptsDiv;
 let gShowWrdOtpsBtn;
 
-function loadWebApp()
+function initWebApp()
 {
 	wordTracker = {};
 	sentenceTracker = {};
