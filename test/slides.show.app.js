@@ -36,6 +36,10 @@ let currentWordOptLst = { };
 let gWrdOptsDiv;
 let gShowWrdOtpsBtn;
 
+function loadWebApp()
+{
+}
+
 function initWebApp()
 {
 	wordTracker = {};
@@ -67,6 +71,18 @@ function initWebApp()
 	document.getElementById('wrdQuitQuizBtn').addEventListener('click', () =>
 	{
 		closeWordQuiz();
+	});
+
+	document.getElementById('giveUpBtn').addEventListener('click', () =>
+	{
+		if (currentSentTargetWord.length > 0)
+		{
+			handleSentAnswer("", currentSentTargetWord);
+		}
+		else if (currentWordTargetWord.length > 0)
+		{
+			handleWordAnswer(currentWordTargetWord, "");
+		}
 	});
 
 	document.getElementById('toggleTranslation').addEventListener('change', () =>
@@ -754,8 +770,6 @@ sentQuitQuizBtn.addEventListener('click', () =>
 {
 	closeSentenceQuiz();
 });
-
-window.addEventListener('DOMContentLoaded', loadWebApp);
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
