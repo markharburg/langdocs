@@ -16,22 +16,12 @@
   </style>
 </head>
 <body>
-  <h2>Type digits 1–4</h2>
-  <input type="text" id="digitBox" readonly placeholder="Press 1–4 keys..." />
-  <br><br>
   <ul>
     <li>
       <a href="test/text.reader.html?lang=ai&book=mark&chap=10">mark-10-ai</a>
     </li>
   </ul>
-  <br>
   <script>
-    document.addEventListener('keydown', function(event) {
-      const digitBox = document.getElementById('digitBox');
-      if (['1', '2', '3', '4'].includes(event.key)) {
-        digitBox.value += event.key;
-      }
-    });
   </script>
 </body>
 </html>
