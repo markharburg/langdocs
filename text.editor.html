@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Monospaced Text Editor</title>
+	<style>
+		html, body
+		{
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#editor
+		{
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+			font-family: monospace;
+			font-size: 16px;
+			white-space: pre;
+			overflow: auto;
+			padding: 8px;
+			line-height: 1.4;
+			tab-size: 4;
+			-moz-tab-size: 4;
+			-o-tab-size: 4;
+		}
+		#toolbar
+		{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			z-index: 1000;
+		}
+		#toolbar button
+		{
+			margin-left: 5px;
+			font-family: monospace;
+			font-size: 14px;
+		}
+		#fileModal
+		{
+			position: absolute;
+			top: 20%;
+			left: 50%;
+			transform: translateX(-50%);
+			background: #fff;
+			border: 1px solid #ccc;
+			padding: 12px;
+			z-index: 1001;
+			display: none;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+			min-width: 330px;
+		}
+		#fileModal div
+		{
+			margin-bottom: 8px;
+		}
+		#fileModal input[type="text"]
+		{
+			width: 150px;
+			font-family: monospace;
+		}
+		#fileModal button:disabled
+		{
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	</style>
+</head>
+<body>
+	<textarea id="editor" spellcheck="false"></textarea>
+	<div id="toolbar">
+		<button id="tabBtn">t</button>
+		<button id="saveBtn" disabled>s</button>
+		<button id="fileBtn">f</button>
+	</div>
+
+	<div id="fileModal">
+		<div>
+			<button id="newBtn" disabled>new</button>
+			<button id="renameBtn" disabled>rename</button>
+			<input type="text" id="newName" placeholder="Document name">
+		</div>
+		<div>
+			<button id="importBtn" disabled>import</button>
+			<button id="exportBtn">export</button>
+			<input type="file" id="fileInput" accept=".txt" style="display:none;">
+		</div>
+		<div>
+			<button id="openBtn">open</button>
+			<button id="deleteBtn">delete</button>
+			<select id="docList"></select>
+		</div>
+		<div style="text-align:right; margin-top:10px;">
+			<button id="closeModal">close</button>
+		</div>
+	</div>
+
+	<script>
+		(function()
+		{
+			const editor = document.getElementById('editor');
+			const tabBtn = document.getElementById('tabBtn');
+			const saveBtn = document.getElementById('saveBtn');
+			const fileBtn = document.getElementById('fileBtn');
+			const fileModal = document.getElementById('fileModal');
+			const newBtn = document.getElementById('newBtn');
+			const renameBtn = document.getElementById('renameBtn');
+			const importBtn = document.getElementById('importBtn');
+			const exportBtn = document.getElementById('exportBtn');
+			const openBtn = document.getElementById('openBtn');
+			const deleteBtn = document.getElementById('deleteBtn');
+			const closeModal = document.getElementById('closeModal');
+			const newName = document.getElementById('newName');
+			const docList = document.getElementById('docList');
+			const fileInput = document.getElementById('fileInput');
+
+			let docs = JSON.parse(localStorage.getItem('documents') || '[]');
+			let currentDoc = null;
+			let dirty = false;
+			let fontSize = 16;
+
+			function updateDocList()
+			{
+				docs.sort();
+				docList.innerHTML = '';
+				docs.forEach(name =>
+				{
+					const o = document.createElement('option');
+					o.value = name;
+					o.textContent = name;
+					docList.appendChild(o);
+				});
+			}
+
+			function setDirty(val)
+			{
+				dirty = val;
+				saveBtn.disabled = !dirty || !currentDoc;
+			}
+
+			function loadDoc(name)
+			{
+				const content = localStorage.getItem('doc:' + name) || '';
+				editor.value = content;
+				currentDoc = name;
+				newName.value = '';
+				setDirty(false);
+				disableFileControls();
+			}
+
+			function confirmDiscard()
+			{
+				if (!dirty) return true;
+				return confirm('Unsaved changes will be lost. Continue?');
+			}
+
+			function disableFileControls()
+			{
+				newBtn.disabled = true;
+				importBtn.disabled = true;
+				renameBtn.disabled = true;
+			}
+
+			function validateNameInput()
+			{
+				const name = newName.value.trim();
+				const exists = docs.includes(name);
+				const validNew = name && !exists;
+				const validRename = name && currentDoc && name !== currentDoc && !exists;
+				newBtn.disabled = !validNew;
+				importBtn.disabled = !validNew;
+				renameBtn.disabled = !validRename;
+			}
+
+			// Initialize
+			updateDocList();
+			disableFileControls();
+
+			// Event listeners
+			editor.addEventListener('input', () => setDirty(true));
+
+			saveBtn.addEventListener('click', () =>
+			{
+				if (currentDoc)
+				{
+					localStorage.setItem('doc:' + currentDoc, editor.value);
+					setDirty(false);
+				}
+			});
+
+			tabBtn.addEventListener('click', () =>
+			{
+				const start = editor.selectionStart;
+				const end = editor.selectionEnd;
+				const before = editor.value.substring(0, start);
+				const after = editor.value.substring(end);
+				editor.value = before + '\t' + after;
+				editor.selectionStart = editor.selectionEnd = start + 1;
+				editor.focus();
+				setDirty(true);
+			});
+
+			fileBtn.addEventListener('click', () =>
+			{
+				fileModal.style.display = 'block';
+				newName.focus();
+			});
+
+			closeModal.addEventListener('click', () =>
+			{
+				fileModal.style.display = 'none';
+				newName.value = '';
+				disableFileControls();
+			});
+
+			newName.addEventListener('input', validateNameInput);
+
+			newBtn.addEventListener('click', () =>
+			{
+				if (!confirmDiscard()) return;
+				const name = newName.value.trim();
+				docs.push(name);
+				localStorage.setItem('documents', JSON.stringify(docs));
+				localStorage.setItem('doc:' + name, '');
+				updateDocList();
+				fileModal.style.display = 'none';
+				loadDoc(name);
+			});
+
+			renameBtn.addEventListener('click', () =>
+			{
+				const newDoc = newName.value.trim();
+				if (!newDoc) return;
+				const idx = docs.indexOf(currentDoc);
+				docs[idx] = newDoc;
+				localStorage.setItem('documents', JSON.stringify(docs));
+				const content = localStorage.getItem('doc:' + currentDoc);
+				localStorage.removeItem('doc:' + currentDoc);
+				localStorage.setItem('doc:' + newDoc, content);
+				updateDocList();
+				fileModal.style.display = 'none';
+				loadDoc(newDoc);
+			});
+
+			importBtn.addEventListener('click', () =>
+			{
+				if (!confirmDiscard()) return;
+				fileInput.click();
+				fileInput.onchange = () =>
+				{
+					const file = fileInput.files[0];
+					const reader = new FileReader();
+					reader.onload = () =>
+					{
+						const text = reader.result;
+						const name = newName.value.trim();
+						docs.push(name);
+						localStorage.setItem('documents', JSON.stringify(docs));
+						localStorage.setItem('doc:' + name, text);
+						updateDocList();
+						fileModal.style.display = 'none';
+						loadDoc(name);
+					};
+					reader.readAsText(file);
+				};
+			});
+
+			exportBtn.addEventListener('click', () =>
+			{
+				const blob = new Blob([editor.value], { type: 'text/plain' });
+				const a = document.createElement('a');
+				a.href = URL.createObjectURL(blob);
+				a.download = (currentDoc || 'document') + '.txt';
+				a.click();
+			});
+
+			openBtn.addEventListener('click', () =>
+			{
+				const name = docList.value;
+				if (!confirmDiscard()) return;
+				fileModal.style.display = 'none';
+				loadDoc(name);
+			});
+
+			deleteBtn.addEventListener('click', () =>
+			{
+				const name = docList.value;
+				if (!confirm('Delete document "' + name + '"? This cannot be undone.')) return;
+				docs = docs.filter(n => n !== name);
+				localStorage.setItem('documents', JSON.stringify(docs));
+				localStorage.removeItem('doc:' + name);
+				updateDocList();
+				if (currentDoc === name)
+				{
+					currentDoc = null;
+					editor.value = '';
+					setDirty(false);
+				}
+			});
+
+			// Zoom with Ctrl+Wheel
+			editor.addEventListener('wheel', e =>
+			{
+				if (e.ctrlKey)
+				{
+					e.preventDefault();
+					fontSize += e.deltaY < 0 ? 1 : -1;
+					fontSize = Math.max(8, Math.min(72, fontSize));
+					editor.style.fontSize = fontSize + 'px';
+				}
+			});
+		})();
+	</script>
+</body>
+</html>
