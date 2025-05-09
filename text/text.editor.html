@@ -81,8 +81,8 @@
 
 	<div id="fileModal">
 		<div>
-			<button id="newBtn" disabled>new</button>
 			<button id="renameBtn" disabled>rename</button>
+			<button id="newBtn" disabled>new</button>
 			<input type="text" id="newName" placeholder="Document name">
 		</div>
 		<div>
@@ -177,12 +177,33 @@
 				renameBtn.disabled = !validRename;
 			}
 
-			// Initialize
 			updateDocList();
 			disableFileControls();
 
-			// Event listeners
 			editor.addEventListener('input', () => setDirty(true));
+
+			// Auto-indent: retain leading tabs on new lines
+			editor.addEventListener('keydown', function(e)
+			{
+				if (e.key === 'Enter')
+				{
+					e.preventDefault();
+					const start = editor.selectionStart;
+					const content = editor.value;
+					const lastNL = content.lastIndexOf('\n', start - 1);
+					const lineStart = lastNL + 1;
+					const line = content.substring(lineStart, start);
+					const match = line.match(/^\t*/);
+					const prefix = match ? match[0] : '';
+					const before = content.substring(0, start);
+					const after = content.substring(editor.selectionEnd);
+					const insert = '\n' + prefix;
+					const newPos = start + insert.length;
+					editor.value = before + insert + after;
+					editor.selectionStart = editor.selectionEnd = newPos;
+					setDirty(true);
+				}
+			});
 
 			saveBtn.addEventListener('click', () =>
 			{
@@ -303,14 +324,13 @@
 				}
 			});
 
-			// Zoom with Ctrl+Wheel
 			editor.addEventListener('wheel', e =>
 			{
 				if (e.ctrlKey)
 				{
 					e.preventDefault();
 					fontSize += e.deltaY < 0 ? 1 : -1;
-					fontSize = Math.max(8, Math.min(72, fontSize));
+					fontSize = Math.max(4, Math.min(72, fontSize));
 					editor.style.fontSize = fontSize + 'px';
 				}
 			});
