@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Collapsible Tree Editor</title>
+	<style>
+		body { font-family: sans-serif; padding: 1rem; position: relative; }
+		.node { cursor: pointer; padding: 2px 4px; }
+		.node.selected { background-color: #e0f7fa; }
+		.children { margin-left: 1.5rem; }
+		.toggle-star { cursor: pointer; display: inline-block; width: 1rem; user-select: none; }
+		.hidden { display: none; }
+		.label { white-space: pre-wrap; word-break: break-all; display: inline-block; }
+		/* Top-right buttons */
+		.top-btn
+		{
+			position: absolute;
+			top: 1rem;
+			padding: 0.5rem 0.75rem;
+			background: #0288d1;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 1rem;
+			opacity: 0.6;
+		}
+		.top-btn:hover { opacity: 1; }
+		#doc-btn { right: 1rem; }
+		#save-btn { right: 7rem; }
+		#edit-btn { right: 4rem; }
+		/* Dialog overlays */
+		.dialog-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.3); display: none; align-items: center; justify-content: center; }
+		.dialog { background: #fff; padding: 1rem; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); width: 320px; }
+		.dialog textarea, .dialog input[type=text] { width: 100%; box-sizing: border-box; }
+		.dialog .row { margin-bottom: 0.75rem; display: flex; align-items: center; }
+		.dialog .row button, .dialog .row select { margin-right: 0.5rem; }
+		.dialog .row:last-child { justify-content: flex-end; }
+		/* Hidden file input */
+		#file-input { display: none; }
+	</style>
+</head>
+<body>
+	<button id="save-btn" class="top-btn" disabled>s</button>
+	<button id="edit-btn" class="top-btn">e</button>
+	<button id="doc-btn" class="top-btn">d</button>
+	<div id="tree-container"></div>
+
+	<input type="file" id="file-input" accept=".txt" />
+
+	<!-- Node Edit Dialog -->
+	<div id="edit-overlay" class="dialog-overlay">
+		<div class="dialog">
+			<div class="row">
+				<button id="relabel-btn">relabel</button>
+				<button id="add-btn">add</button>
+				<textarea id="label-input" rows="4" maxlength="40"></textarea>
+			</div>
+			<div class="row">
+				<label for="position-select">position</label>
+				<select id="position-select"></select>
+			</div>
+			<div class="row">
+				<button id="cut-btn">cut</button>
+				<button id="copy-btn">copy</button>
+				<button id="paste-btn">paste</button>
+				<button id="delete-btn">delete</button>
+			</div>
+			<div class="row">
+				<button id="close-edit-btn">close</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Document Dialog -->
+	<div id="doc-overlay" class="dialog-overlay">
+		<div class="dialog">
+			<div class="row">
+				<button id="new-doc-btn">new</button>
+				<input id="new-doc-name" type="text" placeholder="Document name" />
+			</div>
+			<div class="row">
+				<button id="select-doc-btn">select</button>
+				<button id="delete-doc-btn">delete</button>
+				<select id="doc-select"></select>
+			</div>
+			<div class="row">
+				<button id="import-btn">import</button>
+				<button id="export-btn">export</button>
+				<label><input type="radio" name="format" value="tree" checked /> tree</label>
+				<label><input type="radio" name="format" value="table" /> table</label>
+			</div>
+			<div class="row">
+				<button id="close-doc-btn">close</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// In-memory document and dirty tracking
+		let currentDoc = ['testDoc1', [['a', [['X',null],['c',[['Y',null]]]]],['b',[['Z',null]]]]];
+		let selectedWrapper = null;
+		let clipboard = null;
+		let isDirty = false;
+		const STORAGE_KEY = 'treeDocs';
+
+		const saveBtn = document.getElementById('save-btn');
+		const fileInput = document.getElementById('file-input');
+
+		function setDirty(d)
+		{
+			isDirty = d;
+			saveBtn.disabled = !d;
+			saveBtn.style.background = d ? "#0804d1" : "#0288d1";
+		}
+
+		function loadDocsMap()
+		{
+			return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+		}
+
+		function saveDocsMap(map)
+		{
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+		}
+
+		// Tree rendering
+		function createNodeElement(nodeData) 
+		{
+			const [label, children] = nodeData;
+			const wrapper = document.createElement('div');
+			wrapper.classList.add('node-wrapper');
+			wrapper._data = nodeData;
+			const hasKids = Array.isArray(children)&&children.length>0;
+			const star = document.createElement('span');
+			star.textContent=hasKids?'*':'';
+			star.className='toggle-star';
+			wrapper.appendChild(star);
+			const labelEl = document.createElement('span');
+			labelEl.textContent=label;
+			labelEl.className='label node';
+			wrapper.appendChild(labelEl);
+
+			if(hasKids)
+			{
+				const cont=document.createElement('div');
+				cont.className='children';
+				children.forEach(c=>cont.appendChild(createNodeElement(c)));
+				wrapper.appendChild(cont);
+			}
+
+			labelEl.addEventListener('click', e=>
+			{
+				e.stopPropagation();
+				if(selectedWrapper===wrapper) toggleVisibility(wrapper,false);
+				else selectNode(wrapper);
+			});
+			star.addEventListener('click', e=>
+			{
+				e.stopPropagation();
+				hasKids&&toggleVisibility(wrapper,true);
+			});
+			return wrapper;
+		}
+		function renderTree()
+		{
+			const c=document.getElementById('tree-container');
+			c.innerHTML='';
+			c.appendChild(createNodeElement(currentDoc));
+		}
+
+		// Selection & toggle
+		function selectNode(w)
+		{
+			if(selectedWrapper) selectedWrapper.querySelector('.node').classList.remove('selected');
+			selectedWrapper=w;
+			w.querySelector('.node').classList.add('selected');
+			setupEditDialog();
+		}
+
+		function toggleVisibility(w,r)
+		{
+			const im=w.querySelector(':scope>.children');
+			if(!im) return;
+			const hidden=im.classList.contains('hidden');
+			if(hidden)
+			{
+				im.classList.remove('hidden');
+				if(r) w.querySelectorAll('.children.hidden').forEach(el=>el.classList.remove('hidden'));
+			}
+			else
+			{
+				if(r) w.querySelectorAll('.children').forEach(el=>el.classList.add('hidden'));
+				else im.classList.add('hidden');
+			}
+		}
+
+		function findParent(node,target)
+		{
+			if(!node[1]) return null;
+			for(const c of node[1])
+			{
+				if(c===target) return node;
+				const r=findParent(c,target);
+				if(r) return r;
+			}
+			return null;
+		}
+
+		function markDirty()
+		{
+			setDirty(true);
+		}
+
+		// Node Edit Dialog
+		const editOverlay=document.getElementById('edit-overlay');
+		const labelInput=document.getElementById('label-input');
+		const posSelect=document.getElementById('position-select');
+
+		document.getElementById('edit-btn').addEventListener('click', ()=>
+		{
+			if (selectedWrapper)
+			{
+				setupEditDialog();
+				editOverlay.style.display='flex';
+			}
+		});
+
+		document.getElementById('close-edit-btn').addEventListener('click', ()=> editOverlay.style.display='none');
+
+		function setupEditDialog()
+		{
+			if (!selectedWrapper) return;
+			labelInput.value=selectedWrapper._data[0];
+			posSelect.innerHTML='';
+			const parent=findParent(currentDoc,selectedWrapper._data);
+			if(!parent)
+			{
+				posSelect.disabled=true;
+			}
+			else
+			{
+				posSelect.disabled=false;
+				parent[1].forEach((_,i)=>
+				{
+					const opt=document.createElement('option');
+					opt.value=i+1;
+					opt.textContent=i+1;
+					if(parent[1][i]===selectedWrapper._data) opt.selected=true;
+					posSelect.appendChild(opt);
+				});
+			}
+		}
+
+		document.getElementById('relabel-btn').addEventListener('click', ()=>
+		{
+			if(selectedWrapper)
+			{
+				selectedWrapper._data[0]=labelInput.value;
+				markDirty();
+				editOverlay.style.display='none';
+				renderTree();
+			}
+		});
+
+		document.getElementById('add-btn').addEventListener('click', ()=>
+		{
+			if(selectedWrapper)
+			{
+				const n=selectedWrapper._data;
+				if(!Array.isArray(n[1])) n[1]=[];
+				n[1].push([labelInput.value,null]);
+				markDirty();
+				editOverlay.style.display='none';
+				renderTree();
+			}
+		});
+
+		document.getElementById('cut-btn').addEventListener('click', ()=>
+		{
+			if(selectedWrapper && selectedWrapper!==document.getElementById('tree-container').firstChild)
+			{
+				const parent=findParent(currentDoc,selectedWrapper._data);
+				const idx=parent[1].indexOf(selectedWrapper._data);
+				clipboard=parent[1].splice(idx,1)[0];
+				if(parent[1].length===0) parent[1]=null;
+				markDirty();
+				editOverlay.style.display='none';
+				renderTree();
+			}
+		});
+
+		document.getElementById('copy-btn').addEventListener('click', ()=>
+		{
+			if(selectedWrapper) clipboard=JSON.parse(JSON.stringify(selectedWrapper._data));
+			editOverlay.style.display='none';
+		});
+
+		document.getElementById('paste-btn').addEventListener('click', ()=>
+		{
+			if(selectedWrapper && clipboard)
+			{
+				const n=selectedWrapper._data;
+				if(!Array.isArray(n[1])) n[1]=[];
+				n[1].push(JSON.parse(JSON.stringify(clipboard)));
+				markDirty();
+				editOverlay.style.display='none';
+				renderTree();
+			}
+		});
+
+		document.getElementById('delete-btn').addEventListener('click', ()=>
+		{
+			if(selectedWrapper && selectedWrapper!==document.getElementById('tree-container').firstChild)
+			{
+				const parent=findParent(currentDoc,selectedWrapper._data);
+				const idx=parent[1].indexOf(selectedWrapper._data);
+				parent[1].splice(idx,1);
+				if(parent[1].length===0) parent[1]=null;
+				markDirty();
+				editOverlay.style.display='none';
+				renderTree();
+			}
+		});
+
+		posSelect.addEventListener('change', ()=>
+		{
+			if(selectedWrapper && selectedWrapper!==document.getElementById('tree-container').firstChild)
+			{
+				const parent=findParent(currentDoc,selectedWrapper._data);
+				const oldI=parent[1].indexOf(selectedWrapper._data);
+				const newI=parseInt(posSelect.value)-1;
+				parent[1].splice(oldI,1);
+				parent[1].splice(newI,0,selectedWrapper._data);
+				markDirty();
+				editOverlay.style.display='none';
+				renderTree();
+			}
+		});
+
+		// Document Dialog
+		const docOverlay=document.getElementById('doc-overlay');
+		const docSelect=document.getElementById('doc-select');
+
+		function refreshDocList()
+		{
+			const map=loadDocsMap();
+			docSelect.innerHTML='';
+			Object.keys(map).forEach(name=>
+			{
+				const o=document.createElement('option');
+				o.value=name;
+				o.textContent=name;
+				docSelect.appendChild(o);
+			});
+		}
+
+		document.getElementById('doc-btn').addEventListener('click', ()=>
+		{
+			refreshDocList();
+			document.getElementById('new-doc-name').value='';
+			docOverlay.style.display='flex';
+		});
+
+		document.getElementById('close-doc-btn').addEventListener('click', ()=> docOverlay.style.display='none');
+
+		document.getElementById('new-doc-btn').addEventListener('click', ()=>
+		{
+			const name=document.getElementById('new-doc-name').value.trim();
+			if(!name) return;
+			currentDoc=[name,null];
+			markDirty();
+			const m=loadDocsMap();
+			m[name]=currentDoc;
+			saveDocsMap(m);
+			docOverlay.style.display='none';
+			renderTree();
+		});
+
+		document.getElementById('select-doc-btn').addEventListener('click', ()=>
+		{
+			const name=docSelect.value;
+			const m=loadDocsMap();
+			if(m[name])
+			{
+				currentDoc=m[name];
+				setDirty(false);
+			}
+			docOverlay.style.display='none';
+			renderTree();
+		});
+
+		document.getElementById('delete-doc-btn').addEventListener('click', ()=>
+		{
+			const name=docSelect.value;
+			const m=loadDocsMap();
+			delete m[name];
+			saveDocsMap(m);
+			refreshDocList();
+		});
+
+		// Import functionality
+		document.getElementById('import-btn').addEventListener('click', ()=>
+		{
+			fileInput.onchange = e => 
+			{
+				const file = e.target.files[0];
+				if (!file) return;
+				const reader = new FileReader();
+				reader.onload = evt => 
+				{
+					const text = evt.target.result;
+					const fmt = document.querySelector('input[name="format"]:checked').value;
+					try 
+					{
+						const doc = fmt === 'tree' ? treeParse(text) : tableParse(text);
+						currentDoc = doc;
+						const map = loadDocsMap();
+						map[currentDoc[0]] = currentDoc;
+						saveDocsMap(map);
+						setDirty(false);
+						renderTree();
+					}
+					catch (err) 
+					{
+						alert('Import error: ' + err.message);
+					}
+					docOverlay.style.display = 'none';
+					fileInput.value = '';
+				};
+				reader.readAsText(file);
+			};
+			fileInput.click();
+		});
+
+		// Export functionality
+		document.getElementById('export-btn').addEventListener('click', ()=>
+		{
+			const fmt = document.querySelector('input[name="format"]:checked').value;
+			const text = fmt === 'tree' ? treeToText(currentDoc).join('\n') : tableToText(currentDoc).join('\n');
+			const blob = new Blob([text], { type: 'text/plain' });
+			const a = document.createElement('a');
+			a.href = URL.createObjectURL(blob);
+			a.download = currentDoc[0] + '.txt';
+			a.click();
+			URL.revokeObjectURL(a.href);
+			docOverlay.style.display = 'none';
+		});
+
+		// -- TREE FORMAT FUNCTIONS --
+		function treeToText(node, indent = 0)
+		{
+			if (!node || !Array.isArray(node) || node.length < 1) return [];
+			const [label, children] = node;
+			const lines = ['\t'.repeat(indent) + encodeLabel(label)];
+			if (Array.isArray(children))
+			{
+				for (const child of children)
+				{
+					lines.push(...treeToText(child, indent + 1));
+				}
+			}
+			return lines;
+		}
+
+		function treeParse(inText)
+		{
+			const lines = inText.split('\n').filter(line => line.trim().length > 0);
+			let root = null;
+			const stack = [];
+
+			lines.forEach(line =>
+			{
+				const match = line.match(/^(\t*)(.*)$/);
+				const indent = match[1].length;
+				const label = decodeLabel(match[2]);
+				const node = [label, []];
+
+				if (indent === 0)
+				{
+					root = node;
+					stack.length = 0;
+					stack.push(root);
+				} else
+				{
+					const parent = stack[indent - 1];
+					parent[1].push(node);
+					stack[indent] = node;
+				}
+			});
+
+			function finalize(node)
+			{
+				if (!node[1] || node[1].length === 0)
+				{
+					node[1] = null;
+				} else
+				{
+					node[1].forEach(finalize);
+				}
+			}
+			if (root) finalize(root);
+			return root;
+		}
+
+		function tableToText(doc)
+		{
+			const rows = [];
+			const path = [];
+
+			function traverse(node)
+			{
+				const [label, children] = node;
+				path.push(encodeLabel(label));
+				if (!children)
+				{
+					rows.push(path.join('\t'));
+				} else
+				{
+					children.forEach(child => traverse(child));
+				}
+				path.pop();
+			}
+
+			traverse(doc);
+			return rows;
+		}
+
+		function tableParse(inText)
+		{
+			const lines = inText.split('\n').filter(line => line.trim().length > 0);
+			let root = null;
+			const nodesMap = new Map();
+
+			lines.forEach(line =>
+			{
+				const labels = line.split('\t').map(decodeLabel);
+				if (!root)
+				{
+					root = [labels[0], []];
+					nodesMap.set(labels[0], root);
+				}
+				let parent = root;
+				for (let i = 1; i < labels.length; i++)
+				{
+					const key = labels.slice(0, i + 1).join('|');
+					let node = nodesMap.get(key);
+					if (!node)
+					{
+						node = [labels[i], []];
+						parent[1].push(node);
+						nodesMap.set(key, node);
+					}
+					parent = node;
+				}
+			});
+
+			function finalize(node)
+			{
+				if (!node[1] || node[1].length === 0)
+				{
+					node[1] = null;
+				} else
+				{
+					node[1].forEach(finalize);
+				}
+			}
+			if (root) finalize(root);
+			return root;
+		}
+
+		function encodeLabel(label)
+		{
+			return label.replace(/\n/g, '|||');
+		}
+
+		function decodeLabel(label)
+		{
+			return label.replace(/\|\|\|/g, '\n');
+		}
+
+		// Save button behavior
+		saveBtn.addEventListener('click', ()=>
+		{
+			const map = loadDocsMap();
+			const name = currentDoc[0] || prompt('Enter document name to save:');
+			if (!name) return;
+			currentDoc[0] = name;
+			map[name] = currentDoc;
+			saveDocsMap(map);
+			setDirty(false);
+//			alert(`Document "${name}" saved.`);
+		});
+
+		// Initial state
+		setDirty(false);
+		renderTree();
+	</script>
+</body>
+</html>
