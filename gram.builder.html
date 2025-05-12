@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Radial Tree Viewer</title>
+	<style>
+		body 
+		{
+			margin: 0;
+			overflow: hidden;
+			font-family: sans-serif;
+		}
+		#info 
+		{
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			background: white;
+			border: 1px solid #ccc;
+			padding: 5px 10px;
+			font-size: 14px;
+			z-index: 10;
+		}
+		svg 
+		{
+			display: block;
+		}
+		.node text 
+		{
+			pointer-events: none;
+			font-size: 14px;
+		}
+		/* Full-screen scrollable & zoomable wrapper */
+		#zoomWrapper
+		{
+			width: 100vw;
+			height: 100vh;
+			overflow: auto;									/* native scrollbars when content overflows */
+																				/* :contentReference[oaicite:2]{index=2} */
+			touch-action: pan-x pan-y pinch-zoom;
+																				/* allow browser pinch-zoom & panning :contentReference[oaicite:3]{index=3} */
+			-webkit-overflow-scrolling: touch;/* smooth scrolling on iOS */
+		}
+		/* Your content can be any size */
+		#content
+		{
+			width: 100%;
+			height: 100%;
+			/* For demo, background grid or SVG could go here */
+		}
+		.top-btn
+		{
+			position: absolute;
+			top: 1rem;
+			padding: 0.5rem 0.75rem;
+			background: #0288d1;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 1rem;
+			opacity: 0.6;
+		}
+		.top-btn:hover { opacity: 1; }
+		#editBtn { right: 4rem; }
+	</style>
+</head>
+<body>
+	<!-- Top-left info display -->
+	<div id="info">No node selected.</div>
+
+	<button id="editBtn" class="top-btn">e</button>
+
+	<div id="zoomWrapper">
+		<div id="content">
+			<!-- SVG container -->
+			<svg id="radialTree" width="800" height="600"></svg>
+		</div>
+	</div>
+
+	<script>
+		// Data for the tree.
+		const treeRootID = 0;
+
+		let globalLeafIndex = 0;
+
+		const seqTreeNodes1 = 
+		{
+			0: { count: 123, fwdXt: { 'M': 1, 'N': 2, 'O': 3 } },
+			1: { count: 23,	fwdXt: { 'P': 4, 'Q': 5 }, parentID: 0 },
+			2: { count: 73,	fwdXt: { 'R': 6, 'S': 7 }, parentID: 0 },
+			3: { count: 33,	fwdXt: { },							 parentID: 0 },
+			4: { count: 13,	fwdXt: { },							 parentID: 1 },
+			5: { count: 13,	fwdXt: { },							 parentID: 1 },
+			6: { count: 23,	fwdXt: { },							 parentID: 2 },
+			7: { count: 53,	fwdXt: { 'T': 8, 'U': 9 },	parentID: 2 },
+			8: { count: 23,	fwdXt: { },							 parentID: 7 },
+			9: { count: 33,	fwdXt: { },							 parentID: 7 }
+		};
+
+		const seqTreeNodes2 = 
+		{
+			0: { count: 12, fwdXt: { 'A': 1, 'B': 2, 'C': 3 } },
+			1: { count: 2,	fwdXt: { 'D': 4, 'E': 5 }, parentID: 0 },
+			2: { count: 7,	fwdXt: { 'F': 6, 'G': 7 }, parentID: 0 },
+			3: { count: 3,	fwdXt: { },							 parentID: 0 },
+			4: { count: 1,	fwdXt: { },							 parentID: 1 },
+			5: { count: 1,	fwdXt: { },							 parentID: 1 },
+			6: { count: 2,	fwdXt: { },							 parentID: 2 },
+			7: { count: 5,	fwdXt: { 'H': 8, 'I': 9 },	parentID: 2 },
+			8: { count: 2,	fwdXt: { },							 parentID: 7 },
+			9: { count: 3,	fwdXt: { },							 parentID: 7 }
+		};
+
+		document.getElementById('editBtn').addEventListener('click', () =>
+		{
+			renderTree(seqTreeNodes2);
+		});
+
+		document.addEventListener("DOMContentLoaded", function() 
+		{
+			renderTree(seqTreeNodes1);
+		});
+
+		function renderTree(inTreeData)
+		{
+			const svg = document.getElementById("radialTree");
+			svg.innerHTML = '';
+			const width = svg.clientWidth;
+			const height = svg.clientHeight;
+			const centerX = width / 2;
+			const centerY = height / 2;
+			const levelDistance = 100; // radial distance between levels
+
+			// Create SVG groups for edges, labels, and nodes.
+			const edgesGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+			edgesGroup.setAttribute("id", "edges");
+			svg.appendChild(edgesGroup);
+			const labelsGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+			labelsGroup.setAttribute("id", "labels");
+			svg.appendChild(labelsGroup);
+			const nodesGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+			nodesGroup.setAttribute("id", "nodes");
+			svg.appendChild(nodesGroup);
+
+			// Build a layout object that will hold depth, angle, (x,y) positions, etc.
+			const layout = {}; // keyed by node id
+			traverse(layout, inTreeData, treeRootID, 0, null, null);
+
+			const totalLeaves = countLeaves(treeRootID, layout);
+
+			assignAngles(layout, treeRootID, totalLeaves);
+
+			// Compute (x, y) positions for each node.
+			Object.keys(layout).forEach(nodeId => 
+			{
+				const node = layout[nodeId];
+				const r = node.depth * levelDistance;
+				node.x = centerX + r * Math.cos(node.angle);
+				node.y = centerY + r * Math.sin(node.angle);
+			});
+
+			// Draw edges and labels.
+			Object.keys(layout).forEach(nodeId => 
+			{
+				const node = layout[nodeId];
+				node.children.forEach(childId => 
+				{
+					const child = layout[childId];
+					// Draw the edge.
+					const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+					line.setAttribute("x1", node.x);
+					line.setAttribute("y1", node.y);
+					line.setAttribute("x2", child.x);
+					line.setAttribute("y2", child.y);
+					line.setAttribute("stroke", "black");
+					line.setAttribute("stroke-width", "2");
+					edgesGroup.appendChild(line);
+
+					// Create an edge label.
+					const labelText = layout[childId].transition;
+					if (labelText) 
+					{
+						const midX = (node.x + child.x) / 2;
+						const midY = (node.y + child.y) / 2;
+						const labelGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+						const textElem = document.createElementNS("http://www.w3.org/2000/svg", "text");
+						textElem.setAttribute("x", midX);
+						textElem.setAttribute("y", midY);
+						textElem.setAttribute("text-anchor", "middle");
+						textElem.setAttribute("dominant-baseline", "middle");
+						textElem.textContent = labelText;
+						labelGroup.appendChild(textElem);
+						labelsGroup.appendChild(labelGroup);
+						// Insert a white rectangle behind the text.
+						setTimeout
+						(
+							function() 
+							{
+								const bbox = textElem.getBBox();
+								const padding = 2;
+								const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+								rect.setAttribute("x", bbox.x - padding);
+								rect.setAttribute("y", bbox.y - padding);
+								rect.setAttribute("width", bbox.width + 2 * padding);
+								rect.setAttribute("height", bbox.height + 2 * padding);
+								rect.setAttribute("fill", "white");
+								labelGroup.insertBefore(rect, textElem);
+							},
+							0
+						);
+					}
+				});
+			});
+
+			// Draw nodes.
+			Object.keys(layout).forEach(nodeId => 
+			{
+				const node = layout[nodeId];
+				const nodeGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+				nodeGroup.setAttribute("class", "node");
+				nodeGroup.setAttribute("data-node-id", nodeId);
+				nodeGroup.setAttribute("transform", `translate(${node.x}, ${node.y})`);
+				nodesGroup.appendChild(nodeGroup);
+
+				// Create the circle.
+				const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+				circle.setAttribute("r", "20");
+				circle.setAttribute("fill", "white");
+				circle.setAttribute("stroke", "black");
+				// For the root, use a thicker line.
+				circle.setAttribute("stroke-width", nodeId == treeRootID ? "4" : "2");
+				nodeGroup.appendChild(circle);
+
+				// Display the count.
+				const countText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+				countText.setAttribute("text-anchor", "middle");
+				countText.setAttribute("dominant-baseline", "middle");
+				countText.textContent = inTreeData[nodeId].count;
+				nodeGroup.appendChild(countText);
+
+				// Set up the click event to update the selection chain.
+				nodeGroup.addEventListener("click", function(e) 
+				{
+					e.stopPropagation();
+					updateSelection(parseInt(nodeId, 10), layout);
+				});
+			});
+		}
+
+		// Traverse the tree to build the layout.
+		function traverse(ioLayout, inTreeData, inNodeId, inDepth, inParentTransition, inParentId) 
+		{
+			ioLayout[inNodeId] = { depth: inDepth, transition: inParentTransition, parentID: inParentId, children: [] };
+			let nodeData = inTreeData[inNodeId];
+			if (nodeData.fwdXt) 
+			{
+				for (let label in nodeData.fwdXt) 
+				{
+					const childId = nodeData.fwdXt[label];
+					ioLayout[inNodeId].children.push(childId);
+					traverse(ioLayout, inTreeData, childId, inDepth + 1, label, inNodeId);
+				}
+			}
+		}
+
+		// Count leaves.
+		function countLeaves(inNodeId, inLayout) 
+		{
+			if (inLayout[inNodeId].children.length === 0) 
+			{
+				return 1;
+			}
+			let sum = 0;
+			inLayout[inNodeId].children.forEach(child => 
+			{
+				sum += countLeaves(child, inLayout);
+			});
+			return sum;
+		}
+
+		// Recursively assign an angle to each node.
+		function assignAngles(ioLayout, inNodeId, inTotalLeaves) 
+		{
+			let node = ioLayout[inNodeId];
+			if (node.children.length === 0) 
+			{
+				node.angle = (globalLeafIndex / inTotalLeaves) * 2 * Math.PI;
+				globalLeafIndex++;
+				return node.angle;
+			} else 
+			{
+				let angles = [];
+				node.children.forEach(childId => 
+				{
+					angles.push(assignAngles(ioLayout, childId, inTotalLeaves));
+				});
+				const sum = angles.reduce((a, b) => a + b, 0);
+				node.angle = sum / angles.length;
+				return node.angle;
+			}
+		}
+
+		// When a node is clicked, build its ancestry chain (from the clicked node upward).
+		// If any ancestor (excluding the clicked node) is already selected, preserve the chain from that
+		// anchor node down to the clicked node; otherwise, only the clicked node is selected.
+		// Then compute a path string of transitions from the anchor to the clicked node.
+		function updateSelection(inClickedId, inLayout) 
+		{
+			// Build the ancestry chain from the clicked node upward.
+			let chain = [];
+			let current = inClickedId;
+			while (current != null) 
+			{
+				chain.push(current);
+				if (inLayout[current].parentID !== undefined && inLayout[current].parentID !== null) 
+				{
+					current = inLayout[current].parentID;
+				}
+				else 
+				{
+					break;
+				}
+			}
+			// Check if any ancestor (excluding the clicked node itself) is already selected.
+			let anchorFound = false;
+			for (let i = 1; i < chain.length; i++) 
+			{
+				const nodeGroup = document.querySelector(`[data-node-id="${chain[i]}"]`);
+				if (nodeGroup && nodeGroup.classList.contains("selected")) 
+				{
+					anchorFound = true;
+					// Preserve the chain from the anchor (chain[i]) down to the clicked node.
+					chain = chain.slice(0, i + 1);
+					break;
+				}
+			}
+			// If no ancestor is already selected, only select the clicked node.
+			if (!anchorFound) 
+			{
+				chain = [inClickedId];
+			}
+
+			// Unselect any nodes not in the new chain.
+			document.querySelectorAll(".node.selected").forEach(function(nodeGroup) 
+			{
+				let id = parseInt(nodeGroup.getAttribute("data-node-id"), 10);
+				if (!chain.includes(id)) 
+				{
+					const circle = nodeGroup.querySelector("circle");
+					circle.setAttribute("stroke", "black");
+					// If it's the root, keep its thicker line.
+					circle.setAttribute("stroke-width", id == treeRootID ? "4" : "2");
+					nodeGroup.classList.remove("selected");
+				}
+			});
+			// Mark all nodes in the chain as selected.
+			chain.forEach(function(id) 
+			{
+				const nodeGroup = document.querySelector(`[data-node-id="${id}"]`);
+				if (nodeGroup) 
+				{
+					const circle = nodeGroup.querySelector("circle");
+					circle.setAttribute("stroke", "red");
+					// When selected, use a thicker line (for non-root, this is 4; for root, keep 4).
+					circle.setAttribute("stroke-width", "4");
+					nodeGroup.classList.add("selected");
+				}
+			});
+
+			// Build the path string.
+			// Reverse the chain so that the anchor (first selected ancestor) is first.
+			let reversedChain = chain.slice().reverse();
+			let pathString = "";
+			// Skip the first element (the anchor node), and concatenate the transitions.
+			for (let i = 1; i < reversedChain.length; i++) 
+			{
+				let nodeID = reversedChain[i];
+				let t = inLayout[nodeID].transition;
+				if (t) 
+				{
+					pathString += t;
+				}
+			}
+			updateInfo(inClickedId, pathString);
+		}
+
+		// Update the top-left info box.
+		function updateInfo(inClickedId, inPathString) 
+		{
+			const infoDiv = document.getElementById("info");
+			infoDiv.textContent = "Selected Node: " + inClickedId + "	 Path: " + inPathString;
+		}
+
+	</script>
+</body>
+</html>
