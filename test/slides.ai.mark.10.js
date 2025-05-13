@@ -1,3 +1,9 @@
+const gLang = 'ai';
+const gBook = 'Mark';
+const gChap = '10';
+const gMode = 'ai';
+const gSpeed = '120';
+
 const slideData =
 [
 	{
