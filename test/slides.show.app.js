@@ -1,8 +1,6 @@
-const gLang = 'ai';
-const gBook = 'Mark';
-const gChap = '10';
-const gMode = 'ai';
-const gSpeed = '120';
+
+const wordStorageKey = 'wordData';
+const sentenceStorageKey = 'sentenceData';
 
 let currentSlideNum = 0;
 let wordTracker = {};
@@ -36,19 +34,16 @@ let currentWordOptLst = { };
 let gWrdOptsDiv;
 let gShowWrdOtpsBtn;
 
-function loadWebApp()
-{
-}
-
 function initWebApp()
 {
-	wordTracker = {};
-	sentenceTracker = {};
-	slideData.forEach((slide, idx) =>
-	{
-		if (slide.quizWords) slide.quizWords.forEach(w => wordTracker[w] = false);
-		if (slide.quizSentence) sentenceTracker[idx] = false;
-	});
+	wordTracker = loadData(wordStorageKey);
+	sentenceTracker = loadData(sentenceStorageKey);
+
+//	slideData.forEach((slide, idx) =>
+//	{
+//		slide.words.forEach(w => wordTracker[gLang][w] = wordTracker[gLang][w] ? wordTracker[gLang][w] : false);
+//		sentenceTracker[gLang][gBook][gChap][idx] = sentenceTracker[gLang][gBook][gChap][idx] ? sentenceTracker[gLang][gBook][gChap][idx] : false;
+//	});
 
 	document.getElementById('toggleAlt').checked = controlParams.defaultAltOn;
 	document.getElementById('toggleTranslation').checked = controlParams.defaultNativeOn;
@@ -134,8 +129,8 @@ function presentSlide()
 
 	if ((noQuiz) && (document.getElementById('toggleSentenceQuiz').checked))
 	{
-		if ((currentSlideNum in sentenceTracker) &&
-			(! (sentenceTracker[currentSlideNum])))
+		if ((currentSlideNum in sentenceTracker[gLang][gBook][gChap]) &&
+			(! (sentenceTracker[gLang][gBook][gChap][currentSlideNum])))
 		{
 			noQuiz = false;
 			startSentQuiz();
@@ -301,7 +296,12 @@ function doSpeak()
 function getPendingWords()
 {
 	const slide = slideData[currentSlideNum];
-	return (slide.quizWords||[]).filter(w => wordTracker[w] === false);
+
+//	return (slide.words||[]).filter(w => ((! wordTracker[gLang][w]) || (wordTracker[gLang][w] === false)));
+
+	const retSet = [...new Set(slide.words)].filter(w => (((! wordTracker[gLang][w]) || (wordTracker[gLang][w] === false)) && (dictionary[w])));
+
+	return retSet;
 }
 
 function startWordQuiz()
@@ -334,7 +334,12 @@ function showWordQuiz()
 	}
 
 	const word = quizQueue[quizIndex];
-	const altWord = dictionary[word]['alt'];
+	let altWord;
+	if ((dictionary[word]) &&
+		(dictionary[word]['alt']))
+	{
+		altWord = dictionary[word]['alt'];
+	}
 
 	const correct = dictionary[word].native;
 	const allDefs = Object.values(dictionary).map(d => d.native).filter(d => d !== correct);
@@ -410,7 +415,7 @@ function handleWordAnswer(word, selected)
 		{
 			resStr = `Correct! ${word} = ${info.native}`;
 		}
-		wordTracker[word] = true;
+		wordTracker[gLang][word] = true;
 	}
 	else
 	{
@@ -572,7 +577,7 @@ function handleSentAnswer(choiceWord, targetWord)
 	currentWordIndex++;
 	if (currentWordIndex >= slideData[currentSlideNum].words.length)
 	{
-		sentenceTracker[currentSlideNum] = true;
+		sentenceTracker[gLang][gBook][gChap][currentSlideNum] = true;
 		if (currentSentWrong)
 		{
 			sentOptionsDiv.innerHTML = 'Made some mistakes';
@@ -610,6 +615,8 @@ function registerWordSuccessResponse(inWord)
 {
 
 //if (gBook == "Mark") {return;}
+	wordTracker[gLang][inWord] = true;
+	saveData(wordStorageKey, wordTracker);
 
 	for (const [key, values] of Object.entries(dictionary[inWord].vrn))
 	{
@@ -635,6 +642,7 @@ function registerWordSuccessResponse(inWord)
 
 function registerSentenceSuccessResponse()
 {
+	saveData(sentenceStorageKey, sentenceTracker);
 
 //if (gBook == "Mark") {return;}
 
@@ -829,4 +837,34 @@ document.addEventListener('keydown', function(event)
 function makeServerCall(inKV)
 {
 	return;
+}
+
+function loadData(inKey)
+{
+	const data = localStorage.getItem(inKey);
+	let retData = data ? JSON.parse(data) : { };
+
+	if (! retData[gLang])
+	{
+		retData[gLang] = { };
+	}
+	if (inKey === sentenceStorageKey)
+	{
+		if (! retData[gLang][gBook])
+		{
+			retData[gLang][gBook] = { };
+		}
+		if (! retData[gLang][gBook][gChap])
+		{
+			retData[gLang][gBook][gChap] = { };
+		}
+	}
+
+	return retData;
+}
+
+function saveData(inKey, inData)
+{
+	const ss = JSON.stringify(inData);
+	localStorage.setItem(inKey, ss);
 }
