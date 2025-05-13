@@ -166,7 +166,22 @@
 				return urlParams.get(name);
 			}
 
-			function loadControlScript(lang, book, chap, callback)
+			function loadLexScript(lang, book, chap, callback)
+			{
+				const lexScript = document.createElement('script');
+				lexScript.src = `${lang}.en.lexicon.js`;
+				lexScript.type = 'text/javascript';
+				document.head.appendChild(lexScript);
+
+				lexScript.onload = callback;
+				lexScript.onerror = function()
+				{
+					console.error(`Failed to load control.${fno}.js`);
+				};
+				document.head.appendChild(lexScript);
+			}
+
+			function loadSlidesScript(lang, book, chap, callback)
 			{
 				const slidesScript = document.createElement('script');
 				slidesScript.src = `slides.${lang}.${book}.${chap}.js`;
@@ -187,26 +202,28 @@
 				const book = getQueryParam('book');
 				const chap = getQueryParam('chap');
 
+				controlParams.targetLanguage = lang;
+
 				if ((lang) &&
 					(book) &&
 					(chap))
 				{
-					const lexScript = document.createElement('script');
-					lexScript.src = `${lang}.en.lexicon.js`;
-					lexScript.type = 'text/javascript';
-					document.head.appendChild(lexScript);
-
-					loadControlScript(lang, book, chap, function()
+					loadLexScript(lang, book, chap, function()
 					{
 						console.log("Script loaded. Initializing app...");
-						if (typeof initWebApp === 'function')
+
+						loadSlidesScript(lang, book, chap, function()
 						{
-							initWebApp();
-						}
-						else
-						{
-							console.warn("initWebApp not defined in control script.");
-						}
+							console.log("Script loaded. Initializing app...");
+							if (typeof initWebApp === 'function')
+							{
+								initWebApp();
+							}
+							else
+							{
+								console.warn("initWebApp not defined in control script.");
+							}
+						});
 					});
 				}
 				else
