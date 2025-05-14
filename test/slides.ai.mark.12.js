@@ -1,6 +1,6 @@
 const gLang = 'ai';
 const gBook = 'Mark';
-const gChap = '10';
+const gChap = '12';
 const gMode = 'ai';
 const gSpeed = '120';
 
