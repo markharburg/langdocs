@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PNG Slideshow</title>
+	<style>
+		html, body
+		{
+			margin: 0;
+			padding: 0;
+			background-color: #000;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+
+		#slideshow-container
+		{
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+
+		#slideshow-image
+		{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) rotate(0deg);
+			transition: transform 0.5s ease;
+			/* initial fit */
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		#controls
+		{
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			display: flex;
+			gap: 10px;
+		}
+
+		.control-button
+		{
+			background-color: rgba(255, 255, 255, 0.3);
+			border: none;
+			color: #fff;
+			font-size: 24px;
+			padding: 10px 15px;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background-color 0.3s;
+		}
+
+		.control-button:hover
+		{
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+	</style>
+</head>
+<body>
+
+<div id="slideshow-container">
+	<img id="slideshow-image" src="" alt="Slideshow Image">
+	<div id="controls">
+		<button class="control-button" id="prev-button">&lt;</button>
+		<button class="control-button" id="next-button">&gt;</button>
+		<button class="control-button" id="rotate-button">%</button>
+	</div>
+</div>
+
+<script>
+	const imgFiles = [
+		"C:\\cygwin64\\home\\mark\\tmp\\cw\\kam\\kam-10m\\kam-10m\\slide-2.02.png",
+		"C:\\cygwin64\\home\\mark\\tmp\\cw\\kam\\kam-10m\\kam-10m\\slide-2.03.png",
+		"C:\\cygwin64\\home\\mark\\tmp\\cw\\kam\\kam-10m\\kam-10m\\slide-2.04.png"
+		// Add more paths as needed
+	];
+
+	let currentIndex = 0;
+	let currentRotation = 0;
+
+	const slideshowImage = document.getElementById('slideshow-image');
+	const prevButton = document.getElementById('prev-button');
+	const nextButton = document.getElementById('next-button');
+	const rotateButton = document.getElementById('rotate-button');
+
+	function adjustScale()
+	{
+		// Swap max dimensions on 90/270 degree rotations
+		if (currentRotation % 180 !== 0)
+		{
+			slideshowImage.style.maxWidth = window.innerHeight + 'px';
+			slideshowImage.style.maxHeight = window.innerWidth + 'px';
+		} else
+		{
+			slideshowImage.style.maxWidth = '100%';
+			slideshowImage.style.maxHeight = '100%';
+		}
+	}
+
+	function updateImage()
+	{
+		slideshowImage.src = imgFiles[currentIndex];
+		slideshowImage.style.transform = `translate(-50%, -50%) rotate(${currentRotation}deg)`;
+		adjustScale();
+	}
+
+	prevButton.addEventListener('click', () =>
+	{
+		currentIndex = (currentIndex - 1 + imgFiles.length) % imgFiles.length;
+		updateImage();
+	});
+
+	nextButton.addEventListener('click', () =>
+	{
+		currentIndex = (currentIndex + 1) % imgFiles.length;
+		updateImage();
+	});
+
+	rotateButton.addEventListener('click', () =>
+	{
+		currentRotation = (currentRotation + 90) % 360;
+		slideshowImage.style.transform = `translate(-50%, -50%) rotate(${currentRotation}deg)`;
+		adjustScale();
+	});
+
+	window.addEventListener('resize', adjustScale);
+
+	updateImage();
+</script>
+
+</body>
+</html>
