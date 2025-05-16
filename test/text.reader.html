@@ -248,7 +248,8 @@
 						<option value="88">88</option>
 						<option value="89">89</option>
 					</select><br>
-					<button id="loadSlidesBtn">Load</button>
+					<button id="loadSlidesBtn">Load</button><br>
+					<button id="hideControlBtn">Hide</button>
 				</div>
 			</div>
 			<button id="showControlBtn">V</button>
@@ -329,6 +330,15 @@
 
 				const showCtl = document.getElementById("showControlBtn");
 				showCtl.style.display = "none";
+			});
+
+			document.getElementById('hideControlBtn').addEventListener('click', () =>
+			{
+				const div = document.getElementById("controls");
+				div.style.display = "none";
+
+				const showCtl = document.getElementById("showControlBtn");
+				showCtl.style.display = "block";
 			});
 
 			window.onload = function()
