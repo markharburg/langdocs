@@ -323,9 +323,9 @@
 					(book) &&
 					(chap))
 				{
-					langSel.value = lang;
-					bookSel.value = book;
-					chapSel.value = chap;
+					document.getElementById('langSelect').value = lang;
+					document.getElementById('bookSelect').value = book;
+					document.getElementById('chapSelect').value = chap;
 
 					doPageLoad(lang, book, chap);
 				}
