@@ -7,7 +7,15 @@
 	  <style>
 		body, html { margin: 0; height: 100%; font-family: sans-serif; }
 		#container { display: flex; height: 100vh; }
-		#controls { width: 20%; background: #f8f8f8; padding: 10px; box-sizing: border-box; border-right: 1px solid #ccc; }
+		#controls
+		{
+			width: 20%;
+			background: #f8f8f8;
+			padding: 10px;
+			box-sizing: border-box;
+			border-right: 1px solid #ccc;
+			display: none;
+		}
 		#textPanel
 		{
 			flex: 1;
@@ -243,6 +251,7 @@
 					<button id="loadSlidesBtn">Load</button>
 				</div>
 			</div>
+			<button id="showControlBtn">V</button>
 			<div id="textPanel"></div>
 		</div>
 
@@ -313,6 +322,15 @@
 				doPageLoad(lang, book, chap);
 			});
 
+			document.getElementById('showControlBtn').addEventListener('click', () =>
+			{
+				const div = document.getElementById("controls");
+				div.style.display = "block";
+
+				const showCtl = document.getElementById("showControlBtn");
+				showCtl.style.display = "none";
+			});
+
 			window.onload = function()
 			{
 				const lang = getQueryParam('lang');
@@ -326,6 +344,12 @@
 					document.getElementById('langSelect').value = lang;
 					document.getElementById('bookSelect').value = book;
 					document.getElementById('chapSelect').value = chap;
+
+					const div = document.getElementById("controls");
+					div.style.display = "block";
+
+					const showCtl = document.getElementById("showControlBtn");
+					showCtl.style.display = "none";
 
 					doPageLoad(lang, book, chap);
 				}
