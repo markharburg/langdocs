@@ -108,6 +108,27 @@
 		}
 		#progress span, #progressAlt span { font-size: 1.2em; display: inline-block; margin-right: 5px; }
 		#progressAlt { margin-top: 8px; color: #555; }
+
+
+
+		#sidebar
+		{
+			display: flex;          /* Activate Flexbox on the container */
+			flex-direction: column; /* Stack children vertically */
+			align-items: stretch;   /* Stretch buttons to full width */
+			height: 100vh;          /* Make sidebar span full viewport height */
+		}
+
+		#sidebar button
+		{
+			flex: 1;                /* Allow buttons to grow equally in height */
+			margin: 0;              /* Remove default margins that might interfere */
+			border: 1;           /* Optional: clean up button borders */
+			padding: 1;             /* Optional: reset padding if needed */
+			width: 100%;            /* Full width of the sidebar */
+		}
+
+
 	</style>
 	</head>
 	<body>
@@ -252,7 +273,7 @@
 					<button id="hideControlBtn">Hide</button>
 				</div>
 			</div>
-			<div id="tightPanel">
+			<div id="sidebar" class="sidebarCls">
 				<button id="backTgtBtn">&lt;</button><br>
 				<button id="fwdTgtBtn">&gt;</button><br>
 				<button id="spkTgtBtn">V</button><br>
@@ -333,8 +354,10 @@
 				const div = document.getElementById("controls");
 				div.style.display = "block";
 
-				const tgtDiv = document.getElementById("tightPanel");
-				tgtDiv.style.display = "none";
+				const sideBarDiv = document.getElementById("sidebar");
+//				sideBarDiv.style.display = "none";
+				sideBarDiv.style.visibility = "hidden";
+//				sideBarDiv.style.height = "auto";
 			});
 
 			document.getElementById('backTgtBtn').addEventListener('click', () =>
@@ -357,8 +380,11 @@
 				const div = document.getElementById("controls");
 				div.style.display = "none";
 
-				const tgtDiv = document.getElementById("tightPanel");
-				tgtDiv.style.display = "block";
+				const sideBarDiv = document.getElementById("sidebar");
+//				sideBarDiv.style.display = "block";
+				sideBarDiv.style.visibility = "visible";
+				sideBarDiv.style.display = "flex";
+//				sideBarDiv.style.height = "100vh";
 			});
 
 			window.onload = function()
@@ -378,8 +404,8 @@
 					const div = document.getElementById("controls");
 					div.style.display = "block";
 
-					const tgtDiv = document.getElementById("tightPanel");
-					tgtDiv.style.display = "none";
+					const sideBarDiv = document.getElementById("sidebar");
+					sideBarDiv.style.display = "none";
 
 					doPageLoad(lang, book, chap);
 				}
