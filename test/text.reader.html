@@ -252,7 +252,12 @@
 					<button id="hideControlBtn">Hide</button>
 				</div>
 			</div>
-			<button id="showControlBtn">V</button>
+			<div id="tightPanel">
+				<button id="backTgtBtn">&lt;</button><br>
+				<button id="fwdTgtBtn">&gt;</button><br>
+				<button id="spkTgtBtn">S</button><br>
+				<button id="showControlBtn">X</button>
+			</div>
 			<div id="textPanel"></div>
 		</div>
 
@@ -328,8 +333,23 @@
 				const div = document.getElementById("controls");
 				div.style.display = "block";
 
-				const showCtl = document.getElementById("showControlBtn");
-				showCtl.style.display = "none";
+				const tgtDiv = document.getElementById("tightPanel");
+				tgtDiv.style.display = "none";
+			});
+
+			document.getElementById('backTgtBtn').addEventListener('click', () =>
+			{
+				navigatePrevious();
+			});
+
+			document.getElementById('fwdTgtBtn').addEventListener('click', () =>
+			{
+				navigateNext();
+			});
+
+			document.getElementById('spkTgtBtn').addEventListener('click', () =>
+			{
+				doSpeak();
 			});
 
 			document.getElementById('hideControlBtn').addEventListener('click', () =>
@@ -337,8 +357,8 @@
 				const div = document.getElementById("controls");
 				div.style.display = "none";
 
-				const showCtl = document.getElementById("showControlBtn");
-				showCtl.style.display = "block";
+				const tgtDiv = document.getElementById("tightPanel");
+				tgtDiv.style.display = "block";
 			});
 
 			window.onload = function()
@@ -358,8 +378,8 @@
 					const div = document.getElementById("controls");
 					div.style.display = "block";
 
-					const showCtl = document.getElementById("showControlBtn");
-					showCtl.style.display = "none";
+					const tgtDiv = document.getElementById("tightPanel");
+					tgtDiv.style.display = "none";
 
 					doPageLoad(lang, book, chap);
 				}
