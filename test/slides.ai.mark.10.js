@@ -11,7 +11,7 @@ const slideData =
 		alt: "Orowa, sinuma hopuni, hine, ney kotan wano oman, wa Yorodan pet kus ta an, Yudea mosiri orun ek nisa ruwe ne: orowa, kanna sui inne utara sinuma otta uwekarapa; awa, ramma koraci sui sinuma epakasnu nisa ruwe ne na.",
 		native: "On leaving that place, Jesus went into the district of Judea on the other side of the Jordan. Crowds gathered about him again; and again, as usual, he began teaching them.",
 		words: [ 'オロワ', 'シヌマ', 'ホプニ', 'ヒネ', 'ネイ', 'コタン', 'ワノ', 'オマン', 'ワ', 'ヨロダン', 'ペッ', 'クㇱ', 'タ', 'アン', 'ユデア', 'モシリ', 'オルン', 'エㇰ', 'ニサ', 'ルウェ', 'ネ', 'オロワ', 'カンナ', 'スイ', 'インネ', 'ウタラ', 'シヌマ', 'オッタ', 'ウウェカラパ', 'アワ', 'ラㇺマ', 'コラチ', 'スイ', 'シヌマ', 'エパカㇱヌ', 'ニサ', 'ルウェ', 'ネ', 'ナ' ],
-		audio: "https://docs.google.com/uc?export=download&id=1Gyb0pdNKGdGRx6Ro67qmCzA3_hOhUSq2"
+		audio: "audio/mark.10/0.wav"
 	},
 	{
 		target: "オロサマ、　オロタ　パリセエ　ウン　ウタラ　アラキ　ワ　コラㇺヌカラ、　ヒネ、　エネ　ウウェペケンヌヒ、　「アイヌ　アナㇰ　ネ、　コロ　マチ　オスルパ　チキ、　カㇱパオッテ　エハイタ　ルウェ　ヘ　アン」、　アニ　ヌ。",
