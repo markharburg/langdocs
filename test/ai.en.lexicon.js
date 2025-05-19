@@ -60,6 +60,12 @@ const dictionary =
 		native: "adj. servant (coupled with -guru or -utar)",
 		vrn: { 'auitek': [ 1 ] }
 	},
+	'アウウェオマ':
+	{
+		alt: 'auweoma',
+		native: "v.i. to be fulfilled, to come to pass",
+		vrn: { 'auweoma': [ 1 ] }
+	},
 	'アウウェオマレ':
 	{
 		alt: 'auweomare',
@@ -78,11 +84,29 @@ const dictionary =
 		native: "to cause hinderance???",
 		vrn: { 'aureepetciure': [ 1 ] }
 	},
+	'アエアㇱカイ':
+	{
+		alt: 'aeaskai',
+		native: "v.i. to be able to be done???",
+		vrn: { 'aeaskai': [ 1 ] }
+	},
+	'アエウイタㇰヌプ':
+	{
+		alt: 'aeuitaknup',
+		native: "n. a covenant, a promise",
+		vrn: { 'aeuitaknup': [ 1 ] }
+	},
 	'アエウパㇱクマ':
 	{
 		alt: 'aeupaskuma',
 		native: "v.i. to be preached to???",
 		vrn: { 'aeupaskuma': [ 1 ] }
+	},
+	'アエウンゲライテ':
+	{
+		alt: 'aeungeraite',
+		native: "v.i. to be given as alms, to be caused to accept",
+		vrn: { 'aeungeraite': [ 1 ] }
 	},
 	'アエオテㇰヌ':
 	{
@@ -108,6 +132,12 @@ const dictionary =
 		native: "v.i. to have settled or determined, to be treated as, to be reckoned up",
 		vrn: { 'aesanniyo': [ 1 ] }
 	},
+	'アエㇱカルン':
+	{
+		alt: 'aeskarun',
+		native: "v.i. to be payed mind to, to be remembered, to be recalled",
+		vrn: { 'aeskarun': [ 1 ] }
+	},
 	'アエトゥンネ':
 	{
 		alt: 'aetunne',
@@ -131,6 +161,12 @@ const dictionary =
 		alt: 'aep',
 		native: "(Human) food \'pirka aep rura\' \"deliver delicious food\", \'Usa aepi a=i=kopunpa.\' \"he served me various foods\", \'nep aepi ne yakka\' \"any food\"",
 		vrn: { 'aep': [ 1 ] }
+	},
+	'アエホㇰ':
+	{
+		alt: 'aehok',
+		native: "v.i. to be sold to???",
+		vrn: { 'aehok': [ 1 ] }
 	},
 	'アエポㇰバプ':
 	{
@@ -216,6 +252,12 @@ const dictionary =
 		native: "to be made dark???",
 		vrn: { 'akunnere': [ 1 ] }
 	},
+	'アコアッチャ':
+	{
+		alt: 'akoatca',
+		native: "v.i. to be blashphemed, to be treated slightly, to be treated badly, to be accursed, to be wasted, to be cursed",
+		vrn: { 'akoatca': [ 1 ] }
+	},
 	'アコインガラ':
 	{
 		alt: 'akoingara',
@@ -257,6 +299,12 @@ const dictionary =
 		alt: 'askanne',
 		native: "adj. clean, pure, syn: turu-sak",
 		vrn: { 'askanne': [ 1 ] }
+	},
+	'アシㇰヌレ':
+	{
+		alt: 'asiknure',
+		native: "v.i. to be saved, to be made to live",
+		vrn: { 'asiknure': [ 1 ] }
 	},
 	'アシㇰネ':
 	{
@@ -383,6 +431,12 @@ const dictionary =
 		alt: 'anunuke',
 		native: "to be made blessed",
 		vrn: { 'anunuke': [ 1 ] }
+	},
+	'アヌヌケプ':
+	{
+		alt: 'anunukep',
+		native: "n. a precious thing, a blessed thing",
+		vrn: { 'anunukep': [ 1 ] }
 	},
 	'アヌㇺゲ':
 	{
@@ -798,6 +852,12 @@ const dictionary =
 		native: "v.t. to receive (beggar - with kur)",
 		vrn: { 'iyahup': [ 1 ] }
 	},
+	'イヨイタクシ':
+	{
+		alt: 'iyoitakusi',
+		native: "v.t. to curse at",
+		vrn: { 'iyoitakusi': [ 1 ] }
+	},
 	'イヨクンヌレ':
 	{
 		alt: 'iyokunnure',
@@ -954,6 +1014,12 @@ const dictionary =
 		native: "v.t. to prophesy, foresee",
 		vrn: { 'uweinkara': [ 1 ] }
 	},
+	'ウウェオウパㇰ':
+	{
+		alt: 'uweoupak',
+		native: "adj. (mutually???) upright, (mutually???) righteous, (mutually???) straight, (mutually???) accurate, (mutually???) correct, without error [Shizunai]",
+		vrn: { 'uweoupak': [ 1 ] }
+	},
 	'ウウェオマレ':
 	{
 		alt: 'uweomare',
@@ -1014,6 +1080,12 @@ const dictionary =
 		native: "Last night Last night Yube, [Ishikari] Night (during bedtime)",
 		vrn: { 'ukuran': [ 1 ] }
 	},
+	'ウコイラㇺノ':
+	{
+		alt: 'ukoiramno',
+		native: "adv. together, at the same time together",
+		vrn: { 'ukoiramno': [ 1 ] }
+	},
 	'ウコウサライェ':
 	{
 		alt: 'ukousaraye',
@@ -1025,6 +1097,12 @@ const dictionary =
 		alt: 'ukotukkare',
 		native: "to make come together??? to make close eyes???",
 		vrn: { 'ukotukkare': [ 1 ] }
+	},
+	'ウコホプニ':
+	{
+		alt: 'ukohopuni',
+		native: "to riot??? lit. jump to each other???",
+		vrn: { 'ukohopuni': [ 1 ] }
 	},
 	'ウコラチ':
 	{
@@ -1223,6 +1301,12 @@ const dictionary =
 		alt: 'eani',
 		native: "You, you, you (in a close relationship) \'eani anak\' \"you\", \'eani patek\' \"by yourself\"",
 		vrn: { 'eani': [ 1 ] }
+	},
+	'エアㇺキリ':
+	{
+		alt: 'eamkiri',
+		native: "v.t. to know, to recognize",
+		vrn: { 'eamkiri': [ 1 ] }
 	},
 	'エアリキンネ':
 	{
@@ -2094,6 +2178,12 @@ const dictionary =
 		native: "passover",
 		vrn: { 'kamakus': [ 1 ] }
 	},
+	'カマクㇱベ':
+	{
+		alt: 'kamakusbe',
+		native: "passover???",
+		vrn: { 'kamakusbe': [ 1 ] }
+	},
 	'カㇺ':
 	{
 		alt: 'kam',
@@ -2358,6 +2448,12 @@ const dictionary =
 		native: "the finish??? the end???",
 		vrn: { 'kesehe': [ 1 ] }
 	},
+	'ケミヒ':
+	{
+		alt: 'kemihi',
+		native: "n. blood (gen??)",
+		vrn: { 'kemihi': [ 1 ] }
+	},
 	'ケㇺ':
 	{
 		alt: 'kem',
@@ -2465,6 +2561,12 @@ const dictionary =
 		alt: 'kokkaea',
 		native: "sit on one\'s knees with one\'s heels up",
 		vrn: { 'kokkaea': [ 1 ] }
+	},
+	'コサカヨ':
+	{
+		alt: 'kosakayo',
+		native: "to reprove, scold???",
+		vrn: { 'kosakayo': [ 1 ] }
 	},
 	'コタン':
 	{
@@ -2604,6 +2706,12 @@ const dictionary =
 		native: "v.t. to have (kor sound alternation)",
 		vrn: { 'kon': [ 1 ] }
 	},
+	'サオッ':
+	{
+		alt: 'saot',
+		native: "v.i. to run away",
+		vrn: { 'saot': [ 1 ] }
+	},
 	'サカヨ':
 	{
 		alt: 'sakayo',
@@ -2687,6 +2795,12 @@ const dictionary =
 		alt: 'siwentep',
 		native: "n. a woman, as: - \'Siwentep siripo auosmare\' \"to have become a woman\"",
 		vrn: { 'siwentep': [ 1 ] }
+	},
+	'シウレ':
+	{
+		alt: 'siure',
+		native: "v.t. to take care of, As: \'Cisei otta siure\' \"to take care of a house\"",
+		vrn: { 'siure': [ 1 ] }
 	},
 	'シウレ':
 	{
@@ -2915,6 +3029,12 @@ const dictionary =
 		alt: 'suyesuye',
 		native: "Shake, shake, shake (~) many times \'Mun patcere kusu muy suyesuye.\' \"shake the winnow to blow away the rice husks\"",
 		vrn: { 'suyesuye': [ 1 ] }
+	},
+	'スイネ':
+	{
+		alt: 'suine',
+		native: "part. an adverbial ending to numerals, (x-times???)",
+		vrn: { 'suine': [ 1 ] }
 	},
 	'スイネ':
 	{
@@ -3204,6 +3324,18 @@ const dictionary =
 		native: "v.t. to kiss",
 		vrn: { 'copcopsekara': [ 1 ] }
 	},
+	'チョプチョプセカン':
+	{
+		alt: 'copcopsekan',
+		native: "v.t. to kiss",
+		vrn: { 'copcopsekan': [ 1 ] }
+	},
+	'デエダ':
+	{
+		alt: 'deeda',
+		native: "adv. previously???, ancient times???, before???, a long time ago???",
+		vrn: { 'deeda': [ 1 ] }
+	},
 	'テㇰ':
 	{
 		alt: 'tek',
@@ -3260,6 +3392,12 @@ const dictionary =
 	},
 	'トゥイマノ':
 	{
+		alt: 'tuimano',
+		native: "adv. distantly",
+		vrn: { 'tuimano': [ 1 ] }
+	},
+	'トゥイマノ':
+	{
 		alt: 'tuymano',
 		native: "Far, far away \'Iteki tuymano sinenne apkas yan.\' \"Never go far alone\" / far away",
 		vrn: { 'tuymano': [ 1, 2 ] }
@@ -3287,6 +3425,12 @@ const dictionary =
 		alt: 'tutanu',
 		native: "next second",
 		vrn: { 'tutanu': [ 1 ] }
+	},
+	'トゥッコ':
+	{
+		alt: 'tutko',
+		native: "Two days (two days)",
+		vrn: { 'tutko': [ 1 ] }
 	},
 	'トゥプ':
 	{
@@ -3420,6 +3564,12 @@ const dictionary =
 		native: "Face (head) of…",
 		vrn: { 'nanuhu': [ 1 ] }
 	},
+	'ナㇽドㇱ':
+	{
+		alt: 'nardos',
+		native: "spikenard??? some plant involved in production of perfume???",
+		vrn: { 'nardos': [ 1 ] }
+	},
 	'ナンゴラ':
 	{
 		alt: 'nangora',
@@ -3534,6 +3684,12 @@ const dictionary =
 		native: "v.t. to cause to write",
 		vrn: { 'nuyere': [ 1 ] }
 	},
+	'ヌイナノ':
+	{
+		alt: 'nuinano',
+		native: "adv. secretly",
+		vrn: { 'nuinano': [ 1 ] }
+	},
 	'ヌカラ':
 	{
 		alt: 'nukara',
@@ -3581,6 +3737,12 @@ const dictionary =
 		alt: 'nupekihi',
 		native: "n. light, brightness",
 		vrn: { 'nupekihi': [ 1 ] }
+	},
+	'ヌペㇰ':
+	{
+		alt: 'nupek',
+		native: "n. light, brightness",
+		vrn: { 'nupek': [ 1 ] }
 	},
 	'ヌㇺゲ':
 	{
@@ -3936,6 +4098,12 @@ const dictionary =
 		native: "n. a habit, a custom, manners, As: - \'Buri - pirika\' \"of good manners\", \'Buri rainatara\' \"of gentle habits\"",
 		vrn: { 'buri': [ 1 ] }
 	},
+	'プンガラ':
+	{
+		alt: 'pungara',
+		native: "n. a vine of any kind",
+		vrn: { 'pungara': [ 1 ] }
+	},
 	'プンギ':
 	{
 		alt: 'pungi',
@@ -3959,6 +4127,12 @@ const dictionary =
 		alt: 'heasi',
 		native: "The beginning.",
 		vrn: { 'heasi': [ 1 ] }
+	},
+	'ヘアシリキ':
+	{
+		alt: 'heasiriki',
+		native: "to begin???",
+		vrn: { 'heasiriki': [ 1 ] }
 	},
 	'ペケレ':
 	{
@@ -4452,6 +4626,12 @@ const dictionary =
 		native: "adv. carefully, with care",
 		vrn: { 'yaitubare': [ 1 ] }
 	},
+	'ヤイトゥバレノ':
+	{
+		alt: 'yaitubareno',
+		native: "adv. carefully, with care",
+		vrn: { 'yaitubareno': [ 1 ] }
+	},
 	'ヤイトゥワㇱカラプ':
 	{
 		alt: 'yaituwaskarap',
@@ -4466,6 +4646,12 @@ const dictionary =
 	},
 	'ヤイポプケレ':
 	{
+		alt: 'yaipopkere',
+		native: "v.t. to warm oneself",
+		vrn: { 'yaipopkere': [ 1 ] }
+	},
+	'ヤイポプケレ':
+	{
 		alt: 'yaypopkere',
 		native: "warm, warm the body",
 		vrn: { 'yaypopkere': [ 1 ] }
@@ -4475,6 +4661,12 @@ const dictionary =
 		alt: 'yairamatte',
 		native: "v.i. to be careful, to watch over one\'s self, to be circumspect, to be cautious, to pay attention",
 		vrn: { 'yairamatte': [ 1 ] }
+	},
+	'ヤイラㇺコイキ':
+	{
+		alt: 'yairamkoiki',
+		native: "v.i. to be in sorrow, to be distressed, to be out of spirits",
+		vrn: { 'yairamkoiki': [ 1 ] }
 	},
 	'ヤㇰ':
 	{
@@ -4499,6 +4691,12 @@ const dictionary =
 		alt: 'yakun',
 		native: "(General assumption) If so, then \'E=arpa yakun e=eraman.\' \"You will understand when you go\"",
 		vrn: { 'yakun': [ 1 ] }
+	},
+	'ヤㇱパ':
+	{
+		alt: 'yaspa',
+		native: "v.t. to tear",
+		vrn: { 'yaspa': [ 1 ] }
 	},
 	'ヤラ':
 	{
@@ -4595,6 +4793,12 @@ const dictionary =
 		alt: 'ramu',
 		native: "n. and v.i. the mind, the soul, the seat of the feeling, to think, to understand, to consider, As: - \'Iteki anun siri ne ramu wa kore wa en kore\' \"please do not consider me a stranger\"",
 		vrn: { 'ramu': [ 1 ] }
+	},
+	'ラムオㇰナタラ':
+	{
+		alt: 'ramuoknatara',
+		native: "adj/v.t. to be unhappy",
+		vrn: { 'ramuoknatara': [ 1 ] }
 	},
 	'ラムオㇱマ':
 	{
