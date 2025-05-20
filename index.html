@@ -1,147 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Digit Keystroke Capture</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 2em;
-    }
-    input {
-      font-size: 1.5em;
-      width: 200px;
-      padding: 0.5em;
-    }
-  </style>
+	<meta charset="UTF-8">
+	<title>Langs</title>
+	<style>
+		body
+		{
+			font-family: sans-serif;
+			margin: 2em;
+		}
+
+		input
+		{
+			font-size: 1.5em;
+			width: 200px;
+			padding: 0.5em;
+		}
+
+		details
+		{
+			margin-left: 1em;
+		}
+		summary
+		{
+			cursor: pointer;
+			list-style: none;
+		}
+		/* Optional: style the disclosure arrow */
+		summary::marker
+		{
+			content: "▶ ";
+		}
+		details[open] > summary::marker
+		{
+			content: "▼ ";
+		}
+
+		/* 1. Remove the UL bullets */
+		.tree,
+		.tree ul
+		{
+			list-style: none;       /* turn off all default list markers */
+			margin: 0;
+			padding-left: 1em;      /* or whatever youӤ like for indentation */
+		}
+
+		/* 2. Remove the details/summary arrow */
+		.tree details > summary
+		{
+			list-style: none;       /* needed for Firefox, Chrome, Edge, etc. */
+		}
+		.tree details > summary::marker,
+		.tree details > summary::-webkit-details-marker
+		{
+			display: none;          /* ::marker for most browsers; -webkit- for Safari */
+		}
+
+	</style>
+	<base target="_blank">
 </head>
 <body>
-  <ul>
-    <li>
-      Tools/games
-      <ul>
-        <li>
-          <a href="games/img/img-slideshow.html">img viewer</a>
-        </li>
-        <li>
-          <a href="test/local.storage.sync.html">local.storage.sync</a>
-        </li>
-        <li>
-          <a href="https://github.com/markharburg/langdocs/tree/main">github</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      Mark
-      <ul>
-        <li>
-          <a href="test/text.reader.html?lang=ai&book=mark&chap=10">Chapter 10</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=ai&book=mark&chap=11">Chapter 11</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=ai&book=mark&chap=12">Chapter 12</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=ai&book=mark&chap=13">Chapter 13</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=ai&book=mark&chap=14">Chapter 14</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=ai&book=mark&chap=15">Chapter 15</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=ai&book=mark&chap=16">Chapter 16</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      Blade
-      <ul>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=1">Scene 1</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=2">Scene 2</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=3">Scene 3</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=4">Scene 4</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=5">Scene 5</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=6">Scene 6</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=7">Scene 7</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=8">Scene 8</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=9">Scene 9</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=10">Scene 10</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=11">Scene 11</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=12">Scene 12</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=13">Scene 13</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=14">Scene 14</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=15">Scene 15</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=16">Scene 16</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=17">Scene 17</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=18">Scene 18</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=19">Scene 19</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=20">Scene 20</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=21">Scene 21</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=22">Scene 22</a>
-        </li>
-        <li>
-          <a href="test/text.reader.html?lang=zh&book=blade.runner&chap=23">Scene 23</a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <a href="text/text.editor.html">text editor</a>
-    </li>
-    <li>
-      <a href="text/tree-editor.html">tree editor</a>
-    </li>
-    <li>
-      <a href="gram/gram.builder.html">grammar builder</a>
-    </li>
-  </ul>
-  <script>
-  </script>
+	<ul class="tree">
+		<li>
+			<details>
+				<summary>Tools/games</summary>
+				<ul>
+					<li>
+						<a href="games/img/img-slideshow.html">img viewer</a>
+					</li>
+					<li>
+						<a href="test/local.storage.sync.html">local.storage.sync</a>
+					</li>
+					<li>
+						<a href="text/text.editor.html">text editor</a>
+					</li>
+					<li>
+						<a href="text/tree-editor.html">tree editor</a>
+					</li>
+					<li>
+						<a href="gram/gram.builder.html">grammar builder</a>
+					</li>
+					<li>
+						<a href="https://github.com/markharburg/langdocs/tree/main">github</a>
+					</li>
+				</ul>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary>Ai</summary>
+				<ul>
+					<li>
+						<details>
+							<summary>Mark</summary>
+							<ul>
+								<li>
+									<a href="test/text.reader.html?lang=ai&book=mark&chap=10">Chapter 10</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=ai&book=mark&chap=11">Chapter 11</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=ai&book=mark&chap=12">Chapter 12</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=ai&book=mark&chap=13">Chapter 13</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=ai&book=mark&chap=14">Chapter 14</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=ai&book=mark&chap=15">Chapter 15</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=ai&book=mark&chap=16">Chapter 16</a>
+								</li>
+							</ul>
+						</details>
+					</li>
+				</ul>
+			</details>
+		</li>
+		<li>
+			<details>
+				<summary>Zh</summary>
+				<ul>
+					<li>
+						<details>
+							<summary>Blade</summary>
+							<ul>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=1">Scene 1</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=2">Scene 2</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=3">Scene 3</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=4">Scene 4</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=5">Scene 5</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=6">Scene 6</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=7">Scene 7</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=8">Scene 8</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=9">Scene 9</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=10">Scene 10</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=11">Scene 11</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=12">Scene 12</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=13">Scene 13</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=14">Scene 14</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=15">Scene 15</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=16">Scene 16</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=17">Scene 17</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=18">Scene 18</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=19">Scene 19</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=20">Scene 20</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=21">Scene 21</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=22">Scene 22</a>
+								</li>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=blade.runner&chap=23">Scene 23</a>
+								</li>
+							</ul>
+						</details>
+					</li>
+					<li>
+						<details>
+							<summary>grammar</summary>
+							<ul>
+								<li>
+									<a href="test/text.reader.html?lang=zh&book=gram.intermed.01&chap=1">intermed.01</a>
+								</li>
+							</ul>
+						</details>
+					</li>
+				</ul>
+			</details>
+		</li>
+	</ul>
+	<script>
+	</script>
 </body>
 </html>
