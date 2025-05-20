@@ -2,192 +2,187 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>PNG Slideshow</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Slideshow</title>
 	<style>
 		html, body
 		{
 			margin: 0;
 			padding: 0;
-			background-color: #000;
-			height: 100%;
 			width: 100%;
+			height: 100%;
 			overflow: hidden;
+			background: #000;
 		}
-
-		#slideshow-container
+		#container
 		{
 			position: relative;
 			width: 100%;
 			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
-
 		#slideshow-image
 		{
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%) rotate(0deg);
-			transition: transform 0.5s ease;
-			/* initial fit */
 			max-width: 100%;
 			max-height: 100%;
+			object-fit: contain;
+			transition: transform 0.3s ease;
 		}
-
-		#controls
+		.control-btn
 		{
 			position: absolute;
-			bottom: 20px;
-			right: 20px;
-			display: flex;
-			gap: 10px;
-		}
-
-		.control-button
-		{
-			background-color: rgba(255, 255, 255, 0.3);
-			border: none;
+			left: 10px;
+			width: 40px;
+			height: 40px;
+			background: rgba(0, 0, 0, 0.3);
 			color: #fff;
+			border: none;
 			font-size: 24px;
-			padding: 10px 15px;
 			cursor: pointer;
-			border-radius: 5px;
-			transition: background-color 0.3s;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 1;
+			user-select: none;
 		}
-
-		.control-button:hover
+		#prev-btn
 		{
-			background-color: rgba(255, 255, 255, 0.5);
+			top: 10%;
+			transform: translateY(-10%);
+		}
+		#next-btn
+		{
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		#rotate-btn
+		{
+			top: 90%;
+			transform: translateY(-90%);
 		}
 	</style>
 </head>
 <body>
-
-<div id="slideshow-container">
-	<img id="slideshow-image" src="" alt="Slideshow Image">
-	<div id="controls">
-		<button class="control-button" id="prev-button">&lt;</button>
-		<button class="control-button" id="next-button">&gt;</button>
-		<button class="control-button" id="rotate-button">%</button>
+	<div id="container">
+		<button id="prev-btn" class="control-btn">&lt;</button>
+		<button id="next-btn" class="control-btn">&gt;</button>
+		<button id="rotate-btn" class="control-btn">%</button>
+		<img id="slideshow-image" src="" alt="Slide">
 	</div>
-</div>
 
-<script>
-	const imgFiles = [
-		"pre-00.png",
-		"pre-03.png",
-		"slide-0.00.png",
-		"slide-0.01.png",
-		"slide-0.02.png",
-		"slide-0.03.png",
-		"slide-0.04.png",
-		"slide-0.05.png",
-		"slide-0.06.png",
-		"slide-0.07.png",
-		"slide-0.08.png",
-		"slide-0.09.png",
-		"slide-0.10.png",
-		"slide-0.11.png",
-		"slide-0.12.png",
-		"slide-0.13.png",
-		"slide-1.00.png",
-		"slide-1.01.png",
-		"slide-1.02.png",
-		"slide-1.03.png",
-		"slide-1.04.png",
-		"slide-1.05.png",
-		"slide-1.06.png",
-		"slide-1.07.png",
-		"slide-1.08.png",
-		"slide-1.09.png",
-		"slide-1.10.png",
-		"slide-1.11.png",
-		"slide-2.00.png",
-		"slide-2.01.png",
-		"slide-2.02.png",
-		"slide-2.03.png",
-		"slide-2.04.png",
-		"slide-2.05.png",
-		"slide-2.06.png",
-		"slide-2.07.png",
-		"slide-2.08.png",
-		"slide-2.09.png",
-		"slide-2.10.png",
-		"slide-2.11.png",
-		"slide-3.00.png",
-		"slide-3.01.png",
-		"slide-3.02.png",
-		"slide-3.03.png",
-		"slide-3.04.png",
-		"slide-3.05.png",
-		"slide-3.06.png",
-		"slide-3.07.png",
-		"slide-3.08.png",
-		"slide-3.09.png",
-		"slide-3.10.png",
-		"slide-3.11.png",
-		"slide-4.liar.00.png",
-		"slide-4.liar.01.png",
-		"slide-5.bru.00.png",
-		"slide-5.bru.01.png",
-		"slide-5.bru.02.png",
-		"slide-5.bru.03.png",
-		"slide-5.bru.04.png",
-		"slide-5.bru.05.png",
-		"slide-5.bru.06.png"
-	];
+	<script>
+		const imgFiles =
+		[
+			"pre-00.png",
+			"pre-03.png",
+			"slide-0.00.png",
+			"slide-0.01.png",
+			"slide-0.02.png",
+			"slide-0.03.png",
+			"slide-0.04.png",
+			"slide-0.05.png",
+			"slide-0.06.png",
+			"slide-0.07.png",
+			"slide-0.08.png",
+			"slide-0.09.png",
+			"slide-0.10.png",
+			"slide-0.11.png",
+			"slide-0.12.png",
+			"slide-0.13.png",
+			"slide-1.00.png",
+			"slide-1.01.png",
+			"slide-1.02.png",
+			"slide-1.03.png",
+			"slide-1.04.png",
+			"slide-1.05.png",
+			"slide-1.06.png",
+			"slide-1.07.png",
+			"slide-1.08.png",
+			"slide-1.09.png",
+			"slide-1.10.png",
+			"slide-1.11.png",
+			"slide-2.00.png",
+			"slide-2.01.png",
+			"slide-2.02.png",
+			"slide-2.03.png",
+			"slide-2.04.png",
+			"slide-2.05.png",
+			"slide-2.06.png",
+			"slide-2.07.png",
+			"slide-2.08.png",
+			"slide-2.09.png",
+			"slide-2.10.png",
+			"slide-2.11.png",
+			"slide-3.00.png",
+			"slide-3.01.png",
+			"slide-3.02.png",
+			"slide-3.03.png",
+			"slide-3.04.png",
+			"slide-3.05.png",
+			"slide-3.06.png",
+			"slide-3.07.png",
+			"slide-3.08.png",
+			"slide-3.09.png",
+			"slide-3.10.png",
+			"slide-3.11.png",
+			"slide-4.liar.00.png",
+			"slide-4.liar.01.png",
+			"slide-5.bru.00.png",
+			"slide-5.bru.01.png",
+			"slide-5.bru.02.png",
+			"slide-5.bru.03.png",
+			"slide-5.bru.04.png",
+			"slide-5.bru.05.png",
+			"slide-5.bru.06.png"
+		];
 
-	let currentIndex = 0;
-	let currentRotation = 0;
-
-	const slideshowImage = document.getElementById('slideshow-image');
-	const prevButton = document.getElementById('prev-button');
-	const nextButton = document.getElementById('next-button');
-	const rotateButton = document.getElementById('rotate-button');
-
-	function adjustScale()
-	{
-		// Swap max dimensions on 90/270 degree rotations
-		if (currentRotation % 180 !== 0)
+		// Parse slideNum from URL
+		function getSlideFromURL()
 		{
-			slideshowImage.style.maxWidth = window.innerHeight + 'px';
-			slideshowImage.style.maxHeight = window.innerWidth + 'px';
-		} else
-		{
-			slideshowImage.style.maxWidth = '100%';
-			slideshowImage.style.maxHeight = '100%';
+			const params = new URLSearchParams(window.location.search);
+			const num = parseInt(params.get('slideNum'));
+			return isNaN(num) || num < 0 || num >= imgFiles.length ? 0 : num;
 		}
-	}
 
-	function updateImage()
-	{
-		slideshowImage.src = imgFiles[currentIndex];
-		slideshowImage.style.transform = `translate(-50%, -50%) rotate(${currentRotation}deg)`;
-		adjustScale();
-	}
+		let currentIndex = getSlideFromURL();
+		let rotationAngle = 0;
+		const imgEl = document.getElementById('slideshow-image');
 
-	prevButton.addEventListener('click', () =>
-	{
-		currentIndex = (currentIndex - 1 + imgFiles.length) % imgFiles.length;
-		updateImage();
-	});
+		function updateURL()
+		{
+			const newURL = `${window.location.pathname}?slideNum=${currentIndex}`;
+			history.replaceState(null, '', newURL);
+		}
 
-	nextButton.addEventListener('click', () =>
-	{
-		currentIndex = (currentIndex + 1) % imgFiles.length;
-		updateImage();
-	});
+		function showSlide(index)
+		{
+			currentIndex = (index + imgFiles.length) % imgFiles.length;
+			imgEl.src = imgFiles[currentIndex];
+			rotationAngle = 0;
+			imgEl.style.transform = `rotate(0deg)`;
+			updateURL();
+		}
 
-	rotateButton.addEventListener('click', () =>
-	{
-		currentRotation = (currentRotation + 90) % 360;
-		slideshowImage.style.transform = `translate(-50%, -50%) rotate(${currentRotation}deg)`;
-		adjustScale();
-	});
+		document.getElementById('prev-btn').addEventListener('click', () =>
+		{
+			showSlide(currentIndex - 1);
+		});
 
-	window.addEventListener('resize', adjustScale);
+		document.getElementById('next-btn').addEventListener('click', () =>
+		{
+			showSlide(currentIndex + 1);
+		});
 
-	updateImage();
-</script>
+		document.getElementById('rotate-btn').addEventListener('click', () =>
+		{
+			rotationAngle = (rotationAngle + 90) % 360;
+			imgEl.style.transform = `rotate(${rotationAngle}deg)`;
+		});
 
+		// Initialize
+		showSlide(currentIndex);
+	</script>
 </body>
 </html>
