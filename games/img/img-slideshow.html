@@ -25,10 +25,8 @@
 		}
 		#slideshow-image
 		{
-			max-width: 100%;
-			max-height: 100%;
-			object-fit: contain;
-			transition: transform 0.3s ease;
+			will-change: transform;
+			transform-origin: center center;
 		}
 		.control-btn
 		{
@@ -47,21 +45,9 @@
 			z-index: 1;
 			user-select: none;
 		}
-		#prev-btn
-		{
-			top: 10%;
-			transform: translateY(-10%);
-		}
-		#next-btn
-		{
-			top: 50%;
-			transform: translateY(-50%);
-		}
-		#rotate-btn
-		{
-			top: 90%;
-			transform: translateY(-90%);
-		}
+		#prev-btn { top: 10%; transform: translateY(-10%); }
+		#next-btn { top: 50%; transform: translateY(-50%); }
+		#rotate-btn { top: 90%; transform: translateY(-90%); }
 	</style>
 </head>
 <body>
@@ -138,16 +124,17 @@
 			"slide-5.bru.06.png"
 		];
 
-		// Parse slideNum from URL
 		function getSlideFromURL()
 		{
 			const params = new URLSearchParams(window.location.search);
-			const num = parseInt(params.get('slideNum'));
+			const num = parseInt(params.get('slideNum'), 10);
 			return isNaN(num) || num < 0 || num >= imgFiles.length ? 0 : num;
 		}
 
 		let currentIndex = getSlideFromURL();
 		let rotationAngle = 0;
+		let naturalWidth = 0;
+		let naturalHeight = 0;
 		const imgEl = document.getElementById('slideshow-image');
 
 		function updateURL()
@@ -156,14 +143,29 @@
 			history.replaceState(null, '', newURL);
 		}
 
+		function updateTransform()
+		{
+			if (!naturalWidth || !naturalHeight) return;
+			const rad = rotationAngle * Math.PI / 180;
+			const rotatedWidth = Math.abs(Math.cos(rad)) * naturalWidth + Math.abs(Math.sin(rad)) * naturalHeight;
+			const rotatedHeight = Math.abs(Math.sin(rad)) * naturalWidth + Math.abs(Math.cos(rad)) * naturalHeight;
+			const scale = Math.min(window.innerWidth / rotatedWidth, window.innerHeight / rotatedHeight);
+			imgEl.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
+		}
+
 		function showSlide(index)
 		{
 			currentIndex = (index + imgFiles.length) % imgFiles.length;
 			imgEl.src = imgFiles[currentIndex];
-			rotationAngle = 0;
-			imgEl.style.transform = `rotate(0deg)`;
 			updateURL();
 		}
+
+		imgEl.addEventListener('load', () =>
+		{
+			naturalWidth = imgEl.naturalWidth;
+			naturalHeight = imgEl.naturalHeight;
+			updateTransform();
+		});
 
 		document.getElementById('prev-btn').addEventListener('click', () =>
 		{
@@ -178,8 +180,10 @@
 		document.getElementById('rotate-btn').addEventListener('click', () =>
 		{
 			rotationAngle = (rotationAngle + 90) % 360;
-			imgEl.style.transform = `rotate(${rotationAngle}deg)`;
+			updateTransform();
 		});
+
+		window.addEventListener('resize', updateTransform);
 
 		// Initialize
 		showSlide(currentIndex);
