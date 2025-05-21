@@ -3,9 +3,9 @@ const controlParams =
 	'targetLanguage': 'ai',
 	'nativeLanguage': 'en',
 	'defaultAltOn': true,
-	'defaultNativeOn': true,
-	'defaultWordQuizOn': true,
-	'defaultSentQuizOn': true,
+	'defaultNativeOn': false,
+	'defaultWordQuizOn': false,
+	'defaultSentQuizOn': false,
 	'defaultSkipNoQuizOn': false,
-	'defaultSpeakOn': true
+	'defaultSpeakOn': false
 };
