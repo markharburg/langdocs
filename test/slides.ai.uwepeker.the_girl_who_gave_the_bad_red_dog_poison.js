@@ -11,7 +11,7 @@ const slideData =
 		alt: "ne ene iki wa an pe a= ne hi ka a= eramiskari no,",
 		native: "I don\'t know why it happened,",
 		words: [ 'ネ', 'エネ', 'イキ', 'ワ', 'アン', 'ペ', 'ア', 'ネ', 'ヒ', 'カ', 'ア', 'エラミㇱカリ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/0.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/0.wav",
 		quizWords: [ 'エラミㇱカリ' ]
 	},
 	{
@@ -19,7 +19,7 @@ const slideData =
 		alt: "poro cise or_ ta yayesikarun =an.",
 		native: "but as long as I remember, I lived in a big house.",
 		words: [ 'ポロ', 'チセ', 'オㇽ', 'タ', 'ヤイェシカルン', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/1.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/1.wav",
 		quizWords: [ 'チセ', 'オㇽ' ]
 	},
 	{
@@ -27,7 +27,7 @@ const slideData =
 		alt: "matkaci a= ne hine an =an pe ne ruwe ne hine,",
 		native: "I was a girl.",
 		words: [ 'マッカチ', 'ア', 'ネ', 'ヒネ', 'アン', 'アン', 'ペ', 'ネ', 'ルウェ', 'ネ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/2.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/2.wav",
 		quizSentence: true
 	},
 	{
@@ -35,7 +35,7 @@ const slideData =
 		alt: "nen i= epakasnu ka somo ki korka,",
 		native: "Nobody really taught me,",
 		words: [ 'ネン', 'イ', 'エパカㇱヌ', 'カ', 'ソモ', 'キ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/3.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/3.wav",
 		quizWords: [ 'コㇽカ' ]
 	},
 	{
@@ -43,7 +43,7 @@ const slideData =
 		alt: "nep ne ruwe ne ya muye a= kar wa,",
 		native: "[but I have memories of] taking things bundled",
 		words: [ 'ネプ', 'ネ', 'ルウェ', 'ネ', 'ヤ', 'ムイェ', 'ア', 'カㇽ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/4.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/4.wav",
 		quizWords: [ 'カㇽ', 'ムイェ' ]
 	},
 	{
@@ -51,7 +51,7 @@ const slideData =
 		alt: "parka esik wa okay pe,",
 		native: "on the shelves",
 		words: [ 'パㇽカ', 'エシㇰ', 'ワ', 'オカイ', 'ペ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/5.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/5.wav",
 		quizWords: [ 'オカイ', 'パㇽカ', 'エシㇰ' ]
 	},
 	{
@@ -59,7 +59,7 @@ const slideData =
 		alt: "yayesikarun =an hi orano a= rapte.",
 		native: "(I have memories of) and lowering them.",
 		words: [ 'ヤイェシカルン', 'アン', 'ヒ', 'オラノ', 'ア', 'ラプテ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/6.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/6.wav",
 		quizWords: [ 'オラノ' ]
 	},
 	{
@@ -67,7 +67,7 @@ const slideData =
 		alt: "ni a= kor a= otkeotke wa a= rapte wa",
 		native: "I used a stick to pull them down,",
 		words: [ 'ニ', 'ア', 'コㇽ', 'ア', 'オッケオッケ', 'ワ', 'ア', 'ラプテ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/7.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/7.wav",
 		quizWords: [ 'ニ' ]
 	},
 	{
@@ -75,7 +75,7 @@ const slideData =
 		alt: "wor a= omare wa a= huraye wa,",
 		native: "and I put them in water and washed.",
 		words: [ 'ヲㇽ', 'ア', 'オマレ', 'ワ', 'ア', 'フライェ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/8.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/8.wav",
 		quizWords: [ 'フライェ', 'ヲㇽ' ]
 	},
 	{
@@ -83,7 +83,7 @@ const slideData =
 		alt: "nen i= epakasnu somo ki korka,",
 		native: "Nobody really taught me,",
 		words: [ 'ネン', 'イ', 'エパカㇱヌ', 'ソモ', 'キ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/9.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/9.wav",
 		quizSentence: true
 	},
 	{
@@ -91,7 +91,7 @@ const slideData =
 		alt: "ape a= ari.",
 		native: "but I started a fire.",
 		words: [ 'アペ', 'ア', 'アリ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/10.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/10.wav",
 		quizWords: [ 'アペ' ]
 	},
 	{
@@ -99,7 +99,7 @@ const slideData =
 		alt: "ni poronno sem or_ ta okay pe ne kus,",
 		native: "There was lots of firewood in the shed,",
 		words: [ 'ニ', 'ポロンノ', 'セㇺ', 'オㇽ', 'タ', 'オカイ', 'ペ', 'ネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/11.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/11.wav",
 		quizWords: [ 'セㇺ' ]
 	},
 	{
@@ -107,7 +107,7 @@ const slideData =
 		alt: "ape a= ari wa a= supa wa a= e kor",
 		native: "and I used that to make a fire and cook food.",
 		words: [ 'アペ', 'ア', 'アリ', 'ワ', 'ア', 'スパ', 'ワ', 'ア', 'エ', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/12.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/12.wav",
 		quizSentence: true
 	},
 	{
@@ -115,7 +115,7 @@ const slideData =
 		alt: "keraan hike a= e kor an =an.",
 		native: "I ate many delicious things everyday.",
 		words: [ 'ケラアン', 'ヒケ', 'ア', 'エ', 'コㇽ', 'アン', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/13.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/13.wav",
 		quizWords: [ 'ケラアン' ]
 	},
 	{
@@ -123,7 +123,7 @@ const slideData =
 		alt: "oraun so noski pakno tumun rikin wa an pe ne kusu,",
 		native: "There was trash piled to the middle of the floor.",
 		words: [ 'オラウン', 'ソ', 'ノㇱキ', 'パㇰノ', 'トゥムン', 'リキン', 'ワ', 'アン', 'ペ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/14.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/14.wav",
 		quizWords: [ 'オラウン', 'ノㇱキ', 'トゥムン', 'ソ' ]
 	},
 	{
@@ -131,7 +131,7 @@ const slideData =
 		alt: "orano tumun ... nep *aeyay ... NANI TUKAUMONODEMO ARUKARA",
 		native: "The trash, there were many ...[many tools],",
 		words: [ 'オラノ', 'トゥムン', 'ネプ', 'アエヤイ', 'ナニ', 'トゥカウモノデモ', 'アルカラ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/15.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/15.wav",
 		quizSentence: true
 	},
 	{
@@ -139,7 +139,7 @@ const slideData =
 		alt: "konto, nep aeyayramekotep ne yakka okay pe ne kusu,",
 		native: "There were all sorts of tools, so",
 		words: [ 'コント', 'ネプ', 'アエヤイラメコテプ', 'ネ', 'ヤㇰカ', 'オカイ', 'ペ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/16.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/16.wav",
 		quizWords: [ 'コント', 'アエヤイラメコテプ' ]
 	},
 	{
@@ -147,7 +147,7 @@ const slideData =
 		alt: "ani a= ninpa wa soy a= omare wa soy a= omare.",
 		native: "I used them to pull the trash outside,",
 		words: [ 'アニ', 'ア', 'ニンパ', 'ワ', 'ソイ', 'ア', 'オマレ', 'ワ', 'ソイ', 'ア', 'オマレ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/17.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/17.wav",
 		quizWords: [ 'ニンパ', 'ソイ' ]
 	},
 	{
@@ -155,7 +155,7 @@ const slideData =
 		alt: "cise onnay ka pirkano a= kar.",
 		native: "and I cleaned the house up.",
 		words: [ 'チセ', 'オンナイ', 'カ', 'ピㇽカノ', 'ア', 'カㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/18.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/18.wav",
 		quizWords: [ 'ピㇽカノ', 'オンナイ' ]
 	},
 	{
@@ -163,7 +163,7 @@ const slideData =
 		alt: "orano mintar or ka mun sak no pirkano an =an kuni ne cise okari muni a= kar.",
 		native: "I cleared all of the trash out of the porch and tidied up the area. I cleaned around the house as well.",
 		words: [ 'オラノ', 'ミンタㇽ', 'オㇽ', 'カ', 'ムン', 'サㇰ', 'ノ', 'ピㇽカノ', 'アン', 'アン', 'クニ', 'ネ', 'チセ', 'オカリ', 'ムニ', 'ア', 'カㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/19.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/19.wav",
 		quizWords: [ 'ミンタㇽ' ]
 	},
 	{
@@ -171,7 +171,7 @@ const slideData =
 		alt: "nep aeyayramekotep ne yakka okay pe ne kusu,",
 		native: "All sorts of tools were available",
 		words: [ 'ネプ', 'アエヤイラメコテプ', 'ネ', 'ヤㇰカ', 'オカイ', 'ペ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/20.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/20.wav",
 		quizSentence: true
 	},
 	{
@@ -179,7 +179,7 @@ const slideData =
 		alt: "cise onnay un... ka pirkano a= kar.",
 		native: "so I cleaned inside the house",
 		words: [ 'チセ', 'オンナイ', 'ウン', 'カ', 'ピㇽカノ', 'ア', 'カㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/21.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/21.wav",
 		quizSentence: true
 	},
 	{
@@ -187,7 +187,7 @@ const slideData =
 		alt: "cise okari ka mun_ sak no a= kar wa pirkano an =an kuni ne hike,",
 		native: "and got rid of the trash around the house so that I could live in a clean place.",
 		words: [ 'チセ', 'オカリ', 'カ', 'ムン', 'サㇰ', 'ノ', 'ア', 'カㇽ', 'ワ', 'ピㇽカノ', 'アン', 'アン', 'クニ', 'ネ', 'ヒケ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/22.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/22.wav",
 		quizSentence: true
 	},
 	{
@@ -195,7 +195,7 @@ const slideData =
 		alt: "nay or un ka pirkano sirotuye =an wa,",
 		native: "I cut the grass to the water.",
 		words: [ 'ナイ', 'オㇽ', 'ウン', 'カ', 'ピㇽカノ', 'シロトゥイェ', 'アン', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/23.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/23.wav",
 		quizWords: [ 'ナイ' ]
 	},
 	{
@@ -203,7 +203,7 @@ const slideData =
 		alt: "nay or un wakkata =an yakka kusawawa(?) wen kikir oka wa a= sitoma p ne kusu,",
 		native: "If one fetches water from the stream, there are many scary insects,",
 		words: [ 'ナイ', 'オㇽ', 'ウン', 'ワㇰカタ', 'アン', 'ヤㇰカ', 'クサワワ', 'ウェン', 'キキㇽ', 'オカ', 'ワ', 'ア', 'シトマ', 'p', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/24.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/24.wav",
 		quizWords: [ 'オカ', 'p', 'キキㇽ', 'シトマ', 'ワㇰカタ' ]
 	},
 	{
@@ -211,7 +211,7 @@ const slideData =
 		alt: "orowa pirkano sirotuye =an, sepno ki wa,",
 		native: "so I cut there the grass properly making [the area] open.",
 		words: [ 'オロワ', 'ピㇽカノ', 'シロトゥイェ', 'アン', 'セプノ', 'キ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/25.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/25.wav",
 		quizSentence: true
 	},
 	{
@@ -219,7 +219,7 @@ const slideData =
 		alt: "nay or un ka sirkerkeri =an wa mun sak no a= kar wa an =an.",
 		native: "I cleaned the ground to the water so that there were no weeds there.",
 		words: [ 'ナイ', 'オㇽ', 'ウン', 'カ', 'シㇽケㇽケリ', 'アン', 'ワ', 'ムン', 'サㇰ', 'ノ', 'ア', 'カㇽ', 'ワ', 'アン', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/26.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/26.wav",
 		quizWords: [ 'シㇽケㇽケリ' ]
 	},
 	{
@@ -227,7 +227,7 @@ const slideData =
 		alt: "orano nen i= epakasnu somo ki p ne korka,",
 		native: "Nobody really taught me but",
 		words: [ 'オラノ', 'ネン', 'イ', 'エパカㇱヌ', 'ソモ', 'キ', 'p', 'ネ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/27.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/27.wav",
 		quizSentence: true
 	},
 	{
@@ -235,7 +235,7 @@ const slideData =
 		alt: "cise okari nep mun ne ruwe ne ya oka wa,",
 		native: "there were some weeds growing around the house,",
 		words: [ 'チセ', 'オカリ', 'ネプ', 'ムン', 'ネ', 'ルウェ', 'ネ', 'ヤ', 'オカ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/28.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/28.wav",
 		quizSentence: true
 	},
 	{
@@ -243,7 +243,7 @@ const slideData =
 		alt: "a= kar wa a= supa wa a= e wa keraan hike a= e,",
 		native: "I gathered them, made food with them and ate them. I ate the delicious ones",
 		words: [ 'ア', 'カㇽ', 'ワ', 'ア', 'スパ', 'ワ', 'ア', 'エ', 'ワ', 'ケラアン', 'ヒケ', 'ア', 'エ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/29.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/29.wav",
 		quizSentence: true
 	},
 	{
@@ -251,7 +251,7 @@ const slideData =
 		alt: "kera isam hike a= osurpa,",
 		native: "and threw away those that weren\'t tasty.",
 		words: [ 'ケラ', 'イサㇺ', 'ヒケ', 'ア', 'オスㇽパ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/30.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/30.wav",
 		quizWords: [ 'ケラ' ]
 	},
 	{
@@ -259,7 +259,7 @@ const slideData =
 		alt: "pirka hike a= e kor,",
 		native: "I ate good food.",
 		words: [ 'ピㇽカ', 'ヒケ', 'ア', 'エ', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/31.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/31.wav",
 		quizWords: [ 'ピㇽカ' ]
 	},
 	{
@@ -267,7 +267,7 @@ const slideData =
 		alt: "sirsak kor orano newaoka parka ta oka,",
 		native: "When summer came, [I took what] was on the shelves,",
 		words: [ 'シㇽサㇰ', 'コㇽ', 'オラノ', 'ネワオカ', 'パㇽカ', 'タ', 'オカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/32.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/32.wav",
 		quizWords: [ 'シㇽサㇰ' ]
 	},
 	{
@@ -275,7 +275,7 @@ const slideData =
 		alt: "nep ne ruwe ne ya a= eramiskari pa p a= rapte wa wor a= omare,",
 		native: "although I didn\'t know what it was, I took it and put it in water",
 		words: [ 'ネプ', 'ネ', 'ルウェ', 'ネ', 'ヤ', 'ア', 'エラミㇱカリ', 'パ', 'p', 'ア', 'ラプテ', 'ワ', 'ヲㇽ', 'ア', 'オマレ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/33.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/33.wav",
 		quizSentence: true
 	},
 	{
@@ -283,7 +283,7 @@ const slideData =
 		alt: "a= huraypa wa nea ...",
 		native: "and washed it.",
 		words: [ 'ア', 'フライパ', 'ワ', 'ネア' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/34.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/34.wav",
 		quizWords: [ 'ネア' ]
 	},
 	{
@@ -291,7 +291,7 @@ const slideData =
 		alt: "newaoka kina ne ya a= kopoye wa a= supa wa a= e kor an =an ayne",
 		native: "I mixed it with mountain vegetables and cooked it,",
 		words: [ 'ネワオカ', 'キナ', 'ネ', 'ヤ', 'ア', 'コポイェ', 'ワ', 'ア', 'スパ', 'ワ', 'ア', 'エ', 'コㇽ', 'アン', 'アン', 'アイネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/35.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/35.wav",
 		quizWords: [ 'キナ', 'コポイェ', 'アイネ' ]
 	},
 	{
@@ -299,7 +299,7 @@ const slideData =
 		alt: "tantane pon poro =an nennen ruwe ne a p,",
 		native: "and grew up.",
 		words: [ 'タンタネ', 'ポン', 'ポロ', 'アン', 'ネンネン', 'ルウェ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/36.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/36.wav",
 		quizSentence: true
 	},
 	{
@@ -307,7 +307,7 @@ const slideData =
 		alt: "esoyne aynu humas kus soyne =an ruwe ne akus,",
 		native: "I heard voices outside so I went to see.",
 		words: [ 'エソイネ', 'アイヌ', 'フマㇱ', 'クㇱ', 'ソイネ', 'アン', 'ルウェ', 'ネ', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/37.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/37.wav",
 		quizWords: [ 'ソイネ', 'エソイネ', 'フマㇱ', 'アイヌ' ]
 	},
 	{
@@ -315,7 +315,7 @@ const slideData =
 		alt: "hure kosonte utomciwre",
 		native: "[It was a young man] wearing a red garment.",
 		words: [ 'フレ', 'コソンテ', 'ウトㇺチウレ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/38.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/38.wav",
 		quizWords: [ 'フレ', 'コソンテ', 'ウトㇺチウレ' ]
 	},
 	{
@@ -323,7 +323,7 @@ const slideData =
 		alt: "okkaypo sekor a= ye p ne noyne an,",
 		native: "It was a young man [wearing a red garment].",
 		words: [ 'オㇰカイポ', 'セコㇽ', 'ア', 'イェ', 'p', 'ネ', 'ノイネ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/39.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/39.wav",
 		quizWords: [ 'オㇰカイポ', 'ノイネ' ]
 	},
 	{
@@ -331,7 +331,7 @@ const slideData =
 		alt: "aynu nukar ka a= eramiskari p,",
 		native: "I had never seen a person,",
 		words: [ 'アイヌ', 'ヌカㇽ', 'カ', 'ア', 'エラミㇱカリ', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/40.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/40.wav",
 		quizSentence: true
 	},
 	{
@@ -339,7 +339,7 @@ const slideData =
 		alt: "okkaypo sekor a= ye p ne noyne an okkaypo soy ta an hi kusu,",
 		native: "but a young person who seemed to be a so-called young man was standing outside.",
 		words: [ 'オㇰカイポ', 'セコㇽ', 'ア', 'イェ', 'p', 'ネ', 'ノイネ', 'アン', 'オㇰカイポ', 'ソイ', 'タ', 'アン', 'ヒ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/41.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/41.wav",
 		quizSentence: true
 	},
 	{
@@ -347,7 +347,7 @@ const slideData =
 		alt: "nep ka a= ye somo ki no ahun =an hine an =an ruwe ne akus,",
 		native: "I went back inside without saying anything,",
 		words: [ 'ネプ', 'カ', 'ア', 'イェ', 'ソモ', 'キ', 'ノ', 'アフン', 'アン', 'ヒネ', 'アン', 'アン', 'ルウェ', 'ネ', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/42.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/42.wav",
 		quizSentence: true
 	},
 	{
@@ -355,7 +355,7 @@ const slideData =
 		alt: "i= os ahun hine i= erankarap ru[we ne].",
 		native: "and he followed me in and greeted me.",
 		words: [ 'イ', 'オㇱ', 'アフン', 'ヒネ', 'イ', 'エランカラプ', 'ル', 'ウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/43.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/43.wav",
 		quizWords: [ 'オㇱ', 'エランカラプ' ]
 	},
 	{
@@ -363,7 +363,7 @@ const slideData =
 		alt: "korka aynu nukar ka a= eramiskari p ne korka i= erankarap yakka,",
 		native: "I had never seen a human, but yet he greeted me.",
 		words: [ 'コㇽカ', 'アイヌ', 'ヌカㇽ', 'カ', 'ア', 'エラミㇱカリ', 'p', 'ネ', 'コㇽカ', 'イ', 'エランカラプ', 'ヤㇰカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/44.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/44.wav",
 		quizSentence: true
 	},
 	{
@@ -371,7 +371,7 @@ const slideData =
 		alt: "ene a= ramu hi ka isam no",
 		native: "I did not know what to think.",
 		words: [ 'エネ', 'ア', 'ラム', 'ヒ', 'カ', 'イサㇺ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/45.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/45.wav",
 		quizSentence: true
 	},
 	{
@@ -379,7 +379,7 @@ const slideData =
 		alt: "an =an hine ora suke =an hine a= ipere akusu,",
 		native: "I prepared dinner and served him.",
 		words: [ 'アン', 'アン', 'ヒネ', 'オラ', 'スケ', 'アン', 'ヒネ', 'ア', 'イペレ', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/46.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/46.wav",
 		quizWords: [ 'イペレ', 'オラ', 'スケ', 'アクス' ]
 	},
 	{
@@ -387,7 +387,7 @@ const slideData =
 		alt: "i= kasuy ipe hine rewsi =an akusu,",
 		native: "He ate with me and we spent the night.",
 		words: [ 'イ', 'カスイ', 'イペ', 'ヒネ', 'レウシ', 'アン', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/47.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/47.wav",
 		quizWords: [ 'カスイ', 'レウシ', 'イペ' ]
 	},
 	{
@@ -395,7 +395,7 @@ const slideData =
 		alt: "ora neun ka arpa p ne kunak a= ramu a p,",
 		native: "I thought he was going somewhere, but",
 		words: [ 'オラ', 'ネウン', 'カ', 'アㇽパ', 'p', 'ネ', 'クナㇰ', 'ア', 'ラム', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/48.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/48.wav",
 		quizWords: [ 'ネウン', 'アㇽパ', 'クナㇰ' ]
 	},
 	{
@@ -403,7 +403,7 @@ const slideData =
 		alt: "neun ka arpa ka somo ki no",
 		native: "he did not go anywhere.",
 		words: [ 'ネウン', 'カ', 'アㇽパ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/49.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/49.wav",
 		quizSentence: true
 	},
 	{
@@ -411,7 +411,7 @@ const slideData =
 		alt: "ekimne akusu,",
 		native: "He said he was going to the mountains to hunt,",
 		words: [ 'エキㇺネ', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/50.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/50.wav",
 		quizWords: [ 'エキㇺネ' ]
 	},
 	{
@@ -419,7 +419,7 @@ const slideData =
 		alt: "ora nep ne ruwe ne se wa iwak,",
 		native: "and came back with something on his back.",
 		words: [ 'オラ', 'ネプ', 'ネ', 'ルウェ', 'ネ', 'セ', 'ワ', 'イワㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/51.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/51.wav",
 		quizWords: [ 'セ', 'イワㇰ' ]
 	},
 	{
@@ -427,7 +427,7 @@ const slideData =
 		alt: "\"tap anak yuk sekor a= ye p ne ruwe ne wa,",
 		native: "\"This is a deer.",
 		words: [ 'タプ', 'アナㇰ', 'ユㇰ', 'セコㇽ', 'ア', 'イェ', 'p', 'ネ', 'ルウェ', 'ネ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/52.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/52.wav",
 		quizSentence: true
 	},
 	{
@@ -435,7 +435,7 @@ const slideData =
 		alt: "tap neno a= kar wa a= supa wa a= e p ne na.\"",
 		native: "This is how you fix it, cook it and eat it.\"",
 		words: [ 'タプ', 'ネノ', 'ア', 'カㇽ', 'ワ', 'ア', 'スパ', 'ワ', 'ア', 'エ', 'p', 'ネ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/53.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/53.wav",
 		quizWords: [ 'ネノ' ]
 	},
 	{
@@ -443,7 +443,7 @@ const slideData =
 		alt: "sekor hawean kor,",
 		native: "he said.",
 		words: [ 'セコㇽ', 'ハウェアン', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/54.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/54.wav",
 		quizWords: [ 'ハウェアン' ]
 	},
 	{
@@ -451,7 +451,7 @@ const slideData =
 		alt: "ene a= supa kuni i= epakasnu hine",
 		native: "He taught me how to cook the deer.",
 		words: [ 'エネ', 'ア', 'スパ', 'クニ', 'イ', 'エパカㇱヌ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/55.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/55.wav",
 		quizSentence: true
 	},
 	{
@@ -459,7 +459,7 @@ const slideData =
 		alt: "supa hine i= ere akusu keraan.",
 		native: "He cooked the dear and fed to me. It was very tasty.",
 		words: [ 'スパ', 'ヒネ', 'イ', 'エレ', 'アクス', 'ケラアン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/56.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/56.wav",
 		quizWords: [ 'エレ' ]
 	},
 	{
@@ -467,7 +467,7 @@ const slideData =
 		alt: "tanepo pirka ipe a= ki p ne kus keraan hine ipe =an.",
 		native: "I ate delicious deer for the first time, so I [really] enjoyed the food.",
 		words: [ 'タネポ', 'ピㇽカ', 'イペ', 'ア', 'キ', 'p', 'ネ', 'クㇱ', 'ケラアン', 'ヒネ', 'イペ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/57.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/57.wav",
 		quizWords: [ 'タネポ' ]
 	},
 	{
@@ -475,7 +475,7 @@ const slideData =
 		alt: "orano neun ka arpa ka somo ki no,",
 		native: "The man did not go anywhere.",
 		words: [ 'オラノ', 'ネウン', 'カ', 'アㇽパ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/58.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/58.wav",
 		quizSentence: true
 	},
 	{
@@ -483,7 +483,7 @@ const slideData =
 		alt: "orano neno ekimne kor,",
 		native: "He went hunting",
 		words: [ 'オラノ', 'ネノ', 'エキㇺネ', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/59.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/59.wav",
 		quizSentence: true
 	},
 	{
@@ -491,7 +491,7 @@ const slideData =
 		alt: "yuk ne ciki kamuy ne ciki nuwe koan wa,",
 		native: "and came back with many deer and bears.",
 		words: [ 'ユㇰ', 'ネ', 'チキ', 'カムイ', 'ネ', 'チキ', 'ヌウェ', 'コアン', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/60.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/60.wav",
 		quizWords: [ 'ヌウェ', 'カムイ' ]
 	},
 	{
@@ -499,7 +499,7 @@ const slideData =
 		alt: "\"tap neno kamuy anak a= hopunpare.",
 		native: "\"This is how you \"send\" a bear.",
 		words: [ 'タプ', 'ネノ', 'カムイ', 'アナㇰ', 'ア', 'ホプンパレ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/61.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/61.wav",
 		quizWords: [ 'ホプンパレ' ]
 	},
 	{
@@ -507,7 +507,7 @@ const slideData =
 		alt: "tap anak yuk sekor a= ye p ne.",
 		native: "This is a deer.",
 		words: [ 'タプ', 'アナㇰ', 'ユㇰ', 'セコㇽ', 'ア', 'イェ', 'p', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/62.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/62.wav",
 		quizSentence: true
 	},
 	{
@@ -515,7 +515,7 @@ const slideData =
 		alt: "tap neno a= hopunpare.",
 		native: "This is how you \"send\" it.",
 		words: [ 'タプ', 'ネノ', 'ア', 'ホプンパレ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/63.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/63.wav",
 		quizSentence: true
 	},
 	{
@@ -523,7 +523,7 @@ const slideData =
 		alt: "isepo ka cironnup ka tap neno tap neno a= hopunpare p ne na.\"",
 		native: "Rabbits and fox are sent in such ways\",",
 		words: [ 'イセポ', 'カ', 'チロンヌプ', 'カ', 'タプ', 'ネノ', 'タプ', 'ネノ', 'ア', 'ホプンパレ', 'p', 'ネ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/64.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/64.wav",
 		quizSentence: true
 	},
 	{
@@ -531,7 +531,7 @@ const slideData =
 		alt: "sekor hawean kor i= epakasnu kor oka =an.",
 		native: "he told me as he taught me.",
 		words: [ 'セコㇽ', 'ハウェアン', 'コㇽ', 'イ', 'エパカㇱヌ', 'コㇽ', 'オカ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/65.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/65.wav",
 		quizSentence: true
 	},
 	{
@@ -539,7 +539,7 @@ const slideData =
 		alt: "ora aynu ene iki pa kuni i= epakasnu.",
 		native: "Then he taught me what people should do.",
 		words: [ 'オラ', 'アイヌ', 'エネ', 'イキ', 'パ', 'クニ', 'イ', 'エパカㇱヌ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/66.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/66.wav",
 		quizSentence: true
 	},
 	{
@@ -547,7 +547,7 @@ const slideData =
 		alt: "nen a= nukar ka somo ki p ne ka",
 		native: "Even though I was not going to meet anyone,",
 		words: [ 'ネン', 'ア', 'ヌカㇽ', 'カ', 'ソモ', 'キ', 'p', 'ネ', 'カ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/67.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/67.wav",
 		quizSentence: true
 	},
 	{
@@ -555,7 +555,7 @@ const slideData =
 		alt: "a= sapaha kar_ ne ya a= nanuhu kar_ ne ya ki wa,",
 		native: "he cut my hair and put on makeup.",
 		words: [ 'ア', 'サパハ', 'カㇽ', 'ネ', 'ヤ', 'ア', 'ナヌフ', 'カㇽ', 'ネ', 'ヤ', 'キ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/68.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/68.wav",
 		quizWords: [ 'サパハ' ]
 	},
 	{
@@ -563,7 +563,7 @@ const slideData =
 		alt: "aynu ene iki pa kuni,",
 		native: "He taught me what humans should do,",
 		words: [ 'アイヌ', 'エネ', 'イキ', 'パ', 'クニ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/69.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/69.wav",
 		quizSentence: true
 	},
 	{
@@ -571,7 +571,7 @@ const slideData =
 		alt: "\"aynu anak tap neno tap neno iki pa p ne na.\"",
 		native: "\"This is how humans do it\",",
 		words: [ 'アイヌ', 'アナㇰ', 'タプ', 'ネノ', 'タプ', 'ネノ', 'イキ', 'パ', 'p', 'ネ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/70.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/70.wav",
 		quizSentence: true
 	},
 	{
@@ -579,7 +579,7 @@ const slideData =
 		alt: "sekor hawean kor i= epakasnu kor orano oka =an ruwe ne.",
 		native: "he taught me saying so. We lived on in this way.",
 		words: [ 'セコㇽ', 'ハウェアン', 'コㇽ', 'イ', 'エパカㇱヌ', 'コㇽ', 'オラノ', 'オカ', 'アン', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/71.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/71.wav",
 		quizSentence: true
 	},
 	{
@@ -587,7 +587,7 @@ const slideData =
 		alt: "pak ison kur isam kur_ ne p ne kusu,",
 		native: "He was a very good hunter,",
 		words: [ 'パㇰ', 'イソン', 'クㇽ', 'イサㇺ', 'クㇽ', 'ネ', 'p', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/72.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/72.wav",
 		quizWords: [ 'パㇰ', 'イソン', 'クㇽ' ]
 	},
 	{
@@ -595,7 +595,7 @@ const slideData =
 		alt: "nep a= e rusuy ka somo ki no,",
 		native: "so I never had to worry about what to eat.",
 		words: [ 'ネプ', 'ア', 'エ', 'ルスイ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/73.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/73.wav",
 		quizWords: [ 'ルスイ' ]
 	},
 	{
@@ -603,7 +603,7 @@ const slideData =
 		alt: "hoka unno kirpu orastomnemne korka,",
 		native: "He left the fat hanging over the hearth,",
 		words: [ 'ホカ', 'ウンノ', 'キㇽプ', 'オラㇱトㇺネㇺネ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/74.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/74.wav",
 		quizWords: [ 'ウンノ', 'キㇽプ', 'ホカ' ]
 	},
 	{
@@ -611,7 +611,7 @@ const slideData =
 		alt: "aynu ne ruwe he ne ya nep ne ruwe ne ya,",
 		native: "but [I do not know] whether he was a human or not.",
 		words: [ 'アイヌ', 'ネ', 'ルウェ', 'ヘ', 'ネ', 'ヤ', 'ネプ', 'ネ', 'ルウェ', 'ネ', 'ヤ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/75.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/75.wav",
 		quizSentence: true
 	},
 	{
@@ -619,7 +619,7 @@ const slideData =
 		alt: "mipihi yakka somo ki no ramma uneno kane mipihi an pe ne korka,",
 		native: "He never changed his clothes, and always wore the same things.",
 		words: [ 'ミピヒ', 'ヤㇰカ', 'ソモ', 'キ', 'ノ', 'ラㇺマ', 'ウネノ', 'カネ', 'ミピヒ', 'アン', 'ペ', 'ネ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/76.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/76.wav",
 		quizWords: [ 'カネ', 'ウネノ' ]
 	},
 	{
@@ -627,7 +627,7 @@ const slideData =
 		alt: "nen ka i= ye hene i= kar hene ki ka somo ki p ne kus,",
 		native: "He never said or did anything [bad] to me,",
 		words: [ 'ネン', 'カ', 'イ', 'イェ', 'ヘネ', 'イ', 'カㇽ', 'ヘネ', 'キ', 'カ', 'ソモ', 'キ', 'p', 'ネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/77.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/77.wav",
 		quizSentence: true
 	},
 	{
@@ -635,7 +635,7 @@ const slideData =
 		alt: "a= sitoma ka somo ki no,",
 		native: "so I did not feel afraid of him.",
 		words: [ 'ア', 'シトマ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/78.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/78.wav",
 		quizSentence: true
 	},
 	{
@@ -643,7 +643,7 @@ const slideData =
 		alt: "a= yupi kor kur [ne] an =an pe ne a p,",
 		native: "I treated him as a brother,",
 		words: [ 'ア', 'ユピ', 'コㇽ', 'クㇽ', 'ネ', 'アン', 'アン', 'ペ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/79.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/79.wav",
 		quizSentence: true
 	},
 	{
@@ -651,7 +651,7 @@ const slideData =
 		alt: "a= yupi kor kur_ ne yak ye p ne kusu ki kor oka =an pe ne ruwe ne a p,",
 		native: "and he said brotherly things, so we continued living in this way.",
 		words: [ 'ア', 'ユピ', 'コㇽ', 'クㇽ', 'ネ', 'ヤㇰ', 'イェ', 'p', 'ネ', 'クス', 'キ', 'コㇽ', 'オカ', 'アン', 'ペ', 'ネ', 'ルウェ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/80.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/80.wav",
 		quizSentence: true
 	},
 	{
@@ -659,7 +659,7 @@ const slideData =
 		alt: "sineanta, tane sitcuk kopak an hine,",
 		native: "One day when autumn was near,",
 		words: [ 'シネアンタ', 'タネ', 'シッチゥㇰ', 'コパㇰ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/81.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/81.wav",
 		quizWords: [ 'コパㇰ', 'シネアンタ' ]
 	},
 	{
@@ -667,7 +667,7 @@ const slideData =
 		alt: "rapokke sineanto sini hine ora,",
 		native: "the man stayed home (instead of going to the mountains).",
 		words: [ 'ラポㇰケ', 'シネアント', 'シニ', 'ヒネ', 'オラ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/82.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/82.wav",
 		quizWords: [ 'シニ', 'ラポㇰケ' ]
 	},
 	{
@@ -675,7 +675,7 @@ const slideData =
 		alt: "\"a= kor pon menoko, somo i= ewtanne rusuy ruwe he an?\"",
 		native: "\"My young girl, won\'t you be my wife?\",",
 		words: [ 'ア', 'コㇽ', 'ポン', 'メノコ', 'ソモ', 'イ', 'エウタンネ', 'ルスイ', 'ルウェ', 'ヘ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/83.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/83.wav",
 		quizWords: [ 'メノコ', 'エウタンネ' ]
 	},
 	{
@@ -683,7 +683,7 @@ const slideData =
 		alt: "sekor hawean korka,",
 		native: "he said.",
 		words: [ 'セコㇽ', 'ハウェアン', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/84.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/84.wav",
 		quizSentence: true
 	},
 	{
@@ -691,7 +691,7 @@ const slideData =
 		alt: "nep ka a= ye ka somo ki no soyne =an akus",
 		native: "I went outside without responding.",
 		words: [ 'ネプ', 'カ', 'ア', 'イェ', 'カ', 'ソモ', 'キ', 'ノ', 'ソイネ', 'アン', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/85.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/85.wav",
 		quizSentence: true
 	},
 	{
@@ -699,7 +699,7 @@ const slideData =
 		alt: "okake ta ay kar kor an hawe an ne a p soyne =an hine",
 		native: "He was making an arrow so I went outside",
 		words: [ 'オカケ', 'タ', 'アイ', 'カㇽ', 'コㇽ', 'アン', 'ハウェ', 'アン', 'ネ', 'ア', 'p', 'ソイネ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/86.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/86.wav",
 		quizWords: [ 'アイ' ]
 	},
 	{
@@ -707,7 +707,7 @@ const slideData =
 		alt: "nina =an hine nisike =an.",
 		native: "to get firewood and came home with firewood on my back.",
 		words: [ 'ニナ', 'アン', 'ヒネ', 'ニシケ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/87.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/87.wav",
 		quizWords: [ 'ニナ', 'ニシケ' ]
 	},
 	{
@@ -715,7 +715,7 @@ const slideData =
 		alt: "re pa ka an kor ora hawean ne p ne kusu,",
 		native: "We had been living together for three years, so maybe that\'s why he asked,",
 		words: [ 'レ', 'パ', 'カ', 'アン', 'コㇽ', 'オラ', 'ハウェアン', 'ネ', 'p', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/88.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/88.wav",
 		quizSentence: true
 	},
 	{
@@ -723,7 +723,7 @@ const slideData =
 		alt: "nisike =an hine hosipi =an ...",
 		native: "but I came home with firewood on my back.",
 		words: [ 'ニシケ', 'アン', 'ヒネ', 'ホシピ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/89.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/89.wav",
 		quizSentence: true
 	},
 	{
@@ -731,7 +731,7 @@ const slideData =
 		alt: "ponno upas ... ponno ponno upas as as kane hine,",
 		native: "Snow was fluttering in the sky,",
 		words: [ 'ポンノ', 'ウパㇱ', 'ポンノ', 'ポンノ', 'ウパㇱ', 'アㇱ', 'アㇱ', 'カネ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/90.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/90.wav",
 		quizWords: [ 'ポンノ' ]
 	},
 	{
@@ -739,7 +739,7 @@ const slideData =
 		alt: "nea i= ekari hure poro seta hoyupu, ek",
 		native: "and a big red dog came running toward me.",
 		words: [ 'ネア', 'イ', 'エカリ', 'フレ', 'ポロ', 'セタ', 'ホユプ', 'エㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/91.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/91.wav",
 		quizWords: [ 'エカリ' ]
 	},
 	{
@@ -747,7 +747,7 @@ const slideData =
 		alt: "orano i= okari mik kor i= okari earkinne a= eohaysitoma",
 		native: "The dog yelped and ran around me. I was very scared.",
 		words: [ 'オラノ', 'イ', 'オカリ', 'ミㇰ', 'コㇽ', 'イ', 'オカリ', 'エアㇽキンネ', 'ア', 'エオハイシトマ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/92.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/92.wav",
 		quizWords: [ 'ミㇰ', 'エオハイシトマ' ]
 	},
 	{
@@ -755,7 +755,7 @@ const slideData =
 		alt: "seta ka nep ka isam pe ne a p,",
 		native: "There were no dogs living around us.",
 		words: [ 'セタ', 'カ', 'ネプ', 'カ', 'イサㇺ', 'ペ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/93.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/93.wav",
 		quizSentence: true
 	},
 	{
@@ -763,7 +763,7 @@ const slideData =
 		alt: "\"hinak wa ek seta ene iki hi an?\"",
 		native: "\"Where did that dog come from?\".",
 		words: [ 'ヒナㇰ', 'ワ', 'エㇰ', 'セタ', 'エネ', 'イキ', 'ヒ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/94.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/94.wav",
 		quizWords: [ 'ヒナㇰ' ]
 	},
 	{
@@ -771,7 +771,7 @@ const slideData =
 		alt: "sekor yaynu =an.",
 		native: "I thought.",
 		words: [ 'セコㇽ', 'ヤイヌ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/95.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/95.wav",
 		quizSentence: true
 	},
 	{
@@ -779,7 +779,7 @@ const slideData =
 		alt: "ka ta(?) somo turano an =an pe seta ne hine,",
 		native: "I had never spent any time with a dog...",
 		words: [ 'カ', 'タ', 'ソモ', 'トゥラノ', 'アン', 'アン', 'ペ', 'セタ', 'ネ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/96.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/96.wav",
 		quizSentence: true
 	},
 	{
@@ -787,7 +787,7 @@ const slideData =
 		alt: "\"aynu ne yaykar wa ne ya?\"",
 		native: "\"Is it posing as a human?\"",
 		words: [ 'アイヌ', 'ネ', 'ヤイカㇽ', 'ワ', 'ネ', 'ヤ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/97.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/97.wav",
 		quizWords: [ 'ヤイカㇽ' ]
 	},
 	{
@@ -795,7 +795,7 @@ const slideData =
 		alt: "sekor kewtum or_ ta yaynu =an.",
 		native: "I wondered in my heart.",
 		words: [ 'セコㇽ', 'ケウトゥㇺ', 'オㇽ', 'タ', 'ヤイヌ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/98.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/98.wav",
 		quizWords: [ 'ケウトゥㇺ' ]
 	},
 	{
@@ -803,7 +803,7 @@ const slideData =
 		alt: "seta ka nep ka isam pe,",
 		native: "There were no dogs in the area,",
 		words: [ 'セタ', 'カ', 'ネプ', 'カ', 'イサㇺ', 'ペ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/99.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/99.wav",
 		quizSentence: true
 	},
 	{
@@ -811,7 +811,7 @@ const slideData =
 		alt: "konto sikrapparappa =an akusu oar isam hine,",
 		native: "and within the blink of an eye, it was gone.",
 		words: [ 'コント', 'シㇰラプパラプパ', 'アン', 'アクス', 'オアㇽ', 'イサㇺ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/100.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/100.wav",
 		quizWords: [ 'シㇰラプパラプパ', 'オアㇽ' ]
 	},
 	{
@@ -819,7 +819,7 @@ const slideData =
 		alt: "oraun cise soy ta ek =an ruwe ne akusu,",
 		native: "When I made it to the front of my home,",
 		words: [ 'オラウン', 'チセ', 'ソイ', 'タ', 'エㇰ', 'アン', 'ルウェ', 'ネ', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/101.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/101.wav",
 		quizSentence: true
 	},
 	{
@@ -827,7 +827,7 @@ const slideData =
 		alt: "sem or un upas ponno ponno upas as pe ne kusu rerap(?) as pe ne kus,",
 		native: "the snow was falling near the porch. The wind was blowing the snow in.",
 		words: [ 'セㇺ', 'オㇽ', 'ウン', 'ウパㇱ', 'ポンノ', 'ポンノ', 'ウパㇱ', 'アㇱ', 'ペ', 'ネ', 'クス', 'レラプ', 'アㇱ', 'ペ', 'ネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/102.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/102.wav",
 		quizSentence: true
 	},
 	{
@@ -835,7 +835,7 @@ const slideData =
 		alt: "sem apapa ta seta ru sitcininanina korka",
 		native: "I could see many dog footprints in front of the porch door.",
 		words: [ 'セㇺ', 'アパパ', 'タ', 'セタ', 'ル', 'シッチニナニナ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/103.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/103.wav",
 		quizWords: [ 'アパパ' ]
 	},
 	{
@@ -843,7 +843,7 @@ const slideData =
 		alt: "ora ekuskonna ahun ka a= etoranne kusu,",
 		native: "I was scared to enter the house",
 		words: [ 'オラ', 'エクㇱコンナ', 'アフン', 'カ', 'ア', 'エトランネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/104.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/104.wav",
 		quizSentence: true
 	},
 	{
@@ -851,7 +851,7 @@ const slideData =
 		alt: "hine ora ipuyaroposore =an akusu ay kar kor an.",
 		native: "so I peeked in from the window, and he was making an arrow.",
 		words: [ 'ヒネ', 'オラ', 'イプヤロポソレ', 'アン', 'アクス', 'アイ', 'カㇽ', 'コㇽ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/105.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/105.wav",
 		quizSentence: true
 	},
 	{
@@ -859,7 +859,7 @@ const slideData =
 		alt: "suy aynu ne hine ki kor an hi kusu,",
 		native: "He had transformed into a human again and was making an arrow,",
 		words: [ 'スイ', 'アイヌ', 'ネ', 'ヒネ', 'キ', 'コㇽ', 'アン', 'ヒ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/106.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/106.wav",
 		quizWords: [ 'スイ' ]
 	},
 	{
@@ -867,7 +867,7 @@ const slideData =
 		alt: "ora soy ta a= nisike a= esirkopaste hine",
 		native: "so I left the firewood standing at the front door,",
 		words: [ 'オラ', 'ソイ', 'タ', 'ア', 'ニシケ', 'ア', 'エシㇽコパㇱテ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/107.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/107.wav",
 		quizWords: [ 'エシㇽコパㇱテ' ]
 	},
 	{
@@ -875,7 +875,7 @@ const slideData =
 		alt: "nep ka a= ye a= ye pekor hawean =an kor an =an ayne ahun =an korka,",
 		native: "and came in pretending to mutter something, and then entered the house.",
 		words: [ 'ネプ', 'カ', 'ア', 'イェ', 'ア', 'イェ', 'ペコㇽ', 'ハウェアン', 'アン', 'コㇽ', 'アン', 'アン', 'アイネ', 'アフン', 'アン', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/108.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/108.wav",
 		quizWords: [ 'ペコㇽ' ]
 	},
 	{
@@ -883,7 +883,7 @@ const slideData =
 		alt: "a= sitoma katun ki ka ... yakka wen wa kusu,",
 		native: "I didn\'t want to appear scared,",
 		words: [ 'ア', 'シトマ', 'カトゥン', 'キ', 'カ', 'ヤㇰカ', 'ウェン', 'ワ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/109.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/109.wav",
 		quizWords: [ 'カトゥン' ]
 	},
 	{
@@ -891,7 +891,7 @@ const slideData =
 		alt: "a= sitoma katun ki ka somo ki no ora suke =an.",
 		native: "so without showing that I was frightened, I prepared dinner.",
 		words: [ 'ア', 'シトマ', 'カトゥン', 'キ', 'カ', 'ソモ', 'キ', 'ノ', 'オラ', 'スケ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/110.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/110.wav",
 		quizSentence: true
 	},
 	{
@@ -899,7 +899,7 @@ const slideData =
 		alt: "nen ka suy ipe =an.",
 		native: "We ate dinner together again.",
 		words: [ 'ネン', 'カ', 'スイ', 'イペ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/111.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/111.wav",
 		quizSentence: true
 	},
 	{
@@ -907,7 +907,7 @@ const slideData =
 		alt: "orowa kuneywa ekimne hine isam.",
 		native: "When morning came, the man went hunting.",
 		words: [ 'オロワ', 'クネイワ', 'エキㇺネ', 'ヒネ', 'イサㇺ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/112.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/112.wav",
 		quizWords: [ 'クネイワ' ]
 	},
 	{
@@ -915,7 +915,7 @@ const slideData =
 		alt: "ekimne hine isam ruwe ne. okake ta an =an akusu",
 		native: "I stayed at home while he was hunting.",
 		words: [ 'エキㇺネ', 'ヒネ', 'イサㇺ', 'ルウェ', 'ネ', 'オカケ', 'タ', 'アン', 'アン', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/113.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/113.wav",
 		quizSentence: true
 	},
 	{
@@ -923,7 +923,7 @@ const slideData =
 		alt: "tononoski paki peka esoyne aynu hum as kusu soyne =an akus,",
 		native: "Around noon, I could hear someone approaching the house so I went outside.",
 		words: [ 'トノノㇱキ', 'パキ', 'ペカ', 'エソイネ', 'アイヌ', 'フㇺ', 'アㇱ', 'クス', 'ソイネ', 'アン', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/114.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/114.wav",
 		quizWords: [ 'フㇺ', 'パキ' ]
 	},
 	{
@@ -931,7 +931,7 @@ const slideData =
 		alt: "konto tanpe or_ ta anak aynu sekor a= ye p ne noyne an",
 		native: "This time, there was a person who looked like a human.",
 		words: [ 'コント', 'タンペ', 'オㇽ', 'タ', 'アナㇰ', 'アイヌ', 'セコㇽ', 'ア', 'イェ', 'p', 'ネ', 'ノイネ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/115.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/115.wav",
 		quizWords: [ 'タンペ' ]
 	},
 	{
@@ -939,7 +939,7 @@ const slideData =
 		alt: "okkaypo ka utarpake sekor a= ye p ne noyne okkaypo, soy ta an hine,",
 		native: "A young man who appeared to be a superior of the \"humans\" stood outside the door.",
 		words: [ 'オㇰカイポ', 'カ', 'ウタㇽパケ', 'セコㇽ', 'ア', 'イェ', 'p', 'ネ', 'ノイネ', 'オㇰカイポ', 'ソイ', 'タ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/116.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/116.wav",
 		quizSentence: true
 	},
 	{
@@ -947,7 +947,7 @@ const slideData =
 		alt: "ora nep ka ye somo ki no ahun =an akus,",
 		native: "I went back inside without saying anything,",
 		words: [ 'オラ', 'ネプ', 'カ', 'イェ', 'ソモ', 'キ', 'ノ', 'アフン', 'アン', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/117.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/117.wav",
 		quizSentence: true
 	},
 	{
@@ -955,7 +955,7 @@ const slideData =
 		alt: "i= os ahun hine i= erankarap ruwe ne hine,",
 		native: "and he followed me in and greeted me.",
 		words: [ 'イ', 'オㇱ', 'アフン', 'ヒネ', 'イ', 'エランカラプ', 'ルウェ', 'ネ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/118.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/118.wav",
 		quizSentence: true
 	},
 	{
@@ -963,7 +963,7 @@ const slideData =
 		alt: "ora i= kowepekennu hi kus,",
 		native: "He asked about me.",
 		words: [ 'オラ', 'イ', 'コウェペケンヌ', 'ヒ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/119.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/119.wav",
 		quizSentence: true
 	},
 	{
@@ -971,7 +971,7 @@ const slideData =
 		alt: "\"tapne kane aynu ne ruwe he ne ya nep ne ruwe ne ya a= erampewtek,",
 		native: "\"I don\'t know how it happened, and I don\'t know whether he\'s a human or not,",
 		words: [ 'タプネ', 'カネ', 'アイヌ', 'ネ', 'ルウェ', 'ヘ', 'ネ', 'ヤ', 'ネプ', 'ネ', 'ルウェ', 'ネ', 'ヤ', 'ア', 'エラㇺペウテㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/120.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/120.wav",
 		quizWords: [ 'エラㇺペウテㇰ' ]
 	},
 	{
@@ -979,7 +979,7 @@ const slideData =
 		alt: "hure kosonte utomciwre okkaypo ek wa,",
 		native: "but a young man wearing a red garment appeared,",
 		words: [ 'フレ', 'コソンテ', 'ウトㇺチウレ', 'オㇰカイポ', 'エㇰ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/121.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/121.wav",
 		quizSentence: true
 	},
 	{
@@ -987,7 +987,7 @@ const slideData =
 		alt: "tane re pa ka turano an =an korka,",
 		native: "and we have been living together for three years.",
 		words: [ 'タネ', 'レ', 'パ', 'カ', 'トゥラノ', 'アン', 'アン', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/122.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/122.wav",
 		quizSentence: true
 	},
 	{
@@ -995,7 +995,7 @@ const slideData =
 		alt: "nen ka i= ye ka somo ki no,",
 		native: "He has told me nothing [about himself],",
 		words: [ 'ネン', 'カ', 'イ', 'イェ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/123.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/123.wav",
 		quizSentence: true
 	},
 	{
@@ -1003,7 +1003,7 @@ const slideData =
 		alt: "aynu ene iki pa kuni i= epakasnu.",
 		native: "but he told me all about things which humans should do.",
 		words: [ 'アイヌ', 'エネ', 'イキ', 'パ', 'クニ', 'イ', 'エパカㇱヌ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/124.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/124.wav",
 		quizSentence: true
 	},
 	{
@@ -1011,7 +1011,7 @@ const slideData =
 		alt: "a= nanuhu ka kar a= sapaha ka kar.",
 		native: "He prepared my face and cut my hair.",
 		words: [ 'ア', 'ナヌフ', 'カ', 'カㇽ', 'ア', 'サパハ', 'カ', 'カㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/125.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/125.wav",
 		quizSentence: true
 	},
 	{
@@ -1019,7 +1019,7 @@ const slideData =
 		alt: "sorekusu ne ene iki wa an pe a= ne ru an hi ka a= erampewtek no,",
 		native: "Even though I did not know who I was,",
 		words: [ 'ソレクス', 'ネ', 'エネ', 'イキ', 'ワ', 'アン', 'ペ', 'ア', 'ネ', 'ル', 'アン', 'ヒ', 'カ', 'ア', 'エラㇺペウテㇰ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/126.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/126.wav",
 		quizWords: [ 'ソレクス' ]
 	},
 	{
@@ -1027,7 +1027,7 @@ const slideData =
 		alt: "so noski pakno tumun an wa soy a= o ne ya",
 		native: "I got rid of the trash that was piled in the middle of the floor,",
 		words: [ 'ソ', 'ノㇱキ', 'パㇰノ', 'トゥムン', 'アン', 'ワ', 'ソイ', 'ア', 'オ', 'ネ', 'ヤ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/127.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/127.wav",
 		quizSentence: true
 	},
 	{
@@ -1035,7 +1035,7 @@ const slideData =
 		alt: "sintoko ne ya soy a= o wa a= huraypa.",
 		native: "and even took lacquerware containers outside and washed them.",
 		words: [ 'シントコ', 'ネ', 'ヤ', 'ソイ', 'ア', 'オ', 'ワ', 'ア', 'フライパ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/128.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/128.wav",
 		quizSentence: true
 	},
 	{
@@ -1043,7 +1043,7 @@ const slideData =
 		alt: "ene teeta o ikiri an hi neno a= kar wa an =an wa an =an akus,",
 		native: "I made the treasure shelf as it used to be and I lived.",
 		words: [ 'エネ', 'テエタ', 'オ', 'イキリ', 'アン', 'ヒ', 'ネノ', 'ア', 'カㇽ', 'ワ', 'アン', 'アン', 'ワ', 'アン', 'アン', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/129.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/129.wav",
 		quizWords: [ 'テエタ' ]
 	},
 	{
@@ -1051,7 +1051,7 @@ const slideData =
 		alt: "oro ta ahun hine an pe ne hine,",
 		native: "Then he came",
 		words: [ 'オロ', 'タ', 'アフン', 'ヒネ', 'アン', 'ペ', 'ネ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/130.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/130.wav",
 		quizSentence: true
 	},
 	{
@@ -1059,7 +1059,7 @@ const slideData =
 		alt: "tane re pa ka an a p,",
 		native: "and it has been three years.",
 		words: [ 'タネ', 'レ', 'パ', 'カ', 'アン', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/131.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/131.wav",
 		quizSentence: true
 	},
 	{
@@ -1067,7 +1067,7 @@ const slideData =
 		alt: "numan ne sini hine,",
 		native: "Yesterday when we were resting at home,",
 		words: [ 'ヌマン', 'ネ', 'シニ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/132.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/132.wav",
 		quizWords: [ 'ヌマン' ]
 	},
 	{
@@ -1075,7 +1075,7 @@ const slideData =
 		alt: "\'uewtanne =an ciki mak ne ruwe an?\'",
 		native: "\"Shall we get married?\",",
 		words: [ 'ウエウタンネ', 'アン', 'チキ', 'マㇰ', 'ネ', 'ルウェ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/133.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/133.wav",
 		quizWords: [ 'マㇰ', 'ウエウタンネ' ]
 	},
 	{
@@ -1083,7 +1083,7 @@ const slideData =
 		alt: "sekor hawean korka,",
 		native: "he said.",
 		words: [ 'セコㇽ', 'ハウェアン', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/134.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/134.wav",
 		quizSentence: true
 	},
 	{
@@ -1091,7 +1091,7 @@ const slideData =
 		alt: "tasaitak =an hene ki ka somo ki no,",
 		native: "But without responding",
 		words: [ 'タサイタㇰ', 'アン', 'ヘネ', 'キ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/135.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/135.wav",
 		quizSentence: true
 	},
 	{
@@ -1099,7 +1099,7 @@ const slideData =
 		alt: "ora nina =an kusu soyne =an hine",
 		native: "I went outside to get firewood",
 		words: [ 'オラ', 'ニナ', 'アン', 'クス', 'ソイネ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/136.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/136.wav",
 		quizSentence: true
 	},
 	{
@@ -1107,7 +1107,7 @@ const slideData =
 		alt: "nina =an hine a= se hine iwak =an akus,",
 		native: "When I came home with the firewood on my back,",
 		words: [ 'ニナ', 'アン', 'ヒネ', 'ア', 'セ', 'ヒネ', 'イワㇰ', 'アン', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/137.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/137.wav",
 		quizSentence: true
 	},
 	{
@@ -1115,7 +1115,7 @@ const slideData =
 		alt: "seta ka nep ka isam pe,",
 		native: "even though there are no dogs around,",
 		words: [ 'セタ', 'カ', 'ネプ', 'カ', 'イサㇺ', 'ペ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/138.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/138.wav",
 		quizSentence: true
 	},
 	{
@@ -1123,7 +1123,7 @@ const slideData =
 		alt: "poro hure seta i= ekari arpa,",
 		native: "a large red dog came at me.",
 		words: [ 'ポロ', 'フレ', 'セタ', 'イ', 'エカリ', 'アㇽパ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/139.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/139.wav",
 		quizSentence: true
 	},
 	{
@@ -1131,7 +1131,7 @@ const slideData =
 		alt: "orano i= ekari i= emik kor terketerke.",
 		native: "The dog came jumping toward me while yelping.",
 		words: [ 'オラノ', 'イ', 'エカリ', 'イ', 'エミㇰ', 'コㇽ', 'テㇽケテㇽケ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/140.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/140.wav",
 		quizWords: [ 'エミㇰ', 'テㇽケテㇽケ' ]
 	},
 	{
@@ -1139,7 +1139,7 @@ const slideData =
 		alt: "ne rapokkehe ponno sikrapparappa =an he ki akusu",
 		native: "Then I just blinked my eyes",
 		words: [ 'ネ', 'ラポㇰケヘ', 'ポンノ', 'シㇰラプパラプパ', 'アン', 'ヘ', 'キ', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/141.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/141.wav",
 		quizSentence: true
 	},
 	{
@@ -1147,7 +1147,7 @@ const slideData =
 		alt: "oar isam hine,",
 		native: "and he was gone.",
 		words: [ 'オアㇽ', 'イサㇺ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/142.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/142.wav",
 		quizSentence: true
 	},
 	{
@@ -1155,7 +1155,7 @@ const slideData =
 		alt: "oraun ek =an akus upas ka ta nep ne kusu seta ru sitcininanina hine,",
 		native: "When I returned home, for some reason there were many dog footprints on the snow.",
 		words: [ 'オラウン', 'エㇰ', 'アン', 'アクㇱ', 'ウパㇱ', 'カ', 'タ', 'ネプ', 'ネ', 'クス', 'セタ', 'ル', 'シッチニナニナ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/143.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/143.wav",
 		quizSentence: true
 	},
 	{
@@ -1163,7 +1163,7 @@ const slideData =
 		alt: "ek =an akus sem or_ ta ka seta ru an yakun anakne",
 		native: "When I made it home, I found the dog\'s footprints in front of the porch.",
 		words: [ 'エㇰ', 'アン', 'アクㇱ', 'セㇺ', 'オㇽ', 'タ', 'カ', 'セタ', 'ル', 'アン', 'ヤクン', 'アナㇰネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/144.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/144.wav",
 		quizSentence: true
 	},
 	{
@@ -1171,7 +1171,7 @@ const slideData =
 		alt: "aynu ne ru somo ne kuni a= ramu hi kusu",
 		native: "That\'s when I thought that the man was not a human,",
 		words: [ 'アイヌ', 'ネ', 'ル', 'ソモ', 'ネ', 'クニ', 'ア', 'ラム', 'ヒ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/145.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/145.wav",
 		quizSentence: true
 	},
 	{
@@ -1179,7 +1179,7 @@ const slideData =
 		alt: "oraun ahun =an ka nisap ahun ka a= etoranne kus,",
 		native: "so I hesitated about entering the house.",
 		words: [ 'オラウン', 'アフン', 'アン', 'カ', 'ニサプ', 'アフン', 'カ', 'ア', 'エトランネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/146.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/146.wav",
 		quizWords: [ 'ニサプ' ]
 	},
 	{
@@ -1187,7 +1187,7 @@ const slideData =
 		alt: "ay kar kor an pe kus,",
 		native: "He was making an arrow",
 		words: [ 'アイ', 'カㇽ', 'コㇽ', 'アン', 'ペ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/147.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/147.wav",
 		quizSentence: true
 	},
 	{
@@ -1195,7 +1195,7 @@ const slideData =
 		alt: "soy ta nep ka a= ye a= ye pekor hawean kor,",
 		native: "so pretending to mutter something outside,",
 		words: [ 'ソイ', 'タ', 'ネプ', 'カ', 'ア', 'イェ', 'ア', 'イェ', 'ペコㇽ', 'ハウェアン', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/148.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/148.wav",
 		quizSentence: true
 	},
 	{
@@ -1203,7 +1203,7 @@ const slideData =
 		alt: "ni a= esirkopaste hine a= ki kor an =an ayne ahun =an korka,",
 		native: "I put the firewood up before going inside, but",
 		words: [ 'ニ', 'ア', 'エシㇽコパㇱテ', 'ヒネ', 'ア', 'キ', 'コㇽ', 'アン', 'アン', 'アイネ', 'アフン', 'アン', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/149.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/149.wav",
 		quizSentence: true
 	},
 	{
@@ -1211,7 +1211,7 @@ const slideData =
 		alt: "a= sitoma katun ki yakka wen wa kus,",
 		native: "I thought it wouldn\'t be good to show him that I was scared, so",
 		words: [ 'ア', 'シトマ', 'カトゥン', 'キ', 'ヤㇰカ', 'ウェン', 'ワ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/150.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/150.wav",
 		quizSentence: true
 	},
 	{
@@ -1219,7 +1219,7 @@ const slideData =
 		alt: "a= sitoma katun ki ka somo ki no suke =an hine,",
 		native: "I made dinner while trying not to look frightened.",
 		words: [ 'ア', 'シトマ', 'カトゥン', 'キ', 'カ', 'ソモ', 'キ', 'ノ', 'スケ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/151.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/151.wav",
 		quizSentence: true
 	},
 	{
@@ -1227,7 +1227,7 @@ const slideData =
 		alt: "nen ka i= sisitomare hene ki ka somo ki p ne kus,",
 		native: "He didn\'t do anything to frighten me,",
 		words: [ 'ネン', 'カ', 'イ', 'シシトマレ', 'ヘネ', 'キ', 'カ', 'ソモ', 'キ', 'p', 'ネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/152.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/152.wav",
 		quizSentence: true
 	},
 	{
@@ -1235,7 +1235,7 @@ const slideData =
 		alt: "suke =an hine ukasuy ipe =an tek,",
 		native: "so I cooked and we ate dinner together quickly,",
 		words: [ 'スケ', 'アン', 'ヒネ', 'ウカスイ', 'イペ', 'アン', 'テㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/153.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/153.wav",
 		quizWords: [ 'ウカスイ' ]
 	},
 	{
@@ -1243,7 +1243,7 @@ const slideData =
 		alt: "esir ka a= ki hine ora ekimne hine isam ruwe ne.\"",
 		native: "and he just headed off to the mountains.\"",
 		words: [ 'エシㇽ', 'カ', 'ア', 'キ', 'ヒネ', 'オラ', 'エキㇺネ', 'ヒネ', 'イサㇺ', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/154.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/154.wav",
 		quizWords: [ 'エシㇽ' ]
 	},
 	{
@@ -1251,7 +1251,7 @@ const slideData =
 		alt: "sekor hawean =an ruwe ne akus,",
 		native: "When I told",
 		words: [ 'セコㇽ', 'ハウェアン', 'アン', 'ルウェ', 'ネ', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/155.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/155.wav",
 		quizSentence: true
 	},
 	{
@@ -1259,7 +1259,7 @@ const slideData =
 		alt: "nea okkaypo ene hawean hi.",
 		native: "the young man he answered.",
 		words: [ 'ネア', 'オㇰカイポ', 'エネ', 'ハウェアン', 'ヒ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/156.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/156.wav",
 		quizSentence: true
 	},
 	{
@@ -1267,7 +1267,7 @@ const slideData =
 		alt: "\"Yupet emko kor nispa a= ona an hine",
 		native: "\"My father is an elder at Yupet Upstream,",
 		words: [ 'ユペッ', 'エㇺコ', 'コㇽ', 'ニㇱパ', 'ア', 'オナ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/157.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/157.wav",
 		quizWords: [ 'ユペッ', 'エㇺコ' ]
 	},
 	{
@@ -1275,7 +1275,7 @@ const slideData =
 		alt: "a= yupihi tun an, a= turesi tun an hine oka =an wa,",
 		native: "and I have two older brothers and two younger sisters.",
 		words: [ 'ア', 'ユピヒ', 'トゥン', 'アン', 'ア', 'トゥレシ', 'トゥン', 'アン', 'ヒネ', 'オカ', 'アン', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/158.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/158.wav",
 		quizSentence: true
 	},
 	{
@@ -1283,7 +1283,7 @@ const slideData =
 		alt: "a= ponturesihi ne ene iki wa isam hi ka a= erampewtek.",
 		native: "However, I don\'t know why but my younger sister went missing.",
 		words: [ 'ア', 'ポントゥレシヒ', 'ネ', 'エネ', 'イキ', 'ワ', 'イサㇺ', 'ヒ', 'カ', 'ア', 'エラㇺペウテㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/159.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/159.wav",
 		quizSentence: true
 	},
 	{
@@ -1291,7 +1291,7 @@ const slideData =
 		alt: "orowano a= hunara yakka wen.",
 		native: "I have been looking for her, but cannot find her.",
 		words: [ 'オロワノ', 'ア', 'フナラ', 'ヤㇰカ', 'ウェン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/160.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/160.wav",
 		quizSentence: true
 	},
 	{
@@ -1299,7 +1299,7 @@ const slideData =
 		alt: "ora seta poronno okay pe ne a p,",
 		native: "We had many dogs,",
 		words: [ 'オラ', 'セタ', 'ポロンノ', 'オカイ', 'ペ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/161.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/161.wav",
 		quizSentence: true
 	},
 	{
@@ -1307,7 +1307,7 @@ const slideData =
 		alt: "oro ta hure poro seta a= kor pe ne a p,",
 		native: "and one of them was a large red dog.",
 		words: [ 'オロ', 'タ', 'フレ', 'ポロ', 'セタ', 'ア', 'コㇽ', 'ペ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/162.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/162.wav",
 		quizSentence: true
 	},
 	{
@@ -1315,7 +1315,7 @@ const slideData =
 		alt: "konto seta utar wenkoykikar wa",
 		native: "The dogs had a big fight",
 		words: [ 'コント', 'セタ', 'ウタㇽ', 'ウェンコイキカㇽ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/163.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/163.wav",
 		quizWords: [ 'ウェンコイキカㇽ', 'ウタㇽ' ]
 	},
 	{
@@ -1323,7 +1323,7 @@ const slideData =
 		alt: "sorekusu kasi ta seta utar arukoterke eukaopiwki kor okay pe ne a p,",
 		native: "and many dogs attacked that red dog.",
 		words: [ 'ソレクス', 'カシ', 'タ', 'セタ', 'ウタㇽ', 'アルコテㇽケ', 'エウカオピウキ', 'コㇽ', 'オカイ', 'ペ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/164.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/164.wav",
 		quizWords: [ 'アルコテㇽケ' ]
 	},
 	{
@@ -1331,7 +1331,7 @@ const slideData =
 		alt: "konto eun arpa wa isam hi ka a= erampewtek ne awa,",
 		native: "I don\'t know where the dog went, but he disappeared.",
 		words: [ 'コント', 'エウン', 'アㇽパ', 'ワ', 'イサㇺ', 'ヒ', 'カ', 'ア', 'エラㇺペウテㇰ', 'ネ', 'アワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/165.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/165.wav",
 		quizWords: [ 'エウン' ]
 	},
 	{
@@ -1339,7 +1339,7 @@ const slideData =
 		alt: "ne wen kamuy ne hawe ne nankor *tak ...",
 		native: "It was just bad Kamui.",
 		words: [ 'ネ', 'ウェン', 'カムイ', 'ネ', 'ハウェ', 'ネ', 'ナンコㇽ', 'タㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/166.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/166.wav",
 		quizWords: [ 'ナンコㇽ', 'タㇰ' ]
 	},
 	{
@@ -1347,7 +1347,7 @@ const slideData =
 		alt: "hetak e= suke wa ipe =an ciki,",
 		native: "Make dinner and we\'ll eat it.",
 		words: [ 'ヘタㇰ', 'エ', 'スケ', 'ワ', 'イペ', 'アン', 'チキ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/167.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/167.wav",
 		quizWords: [ 'ヘタㇰ' ]
 	},
 	{
@@ -1355,7 +1355,7 @@ const slideData =
 		alt: "ora ipe =an ciki oraun e p or surku e= omare wa e= anu yak pirka na.",
 		native: "When we finish eating, put poison in his food.",
 		words: [ 'オラ', 'イペ', 'アン', 'チキ', 'オラウン', 'エ', 'p', 'オㇽ', 'スㇽク', 'エ', 'オマレ', 'ワ', 'エ', 'アヌ', 'ヤㇰ', 'ピㇽカ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/168.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/168.wav",
 		quizWords: [ 'アヌ', 'スㇽク' ]
 	},
 	{
@@ -1363,7 +1363,7 @@ const slideData =
 		alt: "ora iwak ciki iteki ...",
 		native: "When he comes home (don\'t...),",
 		words: [ 'オラ', 'イワㇰ', 'チキ', 'イテキ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/169.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/169.wav",
 		quizSentence: true
 	},
 	{
@@ -1371,7 +1371,7 @@ const slideData =
 		alt: "hokure hokure e= ipere hokure hokure ipe kunak e= ye kor ki yak pirka na.",
 		native: "tell him that you will feed him quickly and that he should eat quickly.",
 		words: [ 'ホクレ', 'ホクレ', 'エ', 'イペレ', 'ホクレ', 'ホクレ', 'イペ', 'クナㇰ', 'エ', 'イェ', 'コㇽ', 'キ', 'ヤㇰ', 'ピㇽカ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/170.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/170.wav",
 		quizWords: [ 'ホクレ' ]
 	},
 	{
@@ -1379,7 +1379,7 @@ const slideData =
 		alt: "ora toma tuna corpok ta i= ka seske wa anu ... e= anu yak pirka na.",
 		native: "Hide me under the goza shelf.",
 		words: [ 'オラ', 'トマ', 'トゥナ', 'チョㇽポㇰ', 'タ', 'イ', 'カ', 'セㇱケ', 'ワ', 'アヌ', 'エ', 'アヌ', 'ヤㇰ', 'ピㇽカ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/171.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/171.wav",
 		quizWords: [ 'トゥナ', 'トマ', 'セㇱケ', 'チョㇽポㇰ' ]
 	},
 	{
@@ -1387,7 +1387,7 @@ const slideData =
 		alt: "sironuman wa nen ka ossike arka hene ki yakun oro ta a= eraman nankor kusu",
 		native: "When dusk comes and that someone gets a stomachache I will know,",
 		words: [ 'シロヌマン', 'ワ', 'ネン', 'カ', 'オㇱシケ', 'アㇽカ', 'ヘネ', 'キ', 'ヤクン', 'オロ', 'タ', 'ア', 'エラマン', 'ナンコㇽ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/172.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/172.wav",
 		quizWords: [ 'アㇽカ', 'シロヌマン' ]
 	},
 	{
@@ -1395,7 +1395,7 @@ const slideData =
 		alt: "nen ka ne ciki ape e= ruyruyka p ne na.\"",
 		native: "so do what you can to make a big fire.\",",
 		words: [ 'ネン', 'カ', 'ネ', 'チキ', 'アペ', 'エ', 'ルイルイカ', 'p', 'ネ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/173.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/173.wav",
 		quizSentence: true
 	},
 	{
@@ -1403,7 +1403,7 @@ const slideData =
 		alt: "sekor kane nea okkaypo hawean kor ipe hine,",
 		native: "said the young man and finished his dinner.",
 		words: [ 'セコㇽ', 'カネ', 'ネア', 'オㇰカイポ', 'ハウェアン', 'コㇽ', 'イペ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/174.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/174.wav",
 		quizSentence: true
 	},
 	{
@@ -1411,7 +1411,7 @@ const slideData =
 		alt: "ora toma tuna corpok ta kasi a= seske hine an =an.",
 		native: "I hid him under the goza shelf.",
 		words: [ 'オラ', 'トマ', 'トゥナ', 'チョㇽポㇰ', 'タ', 'カシ', 'ア', 'セㇱケ', 'ヒネ', 'アン', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/175.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/175.wav",
 		quizSentence: true
 	},
 	{
@@ -1419,7 +1419,7 @@ const slideData =
 		alt: "rapokke iwak moyre, tanto or_ ta ki,",
 		native: "[The red dog man] was late coming home that day.",
 		words: [ 'ラポㇰケ', 'イワㇰ', 'モイレ', 'タント', 'オㇽ', 'タ', 'キ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/176.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/176.wav",
 		quizWords: [ 'モイレ', 'タント' ]
 	},
 	{
@@ -1427,7 +1427,7 @@ const slideData =
 		alt: "ipe =an pa *si ... p ne kusu,",
 		native: "We have already finished the dinner, so",
 		words: [ 'イペ', 'アン', 'パ', 'シ', 'p', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/177.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/177.wav",
 		quizWords: [ 'シ' ]
 	},
 	{
@@ -1435,7 +1435,7 @@ const slideData =
 		alt: "ora tanto or_ ta iwak moyre hine iwak ki kusu,",
 		native: "when he came home late today,",
 		words: [ 'オラ', 'タント', 'オㇽ', 'タ', 'イワㇰ', 'モイレ', 'ヒネ', 'イワㇰ', 'キ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/178.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/178.wav",
 		quizSentence: true
 	},
 	{
@@ -1443,7 +1443,7 @@ const slideData =
 		alt: "\"kamuy a= yupihi mak ki hine enepo iwak moyre.",
 		native: "\"Brother kamui, why are you so late today?",
 		words: [ 'カムイ', 'ア', 'ユピヒ', 'マㇰ', 'キ', 'ヒネ', 'エネポ', 'イワㇰ', 'モイレ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/179.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/179.wav",
 		quizWords: [ 'エネポ' ]
 	},
 	{
@@ -1451,7 +1451,7 @@ const slideData =
 		alt: "iperusuy =an wa hoskino ipe =an ruwe ne.\"",
 		native: "I was hungry, so I ate already.\"",
 		words: [ 'イペルスイ', 'アン', 'ワ', 'ホㇱキノ', 'イペ', 'アン', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/180.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/180.wav",
 		quizWords: [ 'ホㇱキノ', 'イペルスイ' ]
 	},
 	{
@@ -1459,7 +1459,7 @@ const slideData =
 		alt: "sekor hawean =an.",
 		native: "I said.",
 		words: [ 'セコㇽ', 'ハウェアン', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/181.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/181.wav",
 		quizSentence: true
 	},
 	{
@@ -1467,7 +1467,7 @@ const slideData =
 		alt: "earkinne a= eyaykopuntek pekor iki =an pe ne kusu,",
 		native: "I was acting so happy,",
 		words: [ 'エアㇽキンネ', 'ア', 'エヤイコプンテㇰ', 'ペコㇽ', 'イキ', 'アン', 'ペ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/182.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/182.wav",
 		quizWords: [ 'エヤイコプンテㇰ' ]
 	},
 	{
@@ -1475,7 +1475,7 @@ const slideData =
 		alt: "mina tura mono a hine ipe.",
 		native: "he sat down smiling and ate his dinner.",
 		words: [ 'ミナ', 'トゥラ', 'モノ', 'ア', 'ヒネ', 'イペ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/183.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/183.wav",
 		quizWords: [ 'ミナ' ]
 	},
 	{
@@ -1483,7 +1483,7 @@ const slideData =
 		alt: "a= koypuni hine ipe hine sine itanki tu itanki ipe kor rapokke mak a= *ye ...",
 		native: "I served his dinner, and he ate one, two bowls of food, then,",
 		words: [ 'ア', 'コイプニ', 'ヒネ', 'イペ', 'ヒネ', 'シネ', 'イタンキ', 'トゥ', 'イタンキ', 'イペ', 'コㇽ', 'ラポㇰケ', 'マㇰ', 'ア', 'イェ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/184.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/184.wav",
 		quizWords: [ 'コイプニ', 'イタンキ' ]
 	},
 	{
@@ -1491,7 +1491,7 @@ const slideData =
 		alt: "yayunnatarare wa an hi kusu,",
 		native: "he began to suffer, so",
 		words: [ 'ヤユンナタラレ', 'ワ', 'アン', 'ヒ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/185.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/185.wav",
 		quizSentence: true
 	},
 	{
@@ -1499,7 +1499,7 @@ const slideData =
 		alt: "\"kamuy a= yupi mak ki hine yayunnatarare ruwe an?\"",
 		native: "\"Dear brother, why are you suffering?\"",
 		words: [ 'カムイ', 'ア', 'ユピ', 'マㇰ', 'キ', 'ヒネ', 'ヤユンナタラレ', 'ルウェ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/186.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/186.wav",
 		quizSentence: true
 	},
 	{
@@ -1507,7 +1507,7 @@ const slideData =
 		alt: "sekor hawean =an akusu,",
 		native: "I asked.",
 		words: [ 'セコㇽ', 'ハウェアン', 'アン', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/187.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/187.wav",
 		quizSentence: true
 	},
 	{
@@ -1515,7 +1515,7 @@ const slideData =
 		alt: "\"mak ki a= ossike arka pekor humas wa ne.\"",
 		native: "\"My stomach hurts for some reason,\"",
 		words: [ 'マㇰ', 'キ', 'ア', 'オㇱシケ', 'アㇽカ', 'ペコㇽ', 'フマㇱ', 'ワ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/188.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/188.wav",
 		quizSentence: true
 	},
 	{
@@ -1523,7 +1523,7 @@ const slideData =
 		alt: "sekor,",
 		native: "[he replied].",
 		words: [ 'セコㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/189.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/189.wav",
 		quizSentence: true
 	},
 	{
@@ -1531,7 +1531,7 @@ const slideData =
 		alt: "\"nep ka pawci a= omare ka somo ki.",
 		native: "\"I didn\'t put any poison in.",
 		words: [ 'ネプ', 'カ', 'パウチ', 'ア', 'オマレ', 'カ', 'ソモ', 'キ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/190.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/190.wav",
 		quizWords: [ 'パウチ' ]
 	},
 	{
@@ -1539,7 +1539,7 @@ const slideData =
 		alt: "hinta pawci a= omare",
 		native: "Why would I put poison in?",
 		words: [ 'ヒンタ', 'パウチ', 'ア', 'オマレ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/191.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/191.wav",
 		quizSentence: true
 	},
 	{
@@ -1547,7 +1547,7 @@ const slideData =
 		alt: "tane pakno a= yupi etok un suke =an wa ipe =an pa p,",
 		native: "Till now I\'ve making dinner and eating just before you,",
 		words: [ 'タネ', 'パㇰノ', 'ア', 'ユピ', 'エトㇰ', 'ウン', 'スケ', 'アン', 'ワ', 'イペ', 'アン', 'パ', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/192.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/192.wav",
 		quizWords: [ 'エトㇰ' ]
 	},
 	{
@@ -1555,7 +1555,7 @@ const slideData =
 		alt: "hnta pawci a= omare hine mak ne hine ene ne hawean hi an.\"",
 		native: "so why do you say I\'ve put poison in your dinner?\",",
 		words: [ 'ンタ', 'パウチ', 'ア', 'オマレ', 'ヒネ', 'マㇰ', 'ネ', 'ヒネ', 'エネ', 'ネ', 'ハウェアン', 'ヒ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/193.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/193.wav",
 		quizWords: [ 'ンタ' ]
 	},
 	{
@@ -1563,7 +1563,7 @@ const slideData =
 		alt: "sekor hawean =an.",
 		native: "I said.",
 		words: [ 'セコㇽ', 'ハウェアン', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/194.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/194.wav",
 		quizSentence: true
 	},
 	{
@@ -1571,7 +1571,7 @@ const slideData =
 		alt: "rapokke konto ape kohopi hokus hine hocikacika kor an,",
 		native: "He fell away from the hearth and noisily thrashed his legs.",
 		words: [ 'ラポㇰケ', 'コント', 'アペ', 'コホピ', 'ホクㇱ', 'ヒネ', 'ホチカチカ', 'コㇽ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/195.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/195.wav",
 		quizWords: [ 'コホピ' ]
 	},
 	{
@@ -1579,7 +1579,7 @@ const slideData =
 		alt: "rapokke ape homar kor",
 		native: "When the hearth\'s fire died down,",
 		words: [ 'ラポㇰケ', 'アペ', 'ホマㇽ', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/196.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/196.wav",
 		quizWords: [ 'ホマㇽ' ]
 	},
 	{
@@ -1587,7 +1587,7 @@ const slideData =
 		alt: "poro hure seta sara a= nukar_",
 		native: "I could see the tail of the big red dog.",
 		words: [ 'ポロ', 'フレ', 'セタ', 'サラ', 'ア', 'ヌカㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/197.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/197.wav",
 		quizWords: [ 'サラ' ]
 	},
 	{
@@ -1595,7 +1595,7 @@ const slideData =
 		alt: "rapokke nea okkaypo ani kik kuni, kisma hum pirkano an, an cikuni tuye hine",
 		native: "Then that young man cut a tree [such that] the feeling is good of grabbing it [i.e. which fits his hand] in order to beat with it.",
 		words: [ 'ラポㇰケ', 'ネア', 'オㇰカイポ', 'アニ', 'キㇰ', 'クニ', 'キㇱマ', 'フㇺ', 'ピㇽカノ', 'アン', 'アン', 'チクニ', 'トゥイェ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/198.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/198.wav",
 		quizWords: [ 'キㇱマ' ]
 	},
 	{
@@ -1603,7 +1603,7 @@ const slideData =
 		alt: "kor wa an pe ne kus,",
 		native: "Holding it,",
 		words: [ 'コㇽ', 'ワ', 'アン', 'ペ', 'ネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/199.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/199.wav",
 		quizSentence: true
 	},
 	{
@@ -1611,7 +1611,7 @@ const slideData =
 		alt: "ani esapakokikkik hine kikkik hine rayke ruwe ne.",
 		native: "he hit the dog by its head with that and killed it.",
 		words: [ 'アニ', 'エサパコキㇰキㇰ', 'ヒネ', 'キㇰキㇰ', 'ヒネ', 'ライケ', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/200.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/200.wav",
 		quizWords: [ 'キㇰキㇰ', 'ライケ' ]
 	},
 	{
@@ -1619,7 +1619,7 @@ const slideData =
 		alt: "kopasrota a kopasrota a sorekus,",
 		native: "He cursed the red dog and said,",
 		words: [ 'コパㇱロタ', 'ア', 'コパㇱロタ', 'ア', 'ソレクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/201.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/201.wav",
 		quizWords: [ 'コパㇱロタ' ]
 	},
 	{
@@ -1627,7 +1627,7 @@ const slideData =
 		alt: "\"wen kewtum kor wen_ sampe kor_ reyep anakne,",
 		native: "\"You dog with a bad spirit and bad heart.",
 		words: [ 'ウェン', 'ケウトゥㇺ', 'コㇽ', 'ウェン', 'サㇺペ', 'コㇽ', 'レイェプ', 'アナㇰネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/202.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/202.wav",
 		quizWords: [ 'レイェプ', 'サㇺペ' ]
 	},
 	{
@@ -1635,7 +1635,7 @@ const slideData =
 		alt: "reyep sekor a= ye p anakne sorekusu kamuy oyakata pase p ne ya ka ya ka a= ye p,",
 		native: "It is said that a creature called dog has highly respectable parents,",
 		words: [ 'レイェプ', 'セコㇽ', 'ア', 'イェ', 'p', 'アナㇰネ', 'ソレクス', 'カムイ', 'オヤカタ', 'パセ', 'p', 'ネ', 'ヤ', 'カ', 'ヤ', 'カ', 'ア', 'イェ', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/203.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/203.wav",
 		quizWords: [ 'オヤカタ' ]
 	},
 	{
@@ -1643,7 +1643,7 @@ const slideData =
 		alt: "ene an wen puri kor.\"",
 		native: "but you have done bad things.\"",
 		words: [ 'エネ', 'アン', 'ウェン', 'プリ', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/204.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/204.wav",
 		quizWords: [ 'プリ' ]
 	},
 	{
@@ -1651,7 +1651,7 @@ const slideData =
 		alt: "sekor hawean kor kopasrota kor esoyne osura hine,",
 		native: "He threw the dog outside while cursing it.",
 		words: [ 'セコㇽ', 'ハウェアン', 'コㇽ', 'コパㇱロタ', 'コㇽ', 'エソイネ', 'オスラ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/205.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/205.wav",
 		quizWords: [ 'オスラ' ]
 	},
 	{
@@ -1659,7 +1659,7 @@ const slideData =
 		alt: "ora asirkinne suy su a= huraye hine suke =an hine ipe =an hine,",
 		native: "I washed the pan again, prepared dinner again and ate.",
 		words: [ 'オラ', 'アシㇽキンネ', 'スイ', 'ス', 'ア', 'フライェ', 'ヒネ', 'スケ', 'アン', 'ヒネ', 'イペ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/206.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/206.wav",
 		quizWords: [ 'ス' ]
 	},
 	{
@@ -1667,7 +1667,7 @@ const slideData =
 		alt: "ora hotke =an pa ruwe ne,",
 		native: "When we both went to sleep,",
 		words: [ 'オラ', 'ホッケ', 'アン', 'パ', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/207.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/207.wav",
 		quizSentence: true
 	},
 	{
@@ -1675,7 +1675,7 @@ const slideData =
 		alt: "hine wentarap =an akusu,",
 		native: "I had a dream.",
 		words: [ 'ヒネ', 'ウェンタラプ', 'アン', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/208.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/208.wav",
 		quizWords: [ 'ウェンタラプ' ]
 	},
 	{
@@ -1683,7 +1683,7 @@ const slideData =
 		alt: "ponpon okere hine iruska wa an hine ene hawean hi.",
 		native: "(The red dog man) was very small and angrily said this to me.",
 		words: [ 'ポンポン', 'オケレ', 'ヒネ', 'イルㇱカ', 'ワ', 'アン', 'ヒネ', 'エネ', 'ハウェアン', 'ヒ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/209.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/209.wav",
 		quizSentence: true
 	},
 	{
@@ -1691,7 +1691,7 @@ const slideData =
 		alt: "\"tan pon menoko e= ne wa itak =an ciki e= nu katu anak [ene an hi].",
 		native: "\"Young girl, listen well to what I have to say.",
 		words: [ 'タン', 'ポン', 'メノコ', 'エ', 'ネ', 'ワ', 'イタㇰ', 'アン', 'チキ', 'エ', 'ヌ', 'カトゥ', 'アナㇰ', 'エネ', 'アン', 'ヒ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/210.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/210.wav",
 		quizWords: [ 'カトゥ' ]
 	},
 	{
@@ -1699,7 +1699,7 @@ const slideData =
 		alt: "oyaciki kamuy resu wa",
 		native: "As I thought, you have been raised by kamui,",
 		words: [ 'オヤチキ', 'カムイ', 'レス', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/211.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/211.wav",
 		quizWords: [ 'オヤチキ' ]
 	},
 	{
@@ -1707,7 +1707,7 @@ const slideData =
 		alt: "ohasir_ ta ciwente kotan or_ ta an pe e= ne aan hine,",
 		native: "and you are living in this unpopular barren village.",
 		words: [ 'オハシㇽ', 'タ', 'チウェンテ', 'コタン', 'オㇽ', 'タ', 'アン', 'ペ', 'エ', 'ネ', 'アアン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/212.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/212.wav",
 		quizWords: [ 'アアン', 'オハシㇽ' ]
 	},
 	{
@@ -1715,7 +1715,7 @@ const slideData =
 		alt: "ora Yupet emko kor_ nispa pon matnepo a= kateomare wa kusu,",
 		native: "I fell in love with a girl living in a village upstream of Yupet.",
 		words: [ 'オラ', 'ユペッ', 'エㇺコ', 'コㇽ', 'ニㇱパ', 'ポン', 'マッネポ', 'ア', 'カテオマレ', 'ワ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/213.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/213.wav",
 		quizWords: [ 'カテオマレ' ]
 	},
 	{
@@ -1723,7 +1723,7 @@ const slideData =
 		alt: "neun a= ye yakka a= sinniwkeste a= ruska kusu a= rayke hine,",
 		native: "I tried to say many things but I could not make it work, so I got angry and killed her and",
 		words: [ 'ネウン', 'ア', 'イェ', 'ヤㇰカ', 'ア', 'シンニウケㇱテ', 'ア', 'ルㇱカ', 'クス', 'ア', 'ライケ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/214.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/214.wav",
 		quizWords: [ 'ルㇱカ' ]
 	},
 	{
@@ -1731,7 +1731,7 @@ const slideData =
 		alt: "samam ni corpok a= omare ruwe ne a p,",
 		native: "hid her body under a fallen tree.",
 		words: [ 'サマㇺ', 'ニ', 'チョㇽポㇰ', 'ア', 'オマレ', 'ルウェ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/215.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/215.wav",
 		quizSentence: true
 	},
 	{
@@ -1739,7 +1739,7 @@ const slideData =
 		alt: "orano seta utar eramuoka.",
 		native: "The dogs found out,",
 		words: [ 'オラノ', 'セタ', 'ウタㇽ', 'エラムオカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/216.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/216.wav",
 		quizSentence: true
 	},
 	{
@@ -1747,7 +1747,7 @@ const slideData =
 		alt: "orano i= ka ta ukoyki pa, i= wenkoykikar pa wa,",
 		native: "attacked me and hurt me badly,",
 		words: [ 'オラノ', 'イ', 'カ', 'タ', 'ウコイキ', 'パ', 'イ', 'ウェンコイキカㇽ', 'パ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/217.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/217.wav",
 		quizWords: [ 'ウコイキ' ]
 	},
 	{
@@ -1755,7 +1755,7 @@ const slideData =
 		alt: "an ka a= eaykap kusu,",
 		native: "so I could not stay there any longer.",
 		words: [ 'アン', 'カ', 'ア', 'エアイカプ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/218.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/218.wav",
 		quizWords: [ 'エアイカプ' ]
 	},
 	{
@@ -1763,7 +1763,7 @@ const slideData =
 		alt: "inkar =an akus e= an ruwe a= nukar hi kusu",
 		native: "When I looked around I saw you.",
 		words: [ 'インカㇽ', 'アン', 'アクㇱ', 'エ', 'アン', 'ルウェ', 'ア', 'ヌカㇽ', 'ヒ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/219.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/219.wav",
 		quizWords: [ 'インカㇽ' ]
 	},
 	{
@@ -1771,7 +1771,7 @@ const slideData =
 		alt: "e= poro a= e= porore yak ora mat ne a= e= kor_ rusuy kusu",
 		native: "I raised you and thought I wanted to marry you so",
 		words: [ 'エ', 'ポロ', 'ア', 'エ', 'ポロレ', 'ヤㇰ', 'オラ', 'マッ', 'ネ', 'ア', 'エ', 'コㇽ', 'ルスイ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/220.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/220.wav",
 		quizSentence: true
 	},
 	{
@@ -1779,7 +1779,7 @@ const slideData =
 		alt: "e= or_ ta an =an wa re pa ka e= ka a= oyki kor oka =an ayne",
 		native: "for three years since I came here I have taken care of you.",
 		words: [ 'エ', 'オㇽ', 'タ', 'アン', 'アン', 'ワ', 'レ', 'パ', 'カ', 'エ', 'カ', 'ア', 'オイキ', 'コㇽ', 'オカ', 'アン', 'アイネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/221.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/221.wav",
 		quizWords: [ 'オイキ' ]
 	},
 	{
@@ -1787,7 +1787,7 @@ const slideData =
 		alt: "tane e= poro ruwe ne yakun,",
 		native: "Now that you have grown up,",
 		words: [ 'タネ', 'エ', 'ポロ', 'ルウェ', 'ネ', 'ヤクン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/222.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/222.wav",
 		quizSentence: true
 	},
 	{
@@ -1795,7 +1795,7 @@ const slideData =
 		alt: "mat ne a= e= kor easkay kunak a= ramu kusu,",
 		native: "I thought that I would take you as my wife.",
 		words: [ 'マッ', 'ネ', 'ア', 'エ', 'コㇽ', 'エアㇱカイ', 'クナㇰ', 'ア', 'ラム', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/223.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/223.wav",
 		quizWords: [ 'エアㇱカイ' ]
 	},
 	{
@@ -1803,7 +1803,7 @@ const slideData =
 		alt: "mat ne a= e= kor kuni a= e= ye korka,",
 		native: "I told you that I wanted to marry you,",
 		words: [ 'マッ', 'ネ', 'ア', 'エ', 'コㇽ', 'クニ', 'ア', 'エ', 'イェ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/224.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/224.wav",
 		quizSentence: true
 	},
 	{
@@ -1811,7 +1811,7 @@ const slideData =
 		alt: "nen ka a= e= kar hene ki ka somo ki no",
 		native: "but before I could do anything,",
 		words: [ 'ネン', 'カ', 'ア', 'エ', 'カㇽ', 'ヘネ', 'キ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/225.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/225.wav",
 		quizSentence: true
 	},
 	{
@@ -1819,7 +1819,7 @@ const slideData =
 		alt: "e= nina kusu, e= ekimne akus",
 		native: "you went to the mountains to get firewood.",
 		words: [ 'エ', 'ニナ', 'クス', 'エ', 'エキㇺネ', 'アクㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/226.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/226.wav",
 		quizSentence: true
 	},
 	{
@@ -1827,7 +1827,7 @@ const slideData =
 		alt: "sorekusu kamuy i= koypak pe ne kusu,",
 		native: "Surely this is kamui\'s punishment,",
 		words: [ 'ソレクス', 'カムイ', 'イ', 'コイパㇰ', 'ペ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/227.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/227.wav",
 		quizWords: [ 'コイパㇰ' ]
 	},
 	{
@@ -1835,7 +1835,7 @@ const slideData =
 		alt: "seta a= ne p ne kus",
 		native: "but because I am a dog",
 		words: [ 'セタ', 'ア', 'ネ', 'p', 'ネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/228.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/228.wav",
 		quizSentence: true
 	},
 	{
@@ -1843,7 +1843,7 @@ const slideData =
 		alt: "e= ekari arpa =an wa a= e= sinetopanukare? ruwe ne hine,",
 		native: "I went near you and tried to play with you [lit. \'showed you games/tricks\'].",
 		words: [ 'エ', 'エカリ', 'アㇽパ', 'アン', 'ワ', 'ア', 'エ', 'シネトパヌカレ', 'ルウェ', 'ネ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/229.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/229.wav",
 		quizSentence: true
 	},
 	{
@@ -1851,7 +1851,7 @@ const slideData =
 		alt: "e= eoaysitoma yakka e= eoaysitoma katun ka e= ... somo e= ki ruwe ne.",
 		native: "Even though you were afraid, you did not show it.",
 		words: [ 'エ', 'エオアイシトマ', 'ヤㇰカ', 'エ', 'エオアイシトマ', 'カトゥン', 'カ', 'エ', 'ソモ', 'エ', 'キ', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/230.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/230.wav",
 		quizSentence: true
 	},
 	{
@@ -1859,7 +1859,7 @@ const slideData =
 		alt: "kamuy e= resu sorekusu kamuy resu p e= ne p ne kusu ki ruwe ne aan.",
 		native: "If you had been raised by kamui, you would have done that.",
 		words: [ 'カムイ', 'エ', 'レス', 'ソレクス', 'カムイ', 'レス', 'p', 'エ', 'ネ', 'p', 'ネ', 'クス', 'キ', 'ルウェ', 'ネ', 'アアン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/231.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/231.wav",
 		quizSentence: true
 	},
 	{
@@ -1867,7 +1867,7 @@ const slideData =
 		alt: "ora taan Yupet emko kor okkaypo anakne kamuy sasimi ne,",
 		native: "The young man from Yubestu Upstream is an offspring of kamui.",
 		words: [ 'オラ', 'タアン', 'ユペッ', 'エㇺコ', 'コㇽ', 'オㇰカイポ', 'アナㇰネ', 'カムイ', 'サシミ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/232.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/232.wav",
 		quizWords: [ 'タアン' ]
 	},
 	{
@@ -1875,7 +1875,7 @@ const slideData =
 		alt: "eani ka kamuy sasimi eci= ne wa eci= ukor ATARIMAE ne wa siran wa kusu,",
 		native: "You are also an offspring of kamui, so naturally you are two who should become man and wife.",
 		words: [ 'エアニ', 'カ', 'カムイ', 'サシミ', 'エチ', 'ネ', 'ワ', 'エチ', 'ウコㇽ', 'アタリマエ', 'ネ', 'ワ', 'シラン', 'ワ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/233.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/233.wav",
 		quizWords: [ 'シラン', 'ウコㇽ', 'アタリマエ' ]
 	},
 	{
@@ -1883,7 +1883,7 @@ const slideData =
 		alt: "ikayop takup se kane wa numan ek hine,",
 		native: "That is why he came last night holding just an arrow holder.",
 		words: [ 'イカヨプ', 'タクプ', 'セ', 'カネ', 'ワ', 'ヌマン', 'エㇰ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/234.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/234.wav",
 		quizWords: [ 'イカヨプ', 'タクプ' ]
 	},
 	{
@@ -1891,7 +1891,7 @@ const slideData =
 		alt: "oyaciki nuynak wa an aan pe ya ka a= eramiskari no",
 		native: "I probably did not see him hiding,",
 		words: [ 'オヤチキ', 'ヌイナㇰ', 'ワ', 'アン', 'アアン', 'ペ', 'ヤ', 'カ', 'ア', 'エラミㇱカリ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/235.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/235.wav",
 		quizWords: [ 'ヌイナㇰ' ]
 	},
 	{
@@ -1899,7 +1899,7 @@ const slideData =
 		alt: "a= i= rayke ruwe ne korka,",
 		native: "and thus was killed.",
 		words: [ 'ア', 'イ', 'ライケ', 'ルウェ', 'ネ', 'コㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/236.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/236.wav",
 		quizSentence: true
 	},
 	{
@@ -1907,7 +1907,7 @@ const slideData =
 		alt: "wenno eci= i= kar yakka neun nani eci= pirka ka somo ki p ne kus,",
 		native: "But even if you punish me, nothing good will come of it.",
 		words: [ 'ウェンノ', 'エチ', 'イ', 'カㇽ', 'ヤㇰカ', 'ネウン', 'ナニ', 'エチ', 'ピㇽカ', 'カ', 'ソモ', 'キ', 'p', 'ネ', 'クㇱ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/237.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/237.wav",
 		quizWords: [ 'ウェンノ' ]
 	},
 	{
@@ -1915,7 +1915,7 @@ const slideData =
 		alt: "cananno poka seta oyakata eun arpa =an kuni eci= i= hopunpare wa eci= *ko ... kore yak,",
 		native: "If you can kind of send me off to my dog master ,",
 		words: [ 'チャナンノ', 'ポカ', 'セタ', 'オヤカタ', 'エウン', 'アㇽパ', 'アン', 'クニ', 'エチ', 'イ', 'ホプンパレ', 'ワ', 'エチ', 'コ', 'コレ', 'ヤㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/238.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/238.wav",
 		quizWords: [ 'チャナンノ' ]
 	},
 	{
@@ -1923,7 +1923,7 @@ const slideData =
 		alt: "ora eci= sama a= epunkine yakne",
 		native: "I will protect you. Then,",
 		words: [ 'オラ', 'エチ', 'サマ', 'ア', 'エプンキネ', 'ヤㇰネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/239.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/239.wav",
 		quizWords: [ 'エプンキネ', 'サマ', 'ヤㇰネ' ]
 	},
 	{
@@ -1931,7 +1931,7 @@ const slideData =
 		alt: "eci= sitoma ka nep eci= kor_ rusuy ka somo ki no,",
 		native: "you will no longer be afraid of anything, and you will not want anything.",
 		words: [ 'エチ', 'シトマ', 'カ', 'ネプ', 'エチ', 'コㇽ', 'ルスイ', 'カ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/240.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/240.wav",
 		quizSentence: true
 	},
 	{
@@ -1939,7 +1939,7 @@ const slideData =
 		alt: "ora tane Iskar emkoho supuya sak hi",
 		native: "Now there is no smoke [there is no one living] upstream from Iskar,",
 		words: [ 'オラ', 'タネ', 'イㇱカㇽ', 'エㇺコホ', 'スプヤ', 'サㇰ', 'ヒ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/241.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/241.wav",
 		quizWords: [ 'イㇱカㇽ', 'スプヤ', 'エㇺコホ' ]
 	},
 	{
@@ -1947,7 +1947,7 @@ const slideData =
 		alt: "Yupet emko kor_ nispa pak kewtum pirka nispa isam pe ne kusu,",
 		native: "but the elder at Yupet Upstream has a very good spirit,",
 		words: [ 'ユペッ', 'エㇺコ', 'コㇽ', 'ニㇱパ', 'パㇰ', 'ケウトゥㇺ', 'ピㇽカ', 'ニㇱパ', 'イサㇺ', 'ペ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/242.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/242.wav",
 		quizSentence: true
 	},
 	{
@@ -1955,7 +1955,7 @@ const slideData =
 		alt: "supuya sak yak wen sekor hawean kor_,",
 		native: "so when he says that it is not good that there is no smoke,",
 		words: [ 'スプヤ', 'サㇰ', 'ヤㇰ', 'ウェン', 'セコㇽ', 'ハウェアン', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/243.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/243.wav",
 		quizSentence: true
 	},
 	{
@@ -1963,7 +1963,7 @@ const slideData =
 		alt: "te ta kotan eci= kar wa eci= oka hine",
 		native: "you will build there a village and live.",
 		words: [ 'テ', 'タ', 'コタン', 'エチ', 'カㇽ', 'ワ', 'エチ', 'オカ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/244.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/244.wav",
 		quizWords: [ 'テ' ]
 	},
 	{
@@ -1971,7 +1971,7 @@ const slideData =
 		alt: "asir aynu patek oka yakun,",
 		native: "If new people come to live",
 		words: [ 'アシㇽ', 'アイヌ', 'パテㇰ', 'オカ', 'ヤクン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/245.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/245.wav",
 		quizWords: [ 'アシㇽ', 'パテㇰ' ]
 	},
 	{
@@ -1979,7 +1979,7 @@ const slideData =
 		alt: "*o ... inne kotan eci= ne yakka sorekusu kamuy or un ...",
 		native: "it will become a large village",
 		words: [ 'オ', 'インネ', 'コタン', 'エチ', 'ネ', 'ヤㇰカ', 'ソレクス', 'カムイ', 'オㇽ', 'ウン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/246.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/246.wav",
 		quizSentence: true
 	},
 	{
@@ -1987,7 +1987,7 @@ const slideData =
 		alt: "eci= sama a= epunkine p ne ruwe ne na",
 		native: "and I will protect you.",
 		words: [ 'エチ', 'サマ', 'ア', 'エプンキネ', 'p', 'ネ', 'ルウェ', 'ネ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/247.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/247.wav",
 		quizSentence: true
 	},
 	{
@@ -1995,7 +1995,7 @@ const slideData =
 		alt: "neno eci= iki wa eci= i= kore p ne na.\"",
 		native: "Please do me a favor [send me to the dog father] like this.\"",
 		words: [ 'ネノ', 'エチ', 'イキ', 'ワ', 'エチ', 'イ', 'コレ', 'p', 'ネ', 'ナ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/248.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/248.wav",
 		quizSentence: true
 	},
 	{
@@ -2003,7 +2003,7 @@ const slideData =
 		alt: "sekor wentarap =an ruwe ne a p,",
 		native: "I dreamt.",
 		words: [ 'セコㇽ', 'ウェンタラプ', 'アン', 'ルウェ', 'ネ', 'ア', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/249.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/249.wav",
 		quizSentence: true
 	},
 	{
@@ -2011,7 +2011,7 @@ const slideData =
 		alt: "nea okkaypo ka neno wentarap yak ye kor,",
 		native: "The young man said that he saw the same dream.",
 		words: [ 'ネア', 'オㇰカイポ', 'カ', 'ネノ', 'ウェンタラプ', 'ヤㇰ', 'イェ', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/250.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/250.wav",
 		quizSentence: true
 	},
 	{
@@ -2019,7 +2019,7 @@ const slideData =
 		alt: "ora tori hine oraun",
 		native: "After one night,",
 		words: [ 'オラ', 'トリ', 'ヒネ', 'オラウン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/251.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/251.wav",
 		quizWords: [ 'トリ' ]
 	},
 	{
@@ -2027,7 +2027,7 @@ const slideData =
 		alt: "\"arpa =an a= ona eun a= ye ora ek =an pe ne.\"",
 		native: "\"I will go talk to my father and come back.\",",
 		words: [ 'アㇽパ', 'アン', 'ア', 'オナ', 'エウン', 'ア', 'イェ', 'オラ', 'エㇰ', 'アン', 'ペ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/252.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/252.wav",
 		quizSentence: true
 	},
 	{
@@ -2035,7 +2035,7 @@ const slideData =
 		alt: "sekor hawean kor arpa wa isam ruwe ne",
 		native: "he said, and off he went.",
 		words: [ 'セコㇽ', 'ハウェアン', 'コㇽ', 'アㇽパ', 'ワ', 'イサㇺ', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/253.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/253.wav",
 		quizSentence: true
 	},
 	{
@@ -2043,7 +2043,7 @@ const slideData =
 		alt: "sorekus, rik un kakenca ranke kakenca erewewse kane,",
 		native: "With so many clothes that the upper clothes hanger and lower clothes hanger sagged,",
 		words: [ 'ソレクㇱ', 'リㇰ', 'ウン', 'カケンチャ', 'ランケ', 'カケンチャ', 'エレウェウセ', 'カネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/254.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/254.wav",
 		quizWords: [ 'ランケ', 'カケンチャ' ]
 	},
 	{
@@ -2051,7 +2051,7 @@ const slideData =
 		alt: "ineapkusun a= onaha ne yakka nispa ne p ne aan wa siran ya ka a= eramiskari.",
 		native: "I somehow realized that my father was a great elder with no equals.",
 		words: [ 'イネアプクスン', 'ア', 'オナハ', 'ネ', 'ヤㇰカ', 'ニㇱパ', 'ネ', 'p', 'ネ', 'アアン', 'ワ', 'シラン', 'ヤ', 'カ', 'ア', 'エラミㇱカリ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/255.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/255.wav",
 		quizWords: [ 'オナハ' ]
 	},
 	{
@@ -2059,7 +2059,7 @@ const slideData =
 		alt: "a= unu ne yakka sino katkemat ne a ruwe ne noyne siran pe ne kusu,",
 		native: "My mother was also a fine lady,",
 		words: [ 'ア', 'ウヌ', 'ネ', 'ヤㇰカ', 'シノ', 'カッケマッ', 'ネ', 'ア', 'ルウェ', 'ネ', 'ノイネ', 'シラン', 'ペ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/256.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/256.wav",
 		quizWords: [ 'カッケマッ' ]
 	},
 	{
@@ -2067,7 +2067,7 @@ const slideData =
 		alt: "nep ka a= kar ka erampewtek.",
 		native: "and even though I didn\'t know how to do anything,",
 		words: [ 'ネプ', 'カ', 'ア', 'カㇽ', 'カ', 'エラㇺペウテㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/257.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/257.wav",
 		quizSentence: true
 	},
 	{
@@ -2075,7 +2075,7 @@ const slideData =
 		alt: "nen i= epakasnu apekor kemeyki ne ya nep ne ya,",
 		native: "[I was able] to sew and do other things just like someone else once taught me.",
 		words: [ 'ネン', 'イ', 'エパカㇱヌ', 'アペコㇽ', 'ケメイキ', 'ネ', 'ヤ', 'ネプ', 'ネ', 'ヤ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/258.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/258.wav",
 		quizWords: [ 'アペコㇽ', 'ケメイキ' ]
 	},
 	{
@@ -2083,7 +2083,7 @@ const slideData =
 		alt: "ineapkusun a= easkay wa iki =an ya ka a= eramiskari kor an pe a= ne p ne kusu,",
 		native: "I was able to do very well.",
 		words: [ 'イネアプクスン', 'ア', 'エアㇱカイ', 'ワ', 'イキ', 'アン', 'ヤ', 'カ', 'ア', 'エラミㇱカリ', 'コㇽ', 'アン', 'ペ', 'ア', 'ネ', 'p', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/259.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/259.wav",
 		quizSentence: true
 	},
 	{
@@ -2091,7 +2091,7 @@ const slideData =
 		alt: "ora nea okkaypo arpa hine isam ruwe ne akusu,",
 		native: "Once the young man left,",
 		words: [ 'オラ', 'ネア', 'オㇰカイポ', 'アㇽパ', 'ヒネ', 'イサㇺ', 'ルウェ', 'ネ', 'アクス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/260.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/260.wav",
 		quizSentence: true
 	},
 	{
@@ -2099,7 +2099,7 @@ const slideData =
 		alt: "tutko rerko ne kor poro yupihi saha ne yak ki p tura wa ek",
 		native: "he came back several days later with people he introduced as his older brother and sister.",
 		words: [ 'トゥッコ', 'レㇽコ', 'ネ', 'コㇽ', 'ポロ', 'ユピヒ', 'サハ', 'ネ', 'ヤㇰ', 'キ', 'p', 'トゥラ', 'ワ', 'エㇰ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/261.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/261.wav",
 		quizWords: [ 'トゥッコ', 'レㇽコ' ]
 	},
 	{
@@ -2107,7 +2107,7 @@ const slideData =
 		alt: "orano sorekusu i= kewehomsu pa kor ki ruwe ne hine,",
 		native: "They held a ceremony to pray for my safe being and rid me of any demons.",
 		words: [ 'オラノ', 'ソレクス', 'イ', 'ケウェホㇺス', 'パ', 'コㇽ', 'キ', 'ルウェ', 'ネ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/262.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/262.wav",
 		quizWords: [ 'ケウェホㇺス' ]
 	},
 	{
@@ -2115,7 +2115,7 @@ const slideData =
 		alt: "ora moyono aynu tura wa arki pa hine kotan kar pa hine,",
 		native: "They brought a few people, and we made village and",
 		words: [ 'オラ', 'モヨノ', 'アイヌ', 'トゥラ', 'ワ', 'アㇽキ', 'パ', 'ヒネ', 'コタン', 'カㇽ', 'パ', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/263.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/263.wav",
 		quizWords: [ 'アㇽキ', 'モヨノ' ]
 	},
 	{
@@ -2123,7 +2123,7 @@ const slideData =
 		alt: "oro ta oka =an ruwe ne.",
 		native: "lived there.",
 		words: [ 'オロ', 'タ', 'オカ', 'アン', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/264.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/264.wav",
 		quizSentence: true
 	},
 	{
@@ -2131,7 +2131,7 @@ const slideData =
 		alt: "nep a= e rusuy nep a= kor_ rusuy somo ki no oka =an.",
 		native: "After that, we led a life where we did not wish for food or things.",
 		words: [ 'ネプ', 'ア', 'エ', 'ルスイ', 'ネプ', 'ア', 'コㇽ', 'ルスイ', 'ソモ', 'キ', 'ノ', 'オカ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/265.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/265.wav",
 		quizSentence: true
 	},
 	{
@@ -2139,7 +2139,7 @@ const slideData =
 		alt: "orano easir ki.",
 		native: "At last we led such a life.",
 		words: [ 'オラノ', 'エアシㇽ', 'キ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/266.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/266.wav",
 		quizWords: [ 'エアシㇽ' ]
 	},
 	{
@@ -2147,7 +2147,7 @@ const slideData =
 		alt: "ora nea seta anakne cananno poka a= hopunire kunak ye p ne kusu,",
 		native: "that dog said he wanted us to send him in any manner.",
 		words: [ 'オラ', 'ネア', 'セタ', 'アナㇰネ', 'チャナンノ', 'ポカ', 'ア', 'ホプニレ', 'クナㇰ', 'イェ', 'p', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/267.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/267.wav",
 		quizWords: [ 'ホプニレ' ]
 	},
 	{
@@ -2155,7 +2155,7 @@ const slideData =
 		alt: "seta oyakata eun arpare kuni yere a sinne noyne,",
 		native: "My husband instructed the dog to go to the dog master.",
 		words: [ 'セタ', 'オヤカタ', 'エウン', 'アㇽパレ', 'クニ', 'イェレ', 'ア', 'シンネ', 'ノイネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/268.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/268.wav",
 		quizWords: [ 'アㇽパレ', 'イェレ' ]
 	},
 	{
@@ -2163,7 +2163,7 @@ const slideData =
 		alt: "inawke a inawke a hine inaw kor ene haw turano hopunire hine orano okake ta oka =an.",
 		native: "We cut many inaw-willow sticks and sent him off with prayers.",
 		words: [ 'イナウケ', 'ア', 'イナウケ', 'ア', 'ヒネ', 'イナウ', 'コㇽ', 'エネ', 'ハウ', 'トゥラノ', 'ホプニレ', 'ヒネ', 'オラノ', 'オカケ', 'タ', 'オカ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/269.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/269.wav",
 		quizWords: [ 'ハウ', 'イナウ', 'イナウケ' ]
 	},
 	{
@@ -2171,7 +2171,7 @@ const slideData =
 		alt: "nep a= e rusuy nep a= kor_ rusuy somo ki no oka =an",
 		native: "After that, we continued living without wishing for food.",
 		words: [ 'ネプ', 'ア', 'エ', 'ルスイ', 'ネプ', 'ア', 'コㇽ', 'ルスイ', 'ソモ', 'キ', 'ノ', 'オカ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/270.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/270.wav",
 		quizSentence: true
 	},
 	{
@@ -2179,7 +2179,7 @@ const slideData =
 		alt: "rapokke ar suy ne poka ne a= siwtoutari oro ta arpa =an wa inkar =an rusuy kusu,",
 		native: "Just once though, I wanted to go to my parents-in law\'s place.",
 		words: [ 'ラポㇰケ', 'アㇽ', 'スイ', 'ネ', 'ポカ', 'ネ', 'ア', 'シウトウタリ', 'オロ', 'タ', 'アㇽパ', 'アン', 'ワ', 'インカㇽ', 'アン', 'ルスイ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/271.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/271.wav",
 		quizWords: [ 'シウトウタリ', 'アㇽ' ]
 	},
 	{
@@ -2187,7 +2187,7 @@ const slideData =
 		alt: "ne a= hekote nispa a= siren hine,",
 		native: "I went together with my husband.",
 		words: [ 'ネ', 'ア', 'ヘコテ', 'ニㇱパ', 'ア', 'シレン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/272.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/272.wav",
 		quizWords: [ 'シレン', 'ヘコテ' ]
 	},
 	{
@@ -2195,7 +2195,7 @@ const slideData =
 		alt: "posak =an hine,",
 		native: "Since we did not have children,",
 		words: [ 'ポサㇰ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/273.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/273.wav",
 		quizWords: [ 'ポサㇰ' ]
 	},
 	{
@@ -2203,7 +2203,7 @@ const slideData =
 		alt: "arpa =an rusuy pe ne kusu a= tura hine arpa =an hine,",
 		native: "I wanted to go together with my husband, so I followed him.",
 		words: [ 'アㇽパ', 'アン', 'ルスイ', 'ペ', 'ネ', 'クス', 'ア', 'トゥラ', 'ヒネ', 'アㇽパ', 'アン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/274.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/274.wav",
 		quizSentence: true
 	},
 	{
@@ -2211,7 +2211,7 @@ const slideData =
 		alt: "orano Yupet emko kor_ nispa sorekus i= tamkasure i= tamtespare kor",
 		native: "The Yupet Upstream elder pointed a sword at us, and swinging the sword,",
 		words: [ 'オラノ', 'ユペッ', 'エㇺコ', 'コㇽ', 'ニㇱパ', 'ソレクㇱ', 'イ', 'タㇺカスレ', 'イ', 'タㇺテㇱパレ', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/275.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/275.wav",
 		quizSentence: true
 	},
 	{
@@ -2219,7 +2219,7 @@ const slideData =
 		alt: "i= kewehomsu ruwe ne.",
 		native: "carried out a demon exorcising ceremony.",
 		words: [ 'イ', 'ケウェホㇺス', 'ルウェ', 'ネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/276.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/276.wav",
 		quizSentence: true
 	},
 	{
@@ -2227,7 +2227,7 @@ const slideData =
 		alt: "\"a= kor nispa kotanuhu pa oyan yak a= ye yakun,",
 		native: "\"It was said that our elder\'s village (at Iskar Upstream) was plagued by disease,",
 		words: [ 'ア', 'コㇽ', 'ニㇱパ', 'コタヌフ', 'パ', 'オヤン', 'ヤㇰ', 'ア', 'イェ', 'ヤクン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/277.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/277.wav",
 		quizWords: [ 'オヤン', 'コタヌフ' ]
 	},
 	{
@@ -2235,7 +2235,7 @@ const slideData =
 		alt: "nep ka isam ruwe ne kunak a= ramu wa kusu,",
 		native: "so I thought that no one was alive.",
 		words: [ 'ネプ', 'カ', 'イサㇺ', 'ルウェ', 'ネ', 'クナㇰ', 'ア', 'ラム', 'ワ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/278.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/278.wav",
 		quizSentence: true
 	},
 	{
@@ -2243,7 +2243,7 @@ const slideData =
 		alt: "a= kor katkemat kamuy resu wa an aan wa,",
 		native: "Kamui-gods must have raised our daughter-in law.",
 		words: [ 'ア', 'コㇽ', 'カッケマッ', 'カムイ', 'レス', 'ワ', 'アン', 'アアン', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/279.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/279.wav",
 		quizSentence: true
 	},
 	{
@@ -2251,7 +2251,7 @@ const slideData =
 		alt: "kamuy renkayne a= poho arpa wa ne ruwe ne yakun,",
 		native: "Thanks to kamui-gods our son went [there], so",
 		words: [ 'カムイ', 'レンカイネ', 'ア', 'ポホ', 'アㇽパ', 'ワ', 'ネ', 'ルウェ', 'ネ', 'ヤクン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/280.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/280.wav",
 		quizWords: [ 'レンカイネ' ]
 	},
 	{
@@ -2259,7 +2259,7 @@ const slideData =
 		alt: "a= utarihi nimari Iskar emko a= payere rusuy kusu",
 		native: "I thought I would send half of our village to Iskar Upstream.",
 		words: [ 'ア', 'ウタリヒ', 'ニマリ', 'イㇱカㇽ', 'エㇺコ', 'ア', 'パイェレ', 'ルスイ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/281.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/281.wav",
 		quizWords: [ 'ウタリヒ' ]
 	},
 	{
@@ -2267,7 +2267,7 @@ const slideData =
 		alt: "paye wa uekotanne pa ruwe ne kusu,",
 		native: "Since they went and are now part of our village,",
 		words: [ 'パイェ', 'ワ', 'ウエコタンネ', 'パ', 'ルウェ', 'ネ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/282.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/282.wav",
 		quizSentence: true
 	},
 	{
@@ -2275,7 +2275,7 @@ const slideData =
 		alt: "apunno oka =an yak pirka.\"",
 		native: "please live together in peace.\"",
 		words: [ 'アプンノ', 'オカ', 'アン', 'ヤㇰ', 'ピㇽカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/283.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/283.wav",
 		quizWords: [ 'アプンノ' ]
 	},
 	{
@@ -2283,7 +2283,7 @@ const slideData =
 		alt: "sekor Yupet emko kor_ nispa hawean hine",
 		native: "the Yupet Upstream elder told us.",
 		words: [ 'セコㇽ', 'ユペッ', 'エㇺコ', 'コㇽ', 'ニㇱパ', 'ハウェアン', 'ヒネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/284.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/284.wav",
 		quizSentence: true
 	},
 	{
@@ -2291,7 +2291,7 @@ const slideData =
 		alt: "orano hosippa =an orano oka =an orano oka =an.",
 		native: "We went back to the village to continue our lives.",
 		words: [ 'オラノ', 'ホシプパ', 'アン', 'オラノ', 'オカ', 'アン', 'オラノ', 'オカ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/285.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/285.wav",
 		quizSentence: true
 	},
 	{
@@ -2299,7 +2299,7 @@ const slideData =
 		alt: "sorekusu kotan kor ...",
 		native: "Even when",
 		words: [ 'ソレクス', 'コタン', 'コㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/286.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/286.wav",
 		quizSentence: true
 	},
 	{
@@ -2307,7 +2307,7 @@ const slideData =
 		alt: "i= ekotanne utar yayipere eaykap pa p,",
 		native: "the people who came to live at our village could not support themselves,",
 		words: [ 'イ', 'エコタンネ', 'ウタㇽ', 'ヤイィペレ', 'エアイカプ', 'パ', 'p' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/287.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/287.wav",
 		quizWords: [ 'ヤイィペレ', 'エコタンネ' ]
 	},
 	{
@@ -2315,7 +2315,7 @@ const slideData =
 		alt: "a= ipere pa a= i= korpare pa.",
 		native: "we fed them and gave them things.",
 		words: [ 'ア', 'イペレ', 'パ', 'ア', 'イ', 'コㇽパレ', 'パ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/288.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/288.wav",
 		quizSentence: true
 	},
 	{
@@ -2323,7 +2323,7 @@ const slideData =
 		alt: "coypep ne ya a= onaha nuwe koan.",
 		native: "Father had many valuable dinner dishes,",
 		words: [ 'チョイペプ', 'ネ', 'ヤ', 'ア', 'オナハ', 'ヌウェ', 'コアン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/289.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/289.wav",
 		quizWords: [ 'チョイペプ' ]
 	},
 	{
@@ -2331,7 +2331,7 @@ const slideData =
 		alt: "coypep utar a= ukowsaraye pa a= utari utar ki wa, upakno uneno coypep ka a= ukowsaraye pa.",
 		native: "and we equally divided those among the villagers.",
 		words: [ 'チョイペプ', 'ウタㇽ', 'ア', 'ウコウサライェ', 'パ', 'ア', 'ウタリ', 'ウタㇽ', 'キ', 'ワ', 'ウパㇰノ', 'ウネノ', 'チョイペプ', 'カ', 'ア', 'ウコウサライェ', 'パ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/290.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/290.wav",
 		quizWords: [ 'ウコウサライェ', 'ウパㇰノ', 'ウタリ' ]
 	},
 	{
@@ -2339,7 +2339,7 @@ const slideData =
 		alt: "nep a= e rusuy nep a= kor_ rusuy somo ki no,",
 		native: "We lived without wanting food or things at all.",
 		words: [ 'ネプ', 'ア', 'エ', 'ルスイ', 'ネプ', 'ア', 'コㇽ', 'ルスイ', 'ソモ', 'キ', 'ノ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/291.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/291.wav",
 		quizSentence: true
 	},
 	{
@@ -2347,7 +2347,7 @@ const slideData =
 		alt: "a= kotanu un katkemat utar i= o katkemat usi pa kor ki pa.",
 		native: "The women of the village learned my ladylike manners.",
 		words: [ 'ア', 'コタヌ', 'ウン', 'カッケマッ', 'ウタㇽ', 'イ', 'オ', 'カッケマッ', 'ウシ', 'パ', 'コㇽ', 'キ', 'パ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/292.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/292.wav",
 		quizWords: [ 'コタヌ' ]
 	},
 	{
@@ -2355,7 +2355,7 @@ const slideData =
 		alt: "sake a= kor kor, Yupet emko un a= hekote nispa iaskeuk wa, ikutaspa utar arki kusu,",
 		native: "We brewed wine, and my husband invited people from Yupet Upstream, and they came to have parties.",
 		words: [ 'サケ', 'ア', 'コㇽ', 'コㇽ', 'ユペッ', 'エㇺコ', 'ウン', 'ア', 'ヘコテ', 'ニㇱパ', 'イアㇱケウㇰ', 'ワ', 'イクタㇱパ', 'ウタㇽ', 'アㇽキ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/293.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/293.wav",
 		quizWords: [ 'サケ', 'イアㇱケウㇰ' ]
 	},
 	{
@@ -2363,7 +2363,7 @@ const slideData =
 		alt: "sine apa ne, sine utar_ ne ukar =an kor oka =an ayne",
 		native: "We lived together as relatives and as a tribe.",
 		words: [ 'シネ', 'アパ', 'ネ', 'シネ', 'ウタㇽ', 'ネ', 'ウカㇽ', 'アン', 'コㇽ', 'オカ', 'アン', 'アイネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/294.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/294.wav",
 		quizSentence: true
 	},
 	{
@@ -2371,7 +2371,7 @@ const slideData =
 		alt: "sorekus posiresitte =an.",
 		native: "Later on we had many children,",
 		words: [ 'ソレクㇱ', 'ポシレシッテ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/295.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/295.wav",
 		quizSentence: true
 	},
 	{
@@ -2379,7 +2379,7 @@ const slideData =
 		alt: "a= utari hene yakka posiresitte.",
 		native: "and the villagers also had many children.",
 		words: [ 'ア', 'ウタリ', 'ヘネ', 'ヤㇰカ', 'ポシレシッテ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/296.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/296.wav",
 		quizSentence: true
 	},
 	{
@@ -2387,7 +2387,7 @@ const slideData =
 		alt: "ora onne utar_ ray ...",
 		native: "When the village elders",
 		words: [ 'オラ', 'オンネ', 'ウタㇽ', 'ライ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/297.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/297.wav",
 		quizWords: [ 'ライ' ]
 	},
 	{
@@ -2395,7 +2395,7 @@ const slideData =
 		alt: "ray kor esipinpa pa kuni p a= kar wa a= se hi an ne ya somo apkas =an yakka ki ayne,",
 		native: "died, we made burial outfits. While I did not go myself, those who delivered the outfits",
 		words: [ 'ライ', 'コㇽ', 'エシピンパ', 'パ', 'クニ', 'p', 'ア', 'カㇽ', 'ワ', 'ア', 'セ', 'ヒ', 'アン', 'ネ', 'ヤ', 'ソモ', 'アプカㇱ', 'アン', 'ヤㇰカ', 'キ', 'アイネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/298.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/298.wav",
 		quizSentence: true
 	},
 	{
@@ -2403,7 +2403,7 @@ const slideData =
 		alt: "tane a= siwtoutari ka onne wa isam pa yak a= ye hike ka,",
 		native: "told me that my parents-in-law had also died of old age.",
 		words: [ 'タネ', 'ア', 'シウトウタリ', 'カ', 'オンネ', 'ワ', 'イサㇺ', 'パ', 'ヤㇰ', 'ア', 'イェ', 'ヒケ', 'カ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/299.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/299.wav",
 		quizSentence: true
 	},
 	{
@@ -2411,7 +2411,7 @@ const slideData =
 		alt: "asinuma anak pokoinne =an.",
 		native: "However, I was blessed with children.",
 		words: [ 'アシヌマ', 'アナㇰ', 'ポコインネ', 'アン' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/300.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/300.wav",
 		quizWords: [ 'ポコインネ', 'アシヌマ' ]
 	},
 	{
@@ -2419,7 +2419,7 @@ const slideData =
 		alt: "apkas ka a= eaykap yakka,",
 		native: "I could not go (to the Yupet Upstream village),",
 		words: [ 'アプカㇱ', 'カ', 'ア', 'エアイカプ', 'ヤㇰカ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/301.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/301.wav",
 		quizSentence: true
 	},
 	{
@@ -2427,7 +2427,7 @@ const slideData =
 		alt: "a= hekote nispa anakne sine cup ta arsuy ka arpa ranke kor oka =an ayne,",
 		native: "but each time my husband went [there], and stayed for a month.",
 		words: [ 'ア', 'ヘコテ', 'ニㇱパ', 'アナㇰネ', 'シネ', 'チゥプ', 'タ', 'アㇽスイ', 'カ', 'アㇽパ', 'ランケ', 'コㇽ', 'オカ', 'アン', 'アイネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/302.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/302.wav",
 		quizWords: [ 'アㇽスイ' ]
 	},
 	{
@@ -2435,7 +2435,7 @@ const slideData =
 		alt: "tane a= siwtoutari ka isam yak a= ye okake ta,",
 		native: "After it was said that my parents-in-law had passed on,",
 		words: [ 'タネ', 'ア', 'シウトウタリ', 'カ', 'イサㇺ', 'ヤㇰ', 'ア', 'イェ', 'オカケ', 'タ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/303.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/303.wav",
 		quizSentence: true
 	},
 	{
@@ -2443,7 +2443,7 @@ const slideData =
 		alt: "a= onautari a= nurappa wa",
 		native: "I held a memorial service for our parents.",
 		words: [ 'ア', 'オナウタリ', 'ア', 'ヌラプパ', 'ワ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/304.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/304.wav",
 		quizWords: [ 'オナウタリ', 'ヌラプパ' ]
 	},
 	{
@@ -2451,7 +2451,7 @@ const slideData =
 		alt: "sinrit or_ ta mippo ka a= onautari ikoytupa somo ki kuni ne iki kor oka =an ayne,",
 		native: "Their grandchildren did so that our parents would not be leading a difficult life in the afterworld, and so we lived.",
 		words: [ 'シンリッ', 'オㇽ', 'タ', 'ミプポ', 'カ', 'ア', 'オナウタリ', 'イコイトゥパ', 'ソモ', 'キ', 'クニ', 'ネ', 'イキ', 'コㇽ', 'オカ', 'アン', 'アイネ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/305.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/305.wav",
 		quizWords: [ 'イコイトゥパ', 'ミプポ' ]
 	},
 	{
@@ -2459,7 +2459,7 @@ const slideData =
 		alt: "tane onne =an pa siri ene an hi kusu,",
 		native: "\"We have also aged so",
 		words: [ 'タネ', 'オンネ', 'アン', 'パ', 'シリ', 'エネ', 'アン', 'ヒ', 'クス' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/306.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/306.wav",
 		quizSentence: true
 	},
 	{
@@ -2467,7 +2467,7 @@ const slideData =
 		alt: "a= eysoytak sekor sino katkemat hawean sekor.",
 		native: "we are passing our stories on\", said one fine lady.",
 		words: [ 'ア', 'エイソイタㇰ', 'セコㇽ', 'シノ', 'カッケマッ', 'ハウェアン', 'セコㇽ' ],
-		audio: "./rsrc/ai/uwepeker/the_girl_who_gave_the_bad_red_dog_poison/audio/120/307.wav",
+		audio: "audio/uwepeker.the_girl_who_gave_the_bad_red_dog_poison/307.wav",
 		quizWords: [ 'エイソイタㇰ' ]
 	}
 ];
