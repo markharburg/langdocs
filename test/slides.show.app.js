@@ -45,12 +45,46 @@ function initWebApp()
 //		sentenceTracker[gLang][gBook][gChap][idx] = sentenceTracker[gLang][gBook][gChap][idx] ? sentenceTracker[gLang][gBook][gChap][idx] : false;
 //	});
 
+	const quiz = getQueryParam('quiz');
+	if (quiz)
+	{
+		if (quiz == 1)
+		{
+			document.getElementById('toggleWordQuiz').checked = true;
+			document.getElementById('toggleSentenceQuiz').checked = true;
+		}
+		else
+		{
+			document.getElementById('toggleWordQuiz').checked = false;
+			document.getElementById('toggleSentenceQuiz').checked = false;
+		}
+	}
+	else
+	{
+		document.getElementById('toggleWordQuiz').checked = controlParams.defaultWordQuizOn;
+		document.getElementById('toggleSentenceQuiz').checked = controlParams.defaultSentQuizOn;
+	}
+
+	const spk = getQueryParam('speak');
+	if (spk)
+	{
+		if (spk == 1)
+		{
+			document.getElementById('toggleSpeakOnRender').checked = true;
+		}
+		else
+		{
+			document.getElementById('toggleSpeakOnRender').checked = false;
+		}
+	}
+	else
+	{
+		document.getElementById('toggleSpeakOnRender').checked = controlParams.defaultSpeakOn;
+	}
+
 	document.getElementById('toggleAlt').checked = controlParams.defaultAltOn;
 	document.getElementById('toggleTranslation').checked = controlParams.defaultNativeOn;
-	document.getElementById('toggleWordQuiz').checked = controlParams.defaultWordQuizOn;
-	document.getElementById('toggleSentenceQuiz').checked = controlParams.defaultSentQuizOn;
 	document.getElementById('toggleSkipNoQuiz').checked = controlParams.defaultSkipNoQuizOn;
-	document.getElementById('toggleSpeakOnRender').checked = controlParams.defaultSpeakOn;
 
 	const select = document.getElementById('slideSelect');
 	slideData.forEach((_, i) =>
