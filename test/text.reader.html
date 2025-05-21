@@ -393,6 +393,34 @@
 				const book = getQueryParam('book');
 				const chap = getQueryParam('chap');
 
+				const quiz = getQueryParam('quiz');
+				if (quiz)
+				{
+					if (quiz == 1)
+					{
+						document.getElementById('toggleWordQuiz').checked = true;
+						document.getElementById('toggleSentenceQuiz').checked = true;
+					}
+					else
+					{
+						document.getElementById('toggleWordQuiz').checked = false;
+						document.getElementById('toggleSentenceQuiz').checked = false;
+					}
+				}
+
+				const spk = getQueryParam('speak');
+				if (spk)
+				{
+					if (spk == 1)
+					{
+						document.getElementById('toggleSpeakOnRender').checked = true;
+					}
+					else
+					{
+						document.getElementById('toggleSpeakOnRender').checked = false;
+					}
+				}
+
 				if ((lang) &&
 					(book) &&
 					(chap))
