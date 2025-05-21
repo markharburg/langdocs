@@ -6,6 +6,12 @@ const dictionary =
 		native: "A is sometimes used for the 3rd per. sing. per. pro. \"he\", \"she\"; and even sometimes as the rel. pro. \"who\", \'A-e-hotuyekara\', \"he is calling you.\", \'Toda an a guru\', \"the person who was here.\" / A passive prefix to verbs. Thus, Nuye \"to write\" a-nuye, \"to be written\" Raige, \"to kill\" a-raige \"to be killed\" / A tooth. A prong of a fork, spear, or harrow. Thus - \'Re a us op\', \"a trident.\" / By prefixing a to the verb koro, \"to have\" the 1st per. pl. poss. pro. \"our\" is obtained. Thus: - \'A-koro-be\' \"our things\", A-koro mici, \"our father\", But where there is no danger of ambiguity the koro may be dropped. As : - \'Sipakari, a uni wa ekbe\', \"only think; they came from our home!\" / Prefixed to koro \"to possess\" the 3rd per. pl. pro. \"they\" is formed. Thus, \"the things they brought\" is, \'a-koro ariki ambe\'. Such is the idiom but the words mean in fact, \"having the things they came\". / Sometimes \'a\' is found for the 2nd per. sing. per. pro. \"your\" and as such is short for \'a-okai\' or an-okai, \"you\" and \"ye\", Thus:- \'aakuatari\', \"your younger brothers\" The full way of writing this would be \'a-koro akihi utari\'. / Sometimes \'a\' represents the 2nd per. sing. per. pro. \"you\" As: - \'Tokkari kotan wa ek a ruwe he an?\' \"Have you come from Tokkari?\" -if The more usual way however of using such phrases is by substituting \'e\' for \'a\', \'e\' being a contraction of \'eani\', \"you.\" / Sometimes a is used for the 1st per. sing. pro. \"I\" As, \'Tokapci un guru a ne ruwe ne\', \"I am a Tokapchi man\", \'Asinuma anak nei guru kot-tures a ne ruwe ne\', \"I am that person\'s younger sister\" Under certain conditions of context these illustrations might be translated in the 3rd person. / Used after verbs \'a\', sometimes hardened into \'ya\', expresses interrogation, and sometimes affirmation. Thus, \'an a?\', \"Is there\"; \'an a\', \"there is\", which is intended being determined by the tone of voice. / When followed by ne, a represents the 1st per. pl. pro. thus : - \'E ren a ne wa\', \"we three\". This mode of expression is the same as \'ren chi ne\', \"we three\" But it should also he remembered that under certain conditions \'eren a ne wa\' may mean \"they three\" Cfo. also \'etun a ne wa\' with \'tun ci ne\', \"we two.\" Literally translated \'eren a ne wa\' is, \"we being three\" / When used immediately followed by the obj. per. pro. en, \"me\" or un, \"us,\" and a verb, it, together with the pronoun should be translated by \"I am\" and \"we are\" respectively; for thus is formed the 1st per. sing, and pl. of the passive voice to verbs. Thus: - a-en-kik, \"I am struck\", a-un-kik \"we are struck\" But when a en or a un are used before verbs made transitive by the addition of e they should be translated by \"me\" and \"us\" Thus: - a en epotara ki ruwe ne, \"they feel anxiety about me\" (lit: \"I am being felt anxiety about\"); a un emik, \"they bark at us\" (lit: \"we are barked at\") / adj. and adv. One. One of a pair. Entirely. Wholly. Thoroughly. Quite. As: - \'A-sik\', \"one eye\" / rel. pro. Who, Which. As : - \'E kik a guru nen ne ruwe?\' \"Who struck you?\" / represents past time only. Thus; a-okere, \"it has been finished,\" an-ki ruwe ne, \"it has been done,\" or \"it was finished\" or \"done.\" / v.i. (sing). To sit. As: - \'Kina kata a\', \"to sit on a mat\", \'Mo no a\', \"sit still\", \'A wa an\', \"to be sitting\", \'A kane an\', \"he is sitting\" / v.i. To burn. As: - \'Ahe a\', \"the fire is burning\" / when used with koro, a sometimes represents the 1st per. sing. poss. pro. \"my\" Thus, \'a-koro sapo\', \"my elder sister\", a-koro yupo, \"my elder brother\"",
 		vrn: { 'a': [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 ] }
 	},
+	'アアン':
+	{
+		alt: 'aan',
+		native: "I did (I found out later) [I did (completed)/there] \'I=kosunke hi ne aan mina a mina a.\' \"She laughed out loud, saying that she had lied to me. \"",
+		vrn: { 'aan': [ 1 ] }
+	},
 	'アアンデ':
 	{
 		alt: 'aande',
@@ -17,6 +23,12 @@ const dictionary =
 		alt: 'ai',
 		native: "n. a tributary of a river / n. an arrow. As: - \'Ai-rap\' \"feathers of arrow shafts\", \"Ai-rum\' \"an arrow-head\" / n. thorns of plants / part. sometimes this particle is used as an adverb of time, As: \'Ki kusa ne ai\' \"the time it ought to be done\", \'Tune ku oman kuni ai epa ruwe ne\' \"It is now time for me to go\" / part. this particle is a kind of past tense factor equalling \"did\", \"was\", As: - \'Somo ene ku inu kuni ku ramu ai, tan oruspe ku nu\' \"I did not expect to hear such news as this I have now heard\", \'Ai\' is in some instances interchangeable with \'awa\', syn: an",
 		vrn: { 'ai': [ 1, 2, 3, 4, 5 ] }
+	},
+	'アイ':
+	{
+		alt: 'ay',
+		native: "(attached to the end of a verb) ~what you did \'ramuay\' \"what you thought\" / 1. Arrow (ya) 2. Thorn 3. Nogi 4. Pointed part of the pattern / An= in \"I am ~\" is phoneme exchanged with the following word \' nupe ay=yaykorante\' \"I shed tears\", \' nep ay=ye ka nenne kino\' \"I say nothing\" (don\'t)　　 [Similar]",
+		vrn: { 'ay': [ 1, 2, 3 ] }
 	},
 	'アイウㇱ':
 	{
@@ -42,11 +54,23 @@ const dictionary =
 		native: "n. man, a man, the race of people called Ainu, comrade, father, husband",
 		vrn: { 'ainu': [ 1 ] }
 	},
+	'アイヌ':
+	{
+		alt: 'aynu',
+		native: "(for gods and animals) human, (for Japanese sisam) Ainu, adult male, (after ku=kor) my father",
+		vrn: { 'aynu': [ 1 ] }
+	},
 	'アイネ':
 	{
 		alt: 'aine',
 		native: "part. this particle indicates the past or perfect tense, As: - \'Tap seenne otta ku apkas kuni ku ramu aine koroka tap ku apkas nisa ruwe ne.\' \"I did not expect to walk thus far yet I have come here.\" / post. thereupon, after a while, hardly, upon which, at last, As: - \'Ramneto ku hotuyekara, aine, ese nisa ruwe ne.\' \"I called him for a very long time and at last he answered.\"",
 		vrn: { 'aine': [ 1, 2 ] }
+	},
+	'アイネ':
+	{
+		alt: 'ayne',
+		native: "part. this particle indicates the past or perfect tense, As: - \'Tap seenne otta ku apkas kuni ku ramu aine koroka tap ku apkas nisa ruwe ne.\' \"I did not expect to walk thus far yet I have come here.\" / post. thereupon, after a while, hardly, upon which, at last, As: - \'Ramneto ku hotuyekara, aine, ese nisa ruwe ne.\' \"I called him for a very long time and at last he answered.\"",
+		vrn: { 'ayne': [ 1, 2 ] }
 	},
 	'アイワンゲレ':
 	{
@@ -59,12 +83,6 @@ const dictionary =
 		alt: 'auitek',
 		native: "adj. servant (coupled with -guru or -utar)",
 		vrn: { 'auitek': [ 1 ] }
-	},
-	'アウウェオマ':
-	{
-		alt: 'auweoma',
-		native: "v.i. to be fulfilled, to come to pass",
-		vrn: { 'auweoma': [ 1 ] }
 	},
 	'アウウェオマレ':
 	{
@@ -84,29 +102,11 @@ const dictionary =
 		native: "to cause hinderance???",
 		vrn: { 'aureepetciure': [ 1 ] }
 	},
-	'アエアㇱカイ':
-	{
-		alt: 'aeaskai',
-		native: "v.i. to be able to be done???",
-		vrn: { 'aeaskai': [ 1 ] }
-	},
-	'アエウイタㇰヌプ':
-	{
-		alt: 'aeuitaknup',
-		native: "n. a covenant, a promise",
-		vrn: { 'aeuitaknup': [ 1 ] }
-	},
 	'アエウパㇱクマ':
 	{
 		alt: 'aeupaskuma',
 		native: "v.i. to be preached to???",
 		vrn: { 'aeupaskuma': [ 1 ] }
-	},
-	'アエウンゲライテ':
-	{
-		alt: 'aeungeraite',
-		native: "v.i. to be given as alms, to be caused to accept",
-		vrn: { 'aeungeraite': [ 1 ] }
 	},
 	'アエオテㇰヌ':
 	{
@@ -132,12 +132,6 @@ const dictionary =
 		native: "v.i. to have settled or determined, to be treated as, to be reckoned up",
 		vrn: { 'aesanniyo': [ 1 ] }
 	},
-	'アエㇱカルン':
-	{
-		alt: 'aeskarun',
-		native: "v.i. to be payed mind to, to be remembered, to be recalled",
-		vrn: { 'aeskarun': [ 1 ] }
-	},
 	'アエトゥンネ':
 	{
 		alt: 'aetunne',
@@ -162,17 +156,17 @@ const dictionary =
 		native: "(Human) food \'pirka aep rura\' \"deliver delicious food\", \'Usa aepi a=i=kopunpa.\' \"he served me various foods\", \'nep aepi ne yakka\' \"any food\"",
 		vrn: { 'aep': [ 1 ] }
 	},
-	'アエホㇰ':
-	{
-		alt: 'aehok',
-		native: "v.i. to be sold to???",
-		vrn: { 'aehok': [ 1 ] }
-	},
 	'アエポㇰバプ':
 	{
 		alt: 'aepokbap',
 		native: "v.i. to be an adversary???",
 		vrn: { 'aepokbap': [ 1 ] }
+	},
+	'アエヤイラメコテプ':
+	{
+		alt: 'aeyayramekotep',
+		native: "Tools that rely on it",
+		vrn: { 'aeyayramekotep': [ 1 ] }
 	},
 	'アエヤプキリ':
 	{
@@ -246,17 +240,23 @@ const dictionary =
 		native: "be done??? / n. a younger brother / v.i. / adj. be done, finished",
 		vrn: { 'aki': [ 1, 2, 3 ] }
 	},
+	'アクㇱ':
+	{
+		alt: 'akus',
+		native: "adv. although / be passed through???",
+		vrn: { 'akus': [ 1, 2 ] }
+	},
+	'アクス':
+	{
+		alt: 'akusu',
+		native: "~ then ~ then ~ (was ~) [Used only for past events] =kor, awa (awa is often used in verse) \'Ku=inkar akusu nea karus an.\' \"When I looked, there was the mushroom\"",
+		vrn: { 'akusu': [ 1 ] }
+	},
 	'アクンネレ':
 	{
 		alt: 'akunnere',
 		native: "to be made dark???",
 		vrn: { 'akunnere': [ 1 ] }
-	},
-	'アコアッチャ':
-	{
-		alt: 'akoatca',
-		native: "v.i. to be blashphemed, to be treated slightly, to be treated badly, to be accursed, to be wasted, to be cursed",
-		vrn: { 'akoatca': [ 1 ] }
 	},
 	'アコインガラ':
 	{
@@ -300,12 +300,6 @@ const dictionary =
 		native: "adj. clean, pure, syn: turu-sak",
 		vrn: { 'askanne': [ 1 ] }
 	},
-	'アシㇰヌレ':
-	{
-		alt: 'asiknure',
-		native: "v.i. to be saved, to be made to live",
-		vrn: { 'asiknure': [ 1 ] }
-	},
 	'アシㇰネ':
 	{
 		alt: 'asikne',
@@ -336,6 +330,12 @@ const dictionary =
 		native: "their making a voice??? their standing up??? (gen)",
 		vrn: { 'astehi': [ 1 ] }
 	},
+	'アシヌマ':
+	{
+		alt: 'asinuma',
+		native: "I (``I\'\' used in quotations) [sinuma (the person)] ◆\"Asinuma a=koyki cep ne, \"sekor hawean.\" Do you mean?",
+		vrn: { 'asinuma': [ 1 ] }
+	},
 	'アシリ':
 	{
 		alt: 'asiri',
@@ -353,6 +353,12 @@ const dictionary =
 		alt: 'asiripe',
 		native: "n. a new thing, the next thing",
 		vrn: { 'asiripe': [ 1 ] }
+	},
+	'アシㇽ':
+	{
+		alt: 'asir',
+		native: "New \'asir pa\' \"New Year\" [anti→husko]",
+		vrn: { 'asir': [ 1 ] }
 	},
 	'アスイェスイェ':
 	{
@@ -372,6 +378,12 @@ const dictionary =
 		native: "v.i. to be shortened??? to be abridged???",
 		vrn: { 'ataknere': [ 1 ] }
 	},
+	'アタリマエ':
+	{
+		alt: 'atarimae',
+		native: "Allotment, assigned work [Japanese \"duh\"] [Japanese]",
+		vrn: { 'atarimae': [ 1 ] }
+	},
 	'アッテ':
 	{
 		alt: 'atte',
@@ -383,6 +395,12 @@ const dictionary =
 		alt: 'atui',
 		native: "Sea \'Atui sam ta san wa peray.\' \"Go down to the beach and fish\"",
 		vrn: { 'atui': [ 1 ] }
+	},
+	'アトゥイ':
+	{
+		alt: 'atuy',
+		native: "Sea \'Atuy sam ta san wa peray.\' \"Go down to the beach and fish\"",
+		vrn: { 'atuy': [ 1 ] }
 	},
 	'アトゥサ':
 	{
@@ -402,11 +420,23 @@ const dictionary =
 		native: "Topic marker, as: - \'Tapan oruspe anakne sawre=an pe somo ne na kamuy a=ekosip ne na.\' \"This matter is not easy, so please God I\'ll leave it to you\" [Thematic expression]",
 		vrn: { 'anak': [ 1 ] }
 	},
+	'アナㇰネ':
+	{
+		alt: 'anakne',
+		native: "Topic marker",
+		vrn: { 'anakne': [ 1 ] }
+	},
 	'アニ':
 	{
 		alt: 'ani',
 		native: "adv. as, so, As: - \'Ani koraci\' \"as it is\" \"like that\", As: - \'En otta ani koraci ku koramkon na\' \"I ask that it may be so to me\" / adv. when, then / n. abode, the place where something is, Syn: An-usike / n. something done, something which is, As: - \'Epirikare an gusu ene ikian-i ne\' \"this thing was done for your benefit\" / part. by, with, by means of, As: - \'Pon kasup ani en=ere\' \"He fed me with a small spoon\", \'Ku=kor totto mame etoyta okake wa ku=kema ani k=otoypukka\' \"After my mother sows the beans, I move the soil with my feet\" [Mutsuko Nakamoto] \'Aynu-puri ani sinnurappa yak a=ye\' \"Memorial for ancestors in the Ainu way\", Syn : Ari / part. sometimes used at the end of a sentence as an imperative particle. As: - \'Ek wa ye ani\' \"come and tell me\" \'Nisatta ek ani\' \"Come tomorrow\", \'En=tere ani!\' \"Wait a moment!\", Syn : hani / pro. he, she, it / v.t. to hold or carry in the hands, to lay hold on",
 		vrn: { 'ani': [ 1, 2, 3, 4, 5, 6, 7, 8 ] }
+	},
+	'アヌ':
+	{
+		alt: 'anu',
+		native: "let (someone) live [Shizunai] / to take something out or take it off, \'amip use k=anu\' \"I took off my clothes\", \'ku=sikehe wa use k=anu\' \"take [it] out of my luggage\" / v.t. to be heard, also ph: \"I hear\" and \"do you hear\" / v.t. to put, to place, leave, \'ohanno anu\' \"leave it for a while\", \'Opitta a=ca ka somo ki no, a=anu yak pirka\' \"it is better to leave it without taking it all\" or \"take it off\" / v.t. to understand, to inquire, As; - \'mici orota anu\' \"to inquire of one\'s father\"",
+		vrn: { 'anu': [ 1, 2, 3, 4, 5 ] }
 	},
 	'アヌイェ':
 	{
@@ -432,17 +462,17 @@ const dictionary =
 		native: "to be made blessed",
 		vrn: { 'anunuke': [ 1 ] }
 	},
-	'アヌヌケプ':
-	{
-		alt: 'anunukep',
-		native: "n. a precious thing, a blessed thing",
-		vrn: { 'anunukep': [ 1 ] }
-	},
 	'アヌㇺゲ':
 	{
 		alt: 'anumge',
 		native: "adj. Chosen out",
 		vrn: { 'anumge': [ 1 ] }
+	},
+	'アネ':
+	{
+		alt: 'ane',
+		native: "Thin, pointed, Become thin \'Na ponno ane sakma kor wa ek.\' \"Bring me a thinner sakuma (bush grass\"",
+		vrn: { 'ane': [ 1 ] }
 	},
 	'アハ':
 	{
@@ -467,6 +497,12 @@ const dictionary =
 		alt: 'apanakte',
 		native: "v.i. to be punished",
 		vrn: { 'apanakte': [ 1 ] }
+	},
+	'アパパ':
+	{
+		alt: 'apapa',
+		native: "entrance/exit location",
+		vrn: { 'apapa': [ 1 ] }
 	},
 	'アプ':
 	{
@@ -498,11 +534,29 @@ const dictionary =
 		native: "(enter into a house, etc.) \'Ohasir ta ikeki ahun.\' \"Do not enter a house when the person is not home\"",
 		vrn: { 'ahun': [ 1 ] }
 	},
+	'アプンノ':
+	{
+		alt: 'apunno',
+		native: "Peacefully and safely",
+		vrn: { 'apunno': [ 1 ] }
+	},
 	'アベ':
 	{
 		alt: 'abe',
 		native: "n. fire, As:- \'Abe are\' \"to kindle a file\", \'Abe erau\' \"to cover up fire with ashes\" / n. pretense, appearance",
 		vrn: { 'abe': [ 1, 2 ] }
+	},
+	'アペ':
+	{
+		alt: 'ape',
+		native: "Fire Hearth → (Caution) Use cise uhuy for a house fire, and use siruhuy for a forest fire.",
+		vrn: { 'ape': [ 1 ] }
+	},
+	'アペコㇽ':
+	{
+		alt: 'apekor',
+		native: "(Although it is different from the truth) as if ~ [English = as if ~] → pekor can be \"similar\" [English like] / There is a fire, there is a fire, there is a fire, there is a fire",
+		vrn: { 'apekor': [ 1, 2 ] }
 	},
 	'アポロセ':
 	{
@@ -576,6 +630,48 @@ const dictionary =
 		native: "(After receiving the quote) ~, say ~ \'Tanepo \"miso\" ari a=ye p ku=e.\' \"It was the first time I ate something called \"miso\"\" = sekor / Light a fire / Like this, Just like that [Shizunai] / Using (means) (with), (with) \' Hapo kasup ari en=kik.\' \"My mother hit me with a shamoji\" = ani [Shizunai] / put ~ keep leave (singular anu)",
 		vrn: { 'ari': [ 1, 2, 3, 4, 5 ] }
 	},
+	'アㇽ':
+	{
+		alt: 'ar',
+		native: "Abbreviation for -yar (to cause) [Shizunai] / Prefix to a word that expresses a quality to express completeness Example) arekurok (pure black) / Use as a prefix to a word to express \"one of, one of...\" Example: arsuy (once)",
+		vrn: { 'ar': [ 1, 2, 3 ] }
+	},
+	'アㇽカ':
+	{
+		alt: 'arka',
+		native: "It hurts, it hurts, you get sick, you get sick (quit), You get sick, you get sick (stop) \'Ku=cikiri arka.\' \"My feet get sick.\"",
+		vrn: { 'arka': [ 1 ] }
+	},
+	'アㇽキ':
+	{
+		alt: 'arki',
+		native: "[Ishikari] (plural) come, singular is ek [Shizunai]",
+		vrn: { 'arki': [ 1 ] }
+	},
+	'アルコテㇽケ':
+	{
+		alt: 'arukoterke',
+		native: "wrestle",
+		vrn: { 'arukoterke': [ 1 ] }
+	},
+	'アㇽスイ':
+	{
+		alt: 'arsuy',
+		native: "1 time 1 degree (Used when counting the number of times. More than once is used as a number word)",
+		vrn: { 'arsuy': [ 1 ] }
+	},
+	'アㇽパ':
+	{
+		alt: 'arpa',
+		native: "Go (singular) Sometimes it is natural to translate it as \"come\" → \'Tuyma uske pakno arpa akusu\' \"because I have come to a far place\" [arpa is often used in everyday language in Saru, Mukawa, and Chitose, but in Asahikawa it is used in everyday language. Use oman as the word] / Half a year →paemko [Ishikari]",
+		vrn: { 'arpa': [ 1, 2 ] }
+	},
+	'アㇽパレ':
+	{
+		alt: 'arpare',
+		native: "let go",
+		vrn: { 'arpare': [ 1 ] }
+	},
 	'アレ':
 	{
 		alt: 'are',
@@ -630,6 +726,12 @@ const dictionary =
 		native: "Making a transitive verb intransitive without specifying the object \'huraye\' \"wash (～\" [transitive verb that requires the object to be specified] → ihuraye (wash something [to wash] [transitive verb]) / Sometimes the particle I stands for the third person singular personal pronoun, objective case. As : - \'Kamui i i=turen wa gusu nei no itak ruwe ne\', \"he speaks so because he is inspired by God\". I=kurukasike, \"upon him.\" Nep i=pon aiai, \"what a small child it is\", \'Seta i=nospa ruwe ne\', \"the dog is chasing him.\", \'Akoro sapo i=respa ruwe ne\', \"my elder sister brought him up.\" / Sometimes the vowel I stands for the first person plural objective case of the personal pronoun, \"us.\" Thus : - \'I=pa kusu ne\', \"he will find us\", \'I=kik an\', \"he struck us\" / Sometimes the vowel I stands for the first person singular objective case of the personal pronoun. As : - I=yupte, \"give it to me\", I=ere, \"feed me\" Syn: En. / Sometimes, when I is prefixed to nouns, it represents the third person singular possessive pronoun, \"his\" or \"her\" As : - \'I=po ne guru\', \"his or her child\" / Suffix it to a verb to make it a noun \'cis\' \"to cry\" → cisi (to cry) / The particle I is often heard suffixed to the names of places when followed by the post-positions \'wano\', \'wa\', \'orowa\', \"from\" or \'otta\'; \'orun\', \'orota\', \"to\" Thus : - \'Saiporo, i wano\', \"from Satporo\", \'Pirator i otta\', \"to Piratori.\" When so used t appears as the equivalent of \'kotan\', \"town,\" \"place,\" or \"village.\"I / Transitive verb formation \'as\' \"stand [transitive]\" → asi (stand (~) [transitive]) / When I is prefixed to the word \'ta\', thus making it \'i-ta\', \"time\" or \"place\" is expressed. Thus : - \'Nei i-ta\', \"at that time or place\" / When prefixed to the adverb \'teksamata\', \"by the side of\", \'i\' sometimes represents the pronoun \'en\', \"me\" As ; - \'I=teksmata\', \"by my side\" / When standing alone in a sentence, the vowel I often signifies \"time\" or \"place\" Thus : - \'Nei i oro\', \"from there;\" \"thence\" \"from that time\" / When suffixed to adjectives and verbs I has the power of changing them into nouns. Thus: - pirika, \"good\", pirika-i \"goodness\", Okere, \"to finish\", okere-i \"the finish\", Akara, \"to be done\", Akar-i \"a thing done\" \"a thing to be done\", \'Ene akar-i \'ha isam\', \"nothing can be done\" (i.e. there is no help for it). / When suffixed to ne the particle I makes with ne the demonstrative pronoun, \"that\", \"those\" Thus \'Ne-i ainu\', \"that man\", \'Ne-i utara\', \"those persons\", \'Ne-i ambe\', \"that thing.\" / When the vowel I is prefixed to some verbs it has the power of intensifying their meaning. As : - Nu, \"to hear\" i-nu, \"to listen\". Cimicimi \"to search after\" i-cimicimi, \"to search diligently after\"",
 		vrn: { 'i': [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ] }
 	},
+	'イアㇱケウㇰ':
+	{
+		alt: 'iaskeuk',
+		native: "invite",
+		vrn: { 'iaskeuk': [ 1 ] }
+	},
 	'イェ':
 	{
 		alt: 'ye',
@@ -648,6 +750,12 @@ const dictionary =
 		native: "n. a thing spoken",
 		vrn: { 'yep': [ 1 ] }
 	},
+	'イェレ':
+	{
+		alt: 'yere',
+		native: "make (to say)",
+		vrn: { 'yere': [ 1 ] }
+	},
 	'イカ':
 	{
 		alt: 'ika',
@@ -665,6 +773,12 @@ const dictionary =
 		alt: 'ikasima',
 		native: "adj. over, above, plus, more than / v.t. and adv. to surpass, to exceed, above, over, As: - \'Mungi ahok wa ikasima icen\' \"the money which remained after buying the wheat\"",
 		vrn: { 'ikasima': [ 1, 2 ] }
+	},
+	'イカヨプ':
+	{
+		alt: 'ikayop',
+		native: "Ikayopu (quiver) (made from great tree, wrapped with bark and carefully carved)",
+		vrn: { 'ikayop': [ 1 ] }
 	},
 	'イキ':
 	{
@@ -708,6 +822,12 @@ const dictionary =
 		native: "far away from (river?)",
 		vrn: { 'ikusta': [ 1 ] }
 	},
+	'イコイトゥパ':
+	{
+		alt: 'ikoytupa',
+		native: "Wanting things, being envious, having difficulty living",
+		vrn: { 'ikoytupa': [ 1 ] }
+	},
 	'イサイカ':
 	{
 		alt: 'isaika',
@@ -732,11 +852,29 @@ const dictionary =
 		native: "lose, get rid of, throw away",
 		vrn: { 'isamka': [ 1 ] }
 	},
+	'イㇱカㇽ':
+	{
+		alt: 'iskar',
+		native: "Ishikari [Place name]",
+		vrn: { 'iskar': [ 1 ] }
+	},
 	'イシトマ':
 	{
 		alt: 'isitoma',
 		native: "to be frightened, As: - \'Matkaci sonno isitoma.\' \"The girl was very scared [The girl felt scared]\"",
 		vrn: { 'isitoma': [ 1 ] }
+	},
+	'イセポ':
+	{
+		alt: 'isepo',
+		native: "Rabbit (Rabbit) Rabbit \'nuy sawot isepo\' \"rabbit running away from the flames = description of ``a person whose eyes widen in surprise\'\'\"",
+		vrn: { 'isepo': [ 1 ] }
+	},
+	'イソン':
+	{
+		alt: 'ison',
+		native: "Good hunter (na), Blessed with prey Antonym →ipesak",
+		vrn: { 'ison': [ 1 ] }
 	},
 	'イタ':
 	{
@@ -768,6 +906,12 @@ const dictionary =
 		native: "n. a cup",
 		vrn: { 'itangi': [ 1 ] }
 	},
+	'イタンキ':
+	{
+		alt: 'itanki',
+		native: "Bowl (made from mulberry or magnolia)",
+		vrn: { 'itanki': [ 1 ] }
+	},
 	'イチェン':
 	{
 		alt: 'icen',
@@ -785,6 +929,18 @@ const dictionary =
 		alt: 'ito',
 		native: "??? infant ???",
 		vrn: { 'ito': [ 1 ] }
+	},
+	'イナウ':
+	{
+		alt: 'inaw',
+		native: "Inaw (wooden coin) [Inaw itself is a god or is an offering to a god] In Hokkaido, dogwood, willow, yellowfin, etc. are generally used, and wood with thorns such as cod tree, sen, etc. are used to ward off illness and ward off evil spirits. Wood, as well as stinky woods such as Japanese amber and elderberry, were also used. ＞",
+		vrn: { 'inaw': [ 1 ] }
+	},
+	'イナウケ':
+	{
+		alt: 'inawke',
+		native: "Create/remove inau",
+		vrn: { 'inawke': [ 1 ] }
 	},
 	'イナㇺベ':
 	{
@@ -834,11 +990,29 @@ const dictionary =
 		native: "To eat, have a meal",
 		vrn: { 'ibe': [ 1 ] }
 	},
+	'イペ':
+	{
+		alt: 'ipe',
+		native: "1. Have a meal, eat 2. meal, eating / 1. food, fish, fruit, edible part, contents / Blade Blade",
+		vrn: { 'ipe': [ 1, 2, 3 ] }
+	},
 	'イベヘ':
 	{
 		alt: 'ibehe',
 		native: "n. food, fruit, bulbs / n. sword, knife blade, strength / n. the meaning of a word, essence",
 		vrn: { 'ibehe': [ 1, 2, 3 ] }
+	},
+	'イペルスイ':
+	{
+		alt: 'iperusuy',
+		native: "I\'m hungry, I\'m hungry.",
+		vrn: { 'iperusuy': [ 1 ] }
+	},
+	'イペレ':
+	{
+		alt: 'ipere',
+		native: "feed (people) feed (animals)",
+		vrn: { 'ipere': [ 1 ] }
 	},
 	'イマカケ':
 	{
@@ -851,12 +1025,6 @@ const dictionary =
 		alt: 'iyahup',
 		native: "v.t. to receive (beggar - with kur)",
 		vrn: { 'iyahup': [ 1 ] }
-	},
-	'イヨイタクシ':
-	{
-		alt: 'iyoitakusi',
-		native: "v.t. to curse at",
-		vrn: { 'iyoitakusi': [ 1 ] }
 	},
 	'イヨクンヌレ':
 	{
@@ -930,6 +1098,12 @@ const dictionary =
 		native: "(to be) angry, indignant (to be), to get angry \'Iteki iruska yan.\' \"please don\'t get angry\", \'Iruska hawe ani emik.\' \"bark in an angry voice\", \'Okkaypo iruska wa hopuni.\' \"A young man stands up angrily\" ta) \'Iporo ta nuy reye pekor an wa iruska.\' \"to get angry as if flames were crawling on one\'s face = to get angry like a raging fire\" →ruska (transitive verb)",
 		vrn: { 'iruska': [ 1 ] }
 	},
+	'イワㇰ':
+	{
+		alt: 'iwak',
+		native: "Return home (from the field), return from work",
+		vrn: { 'iwak': [ 1 ] }
+	},
 	'イワン':
 	{
 		alt: 'iwan',
@@ -953,6 +1127,12 @@ const dictionary =
 		alt: 'ingar',
 		native: "v.i. to look at, to see",
 		vrn: { 'ingar': [ 1 ] }
+	},
+	'インカㇽ':
+	{
+		alt: 'inkar',
+		native: "v.i. to look at, to see",
+		vrn: { 'inkar': [ 1 ] }
 	},
 	'インギ':
 	{
@@ -1014,12 +1194,6 @@ const dictionary =
 		native: "v.t. to prophesy, foresee",
 		vrn: { 'uweinkara': [ 1 ] }
 	},
-	'ウウェオウパㇰ':
-	{
-		alt: 'uweoupak',
-		native: "adj. (mutually???) upright, (mutually???) righteous, (mutually???) straight, (mutually???) accurate, (mutually???) correct, without error [Shizunai]",
-		vrn: { 'uweoupak': [ 1 ] }
-	},
 	'ウウェオマレ':
 	{
 		alt: 'uweomare',
@@ -1050,17 +1224,59 @@ const dictionary =
 		native: "n. their enquiring???",
 		vrn: { 'uwepekennuhi': [ 1 ] }
 	},
+	'ウェ':
+	{
+		alt: 'we',
+		native: "post. from, As:- \'Nak we ek?\' \"Where did he come from?\"",
+		vrn: { 'we': [ 1 ] }
+	},
+	'ウエウタンネ':
+	{
+		alt: 'ueutanne',
+		native: "Get married [Shizunai]",
+		vrn: { 'ueutanne': [ 1 ] }
+	},
 	'ウェン':
 	{
 		alt: 'wen',
 		native: "1. Bad, poor, poor, no good 2. be poor / prefix indicate \"terribly\"",
 		vrn: { 'wen': [ 1, 2 ] }
 	},
+	'ウェンクㇽ':
+	{
+		alt: 'wenkur',
+		native: "Poor person Poor person (not a bad person!)",
+		vrn: { 'wenkur': [ 1 ] }
+	},
+	'ウェンコイキカㇽ':
+	{
+		alt: 'wenkoykikar',
+		native: "bully a lot",
+		vrn: { 'wenkoykikar': [ 1 ] }
+	},
+	'ウェンタラプ':
+	{
+		alt: 'wentarap',
+		native: "(dream) Unarpe wentarap humi ene an hi.",
+		vrn: { 'wentarap': [ 1 ] }
+	},
 	'ウェンデプ':
 	{
 		alt: 'wendep',
 		native: "n. something spoiled, bad???",
 		vrn: { 'wendep': [ 1 ] }
+	},
+	'ウェンノ':
+	{
+		alt: 'wenno',
+		native: "bad, bad \'wenno ku=ye\' \"I\'m bad at saying it\"",
+		vrn: { 'wenno': [ 1 ] }
+	},
+	'ウカスイ':
+	{
+		alt: 'ukasuy',
+		native: "help each other, help each other",
+		vrn: { 'ukasuy': [ 1 ] }
 	},
 	'ウカタ':
 	{
@@ -1080,11 +1296,11 @@ const dictionary =
 		native: "Last night Last night Yube, [Ishikari] Night (during bedtime)",
 		vrn: { 'ukuran': [ 1 ] }
 	},
-	'ウコイラㇺノ':
+	'ウコイキ':
 	{
-		alt: 'ukoiramno',
-		native: "adv. together, at the same time together",
-		vrn: { 'ukoiramno': [ 1 ] }
+		alt: 'ukoyki',
+		native: "quarrel (fight)",
+		vrn: { 'ukoyki': [ 1 ] }
 	},
 	'ウコウサライェ':
 	{
@@ -1098,12 +1314,6 @@ const dictionary =
 		native: "to make come together??? to make close eyes???",
 		vrn: { 'ukotukkare': [ 1 ] }
 	},
-	'ウコホプニ':
-	{
-		alt: 'ukohopuni',
-		native: "to riot??? lit. jump to each other???",
-		vrn: { 'ukohopuni': [ 1 ] }
-	},
 	'ウコラチ':
 	{
 		alt: 'ukoraci',
@@ -1115,6 +1325,12 @@ const dictionary =
 		alt: 'ukoramkoro',
 		native: "v.i. to hold council, to consult",
 		vrn: { 'ukoramkoro': [ 1 ] }
+	},
+	'ウコㇽ':
+	{
+		alt: 'ukor',
+		native: "Grow, get married [Male and female copulate, get married, become husband and wife] / To have each other \'Sisak tokuy ne ukor=an.\' \"We became rare best friends\"",
+		vrn: { 'ukor': [ 1, 2 ] }
 	},
 	'ウサ':
 	{
@@ -1176,6 +1392,24 @@ const dictionary =
 		native: "chief, head, lord, master, equals in strength, bravery or skill",
 		vrn: { 'utarapa': [ 1 ] }
 	},
+	'ウタリ':
+	{
+		alt: 'utari',
+		native: "n. Men, Comrades, People, Persons, This word is often used as a plural suffix",
+		vrn: { 'utari': [ 1 ] }
+	},
+	'ウタリヒ':
+	{
+		alt: 'utarihi',
+		native: "Friends, friends \'Ku=kor utarihi Okinawa wa ek.\' \"My friend came from Okinawa\"",
+		vrn: { 'utarihi': [ 1 ] }
+	},
+	'ウタㇽ':
+	{
+		alt: 'utar',
+		native: "People of the same tribe, villagers, gods, husbands, companions / ~tachi \'ku=poutari\' \"my sons [including daughters]\", \'onautara\' \"fathers [including my mother]\"",
+		vrn: { 'utar': [ 1, 2 ] }
+	},
 	'ウトゥマシ':
 	{
 		alt: 'utumasi',
@@ -1188,11 +1422,29 @@ const dictionary =
 		native: "companion",
 		vrn: { 'utura': [ 1 ] }
 	},
+	'ウトゥル':
+	{
+		alt: 'uturu',
+		native: "between, among / n. space, the left hand side of the fireplace",
+		vrn: { 'uturu': [ 1, 2 ] }
+	},
 	'ウトゥルタ':
 	{
 		alt: 'uturuta',
 		native: "adv. between, among, whilst, during",
 		vrn: { 'uturuta': [ 1 ] }
+	},
+	'ウトㇺチウレ':
+	{
+		alt: 'utomciwre',
+		native: "wear (something), wear layers",
+		vrn: { 'utomciwre': [ 1 ] }
+	},
+	'ウニ':
+	{
+		alt: 'uni',
+		native: "Sea urchin [Seafood] / home (k=uni my house → ku=kor cise) \'Unihi un hosippare ka somo ki.\' \"I didn\'t let [them] go home\" ◆Matkaci cis kor unihi pakno hosipi. (The girl went home crying. (I returned to",
+		vrn: { 'uni': [ 1, 2 ] }
 	},
 	'ウヌ':
 	{
@@ -1206,11 +1458,29 @@ const dictionary =
 		native: "birth pangs???",
 		vrn: { 'unuwap': [ 1 ] }
 	},
+	'ウネノ':
+	{
+		alt: 'uneno',
+		native: "\'Kutcama uneno an.\' \"The voices are similar\" / similar to each other \'Surku ka ohawkina ka uneno an.\' \"Aconite and herring are similar to each other\" Phrase → usinnano an",
+		vrn: { 'uneno': [ 1, 2 ] }
+	},
 	'ウパオレ':
 	{
 		alt: 'upaore',
 		native: "v.i. to dispute, to argue, to quarrel",
 		vrn: { 'upaore': [ 1 ] }
+	},
+	'ウパㇰノ':
+	{
+		alt: 'upakno',
+		native: "(everyone/both quantities, etc.) are about the same",
+		vrn: { 'upakno': [ 1 ] }
+	},
+	'ウパㇱ':
+	{
+		alt: 'upas',
+		native: "Snow \'Upas ru wa isam.\' \"Snow melts and disappears\"",
+		vrn: { 'upas': [ 1 ] }
 	},
 	'ウパㇱクマ':
 	{
@@ -1260,6 +1530,12 @@ const dictionary =
 		native: "obj. pro. Us As: - \'Un=kore\' \"give it to us\", \'Un=ohaigekara nisa\' \"he slandered us\" / part. Sometimes this particle is used as an affirmative part of speech. As : - \'Kuani un\', \"it is I\", \'Ruwe un\', \"yes\" / part. This word is often used to indicate locality or that a person or thing exists in or at a place. As : - \'Kim un kamui\', \"gods of or residing in the mountains\" i.e. \"bears\", \'Rep un kamui\', \"the gods of the sea\" The particle \'un\' governs the word it follows. Syn: Op. / post. Towards, To, At, In. As: - \'Cisei un\', \"towards home\", \'Toani un\', \"at that place\", \'Cup kamui ku=siki un tom\', \"the sun shines in my eyes\"",
 		vrn: { 'un': [ 1, 2, 3, 4 ] }
 	},
+	'ウンノ':
+	{
+		alt: 'unno',
+		native: "Until ~, (to) (to) \'Pon chikappo utar kuttomo unno hasa kane oka.\' \"The chicks open their throats to the back of their throats.\"",
+		vrn: { 'unno': [ 1 ] }
+	},
 	'エ':
 	{
 		alt: 'e',
@@ -1271,6 +1547,12 @@ const dictionary =
 		alt: 'eaikap',
 		native: "v.t. unable to do a thing",
 		vrn: { 'eaikap': [ 1 ] }
+	},
+	'エアイカプ':
+	{
+		alt: 'eaykap',
+		native: "(Auxiliary verb) I can\'t do ~ \'Sinep ka ku=koyki eaykap.\' \"I couldn\'t catch any\", \'Tane k=arpa ka eaykap na.\' \"I can\'t go now\" \'Yeah, I can\'t make a cup of love brain. / I\'m not good at it",
+		vrn: { 'eaykap': [ 1, 2 ] }
 	},
 	'エアイカプベ':
 	{
@@ -1284,11 +1566,23 @@ const dictionary =
 		native: "v.i. To be able to do.",
 		vrn: { 'easkai': [ 1 ] }
 	},
+	'エアㇱカイ':
+	{
+		alt: 'easkay',
+		native: "(Auxiliary verb) (with) \'Seta sirkunne yakka inkar easkay.\' \"Dogs can see even when it gets dark\", \'Tukap sak no peraykar easkay.\' \"You can catch fish even without a hook\" \' You can say \"Yes, sirkunne\" cormorant. / Get better at (～)",
+		vrn: { 'easkay': [ 1, 2 ] }
+	},
 	'エアㇱカイベ':
 	{
 		alt: 'easkaibe',
 		native: "n. something able to do.",
 		vrn: { 'easkaibe': [ 1 ] }
+	},
+	'エアシㇽ':
+	{
+		alt: 'easir',
+		native: "1. (Cue to start saying something amazing) That\'s exactly what he is2. (Words that save time) Well, well, well now. / Only then (~)",
+		vrn: { 'easir': [ 1, 2 ] }
 	},
 	'エアッパケ':
 	{
@@ -1302,17 +1596,17 @@ const dictionary =
 		native: "You, you, you (in a close relationship) \'eani anak\' \"you\", \'eani patek\' \"by yourself\"",
 		vrn: { 'eani': [ 1 ] }
 	},
-	'エアㇺキリ':
-	{
-		alt: 'eamkiri',
-		native: "v.t. to know, to recognize",
-		vrn: { 'eamkiri': [ 1 ] }
-	},
 	'エアリキンネ':
 	{
 		alt: 'earikinne',
 		native: "adv. thoroughly, well, entirely, quite",
 		vrn: { 'earikinne': [ 1 ] }
+	},
+	'エイㇰカ':
+	{
+		alt: 'eikka',
+		native: "steal (something)",
+		vrn: { 'eikka': [ 1 ] }
 	},
 	'エイケㇱコロ':
 	{
@@ -1325,6 +1619,12 @@ const dictionary =
 		alt: 'eikoramkorobe',
 		native: "an ask???",
 		vrn: { 'eikoramkorobe': [ 1 ] }
+	},
+	'エイソイタㇰ':
+	{
+		alt: 'eysoytak',
+		native: "talk a lot about (about)",
+		vrn: { 'eysoytak': [ 1 ] }
 	},
 	'エイソコリ':
 	{
@@ -1380,17 +1680,47 @@ const dictionary =
 		native: "v.t. to use, to make use of",
 		vrn: { 'eiwange': [ 1 ] }
 	},
+	'エイワンケ':
+	{
+		alt: 'eywanke',
+		native: "Use (～) = eiwanke \'Sapo eywanke siri ku=nukar.\' \"I saw my sister use it\" \'I guess you used it, \"Why don\'t you say it!\"",
+		vrn: { 'eywanke': [ 1 ] }
+	},
 	'エウコピ':
 	{
 		alt: 'eukopi',
 		native: ". Separate on both sides, Separate on both sides [Shizunai]",
 		vrn: { 'eukopi': [ 1 ] }
 	},
+	'エウタンネ':
+	{
+		alt: 'ewtanne',
+		native: "become a family member (marry) with",
+		vrn: { 'ewtanne': [ 1 ] }
+	},
 	'エウパㇱクマ':
 	{
 		alt: 'eupaskuma',
 		native: "To tell and teach (about) \'...sekor k=unuhu en=eupaskuma.\' \"My mother told me that...\"",
 		vrn: { 'eupaskuma': [ 1 ] }
+	},
+	'エウン':
+	{
+		alt: 'eun',
+		native: "(towards) until ~to \' pis ta an kur eun\' \"toward the person living on the beach\" / Appear, express on the face",
+		vrn: { 'eun': [ 1, 2 ] }
+	},
+	'エオハイシトマ':
+	{
+		alt: 'eohaysitoma',
+		native: "creepy",
+		vrn: { 'eohaysitoma': [ 1 ] }
+	},
+	'エオマ':
+	{
+		alt: 'eoma',
+		native: "Go towards (towards), Lean towards (towards)",
+		vrn: { 'eoma': [ 1 ] }
 	},
 	'エオヤイタㇰ':
 	{
@@ -1409,6 +1739,24 @@ const dictionary =
 		alt: 'ekasi',
 		native: "Uncle, a grown-up man / n an ancient, a grandfather, ancestors, a title of respect to middle aged men, \'Mak un ekasi\' \"one\'s remote ancestors\", \'Ehange no an ekasi\' \"one\'s near ancestors\", \'Ekasi uruoka happa itak\' \"the traditions handed down from the ancients\"",
 		vrn: { 'ekasi': [ 1, 2 ] }
+	},
+	'エカリ':
+	{
+		alt: 'ekari',
+		native: "Just at the same time [Shizunai] / Toward (toward), Around (toward) [Shizunai]",
+		vrn: { 'ekari': [ 1, 2 ] }
+	},
+	'エキㇺネ':
+	{
+		alt: 'ekimne',
+		native: "(to go hunting) go to the mountains (to go mountain hunting)",
+		vrn: { 'ekimne': [ 1 ] }
+	},
+	'エキロンヌ':
+	{
+		alt: 'ekironnu',
+		native: "well fed, satisfied",
+		vrn: { 'ekironnu': [ 1 ] }
 	},
 	'エㇰ':
 	{
@@ -1439,6 +1787,12 @@ const dictionary =
 		alt: 'ekosi',
 		native: "v.t. to leave to the care of another, to hand over, to betray, (entrust (to), to delegate) ",
 		vrn: { 'ekosi': [ 1 ] }
+	},
+	'エコタンネ':
+	{
+		alt: 'ekotanne',
+		native: "live in the village of",
+		vrn: { 'ekotanne': [ 1 ] }
 	},
 	'エコッタヌ':
 	{
@@ -1482,6 +1836,12 @@ const dictionary =
 		native: "v.t. pay mind to, be mindful of, remember, recall???",
 		vrn: { 'eskarun': [ 1 ] }
 	},
+	'エシㇰ':
+	{
+		alt: 'esik',
+		native: "full of ()",
+		vrn: { 'esik': [ 1 ] }
+	},
 	'エシコプ':
 	{
 		alt: 'esikop',
@@ -1494,11 +1854,29 @@ const dictionary =
 		native: "v.t. keep secret, hide, to deny, to bind up, to hide one\'s faults",
 		vrn: { 'esina': [ 1 ] }
 	},
+	'エシㇽ':
+	{
+		alt: 'esir',
+		native: "just a little while ago",
+		vrn: { 'esir': [ 1 ] }
+	},
+	'エシㇽコパㇱテ':
+	{
+		alt: 'esirkopaste',
+		native: "lean (on) lean against (on)",
+		vrn: { 'esirkopaste': [ 1 ] }
+	},
 	'エセ':
 	{
 		alt: 'ese',
 		native: "v.t. to answer, reply with consent, agree As: - \'Ese wa ene itakhi\' \"he answered and spoke thus\"",
 		vrn: { 'ese': [ 1 ] }
+	},
+	'エソイネ':
+	{
+		alt: 'esoyne',
+		native: "outside",
+		vrn: { 'esoyne': [ 1 ] }
 	},
 	'エソユㇺバレ':
 	{
@@ -1542,6 +1920,12 @@ const dictionary =
 		native: "v.t. to meet",
 		vrn: { 'etunangara': [ 1 ] }
 	},
+	'エトㇰ':
+	{
+		alt: 'etok',
+		native: "In front of (a moving object) [Use kotca for \"in front\" of a stationary object] / Source, upstream, innermost, water source \' O-oku is Etco!",
+		vrn: { 'etok': [ 1, 2 ] }
+	},
 	'エトコ':
 	{
 		alt: 'etoko',
@@ -1559,6 +1943,18 @@ const dictionary =
 		alt: 'etokota',
 		native: "adv. in front of, at the head of, before, previously",
 		vrn: { 'etokota': [ 1 ] }
+	},
+	'エトコホ':
+	{
+		alt: 'etokoho',
+		native: "before (gen)",
+		vrn: { 'etokoho': [ 1 ] }
+	},
+	'エトランネ':
+	{
+		alt: 'etoranne',
+		native: "v.t. to not like it, to find it a hassle, to not like to do it, (to not do it???) \'ku=etoranne-p ne kusu\' \"because I don\'t feel like it\"",
+		vrn: { 'etoranne': [ 1 ] }
 	},
 	'エナンハチレ':
 	{
@@ -1578,11 +1974,23 @@ const dictionary =
 		native: "v.i. to be surprised at, to wonder about, to be amazed",
 		vrn: { 'enuskari': [ 1 ] }
 	},
+	'エヌプㇽ':
+	{
+		alt: 'enupur',
+		native: "God protects",
+		vrn: { 'enupur': [ 1 ] }
+	},
 	'エネ':
 	{
 		alt: 'ene',
 		native: "crawl (to) / thus, so, in this manner, what, such, as: - Ene ponbe he? \"so small\"? Ene porop he? \"is it so large\"? Hembara ne yakka ene moire range, \"he is always thus late,\" Somo ka ene hawas kuni aramu a-hi, \"I had no idea that such things had been said\" Ene ikici ainu poronno okai, \"there are many Ainu who do that sort of thing\" Ene siri buri an rok, \"there kinds of customs\" ene ambe, \"that thing,\" \"such a thing\" (used in a bad sense). ene okai-be, \"that fellow\" \"that rascal\" Iresu ruwe ene oka-hi, \"he was reared after this wise.\"",
 		vrn: { 'ene': [ 1, 2 ] }
+	},
+	'エネポ':
+	{
+		alt: 'enepo',
+		native: "Like this, like this \'Hemanta tus enepo takne?\' \"Why is the string so short?\"",
+		vrn: { 'enepo': [ 1 ] }
 	},
 	'エパ':
 	{
@@ -1632,11 +2040,23 @@ const dictionary =
 		native: "all (adj), the whole, the aggregate, throughout the whole",
 		vrn: { 'ebitta': [ 1 ] }
 	},
+	'エピㇽカ':
+	{
+		alt: 'epirka',
+		native: "(to) become better, make more money, gain something \' Kokow eirka an=ki nankor ?\' \"Will you feel good about becoming my son-in-law?\"",
+		vrn: { 'epirka': [ 1 ] }
+	},
 	'エプンギネ':
 	{
 		alt: 'epungine',
 		native: "v.t. to govern, to watch over, to take care of, to look after",
 		vrn: { 'epungine': [ 1 ] }
+	},
+	'エプンキネ':
+	{
+		alt: 'epunkine',
+		native: "protect (to) protect",
+		vrn: { 'epunkine': [ 1 ] }
 	},
 	'エペカノ':
 	{
@@ -1662,6 +2082,24 @@ const dictionary =
 		native: "v.t. to discharge, reject, renounce, to cast away",
 		vrn: { 'emaka': [ 1 ] }
 	},
+	'エミㇰ':
+	{
+		alt: 'emik',
+		native: "(a dog) barks at",
+		vrn: { 'emik': [ 1 ] }
+	},
+	'エㇺコ':
+	{
+		alt: 'emko',
+		native: "half",
+		vrn: { 'emko': [ 1 ] }
+	},
+	'エㇺコホ':
+	{
+		alt: 'emkoho',
+		native: "The back (of the river/stream)",
+		vrn: { 'emkoho': [ 1 ] }
+	},
 	'エムㇱ':
 	{
 		alt: 'emus',
@@ -1674,11 +2112,23 @@ const dictionary =
 		native: "v.t. to trust in someone/something???, to rely on someone / something??? to lean against someone???",
 		vrn: { 'eyaikopaste': [ 1 ] }
 	},
+	'エヤイコプンテㇰ':
+	{
+		alt: 'eyaykopuntek',
+		native: "(to) be happy, happy, fun \' Oh yeah, I\'m happy to have a henchman.",
+		vrn: { 'eyaykopuntek': [ 1 ] }
+	},
 	'エラマン':
 	{
 		alt: 'eraman',
 		native: "v.t. To understand, To know",
 		vrn: { 'eraman': [ 1 ] }
+	},
+	'エラミㇱカリ':
+	{
+		alt: 'eramiskari',
+		native: "I don\'t know I don\'t know I don\'t remember",
+		vrn: { 'eramiskari': [ 1 ] }
 	},
 	'エラム':
 	{
@@ -1698,11 +2148,29 @@ const dictionary =
 		native: "v.i. To not understand",
 		vrn: { 'erampeutek': [ 1 ] }
 	},
+	'エラㇺペウテㇰ':
+	{
+		alt: 'erampewtek',
+		native: "v.i. To not understand",
+		vrn: { 'erampewtek': [ 1 ] }
+	},
 	'エラㇺポキウェン':
 	{
 		alt: 'erampokiwen',
 		native: "adj. miserable, pitiable",
 		vrn: { 'erampokiwen': [ 1 ] }
+	},
+	'エランカラプ':
+	{
+		alt: 'erankarap',
+		native: "say hello to someone (to greet)",
+		vrn: { 'erankarap': [ 1 ] }
+	},
+	'エレ':
+	{
+		alt: 'ere',
+		native: "v.t. to feed, to make eat / v.t. to stretch out",
+		vrn: { 'ere': [ 1, 2 ] }
 	},
 	'エン':
 	{
@@ -1734,6 +2202,18 @@ const dictionary =
 		native: "adj. one of a pair, one of two / adv. entirely, doubtless, quite, very, thoroughly, As:- \'Oara wen\' \"very bad\" of \"abominable\", \'Oara aetunne\' \"ver much hated\"",
 		vrn: { 'oara': [ 1, 2 ] }
 	},
+	'オアㇽ':
+	{
+		alt: 'oar',
+		native: "1. One side 2. (modifying number nouns such as sinen, tun, etc.) (~) kiri [Shinai] / Absolutely, absolutely \' Oar k=erampewtek.\' \"I have no idea\" / one \'oartek\' \"one hand\"",
+		vrn: { 'oar': [ 1, 2, 3 ] }
+	},
+	'オイキ':
+	{
+		alt: 'oyki',
+		native: "Do things / To feed (to), to take care of (to) [Shizunai]",
+		vrn: { 'oyki': [ 1, 2 ] }
+	},
 	'オイタㇰサㇰテ':
 	{
 		alt: 'oitaksakte',
@@ -1758,11 +2238,23 @@ const dictionary =
 		native: "dig (to)",
 		vrn: { 'ouri': [ 1 ] }
 	},
+	'オカ':
+	{
+		alt: 'oka',
+		native: "After [position]~ \'Seta en=oka nospa.\' \"The dog follows me\" / After [time]～　 / I wish I could have a relationship with ta! show the feeling that / Placed in place of ne to indicate feelings of doubt and admiration ◆～ruwe oka! / Plural form of an is, exists, lives, lives, lives \'Sipe sak no oka=an ka eaykap.\' \"We (Ainu\" cannot live without salmon.) / Plural of an: there is, there is (Y is inserted before the P sound, making it okay) / They, themselves",
+		vrn: { 'oka': [ 1, 2, 3, 4, 5, 6, 7 ] }
+	},
 	'オカイ':
 	{
 		alt: 'okai',
 		native: "v.t. to be situated, to reside (pl)",
 		vrn: { 'okai': [ 1 ] }
+	},
+	'オカイ':
+	{
+		alt: 'okay',
+		native: "\"Aru/Aru\" expressing existence: When oka comes before pe or pa, add Y to become okay / 1. Iru (can also be used in singular) 2. I want to do something (oka: I want to do something)",
+		vrn: { 'okay': [ 1, 2 ] }
 	},
 	'オカイヒ':
 	{
@@ -1775,6 +2267,12 @@ const dictionary =
 		alt: 'okaype',
 		native: "an existing thing",
 		vrn: { 'okaype': [ 1 ] }
+	},
+	'オカケ':
+	{
+		alt: 'okake',
+		native: "(temporally) after",
+		vrn: { 'okake': [ 1 ] }
 	},
 	'オカケタ':
 	{
@@ -1799,6 +2297,12 @@ const dictionary =
 		alt: 'okkai',
 		native: "male, young man",
 		vrn: { 'okkai': [ 1 ] }
+	},
+	'オㇰカイポ':
+	{
+		alt: 'okkaypo',
+		native: "Young man, young man, boy (unmarried man between the ages of 17 and 30)",
+		vrn: { 'okkaypo': [ 1 ] }
 	},
 	'オㇰナタラ':
 	{
@@ -1835,6 +2339,12 @@ const dictionary =
 		alt: 'osiketa',
 		native: "adv. inside",
 		vrn: { 'osiketa': [ 1 ] }
+	},
+	'オㇱコニ':
+	{
+		alt: 'oskoni',
+		native: "catch up with (to) catch (to) be in time for (to) / catch up with (to) catch up with (to)",
+		vrn: { 'oskoni': [ 1, 2 ] }
 	},
 	'オㇱシ':
 	{
@@ -1914,6 +2424,24 @@ const dictionary =
 		native: "father father",
 		vrn: { 'ona': [ 1 ] }
 	},
+	'オナウタリ':
+	{
+		alt: 'onautari',
+		native: "parents parents",
+		vrn: { 'onautari': [ 1 ] }
+	},
+	'オナハ':
+	{
+		alt: 'onaha',
+		native: "father (gen)",
+		vrn: { 'onaha': [ 1 ] }
+	},
+	'オニ':
+	{
+		alt: 'oni',
+		native: "Oni [Japanese]",
+		vrn: { 'oni': [ 1 ] }
+	},
 	'オヌマン':
 	{
 		alt: 'onuman',
@@ -1925,6 +2453,12 @@ const dictionary =
 		alt: 'ohaita',
 		native: "v.i. to be warded off, not to fit",
 		vrn: { 'ohaita': [ 1 ] }
+	},
+	'オハシㇽ':
+	{
+		alt: 'ohasir',
+		native: "An absentee house, an empty house \'ohasir ne cise\' \"an absentee house = a house that is an absentee house\", \'Ohasir ta iteki ahun.\' \"don\'t enter an absentee house\"",
+		vrn: { 'ohasir': [ 1 ] }
 	},
 	'オビッタ':
 	{
@@ -1998,6 +2532,18 @@ const dictionary =
 		native: "Other, another \'oya kur\' \"another person\" \'My parents are different.",
 		vrn: { 'oya': [ 1 ] }
 	},
+	'オヤカタ':
+	{
+		alt: 'oyakata',
+		native: "King, chief [master] [Japanese]",
+		vrn: { 'oyakata': [ 1 ] }
+	},
+	'オヤㇰ':
+	{
+		alt: 'oyak',
+		native: "elsewhere, elsewhere",
+		vrn: { 'oyak': [ 1 ] }
+	},
 	'オヤㇰタ':
 	{
 		alt: 'oyakta',
@@ -2010,17 +2556,53 @@ const dictionary =
 		native: "adv. without, elsewhere, outside",
 		vrn: { 'oyake': [ 1 ] }
 	},
+	'オヤチキ':
+	{
+		alt: 'oyaciki',
+		native: "I didn\'t know",
+		vrn: { 'oyaciki': [ 1 ] }
+	},
 	'オヤモㇰテ':
 	{
 		alt: 'oyamokte',
 		native: "adj. / v.i. odd, funny, unusual, strange, to be surprised at, an interjection expressing surprise / to feel suspicious of (something), to feel doubtful, to wonder, to be suspicious",
 		vrn: { 'oyamokte': [ 1, 2 ] }
 	},
+	'オヤン':
+	{
+		alt: 'oyan',
+		native: "land on (to)",
+		vrn: { 'oyan': [ 1 ] }
+	},
+	'オラ':
+	{
+		alt: 'ora',
+		native: "And, then, next (sometimes used in the same way as \"wa\") \' Po ka poronno ku=kor or,\' \"I have many children,\"",
+		vrn: { 'ora': [ 1 ] }
+	},
+	'オラウン':
+	{
+		alt: 'oraun',
+		native: "1. Then 2. ～Even though",
+		vrn: { 'oraun': [ 1 ] }
+	},
+	'オラノ':
+	{
+		alt: 'orano',
+		native: "Then, after that...",
+		vrn: { 'orano': [ 1 ] }
+	},
 	'オラムㇱノ':
 	{
 		alt: 'oramusno',
 		native: "with discernment??? / with learnedness???",
 		vrn: { 'oramusno': [ 1 ] }
+	},
+	'オㇽ':
+	{
+		alt: 'or',
+		native: "(in) / (of) time \' tananto or ta\' \"on this day = today\" / (～) place \'nupuri or ta\' \"in the mountain = kim ta\" [nupri is a mountain as an object, so it cannot be a place noun, so or is added to make it a place noun. On the other hand, kim is a mountain as a place noun, so or is not necessary.",
+		vrn: { 'or': [ 1, 2, 3 ] }
 	},
 	'オルㇱペ':
 	{
@@ -2088,6 +2670,18 @@ const dictionary =
 		native: "v.t. to salute, to worship, to bow to, to adore",
 		vrn: { 'ongami': [ 1 ] }
 	},
+	'オンナイ':
+	{
+		alt: 'onnay',
+		native: "Inside Inside Indoors → upsor in Yukara ``Inside\'\' in nature is tum",
+		vrn: { 'onnay': [ 1 ] }
+	},
+	'オンネ':
+	{
+		alt: 'onne',
+		native: "(The old man) dies, dies of old age \'onne=an pe ne\' \"I am dead\" / To grow old, to become old, to be old →sukup (to be in one\'s prime) pewre (to be young)",
+		vrn: { 'onne': [ 1, 2 ] }
+	},
 	'カ':
 	{
 		alt: 'ka',
@@ -2099,6 +2693,12 @@ const dictionary =
 		alt: 'kaysey',
 		native: "corpse dead bone corpse",
 		vrn: { 'kaysey': [ 1 ] }
+	},
+	'カケンチャ':
+	{
+		alt: 'kakenca',
+		native: "Hanging rod, Majikiri, Clothes hanger",
+		vrn: { 'kakenca': [ 1 ] }
 	},
 	'カシ':
 	{
@@ -2130,6 +2730,12 @@ const dictionary =
 		native: "(to) order, command, admonish (satosu)",
 		vrn: { 'kaspaotte': [ 1 ] }
 	},
+	'カスイ':
+	{
+		alt: 'kasuy',
+		native: "Cross / Helping, assisting \' Ku=kasuy hi ta\' \"when I\'m helping\" \' The function of a catalyst that helps in the decomposition of \"hydrohydro\". / Too much [Ishikari]",
+		vrn: { 'kasuy': [ 1, 2, 3 ] }
+	},
 	'カスノ':
 	{
 		alt: 'kasuno',
@@ -2141,6 +2747,18 @@ const dictionary =
 		alt: 'kata',
 		native: "above, above",
 		vrn: { 'kata': [ 1 ] }
+	},
+	'カタㇰ':
+	{
+		alt: 'katak',
+		native: "1. Ball of yarn 2. Mari",
+		vrn: { 'katak': [ 1 ] }
+	},
+	'カッケマッ':
+	{
+		alt: 'katkemat',
+		native: "Lady, Madam, Wealthy woman, woman of high status, (Female title) -san",
+		vrn: { 'katkemat': [ 1 ] }
 	},
 	'カッタ':
 	{
@@ -2160,6 +2778,12 @@ const dictionary =
 		native: "n. sins",
 		vrn: { 'katpak': [ 1 ] }
 	},
+	'カテオマレ':
+	{
+		alt: 'kateomare',
+		native: "fall in love with",
+		vrn: { 'kateomare': [ 1 ] }
+	},
 	'カトゥ':
 	{
 		alt: 'katu',
@@ -2172,17 +2796,23 @@ const dictionary =
 		native: "Face appearance / Look at that side",
 		vrn: { 'katuhu': [ 1, 2 ] }
 	},
+	'カトゥン':
+	{
+		alt: 'katun',
+		native: "Behave, Pretend",
+		vrn: { 'katun': [ 1 ] }
+	},
+	'カネ':
+	{
+		alt: 'kane',
+		native: "Iron metal / part. sometimes kane is used as the conjunction \"and\" or \"even\", \"both\" or \"also\" as: - \'Kani newa eani kane\' \"you and I\" / part. this word is sometimes suffixed to verbs to change them into adverbs or adverbial phrases. as: - \'Apkas kane\" \"whilst walking\", \'Ki kane\' \"whilst doing\" \'Ramma kane\' \"always\"",
+		vrn: { 'kane': [ 1, 2, 3 ] }
+	},
 	'カマクㇱ':
 	{
 		alt: 'kamakus',
 		native: "passover",
 		vrn: { 'kamakus': [ 1 ] }
-	},
-	'カマクㇱベ':
-	{
-		alt: 'kamakusbe',
-		native: "passover???",
-		vrn: { 'kamakusbe': [ 1 ] }
 	},
 	'カㇺ':
 	{
@@ -2195,6 +2825,12 @@ const dictionary =
 		alt: 'kamui',
 		native: "god",
 		vrn: { 'kamui': [ 1 ] }
+	},
+	'カムイ':
+	{
+		alt: 'kamuy',
+		native: "God, Bear, A person or thing that should be respected (sometimes used ironically)",
+		vrn: { 'kamuy': [ 1 ] }
 	},
 	'カㇺピ':
 	{
@@ -2244,6 +2880,12 @@ const dictionary =
 		native: "Commute, wander, go around, go back and forth / Disguised / From ~, through ~ \'Aynu utar rorunpuyar kari kamuy ahupte wa ror ta are.\' \"People put the bear god through the divine window and enshrine it on the upper throne.\" / Hanging / ring",
 		vrn: { 'kari': [ 1, 2, 3, 4, 5 ] }
 	},
+	'カㇽ':
+	{
+		alt: 'kar',
+		native: "(Rain, wind, snow, etc.) / Pay (price/consideration) / Pick, pick, dig, harvest, peel (flowers, fruits, buds, bunches, etc. of plants and trees) / fix / to do (work, etc.) / to make ~ (to make as ~) \'sayo ne kar wa e\' \"to eat as porridge\"",
+		vrn: { 'kar': [ 1, 2, 3, 4, 5, 6 ] }
+	},
 	'カン':
 	{
 		alt: 'kan',
@@ -2286,6 +2928,24 @@ const dictionary =
 		native: "v.i. to be redeemed",
 		vrn: { 'kikiraye': [ 1 ] }
 	},
+	'キキㇽ':
+	{
+		alt: 'kikir',
+		native: "Insects (generic term)",
+		vrn: { 'kikir': [ 1 ] }
+	},
+	'キㇰ':
+	{
+		alt: 'kik',
+		native: "hit (something)",
+		vrn: { 'kik': [ 1 ] }
+	},
+	'キㇰキㇰ':
+	{
+		alt: 'kikkik',
+		native: "hit hard, hit hard",
+		vrn: { 'kikkik': [ 1 ] }
+	},
 	'キサラハ':
 	{
 		alt: 'kisaraha',
@@ -2298,11 +2958,29 @@ const dictionary =
 		native: "v.t. to lay hold of, to seize, to arrest, to take hold, to curb",
 		vrn: { 'kisima': [ 1 ] }
 	},
+	'キㇱマ':
+	{
+		alt: 'kisma',
+		native: "to catch, seize, grasp \'Cinoyetat ku=kisma wa cep ku=hunara.\' \"I held a torch and searched for fish\"",
+		vrn: { 'kisma': [ 1 ] }
+	},
+	'キナ':
+	{
+		alt: 'kina',
+		native: "n. grass, weeds, wild vegetables, grass mat.",
+		vrn: { 'kina': [ 1 ] }
+	},
 	'キマテㇰ':
 	{
 		alt: 'kimatek',
 		native: "To be surprised, to be surprised, to be surprised, to panic, hurry",
 		vrn: { 'kimatek': [ 1 ] }
+	},
+	'キマテㇰカ':
+	{
+		alt: 'kimatekka',
+		native: "To surprise, To hasten, hurry, panic",
+		vrn: { 'kimatekka': [ 1 ] }
 	},
 	'キㇺ':
 	{
@@ -2322,6 +3000,12 @@ const dictionary =
 		native: "run away escape evacuation",
 		vrn: { 'kira': [ 1 ] }
 	},
+	'キㇽプ':
+	{
+		alt: 'kirpu',
+		native: "fat fat",
+		vrn: { 'kirpu': [ 1 ] }
+	},
 	'キロロ':
 	{
 		alt: 'kiroro',
@@ -2339,6 +3023,12 @@ const dictionary =
 		alt: 'kuani',
 		native: "Used when you want to clearly state \"I\", \'kuani anak\' \"I am\", \'kuani patek\' \"Only me\"",
 		vrn: { 'kuani': [ 1 ] }
+	},
+	'クサ':
+	{
+		alt: 'kusa',
+		native: "pass by boat",
+		vrn: { 'kusa': [ 1 ] }
 	},
 	'クㇱ':
 	{
@@ -2364,6 +3054,12 @@ const dictionary =
 		native: "Mountain pigeon (Turtle dove)",
 		vrn: { 'kusuwep': [ 1 ] }
 	},
+	'クナㇰ':
+	{
+		alt: 'kunak',
+		native: "(future or speculation) \' kunak ramu\' \"I think I will\" However, yak is used for things in the past \'yak ye\' \"I said I did\"",
+		vrn: { 'kunak': [ 1 ] }
+	},
 	'クニ':
 	{
 		alt: 'kuni',
@@ -2376,6 +3072,12 @@ const dictionary =
 		native: "n. duty, this word expresses duty or need or purpose, As : - \'Ki kunip\' \"that which one ought to do\", \'E=e kunip an\' \"There is enough for you to eat\"",
 		vrn: { 'kunip': [ 1 ] }
 	},
+	'クネイワ':
+	{
+		alt: 'kuneywa',
+		native: "morning",
+		vrn: { 'kuneywa': [ 1 ] }
+	},
 	'グㇽ':
 	{
 		alt: 'gur',
@@ -2387,6 +3089,12 @@ const dictionary =
 		alt: 'guru',
 		native: "n. A person. This word is also sometimes applied to animals, fowls or inanimate objects. As: - Tan cikap anak ne son no aos guru ne, \"these fowls are very much sought after\" or \"prized\"",
 		vrn: { 'guru': [ 1 ] }
+	},
+	'クㇽ':
+	{
+		alt: 'kur',
+		native: "Adult person (an expression that is more respectful than pe or p) / Shadow",
+		vrn: { 'kur': [ 1, 2 ] }
 	},
 	'クワ':
 	{
@@ -2412,6 +3120,12 @@ const dictionary =
 		native: "morning",
 		vrn: { 'kunneiwano': [ 1 ] }
 	},
+	'ケウェホㇺス':
+	{
+		alt: 'kewehomsu',
+		native: "Apologize, sympathize, say it was dangerous.",
+		vrn: { 'kewehomsu': [ 1 ] }
+	},
 	'ケウㇰ':
 	{
 		alt: 'keuk',
@@ -2423,6 +3137,18 @@ const dictionary =
 		alt: 'keutum',
 		native: "heart, spirit, emotion, nature, attitude, feelings, temperament \'pirka keutum kor menoko\' \"a woman with a good disposition\"",
 		vrn: { 'keutum': [ 1 ] }
+	},
+	'ケウトゥㇺ':
+	{
+		alt: 'kewtum',
+		native: "heart, spirit, emotion, nature, attitude, feelings, temperament \'pirka kewtum kor menoko\' \"a woman with a good disposition\"",
+		vrn: { 'kewtum': [ 1 ] }
+	},
+	'ケサンパ':
+	{
+		alt: 'kesanpa',
+		native: "pursue chase",
+		vrn: { 'kesanpa': [ 1 ] }
 	},
 	'ケㇱト':
 	{
@@ -2448,12 +3174,6 @@ const dictionary =
 		native: "the finish??? the end???",
 		vrn: { 'kesehe': [ 1 ] }
 	},
-	'ケミヒ':
-	{
-		alt: 'kemihi',
-		native: "n. blood (gen??)",
-		vrn: { 'kemihi': [ 1 ] }
-	},
 	'ケㇺ':
 	{
 		alt: 'kem',
@@ -2465,6 +3185,24 @@ const dictionary =
 		alt: 'kemus',
 		native: "adj. bloody / v.i. there will be a famine",
 		vrn: { 'kemus': [ 1, 2 ] }
+	},
+	'ケメイキ':
+	{
+		alt: 'kemeiki',
+		native: "needlework (to do) sewing (to do)",
+		vrn: { 'kemeiki': [ 1 ] }
+	},
+	'ケラ':
+	{
+		alt: 'kera',
+		native: "Taste (aji)",
+		vrn: { 'kera': [ 1 ] }
+	},
+	'ケラアン':
+	{
+		alt: 'keraan',
+		native: "Delicious (tasty: same expression as ???. in Korean)",
+		vrn: { 'keraan': [ 1 ] }
 	},
 	'ケン':
 	{
@@ -2502,11 +3240,29 @@ const dictionary =
 		native: "~ is given, ~ is showered on, join as couple???",
 		vrn: { 'koan': [ 1 ] }
 	},
+	'コイキ':
+	{
+		alt: 'koyki',
+		native: "1. get angry 2. scold 3. bully / To catch (birds or fish) → To catch fish = peraykar / fight (with)",
+		vrn: { 'koyki': [ 1, 2, 3 ] }
+	},
 	'コイシトマ':
 	{
 		alt: 'koisitoma',
 		native: "v.t. to be afraid, to revere",
 		vrn: { 'koisitoma': [ 1 ] }
+	},
+	'コイパㇰ':
+	{
+		alt: 'koypak',
+		native: "punish, blame",
+		vrn: { 'koypak': [ 1 ] }
+	},
+	'コイプニ':
+	{
+		alt: 'koypuni',
+		native: "distribute (food) [politely] / offer (to) food",
+		vrn: { 'koypuni': [ 1, 2 ] }
 	},
 	'コイルㇱカ':
 	{
@@ -2562,11 +3318,23 @@ const dictionary =
 		native: "sit on one\'s knees with one\'s heels up",
 		vrn: { 'kokkaea': [ 1 ] }
 	},
-	'コサカヨ':
+	'コソンテ':
 	{
-		alt: 'kosakayo',
-		native: "to reprove, scold???",
-		vrn: { 'kosakayo': [ 1 ] }
+		alt: 'kosonte',
+		native: "Kosonte, kosode (high-quality kimono) (silk pouch obtained from Japanese people de→nte) [Japanese]",
+		vrn: { 'kosonte': [ 1 ] }
+	},
+	'コタヌ':
+	{
+		alt: 'kotanu',
+		native: "Village of",
+		vrn: { 'kotanu': [ 1 ] }
+	},
+	'コタヌフ':
+	{
+		alt: 'kotanuhu',
+		native: "Village of",
+		vrn: { 'kotanuhu': [ 1 ] }
 	},
 	'コタン':
 	{
@@ -2610,11 +3378,41 @@ const dictionary =
 		native: "v.t. to scold, to chide",
 		vrn: { 'kopao': [ 1 ] }
 	},
+	'コパㇰ':
+	{
+		alt: 'kopak',
+		native: "direction / v.t. to blame, to scold",
+		vrn: { 'kopak': [ 1, 2 ] }
+	},
+	'コパㇱロタ':
+	{
+		alt: 'kopasrota',
+		native: "to scold, to abuse \'Okkayo a=onaha kopasrota\' \"the man scolded my father\", \'paskur ku=kopasirota\' \"I scolded the crow\"",
+		vrn: { 'kopasrota': [ 1 ] }
+	},
+	'コパン':
+	{
+		alt: 'kopan',
+		native: "dislike, refuse, refuse, don\'t want to hear",
+		vrn: { 'kopan': [ 1 ] }
+	},
 	'コピウキ':
 	{
 		alt: 'kopiuki',
 		native: "v.t. to attack, to fall upon, to rush at",
 		vrn: { 'kopiuki': [ 1 ] }
+	},
+	'コポイェ':
+	{
+		alt: 'kopoye',
+		native: "Mix \'sippo ka negi ka kopoye wa e\' \"mix with salt and green onions and eat\"",
+		vrn: { 'kopoye': [ 1 ] }
+	},
+	'コホピ':
+	{
+		alt: 'kohopi',
+		native: "break up",
+		vrn: { 'kohopi': [ 1 ] }
 	},
 	'コラ':
 	{
@@ -2657,6 +3455,18 @@ const dictionary =
 		alt: 'koran',
 		native: "doing / go down (to)",
 		vrn: { 'koran': [ 1, 2 ] }
+	},
+	'コㇽ':
+	{
+		alt: 'kor',
+		native: "Butterbur (as a seed) (Each butterbur is called korkoni) [Plant] / Having a child (giving birth to a child) / If (to) be, if to be (to have been) / If ~, then ~ \'hunak un paye=an kor\' \"Where are we going?\" / To put on (on the hands or head): put on (gloves), (put on a hat) / While ~ while doing ~ \' suke kor an\' \"cooking\" (Kane is also used in Shizunai to mean \"while ~.\" kor is used west of Shizunai and kane is used east) → kane (~ while doing) / have, possess, (of) \'ku=kor totto\' \"my mother\" May be pronounced as kot or kon",
+		vrn: { 'kor': [ 1, 2, 3, 4, 5, 6, 7 ] }
+	},
+	'コㇽカ':
+	{
+		alt: 'korka',
+		native: "～However, but (conjunction, conjunctive particle)",
+		vrn: { 'korka': [ 1 ] }
 	},
 	'コレ':
 	{
@@ -2706,11 +3516,11 @@ const dictionary =
 		native: "v.t. to have (kor sound alternation)",
 		vrn: { 'kon': [ 1 ] }
 	},
-	'サオッ':
+	'コント':
 	{
-		alt: 'saot',
-		native: "v.i. to run away",
-		vrn: { 'saot': [ 1 ] }
+		alt: 'konto',
+		native: "then",
+		vrn: { 'konto': [ 1 ] }
 	},
 	'サカヨ':
 	{
@@ -2729,6 +3539,12 @@ const dictionary =
 		alt: 'sakno',
 		native: "adv. being without",
 		vrn: { 'sakno': [ 1 ] }
+	},
+	'サケ':
+	{
+		alt: 'sake',
+		native: "Alcohol [Japanese] / Song verse, refrain of sacred song",
+		vrn: { 'sake': [ 1, 2 ] }
 	},
 	'サパ':
 	{
@@ -2754,6 +3570,12 @@ const dictionary =
 		native: "the head (gen)",
 		vrn: { 'sapaha': [ 1 ] }
 	},
+	'サマ':
+	{
+		alt: 'sama',
+		native: "(of) Soba Soba / Mr. (from Japanese) [Japanese] / v.i. to lie along, to lie stretched out",
+		vrn: { 'sama': [ 1, 2, 3 ] }
+	},
 	'サマケ':
 	{
 		alt: 'samake',
@@ -2778,11 +3600,41 @@ const dictionary =
 		native: "adv. by the side of, near to",
 		vrn: { 'samta': [ 1 ] }
 	},
+	'サㇺペ':
+	{
+		alt: 'sampe',
+		native: "Heart, spirit, feelings / n. the heart, the pulse, nerves",
+		vrn: { 'sampe': [ 1, 2 ] }
+	},
+	'サラ':
+	{
+		alt: 'sara',
+		native: "(bad deeds, etc.) are found out / a plain covered with a kind of sedge / n. tail of animal (except deer or bear) / v.i. to be open, spread out, (uncovered) to appear, become visible",
+		vrn: { 'sara': [ 1, 2, 3, 4 ] }
+	},
+	'サン':
+	{
+		alt: 'san',
+		native: "descendants / n. a descent, a slope, pl. sap / shelf edge of window \'kanpisos san ka ta an.\' \"the book is on the shelf\" / syllable adjustment using prefixes related to words for spear and sword / to descend (a river), to go down, get off, get down, get out (go from the mountain to the beach, from the top of the mountain to the bottom of the mountain, towards the fire)",
+		vrn: { 'san': [ 1, 2, 3, 4, 5 ] }
+	},
 	'サンゲ':
 	{
 		alt: 'sange',
 		native: "v.t. to send down, to bring forward, to offer as an argument or consideration",
 		vrn: { 'sange': [ 1 ] }
+	},
+	'サンケ':
+	{
+		alt: 'sanke',
+		native: "(object, food, drink, gift, letter) [to go out/transitive verb formation] \'Tono matkaci peko cise or wa sanke.\' \"The policeman let the girl out of the cowshed\"",
+		vrn: { 'sanke': [ 1 ] }
+	},
+	'シ':
+	{
+		alt: 'si',
+		native: "Feces, feces, poop / a causative prefix (used with -re, yar, etc.) to indicate \"I\'ll have someone do something for me\", \'kasuy\' \"to help\", \'sikasuyre\' \"to help\" \'sikaoykiyar\' \"to have someone provide for you\" / intransitive, reflexive verb, \'turi\' \"to stretchout\" → \'situri\' \"stretched out\" / real, main, big, As: = \'Si etaspe\' \"fullgrown sea lion\", \'Si nitumam\' \"the trunk of a fullgrown tree\", \'siamam\' \"rice\", \'siaskepet\' \"thumb\", \'sikotan\' \"big village\" / to indicate \"pretend to be\", \'siponpenere\' \"pretend to be a baby\" / true, very, greatly, full grown, big As: - \'Si no wen ruwe ne\' \"it is very bad\" / v.t. To shut. As : - \'Apa si\' \"shut the door\"",
+		vrn: { 'si': [ 1, 2, 3, 4, 5, 6, 7 ] }
 	},
 	'シウ':
 	{
@@ -2796,17 +3648,29 @@ const dictionary =
 		native: "n. a woman, as: - \'Siwentep siripo auosmare\' \"to have become a woman\"",
 		vrn: { 'siwentep': [ 1 ] }
 	},
-	'シウレ':
+	'シウトウタリ':
 	{
-		alt: 'siure',
-		native: "v.t. to take care of, As: \'Cisei otta siure\' \"to take care of a house\"",
-		vrn: { 'siure': [ 1 ] }
+		alt: 'siwtoutari',
+		native: "Relatives of (～) [Shizunai]",
+		vrn: { 'siwtoutari': [ 1 ] }
 	},
 	'シウレ':
 	{
 		alt: 'siwre',
 		native: "House sitting [Yukara]",
 		vrn: { 'siwre': [ 1 ] }
+	},
+	'シエトㇰ':
+	{
+		alt: 'sietok',
+		native: "ahead of oneself (si: oneself etok: before, ahead)",
+		vrn: { 'sietok': [ 1 ] }
+	},
+	'シオカ':
+	{
+		alt: 'sioka',
+		native: "After I went [Shizunai]",
+		vrn: { 'sioka': [ 1 ] }
 	},
 	'シオケレ':
 	{
@@ -2856,11 +3720,23 @@ const dictionary =
 		native: "save a life, save a life",
 		vrn: { 'siknure': [ 1 ] }
 	},
+	'シㇰラプパラプパ':
+	{
+		alt: 'sikrapparappa',
+		native: "blink",
+		vrn: { 'sikrapparappa': [ 1 ] }
+	},
 	'シッチャリ':
 	{
 		alt: 'sitcari',
 		native: "scatter???",
 		vrn: { 'sitcari': [ 1 ] }
+	},
+	'シトマ':
+	{
+		alt: 'sitoma',
+		native: "Afraid, scary, scary (scary), frightening \' Manju is scary, shito dango is scary too.",
+		vrn: { 'sitoma': [ 1 ] }
 	},
 	'シニ':
 	{
@@ -2886,6 +3762,12 @@ const dictionary =
 		native: "There is one, one, one ~ → sinen, sinep \' From the beginning, \"death\" means killing life...! / one",
 		vrn: { 'sine': [ 1, 2 ] }
 	},
+	'シネアンタ':
+	{
+		alt: 'sineanta',
+		native: "One day,",
+		vrn: { 'sineanta': [ 1 ] }
+	},
 	'シネプ':
 	{
 		alt: 'sinep',
@@ -2909,6 +3791,12 @@ const dictionary =
 		alt: 'sinotcaki',
 		native: "sing a song",
 		vrn: { 'sinotcaki': [ 1 ] }
+	},
+	'シヘコテ':
+	{
+		alt: 'sihekote',
+		native: "to gather together???",
+		vrn: { 'sihekote': [ 1 ] }
 	},
 	'シヘコテホトゥイェカラ':
 	{
@@ -2946,6 +3834,12 @@ const dictionary =
 		native: "v.t. to dissent from, to disagree with, to be hard upon another, to lord it over one",
 		vrn: { 'siramniukes': [ 1 ] }
 	},
+	'シラㇽ':
+	{
+		alt: 'sirar',
+		native: "(the porridge or paste) is hard and thick / Rocks, large stones, seaside stones, rocky shores (including those made of concrete)",
+		vrn: { 'sirar': [ 1, 2 ] }
+	},
 	'シラン':
 	{
 		alt: 'siran',
@@ -2976,11 +3870,47 @@ const dictionary =
 		native: "v.t. to pass by, as: - \'Sirikus range\' \"in passing by\"",
 		vrn: { 'sirikus': [ 1 ] }
 	},
+	'シル':
+	{
+		alt: 'siru',
+		native: "rub (to rub) rub (to rub)",
+		vrn: { 'siru': [ 1 ] }
+	},
 	'シルウェ':
 	{
 		alt: 'siruwe',
 		native: "very thick",
 		vrn: { 'siruwe': [ 1 ] }
+	},
+	'シㇽクン':
+	{
+		alt: 'sirkun',
+		native: "Night, nightfall \'sirkunne kor\' \"at night\"",
+		vrn: { 'sirkun': [ 1 ] }
+	},
+	'シㇽクンネ':
+	{
+		alt: 'sirkunne',
+		native: "1. Nightfall, night 2. It gets dark, it gets dark (the sun sets) \'Seta sirkunne yakka inkar easkay.\' \"Dogs can see even when it gets dark\" / Night, nightfall \'sirkunne kor\' \"at night\"",
+		vrn: { 'sirkunne': [ 1, 2 ] }
+	},
+	'シㇽケㇽケリ':
+	{
+		alt: 'sirkerkeri',
+		native: "Scratching the surrounding grass etc. (to hint that a visitor is coming)",
+		vrn: { 'sirkerkeri': [ 1 ] }
+	},
+	'シㇽサㇰ':
+	{
+		alt: 'sirsak',
+		native: "It\'s summer",
+		vrn: { 'sirsak': [ 1 ] }
+	},
+	'シㇽペケㇽ':
+	{
+		alt: 'sirpeker',
+		native: "Hiru \'kunne ene sirpeker ene kesto an ko\' \"night and day, every day\" [Sama-like] / bright, brighten, dawn",
+		vrn: { 'sirpeker': [ 1, 2 ] }
 	},
 	'シルワンデ':
 	{
@@ -3000,6 +3930,12 @@ const dictionary =
 		native: "n. a sign, a proof, As: - \'Nei siros tap an\' \"this is its sign\" or \"proof\"",
 		vrn: { 'siros': [ 1 ] }
 	},
+	'シロヌマン':
+	{
+		alt: 'sironuman',
+		native: "evening, nightfall, dusk =aronuman \'sironuman kor\' \"at dusk\"",
+		vrn: { 'sironuman': [ 1 ] }
+	},
 	'シントコ':
 	{
 		alt: 'sintoko',
@@ -3012,17 +3948,35 @@ const dictionary =
 		native: "a blessing???",
 		vrn: { 'sinnunuke': [ 1 ] }
 	},
+	'シンネ':
+	{
+		alt: 'sinne',
+		native: "this is how it is / to be doing, verb aux - continuous action",
+		vrn: { 'sinne': [ 1, 2 ] }
+	},
 	'シンリッ':
 	{
 		alt: 'sinrit',
 		native: "1. Ancestor 2. Clan (ancestors + descendants) / Late father / Roots (of trees and grass)",
 		vrn: { 'sinrit': [ 1, 2, 3 ] }
 	},
+	'ス':
+	{
+		alt: 'su',
+		native: "Pot, iron pot \'Karus poro su or omare wa supa.\' \"Put the mushrooms in a large pot and boil them.\"",
+		vrn: { 'su': [ 1 ] }
+	},
 	'スイ':
 	{
 		alt: 'sui',
 		native: "again next time again / hole / n. profit???",
 		vrn: { 'sui': [ 1, 2, 3 ] }
+	},
+	'スイ':
+	{
+		alt: 'suy',
+		native: "Hole (hole in the soil, hole in wall or fence, etc.) / again next time again / to want???",
+		vrn: { 'suy': [ 1, 2, 3 ] }
 	},
 	'スイェスイェ':
 	{
@@ -3032,15 +3986,21 @@ const dictionary =
 	},
 	'スイネ':
 	{
-		alt: 'suine',
-		native: "part. an adverbial ending to numerals, (x-times???)",
-		vrn: { 'suine': [ 1 ] }
-	},
-	'スイネ':
-	{
 		alt: 'suyne',
 		native: "~ degrees, ~ times",
 		vrn: { 'suyne': [ 1 ] }
+	},
+	'スケ':
+	{
+		alt: 'suke',
+		native: "cook, cook, simmer, prepare a meal",
+		vrn: { 'suke': [ 1 ] }
+	},
+	'スプヤ':
+	{
+		alt: 'supuya',
+		native: "smoke",
+		vrn: { 'supuya': [ 1 ] }
 	},
 	'スマ':
 	{
@@ -3060,11 +4020,23 @@ const dictionary =
 		native: "adj. withered, faded???, wilted",
 		vrn: { 'sumumge': [ 1 ] }
 	},
+	'スㇽク':
+	{
+		alt: 'surku',
+		native: "Aconite [The root was collected and used as arrow poison when catching bears etc. (Hokkaido, Sakhalin)] / Goddess [Divine song] / Poison Arrow poison",
+		vrn: { 'surku': [ 1, 2, 3 ] }
+	},
 	'スンゲ':
 	{
 		alt: 'sunge',
 		native: "n. a lie, fraud, deceit",
 		vrn: { 'sunge': [ 1 ] }
+	},
+	'セ':
+	{
+		alt: 'se',
+		native: "\'toktokse\' \"pounding\" karkarse (rolling around) / carry on one\'s back / say something [Shizunai]",
+		vrn: { 'se': [ 1, 2, 3 ] }
 	},
 	'セイ':
 	{
@@ -3083,6 +4055,18 @@ const dictionary =
 		alt: 'sekoro',
 		native: "pro. accordingly, who, (by) which, he who, that which, so, this here, As: - \'sekoro ayep\' \"that which is called\", \"so it was said\", \'sekoro itak\', \"so he said\" \"he said so\" \"that which he said\", \'sekoro iki, sekoro iki\', \"to do this way and that\", \'sibe cep otta iyotta pon cep aye-hi inao-kotc-ep sekoro ayep ne\', \"the smallest fish among the salmon are called inaokot-cep\"",
 		vrn: { 'sekoro': [ 1 ] }
+	},
+	'セㇱケ':
+	{
+		alt: 'seske',
+		native: "v.t. to shut, to cover up, to stop up as a hole, block (a window or doorway)",
+		vrn: { 'seske': [ 1 ] }
+	},
+	'セタ':
+	{
+		alt: 'seta',
+		native: "Dog Wolf (named in old times) / Dog, dog / Similar to the Japanese word ``inu\'\' used in plant names, it is used to name inferior species or subspecies that are of no use to humans.",
+		vrn: { 'seta': [ 1, 2, 3 ] }
 	},
 	'セッ':
 	{
@@ -3114,6 +4098,12 @@ const dictionary =
 		native: "(In monologue) ～Let\'s do it (kana) →ro(～Let\'s do it) is an expression to make a proposal to the other person and ask for their consent. / Hiraiwa [Rock hidden in sight on the coast] / Is it true? Is it true? / Postfixed to a noun to give the meaning of \"flat place\" Example: atuyso (sea) / Prefix to a noun to give the meaning of \"borrow, debt\" Example: so-ataykar (to pay a debt) / Seat, floor (yuka), floor of rug \'so munnupa\' \"sweeping the floor\" / Surface, sea surface / Waterfall",
 		vrn: { 'so': [ 1, 2, 3, 4, 5, 6, 7, 8 ] }
 	},
+	'ソイ':
+	{
+		alt: 'soy',
+		native: "outside (outdoors) outside in front of the house/gateway/nearby",
+		vrn: { 'soy': [ 1 ] }
+	},
 	'ソイタ':
 	{
 		alt: 'soita',
@@ -3125,6 +4115,12 @@ const dictionary =
 		alt: 'soine',
 		native: "v.i. go outside \'apekur kus sotki or wa soine\' \"get out of bed to touch the fire\"",
 		vrn: { 'soine': [ 1 ] }
+	},
+	'ソイネ':
+	{
+		alt: 'soyne',
+		native: "v.i. go outside \'apekur kus sotki or wa soyne\' \"get out of bed to touch the fire\"",
+		vrn: { 'soyne': [ 1 ] }
 	},
 	'ソネ':
 	{
@@ -3156,6 +4152,12 @@ const dictionary =
 		native: "v.i. to go out the doors (pl)",
 		vrn: { 'soyumba': [ 1 ] }
 	},
+	'ソレクス':
+	{
+		alt: 'sorekusu',
+		native: "That\'s exactly = easir, just like, exactly [Japanese]",
+		vrn: { 'sorekusu': [ 1 ] }
+	},
 	'ソンゴ':
 	{
 		alt: 'songo',
@@ -3174,6 +4176,12 @@ const dictionary =
 		native: "post. at, to, in, As:- \'Ta an\' \"it is here\", \'Ta an un to an un\' or \'ta ani un\' \"here and there\" / v.t. to dig up, to draw as water, As: - \'Emo ta\' \"to dig potatoes\", \'Wakka ta\' \" to draw water\" / v.t. to strike. As: - \'Cikuni ta\' \"to strike a tree\" Syn: \'Tauge\'",
 		vrn: { 'ta': [ 1, 2, 3 ] }
 	},
+	'タアン':
+	{
+		alt: 'taan',
+		native: "This (here, here) (including right next to me)",
+		vrn: { 'taan': [ 1 ] }
+	},
 	'タㇰ':
 	{
 		alt: 'tak',
@@ -3185,6 +4193,12 @@ const dictionary =
 		alt: 'taknere',
 		native: "shorten (～)　",
 		vrn: { 'taknere': [ 1 ] }
+	},
+	'タクプ':
+	{
+		alt: 'takup',
+		native: "This is all I can do. \'Shocu sine ontaro takup a=kore.\' \"I only got one barrel of shochu\"",
+		vrn: { 'takup': [ 1 ] }
 	},
 	'タスㇺ':
 	{
@@ -3204,11 +4218,23 @@ const dictionary =
 		native: "Now, soon, almost, soon \'Ne onne kur tane kamuy ehanke.\' \"The old man is already close to God\" \'Soon. / Seed (to be sown in the field for farming) [Japanese]",
 		vrn: { 'tane': [ 1, 2 ] }
 	},
+	'タネポ':
+	{
+		alt: 'tanepo',
+		native: "Now, finally, for the first time, for the first time \'Peko sekor a=ye p tanepo nukar.\' \"I saw something called a cow for the first time.\"",
+		vrn: { 'tanepo': [ 1 ] }
+	},
 	'タプ':
 	{
 		alt: 'tap',
 		native: "(emphasis) really, totally / n. a single hill with a round top, a cone, top part (of a mountain, cliff, etc.), shoulder (of a person or animal) / pro. this, thus, so, now, just now, this moment, As: - \'Tap moire\' \"so late\", \'Tap an nosike\' \"thus late at night\", \'Tap soine\' \"he has just gone out\"",
 		vrn: { 'tap': [ 1, 2, 3 ] }
+	},
+	'タプネ':
+	{
+		alt: 'tapne',
+		native: "In this way, in this way, in that way, in this way",
+		vrn: { 'tapne': [ 1 ] }
 	},
 	'タㇺベ':
 	{
@@ -3239,6 +4265,12 @@ const dictionary =
 		alt: 'tanne',
 		native: "long",
 		vrn: { 'tanne': [ 1 ] }
+	},
+	'タンペ':
+	{
+		alt: 'tanpe',
+		native: "This \' Tanpe en=kore.\' \"Please give me this\"",
+		vrn: { 'tanpe': [ 1 ] }
 	},
 	'チ':
 	{
@@ -3306,11 +4338,29 @@ const dictionary =
 		native: "Cry / Rock",
 		vrn: { 'cis': [ 1, 2 ] }
 	},
+	'チセ':
+	{
+		alt: 'cise',
+		native: "House",
+		vrn: { 'cise': [ 1 ] }
+	},
 	'チセイ':
 	{
 		alt: 'cisei',
 		native: "n. a house, a hut, an abode, a bear\'s den, a wasp\'s nest",
 		vrn: { 'cisei': [ 1 ] }
+	},
+	'チプ':
+	{
+		alt: 'cip',
+		native: "boat dugout canoe boat, vulva [slang]",
+		vrn: { 'cip': [ 1 ] }
+	},
+	'チャナンノ':
+	{
+		alt: 'cananno',
+		native: "roughly",
+		vrn: { 'cananno': [ 1 ] }
 	},
 	'チャハ':
 	{
@@ -3318,29 +4368,53 @@ const dictionary =
 		native: "Twig Koshiba",
 		vrn: { 'caha': [ 1 ] }
 	},
+	'チョイペプ':
+	{
+		alt: 'coypep',
+		native: "Tableware tableware / Treasures displayed on the upper floor",
+		vrn: { 'coypep': [ 1, 2 ] }
+	},
 	'チョプチョプセカラ':
 	{
 		alt: 'copcopsekara',
 		native: "v.t. to kiss",
 		vrn: { 'copcopsekara': [ 1 ] }
 	},
-	'チョプチョプセカン':
+	'チョㇽポㇰ':
 	{
-		alt: 'copcopsekan',
-		native: "v.t. to kiss",
-		vrn: { 'copcopsekan': [ 1 ] }
+		alt: 'corpok',
+		native: "(under) \'sine cikuni corpok ta arpa wa\' \"go under a certain tree\", genitals",
+		vrn: { 'corpok': [ 1 ] }
 	},
-	'デエダ':
+	'チロンヌプ':
 	{
-		alt: 'deeda',
-		native: "adv. previously???, ancient times???, before???, a long time ago???",
-		vrn: { 'deeda': [ 1 ] }
+		alt: 'cironnup',
+		native: "Fox [What we prey on] Also refers to prey in general. red fox [Animal]",
+		vrn: { 'cironnup': [ 1 ] }
+	},
+	'テ':
+	{
+		alt: 'te',
+		native: "Meaning of \"to make each other ~\", \'Compare\' \"~\" with each other kiror (power) → ukirorpakte (to compare strength) / here \'te ta\' \"here\" / make ~ \'ekte\' \"make come\"",
+		vrn: { 'te': [ 1, 2, 3 ] }
+	},
+	'テエタ':
+	{
+		alt: 'teeta',
+		native: "a long time ago a long time ago",
+		vrn: { 'teeta': [ 1 ] }
 	},
 	'テㇰ':
 	{
 		alt: 'tek',
 		native: "Quickly \'terke tek\' \"jumped\" / n. hand, branch",
 		vrn: { 'tek': [ 1, 2 ] }
+	},
+	'テㇰサㇺ':
+	{
+		alt: 'teksam',
+		native: "beside, beside, beside, in front of, right next to",
+		vrn: { 'teksam': [ 1 ] }
 	},
 	'テケ':
 	{
@@ -3359,6 +4433,12 @@ const dictionary =
 		alt: 'teda',
 		native: "Here (at this place)",
 		vrn: { 'teda': [ 1 ] }
+	},
+	'テㇽケテㇽケ':
+	{
+		alt: 'terketerke',
+		native: "jump repeatedly, jump up, jump up, jump around",
+		vrn: { 'terketerke': [ 1 ] }
 	},
 	'テワノ':
 	{
@@ -3390,11 +4470,11 @@ const dictionary =
 		native: "(One piece of thread) \'nuytotu\' \"One piece of thread\" / Prefix indicating toy (terrible) \'turay\' \"to die in a terrible way\" / Two \'tu means two!",
 		vrn: { 'tu': [ 1, 2, 3 ] }
 	},
-	'トゥイマノ':
+	'トゥイェ':
 	{
-		alt: 'tuimano',
-		native: "adv. distantly",
-		vrn: { 'tuimano': [ 1 ] }
+		alt: 'tuye',
+		native: "Head towards (to) [Shizunai] / cut???, separate???, remove from???",
+		vrn: { 'tuye': [ 1, 2 ] }
 	},
 	'トゥイマノ':
 	{
@@ -3431,6 +4511,12 @@ const dictionary =
 		alt: 'tutko',
 		native: "Two days (two days)",
 		vrn: { 'tutko': [ 1 ] }
+	},
+	'トゥナ':
+	{
+		alt: 'tuna',
+		native: "Fire shelf [Drying shelf hanging above the hearth]",
+		vrn: { 'tuna': [ 1 ] }
 	},
 	'トゥプ':
 	{
@@ -3474,6 +4560,12 @@ const dictionary =
 		native: "n. a room, an apartment, a division a cave, also the womb of by some and placenta by others",
 		vrn: { 'tumbu': [ 1 ] }
 	},
+	'トゥムン':
+	{
+		alt: 'tumun',
+		native: "garbage, dust, dust",
+		vrn: { 'tumun': [ 1 ] }
+	},
 	'トゥラ':
 	{
 		alt: 'tura',
@@ -3491,6 +4583,12 @@ const dictionary =
 		alt: 'turano',
 		native: "adv. together with",
 		vrn: { 'turano': [ 1 ] }
+	},
+	'トゥリ':
+	{
+		alt: 'turi',
+		native: "n. a boat pole, (Boat) Shade [Made from Shiuni (Bittersweet) and Ayushini (Ataranocephalus)] / v.t. to stretch out, spread (a net), spread a futon,",
+		vrn: { 'turi': [ 1, 2 ] }
 	},
 	'トゥル':
 	{
@@ -3534,6 +4632,18 @@ const dictionary =
 		native: "n. their breasts (gen) / that day",
 		vrn: { 'toho': [ 1, 2 ] }
 	},
+	'トマ':
+	{
+		alt: 'toma',
+		native: "Goza, rug [Toma] [Japanese] / Tomato (Tuber of Corydalis) [The rhizomes were collected, boiled, and eaten. It was also dried and preserved (Sakhalin, Hokkaido)]",
+		vrn: { 'toma': [ 1, 2 ] }
+	},
+	'トリ':
+	{
+		alt: 'tori',
+		native: "bird [Japanese] / stay overnight",
+		vrn: { 'tori': [ 1, 2 ] }
+	},
 	'ナ':
 	{
 		alt: 'na',
@@ -3545,6 +4655,12 @@ const dictionary =
 		alt: 'naa',
 		native: "adv. yet, more, with a negative \"not yet\", (with verb - while???), this word is often used before adjectives to express the comparative degree. thus ; - \'Naa pon\', \"smaller\", \'Naa poro\' \"larger\", \'Naa an\' \"there is more\", \'Naa arasuine\' \"once more\", \'Naa ek isam\' \"he has not yet come\", \'Naa isam\' \"there is no more\", \'Naa mosima\' \"yet again\" \"Again\", \'Naa okai\' \"there are more\", \'Naa pon no\' \"a little more\", \'Naa sinep\' \"one more\", \'Naa somo\' \"not yet\", \'Kina naa pon hi ta\' \"while the grass is still small\", \'Naa ku=mokor rusuy.\' \"I still want to sleep\", \'Naa samata\' \"besides\"",
 		vrn: { 'naa': [ 1 ] }
+	},
+	'ナイ':
+	{
+		alt: 'nay',
+		native: "n. A stream, A river; (in saghalien) A valley either with or without water.",
+		vrn: { 'nay': [ 1 ] }
 	},
 	'ナタラ':
 	{
@@ -3564,17 +4680,17 @@ const dictionary =
 		native: "Face (head) of…",
 		vrn: { 'nanuhu': [ 1 ] }
 	},
-	'ナㇽドㇱ':
-	{
-		alt: 'nardos',
-		native: "spikenard??? some plant involved in production of perfume???",
-		vrn: { 'nardos': [ 1 ] }
-	},
 	'ナンゴラ':
 	{
 		alt: 'nangora',
 		native: "adv. perhaps, is is most likely to be so, As:- \'Nekon a ki  nangora?\' \"what will he most likely do?\"",
 		vrn: { 'nangora': [ 1 ] }
+	},
+	'ナンコㇽ':
+	{
+		alt: 'nankor',
+		native: "(expressing a guess) ~ will do ~, (expressing the speaker\'s hope or command) ~ should ~ (do) \'Ekusun e=oman nakor na.\' \"You should go to the other side of the river\"",
+		vrn: { 'nankor': [ 1 ] }
 	},
 	'ナンゴロ':
 	{
@@ -3606,11 +4722,23 @@ const dictionary =
 		native: "Hollow in a thick tree / This word is used after verbs to indicate past time, it has now ended",
 		vrn: { 'nisa': [ 1, 2 ] }
 	},
+	'ニサプ':
+	{
+		alt: 'nisap',
+		native: "Shin, far shin / suddenly, suddenly",
+		vrn: { 'nisap': [ 1, 2 ] }
+	},
 	'ニㇱクル':
 	{
 		alt: 'niskuru',
 		native: "n. clouds",
 		vrn: { 'niskuru': [ 1 ] }
+	},
+	'ニシケ':
+	{
+		alt: 'nisike',
+		native: "Carrying a load of firewood, a bundle of wood, and firewood on one\'s back",
+		vrn: { 'nisike': [ 1 ] }
 	},
 	'ニㇱテ':
 	{
@@ -3648,6 +4776,12 @@ const dictionary =
 		native: "hard, hard, stiff (nitne-kamuy: devil)",
 		vrn: { 'nitne': [ 1 ] }
 	},
+	'ニナ':
+	{
+		alt: 'nina',
+		native: "Flounder / Gather firewood, carry firewood on your back \' Don\'t carry firewood! / Knead and crush / Nana Village in the middle reaches of the Saru River [Place name]",
+		vrn: { 'nina': [ 1, 2, 3, 4 ] }
+	},
 	'ニマ':
 	{
 		alt: 'nima',
@@ -3665,6 +4799,12 @@ const dictionary =
 		alt: 'niwatori',
 		native: "Chicken [Japanese]",
 		vrn: { 'niwatori': [ 1 ] }
+	},
+	'ニンパ':
+	{
+		alt: 'ninpa',
+		native: "drag (to) / drag (~), pull (~) up [Shizunai]",
+		vrn: { 'ninpa': [ 1, 2 ] }
 	},
 	'ヌ':
 	{
@@ -3684,17 +4824,29 @@ const dictionary =
 		native: "v.t. to cause to write",
 		vrn: { 'nuyere': [ 1 ] }
 	},
-	'ヌイナノ':
+	'ヌイナㇰ':
 	{
-		alt: 'nuinano',
-		native: "adv. secretly",
-		vrn: { 'nuinano': [ 1 ] }
+		alt: 'nuynak',
+		native: "hide",
+		vrn: { 'nuynak': [ 1 ] }
+	},
+	'ヌウェ':
+	{
+		alt: 'nuwe',
+		native: "Sweep \'Mun a=nuwe wa a=umomore hine munkutausi ta a=osura.\' \"Sweep the garbage, collect it, then throw it in the garbage dump\" \' Sweep with Nu. / There is a lot of prey, and a lot of goods come in through trade.",
+		vrn: { 'nuwe': [ 1, 2 ] }
 	},
 	'ヌカラ':
 	{
 		alt: 'nukara',
 		native: "v.t. To see",
 		vrn: { 'nukara': [ 1 ] }
+	},
+	'ヌカㇽ':
+	{
+		alt: 'nukar',
+		native: "See, see \'Eiga a=nukan ro.\' \"Let\'s watch a movie\" / meet",
+		vrn: { 'nukar': [ 1, 2 ] }
 	},
 	'ヌカレ':
 	{
@@ -3738,17 +4890,23 @@ const dictionary =
 		native: "n. light, brightness",
 		vrn: { 'nupekihi': [ 1 ] }
 	},
-	'ヌペㇰ':
+	'ヌマン':
 	{
-		alt: 'nupek',
-		native: "n. light, brightness",
-		vrn: { 'nupek': [ 1 ] }
+		alt: 'numan',
+		native: "Yesterday, last night →onuman means evening, evening",
+		vrn: { 'numan': [ 1 ] }
 	},
 	'ヌㇺゲ':
 	{
 		alt: 'numge',
 		native: "v.t. to choose, to appoint",
 		vrn: { 'numge': [ 1 ] }
+	},
+	'ヌラプパ':
+	{
+		alt: 'nurappa',
+		native: "offer a memorial service to (the dead)",
+		vrn: { 'nurappa': [ 1 ] }
 	},
 	'ヌレ':
 	{
@@ -3762,11 +4920,23 @@ const dictionary =
 		native: "(Pointing to something that has already been talked about) This, that, that, that, that \'ne ceppo\' \"\"this little fish that was talked about\"\", \'ne epaha\' \"\"that year that was talked about\"\" / 1. (to be) to be (to be) to be (equivalent to the English verb be) 2. Follow someone like hawe ne, ruwe ne, siri ne and say, ``It looks like ~, that\'s ~\'\' \'Toan uske k=unihi ne.\' \"That\'s my house.\" / As ~ to ~ \'Paskur imek ne a=ari p ne na .\' \"It\'s something left for the crows.\" / Emphasis / Give an example \"Even if it\'s...\", \'Kamuy ne yakka cironnup ne yakka sipe e rusuy ruwe ne.\' \"Whether it\'s a bear or a fox, I want to eat salmon.\" / It seems to be ~, like ~ \'sirar pon caca ne kotom an pe\' \"a guy who looks like an old man from Iso\" / Something, something \'Ne aep ka isam.\' \"I don\'t have anything to eat\", \'Ne ye p ka a=erampewtek.\' \"I don\'t know what you\'re saying\" / someone who was (in) (referring to someone who died) \'ku=mataki ne ap\' \"my sister who died\"",
 		vrn: { 'ne': [ 1, 2, 3, 4, 5, 6, 7, 8 ] }
 	},
+	'ネア':
+	{
+		alt: 'nea',
+		native: "That thing I talked about before, that example.",
+		vrn: { 'nea': [ 1 ] }
+	},
 	'ネイ':
 	{
 		alt: 'nei, ney',
 		native: "Where / pro. that, the, he, she, it / where",
 		vrn: { 'nei': [ 1, 2 ], 'ney': [ 1, 2 ] }
+	},
+	'ネイ':
+	{
+		alt: 'ney',
+		native: "pro. that, the, he, she, it / where",
+		vrn: { 'ney': [ 1, 2 ] }
 	},
 	'ネイタ':
 	{
@@ -3780,6 +4950,12 @@ const dictionary =
 		native: "adv. so, as, thus, like that, As: - \'Neyno kara\' \"to imitate, to do like\"",
 		vrn: { 'neyno': [ 1 ] }
 	},
+	'ネウン':
+	{
+		alt: 'neun',
+		native: "Please, how, No matter what (no matter what) / Where, somewhere \'Neun e=oman?\' \"Where are you going?\", (in negation) Anywhere",
+		vrn: { 'neun': [ 1, 2 ] }
+	},
 	'ネコン':
 	{
 		alt: 'nekon',
@@ -3791,6 +4967,12 @@ const dictionary =
 		alt: 'netobake',
 		native: "n. the body, trunk",
 		vrn: { 'netobake': [ 1 ] }
+	},
+	'ネノ':
+	{
+		alt: 'neno',
+		native: "As in ~ Same as ~ About ~ / Just like this, just like that / Remake it like",
+		vrn: { 'neno': [ 1, 2, 3 ] }
 	},
 	'ネプ':
 	{
@@ -3816,6 +4998,18 @@ const dictionary =
 		native: "1. Who? \'Nen na an?\' \"Who is it?\" 2. Everyone \'nen opitta\' \"anyone and everyone\"",
 		vrn: { 'nen': [ 1 ] }
 	},
+	'ノ':
+	{
+		alt: 'no',
+		native: "(without ~) ~ as is \'Hu no e=e siri?\' \"Do you eat it raw?\" / About (the degree of severity is serious) \'Na cup ri hine sirepa no, a=kotanu sir-hanke p ne.\' \"My village is so close that I arrived while the sun was still high.\" / Don\'t ~ \'...sekor somo hese no hawean\' \"said ~ breathlessly\", \'korka a=nu ka somo ki no ahun=an.\' \"However, without hearing [the words], I entered the house.\" / It is enough to do ~ (the ending of an adjective expressing a quality or state) \'Retanno\' \"purely white\", \'Cino\' \"heat sufficiently\", \'Imino\' \"wear a sufficiently good kimono\" / Suggestive, \"Let us…\" / The most, absolutely, really, the most [strong] \'Ermukamuy no tonokehe Erumnottu ta an.\' \"The greatest king of the mouse god is at Cape Erimo.\" / part. Sometimes used like \"-ing\" As: - \'Nukan\' \"to see\", \'Nukan no\' \"seeing\" / part. placed after adjectives to change them into adverbs, or after adverbs to change them into adjectives. / ～Do without... \'Iteki ukoyki no e.\' \"Eat without fighting\" / ～like \'Nep ka a=emuna no\' \"like something to laugh at\"",
+		vrn: { 'no': [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] }
+	},
+	'ノイネ':
+	{
+		alt: 'noyne',
+		native: "It looks like ~, (of), it seems ~ \' sino pase tasum ne noyne\' \"it looks like she\'s really seriously ill\", \' nispa tanukuran a=rayke noyne\' \"it looks like her husband will be killed tonight\"",
+		vrn: { 'noyne': [ 1 ] }
+	},
 	'ノカハ':
 	{
 		alt: 'nokaha',
@@ -3827,6 +5021,12 @@ const dictionary =
 		alt: 'nokan',
 		native: "small, fine, young, small-grained \'nokan munciro\' \"small-grained millet\" → pon",
 		vrn: { 'nokan': [ 1 ] }
+	},
+	'ノㇱキ':
+	{
+		alt: 'noski',
+		native: "Middle, midstream (of a river), midway (of a mountain) [Shizunai] / middle, center, middle, midstream, halfway up \'kotan noski ta\' \"in the center of the village\" \'Not under the eaves, but in the middle",
+		vrn: { 'noski': [ 1, 2 ] }
 	},
 	'ノシケタ':
 	{
@@ -3882,17 +5082,35 @@ const dictionary =
 		native: "the voice, the voice of either man, animals, fowls or any other living creatures, Hau may also be applied to the voice of God",
 		vrn: { 'hau': [ 1 ] }
 	},
+	'ハウ':
+	{
+		alt: 'haw',
+		native: "Interesting story (a story with an interesting ending that is told without end) / Voices (of people, birds, animals), Sounds (of violins, etc.) [general sounds are hum]",
+		vrn: { 'haw': [ 1, 2 ] }
+	},
 	'ハウェ':
 	{
 		alt: 'hawe',
 		native: "(of) a voice, sound, story, state or situation of ~ \'ne hawe pirka\' \"that voice was beautiful\", \'huci en=ye hawe\' \"words my grandmother said to me\", \'seta amikmik hawe ani\' \"the dog is barking\" (Voice) \'Sunke hawe ne.\' \"That\'s a lie\", \'Kamuy omante hawe e=nu ya?\' \"Did you hear the story about sending the gods off?\", \'Suzuki nispa ek hawe ne kusu,\' \"The story about Mr. Suzuki coming\" that\'s why,)",
 		vrn: { 'hawe': [ 1 ] }
 	},
+	'ハウェアン':
+	{
+		alt: 'hawean',
+		native: "say something, talk",
+		vrn: { 'hawean': [ 1 ] }
+	},
 	'パウェテス':
 	{
 		alt: 'pawetesu',
 		native: "v.i. to bear witness",
 		vrn: { 'pawetesu': [ 1 ] }
+	},
+	'パウチ':
+	{
+		alt: 'pawci',
+		native: "A monster that is lewd and drives you crazy = pawcinotka",
+		vrn: { 'pawci': [ 1 ] }
 	},
 	'ハウトゥルㇺベ':
 	{
@@ -3912,11 +5130,23 @@ const dictionary =
 		native: "admonish, punish, admonish (for) \'Nani a=eramuan wa a=i=pakasnu.\' \"[They] immediately notice and punish us\"",
 		vrn: { 'pakasnu': [ 1 ] }
 	},
+	'パキ':
+	{
+		alt: 'paki',
+		native: "Shrimp (shrimp)　 [Seafood] / time",
+		vrn: { 'paki': [ 1, 2 ] }
+	},
 	'パキヒ':
 	{
 		alt: 'pakihi',
 		native: "time",
 		vrn: { 'pakihi': [ 1 ] }
+	},
+	'パㇰ':
+	{
+		alt: 'pak',
+		native: "There\'s no one like that, it\'s the best. / Until ~ \'te pak\' \"until now\" / punish / ~hodo ~hodono \' mosir pak chise\' \"a house on an island [a big house]\"",
+		vrn: { 'pak': [ 1, 2, 3, 4 ] }
 	},
 	'パㇰノ':
 	{
@@ -3990,6 +5220,12 @@ const dictionary =
 		native: "n. the left, As: - \'Hariki tek\' \"the left hand\"",
 		vrn: { 'hariki': [ 1 ] }
 	},
+	'パㇽカ':
+	{
+		alt: 'parka',
+		native: "Attic on beams",
+		vrn: { 'parka': [ 1 ] }
+	},
 	'パン':
 	{
 		alt: 'pan',
@@ -4008,6 +5244,30 @@ const dictionary =
 		native: "n. barm, yeast [Japanese]",
 		vrn: { 'pandane': [ 1 ] }
 	},
+	'ヒ':
+	{
+		alt: 'hi',
+		native: "Throat, singing voice / adv. yes, so / part. suffixed to verbs or adjectives this particle has the power of changing them into substantives As: - \'Eisokoro\' \"to believe\", \'Eisokoro-hi\' \"belief\", \'Pirika\' \"good\", \'Pirika-hi\' \"a good thing\" / thing among many things, \'tonoto pirka hi\' \"good thing among alcoholic beverages\"",
+		vrn: { 'hi': [ 1, 2, 3, 4 ] }
+	},
+	'ヒケ':
+	{
+		alt: 'hike',
+		native: "Even though, even if, [regarding known matters] in spite of / part. signifies \"as regards\", \"with reference to which\", thus, \'ku nu hike\' \"as regards to what I hear\", \'Ku nukar-hike\' \"with refernce to what I see\" / what if ~? \'E=e hike mak?\' \"How about you eat it?\", \'A=arpare hike makanak ne wa?\' \"How about I let you go?\" / when \'Mun k=osura hike munkutausi kaske ta pirka noya poronno hetukpa.\' \"When I threw away the garbage, many good mugworts grew on top of the garbage dump.\"",
+		vrn: { 'hike': [ 1, 2, 3, 4 ] }
+	},
+	'ヒケカ':
+	{
+		alt: 'hikeka',
+		native: "Even if ~",
+		vrn: { 'hikeka': [ 1 ] }
+	},
+	'ピㇱ':
+	{
+		alt: 'pis',
+		native: "beach \' pis ta an kur\' \"person who lives on the beach\"",
+		vrn: { 'pis': [ 1 ] }
+	},
 	'ピㇱノ':
 	{
 		alt: 'pisno',
@@ -4019,6 +5279,12 @@ const dictionary =
 		alt: 'pita',
 		native: "v.t. to untie (sash, etc.), to undo, to explain, to wipe (shoes, etc.)",
 		vrn: { 'pita': [ 1 ] }
+	},
+	'ヒナㇰ':
+	{
+		alt: 'hinak',
+		native: "where",
+		vrn: { 'hinak': [ 1 ] }
 	},
 	'ヒネ':
 	{
@@ -4068,6 +5334,18 @@ const dictionary =
 		native: "show kindness to / v.t. to make something better, to improve something",
 		vrn: { 'pirikare': [ 1, 2 ] }
 	},
+	'ピㇽカ':
+	{
+		alt: 'pirka',
+		native: "Good, beautiful, high quality, convenient, fun, energetic \'Pirka siri !\' \"It\'s beautiful\" ◆ Lyrics of Pirka\'s song, pirka pirka tanto sir-pirka, inan kur pirka, ku=numke kusu ne, ku=numke kusu ne, Like Good. The weather is nice today., Which person would you like?, I\'m going to choose., I\'m going to choose.",
+		vrn: { 'pirka': [ 1 ] }
+	},
+	'ピㇽカノ':
+	{
+		alt: 'pirkano',
+		native: "Good, skillful, well, properly, energetically \'Iteki mokor no pirkano nu.\' \"Don\'t sleep and listen carefully\"",
+		vrn: { 'pirkano': [ 1 ] }
+	},
 	'プイ':
 	{
 		alt: 'pui',
@@ -4080,11 +5358,23 @@ const dictionary =
 		native: "Look for (to) \'Ku=hunara yakka wen.\' \"I looked for it, but to no avail\" / Search for (identity)",
 		vrn: { 'hunara': [ 1, 2 ] }
 	},
+	'フマㇱ':
+	{
+		alt: 'humas',
+		native: "1. I hear or hear the sound of (...) 2. I feel (of), I have a feeling of (of).",
+		vrn: { 'humas': [ 1 ] }
+	},
 	'フミ':
 	{
 		alt: 'humi',
 		native: "(feeling) ~! That\'s it! \'Ku=popke humi!\' \"[In my own experience] It\'s warm!\" / 1. (of) a feeling or presence 2. That\'s it! [An exclamation of sensations other than vision (taste, smell, hearing, touch). Use siri for vision] / like",
 		vrn: { 'humi': [ 1, 2, 3 ] }
+	},
+	'フㇺ':
+	{
+		alt: 'hum',
+		native: "n. hill / n. scrap piece / n. sound, feel, appearance",
+		vrn: { 'hum': [ 1, 2, 3 ] }
 	},
 	'フラ':
 	{
@@ -4092,17 +5382,29 @@ const dictionary =
 		native: "smell, fragrance",
 		vrn: { 'hura': [ 1 ] }
 	},
+	'フライェ':
+	{
+		alt: 'huraye',
+		native: "(to) wash, wash",
+		vrn: { 'huraye': [ 1 ] }
+	},
 	'プリ':
 	{
 		alt: 'buri',
 		native: "n. a habit, a custom, manners, As: - \'Buri - pirika\' \"of good manners\", \'Buri rainatara\' \"of gentle habits\"",
 		vrn: { 'buri': [ 1 ] }
 	},
-	'プンガラ':
+	'プリ':
 	{
-		alt: 'pungara',
-		native: "n. a vine of any kind",
-		vrn: { 'pungara': [ 1 ] }
+		alt: 'puri',
+		native: "custom, custom, rule, manner, behavior",
+		vrn: { 'puri': [ 1 ] }
+	},
+	'フレ':
+	{
+		alt: 'hure',
+		native: "red bright red red",
+		vrn: { 'hure': [ 1 ] }
 	},
 	'プンギ':
 	{
@@ -4122,23 +5424,41 @@ const dictionary =
 		native: "Indicating head or upper direction Examples: hepuni (raise your head), hepoki (lower your head = bow) / adv. facing, towards, in front, surface, as: - \'he-makasi\' \"toward the mountains, towards the back\" / adv. what? / n. the breath. / part. expresses interrogation, add after a questionable phrase, and is often though by no means always, followed by the verb an \"to be\" Thus : - \'Ek ruwe he an?\' \"has he come?\", \'Tane he?\' \"now?\", \'Acapo he?\' \"is it my uncle?\", \'apto he humi an?\' \"Is it the sound of rain falling?\", \'pet or ta ukosinipa he\' \"in the river\" (Maybe I should say they are resting together)",
 		vrn: { 'he': [ 1, 2, 3, 4, 5 ] }
 	},
+	'ペ':
+	{
+		alt: 'pe',
+		native: "Juice, juice that comes out from trees, grass, etc. / Thing (person) / Water droplets dew",
+		vrn: { 'pe': [ 1, 2, 3 ] }
+	},
 	'ヘアシ':
 	{
 		alt: 'heasi',
 		native: "The beginning.",
 		vrn: { 'heasi': [ 1 ] }
 	},
-	'ヘアシリキ':
+	'ペカ':
 	{
-		alt: 'heasiriki',
-		native: "to begin???",
-		vrn: { 'heasiriki': [ 1 ] }
+		alt: 'peka',
+		native: "adv. facing, towards / adv. side, place, at (a certain place, there \'oro peka kotan an\' \"there is a kotan there\") / by, via, (from a high place \'rik peka a=eyapkir\' \"thrown from a high place\") / on (of) \'upas ka peka apkas\' \"walking on the snow\", \'ni ka peka\' \"on top of a tree\" / outside, in the open air \'soy peka nepki\' \"work outside\" / receive (something thrown to you, etc.)",
+		vrn: { 'peka': [ 1, 2, 3, 4, 5, 6 ] }
 	},
 	'ペケレ':
 	{
 		alt: 'pekere',
 		native: "n. light (lumniescence)",
 		vrn: { 'pekere': [ 1 ] }
+	},
+	'ヘコテ':
+	{
+		alt: 'hekote',
+		native: "To accompany (to) serve (to serve) [Between husband and wife] / Towards (towards) towards (toward)",
+		vrn: { 'hekote': [ 1, 2 ] }
+	},
+	'ペコㇽ':
+	{
+		alt: 'pekor',
+		native: "Pretending to do ~, as if doing ~ \'ukoysoytak pekor sirki\' \"looks like they\'re having a discussion\" \' A child like Peko-chan.",
+		vrn: { 'pekor': [ 1 ] }
 	},
 	'ヘタㇰ':
 	{
@@ -4175,6 +5495,12 @@ const dictionary =
 		alt: 'hetopo',
 		native: "On the contrary / again once again",
 		vrn: { 'hetopo': [ 1, 2 ] }
+	},
+	'ペナケ':
+	{
+		alt: 'penake',
+		native: "Upstream [Shizunai]",
+		vrn: { 'penake': [ 1 ] }
 	},
 	'ヘネ':
 	{
@@ -4218,6 +5544,18 @@ const dictionary =
 		native: "v.i. to ascend (a person climbs up a mountain), to climb upstream (fish go upstream), goes up \'Kamuycep poronno hemespa.\' \"Many salmon went upstream\" \' Hey, all the female salmon came up.",
 		vrn: { 'hemesu': [ 1 ] }
 	},
+	'ヘヤシ':
+	{
+		alt: 'heyasi',
+		native: "towards land, hills, shore",
+		vrn: { 'heyasi': [ 1 ] }
+	},
+	'ペライ':
+	{
+		alt: 'peray',
+		native: "fishing tackle",
+		vrn: { 'peray': [ 1 ] }
+	},
 	'ペレケ':
 	{
 		alt: 'pereke',
@@ -4229,6 +5567,12 @@ const dictionary =
 		alt: 'po',
 		native: "He passed away~ / Son, Child (regardless of gender) \' Onne kur anak poho kor cise sama ta an.\' \"The elderly live near the son\'s house\" / small, (affectionate name) ~ppe, very little, only ~",
 		vrn: { 'po': [ 1, 2, 3 ] }
+	},
+	'ホカ':
+	{
+		alt: 'hoka',
+		native: "fire (of), furnace (of), on fire, flame",
+		vrn: { 'hoka': [ 1 ] }
 	},
 	'ポカ':
 	{
@@ -4266,11 +5610,35 @@ const dictionary =
 		native: "husband",
 		vrn: { 'hoku': [ 1 ] }
 	},
+	'ホクㇱ':
+	{
+		alt: 'hokus',
+		native: "(a house or tree) falls down or overturns, goes bankrupt, boils down → hacir (fall down), horak (uprooted)",
+		vrn: { 'hokus': [ 1 ] }
+	},
 	'ホクㇱテ':
 	{
 		alt: 'hokuste',
 		native: "overturn, knock over, make fall down",
 		vrn: { 'hokuste': [ 1 ] }
+	},
+	'ホクレ':
+	{
+		alt: 'hokure',
+		native: "(When ordering or urging) Come on, hurry up, hurry up, come on. \'hokure hokure ahunke ahunke\' \"Come on, come on, put it in\" / Come on, hurry up",
+		vrn: { 'hokure': [ 1, 2 ] }
+	},
+	'ポコインネ':
+	{
+		alt: 'pokoinne',
+		native: "To have many children. Po (children) + ko (to him/her) + inne (to be many)",
+		vrn: { 'pokoinne': [ 1 ] }
+	},
+	'ポサㇰ':
+	{
+		alt: 'posak',
+		native: "No children, unable to bear children, unable to have children [child/no child] \'posak kur\' \"person without children\"",
+		vrn: { 'posak': [ 1 ] }
 	},
 	'ホサンナ':
 	{
@@ -4284,17 +5652,35 @@ const dictionary =
 		native: "adv. previously",
 		vrn: { 'hosikino': [ 1 ] }
 	},
+	'ホㇱキノ':
+	{
+		alt: 'hoskino',
+		native: "first of all before",
+		vrn: { 'hoskino': [ 1 ] }
+	},
 	'ホシピ':
 	{
 		alt: 'hosipi',
 		native: "(to return home), go back, turn back, head home \'ku=hosipi hi ta\' \"when I go home\", \'Tokiyo wa hosippa=as.\' \"we [e.g. a couple] returned from Tokyo\"",
 		vrn: { 'hosipi': [ 1 ] }
 	},
+	'ホシプパ':
+	{
+		alt: 'hosippa',
+		native: "v. to return",
+		vrn: { 'hosippa': [ 1 ] }
+	},
 	'ホッ':
 	{
 		alt: 'hot',
 		native: "(Surprise) Well! \'Hot no iyohay-sitomare.\' \"Shigeru Kayano\" / 20 (number), 10 (number) [Shizunai]",
 		vrn: { 'hot': [ 1, 2 ] }
+	},
+	'ホッケ':
+	{
+		alt: 'hotke',
+		native: "Lie down, lie down, lie down \'Seta en=sam ta hotke.\' \"The dog lies down next to me\" \' I\'m lying down again. Hotke!",
+		vrn: { 'hotke': [ 1 ] }
 	},
 	'ホッネ':
 	{
@@ -4314,6 +5700,12 @@ const dictionary =
 		native: "v.i. fly, soar, take off, get up, set out on a journey",
 		vrn: { 'hopuni': [ 1 ] }
 	},
+	'ホプニレ':
+	{
+		alt: 'hopunire',
+		native: "Ritual to send God to the world of God / Wake up, make stand up [wake up/make]",
+		vrn: { 'hopunire': [ 1, 2 ] }
+	},
 	'ホプパ':
 	{
 		alt: 'hoppa',
@@ -4326,11 +5718,23 @@ const dictionary =
 		native: "v.i. (sg) to get up, to arise",
 		vrn: { 'hopumba': [ 1 ] }
 	},
+	'ホプンパレ':
+	{
+		alt: 'hopunpare',
+		native: "wake up",
+		vrn: { 'hopunpare': [ 1 ] }
+	},
 	'ポホ':
 	{
 		alt: 'poho',
 		native: "Child, son (genitive)",
 		vrn: { 'poho': [ 1 ] }
+	},
+	'ホマㇽ':
+	{
+		alt: 'homar',
+		native: "(Color/shadow) hazy, thin, dull",
+		vrn: { 'homar': [ 1 ] }
 	},
 	'ホユプ':
 	{
@@ -4344,6 +5748,12 @@ const dictionary =
 		native: "From above [body/top/standing]",
 		vrn: { 'horikasi': [ 1 ] }
 	},
+	'ポル':
+	{
+		alt: 'poru',
+		native: "cave cave",
+		vrn: { 'poru': [ 1 ] }
+	},
 	'ポロ':
 	{
 		alt: 'poro',
@@ -4355,6 +5765,12 @@ const dictionary =
 		alt: 'porobe',
 		native: "n. a big thing",
 		vrn: { 'porobe': [ 1 ] }
+	},
+	'ポロレ':
+	{
+		alt: 'porore',
+		native: "Make (something) bigger, grow it until it becomes bigger [make it bigger]",
+		vrn: { 'porore': [ 1 ] }
 	},
 	'ポロンノ':
 	{
@@ -4392,11 +5808,23 @@ const dictionary =
 		native: "a little bit ◆ na ponno a little more",
 		vrn: { 'ponno': [ 1 ] }
 	},
+	'マ':
+	{
+		alt: 'ma',
+		native: "Bake or fry / Head towards ... \'ekoykaun\' \"ma\" Head towards the east / Swim (Do not use for fish to swim) / n. spit of land in sea, peninsula, tiny island, (pier) / wa (to) phoneme exchange (wa becomes ma after nasal sounds (n, m))",
+		vrn: { 'ma': [ 1, 2, 3, 4, 5 ] }
+	},
 	'マウクㇱテ':
 	{
 		alt: 'maukuste',
 		native: "cause to permeate?? remind (with itak)??? indicate??? illustrate??? cause to pass through??? as wind, permeate???",
 		vrn: { 'maukuste': [ 1 ] }
+	},
+	'マㇰ':
+	{
+		alt: 'mak',
+		native: "Back / How, how much, what / I wonder what will happen",
+		vrn: { 'mak': [ 1, 2, 3 ] }
 	},
 	'マタパ':
 	{
@@ -4428,11 +5856,23 @@ const dictionary =
 		native: "wife, woman",
 		vrn: { 'mat': [ 1 ] }
 	},
+	'マッカチ':
+	{
+		alt: 'matkaci',
+		native: "girl girl opposite → hekaci",
+		vrn: { 'matkaci': [ 1 ] }
+	},
 	'マッネ':
 	{
 		alt: 'matne',
 		native: "be a woman, be a female",
 		vrn: { 'matne': [ 1 ] }
+	},
+	'マッネポ':
+	{
+		alt: 'matnepo',
+		native: "Daughter (from the perspective of parents)",
+		vrn: { 'matnepo': [ 1 ] }
 	},
 	'マラプト':
 	{
@@ -4446,6 +5886,18 @@ const dictionary =
 		native: "put on clothes",
 		vrn: { 'mi': [ 1 ] }
 	},
+	'ミㇰ':
+	{
+		alt: 'mik',
+		native: "(dog) barks, barks",
+		vrn: { 'mik': [ 1 ] }
+	},
+	'ミㇱム':
+	{
+		alt: 'mismu',
+		native: "I\'m lonely, I miss people, I\'m bored \' I came back to Japan after saying \"I miss you\", so I came up with this phrase (it\'s a lie!)",
+		vrn: { 'mismu': [ 1 ] }
+	},
 	'ミチ':
 	{
 		alt: 'mici',
@@ -4457,6 +5909,12 @@ const dictionary =
 		alt: 'micihi',
 		native: "their father",
 		vrn: { 'micihi': [ 1 ] }
+	},
+	'ミナ':
+	{
+		alt: 'mina',
+		native: "laugh smile smile",
+		vrn: { 'mina': [ 1 ] }
 	},
 	'ミピ':
 	{
@@ -4476,11 +5934,35 @@ const dictionary =
 		native: "Things to wear Clothes →cimip [Asahikawa]",
 		vrn: { 'mip': [ 1 ] }
 	},
+	'ミプポ':
+	{
+		alt: 'mippo',
+		native: "grandchild ((～) grandchild) \'Mippoho pirka aep ramma rura.\' \"grandchild often brings delicious food\"",
+		vrn: { 'mippo': [ 1 ] }
+	},
+	'ミムㇱ':
+	{
+		alt: 'mimus',
+		native: "fleshy, fattening, fattening",
+		vrn: { 'mimus': [ 1 ] }
+	},
 	'ミレ':
 	{
 		alt: 'mire',
 		native: "put (~ on ~)",
 		vrn: { 'mire': [ 1 ] }
+	},
+	'ミンタㇽ':
+	{
+		alt: 'mintar',
+		native: "Garden Outside court Square Earthen floor / God of the Hearth [Ishikari] / Toilet (toilet) [Shiraoi]",
+		vrn: { 'mintar': [ 1, 2, 3 ] }
+	},
+	'ムイェ':
+	{
+		alt: 'muye',
+		native: "bundle up bundle",
+		vrn: { 'muye': [ 1 ] }
 	},
 	'ムニン':
 	{
@@ -4488,11 +5970,29 @@ const dictionary =
 		native: "rot, funk, (trees, plants, etc.) rotting rotten →horse",
 		vrn: { 'munin': [ 1 ] }
 	},
+	'ムン':
+	{
+		alt: 'mun',
+		native: "Grass, weeds, Garbage, dust, rice husks \'Mun patcere kusu muy suyesuye.\' \"shake the winnow to blow away the rice husks\"",
+		vrn: { 'mun': [ 1 ] }
+	},
 	'メㇱパ':
 	{
 		alt: 'mespa',
 		native: "v.t. to cut off, to break, to clip, As:- \'Kisara mespa\' \"to cut off the ears as a punishment\"",
 		vrn: { 'mespa': [ 1 ] }
+	},
+	'メノコ':
+	{
+		alt: 'menoko',
+		native: "Woman [child of a woman], Ainu woman [Japanese]",
+		vrn: { 'menoko': [ 1 ] }
+	},
+	'モイレ':
+	{
+		alt: 'moyre',
+		native: "adv. slow / late, staying up late",
+		vrn: { 'moyre': [ 1, 2 ] }
 	},
 	'モコロ':
 	{
@@ -4506,11 +6006,23 @@ const dictionary =
 		native: "adj. another, other, besides",
 		vrn: { 'mosima': [ 1 ] }
 	},
+	'モㇱマ':
+	{
+		alt: 'mosma',
+		native: "Besides, in particular \'Apto as hi mosma, mak ku=ye kusu?\' \"What should I say other than it\'s raining?\" / ~ only \'sine pa mosma\' \"only for one year\"",
+		vrn: { 'mosma': [ 1, 2 ] }
+	},
 	'モシマノ':
 	{
 		alt: 'mosimano',
 		native: "in another way??? by itself???",
 		vrn: { 'mosimano': [ 1 ] }
+	},
+	'モㇱマノ':
+	{
+		alt: 'mosmano',
+		native: "besides, besides",
+		vrn: { 'mosmano': [ 1 ] }
 	},
 	'モシリ':
 	{
@@ -4554,6 +6066,12 @@ const dictionary =
 		native: "adv. peacefully (Sit quietly (cross-legged sitting is the formal way for men to sit, so people sit informally with their knees bent)",
 		vrn: { 'mono': [ 1 ] }
 	},
+	'モヨノ':
+	{
+		alt: 'moyono',
+		native: "(people/animals) few in number",
+		vrn: { 'moyono': [ 1 ] }
+	},
 	'モンヅㇺ':
 	{
 		alt: 'mondum',
@@ -4565,6 +6083,12 @@ const dictionary =
 		alt: 'ya',
 		native: "Climb / n. A net, spider web, As:- \'Ya amba\', \"the floats attached to a fish net\", \'Ya sittu\', \"the meshes of a net\", \'Ya oske\', \"to net\", \'Ya tambusi\', \"to mend a net\", \'Ya ereba\', \"to set a net in the sea\", \'Ya turuba\', \"to set a net from the seashore\" / n. Land, (as opposed to sea). A high rock. As: - \'Ya peka ek a, rep peka ek a?\' \"did you come by land or sea?\", \'Ya sos\', \"strata or layers of earth\" / part. This particle is often used at the end of a sentence to express interrogation; but when used after an answer to a question it becomes an affirmative particle, the difference in meaning being indicated by the tone of voice. Thus : - \'oman ya?\' \"has he gone?\", \'Oman ya\', \"he has gone.\" / post. whether, or, expressing doubts and assertions, \'E=kor unarpe hosipi ya?\' \"Has your aunt returned?\"",
 		vrn: { 'ya': [ 1, 2, 3, 4, 5 ] }
+	},
+	'ヤイィペレ':
+	{
+		alt: 'yayipere',
+		native: "work as much as you eat",
+		vrn: { 'yayipere': [ 1 ] }
 	},
 	'ヤイイライゲ':
 	{
@@ -4583,6 +6107,12 @@ const dictionary =
 		alt: 'yaikatanu',
 		native: "adj. polite, well behaved",
 		vrn: { 'yaikatanu': [ 1 ] }
+	},
+	'ヤイカㇽ':
+	{
+		alt: 'yaykar',
+		native: "transform, transform, change one\'s appearance",
+		vrn: { 'yaykar': [ 1 ] }
 	},
 	'ヤイコタ':
 	{
@@ -4626,12 +6156,6 @@ const dictionary =
 		native: "adv. carefully, with care",
 		vrn: { 'yaitubare': [ 1 ] }
 	},
-	'ヤイトゥバレノ':
-	{
-		alt: 'yaitubareno',
-		native: "adv. carefully, with care",
-		vrn: { 'yaitubareno': [ 1 ] }
-	},
 	'ヤイトゥワㇱカラプ':
 	{
 		alt: 'yaituwaskarap',
@@ -4646,12 +6170,6 @@ const dictionary =
 	},
 	'ヤイポプケレ':
 	{
-		alt: 'yaipopkere',
-		native: "v.t. to warm oneself",
-		vrn: { 'yaipopkere': [ 1 ] }
-	},
-	'ヤイポプケレ':
-	{
 		alt: 'yaypopkere',
 		native: "warm, warm the body",
 		vrn: { 'yaypopkere': [ 1 ] }
@@ -4662,11 +6180,11 @@ const dictionary =
 		native: "v.i. to be careful, to watch over one\'s self, to be circumspect, to be cautious, to pay attention",
 		vrn: { 'yairamatte': [ 1 ] }
 	},
-	'ヤイラㇺコイキ':
+	'ヤオッチコイキプ':
 	{
-		alt: 'yairamkoiki',
-		native: "v.i. to be in sorrow, to be distressed, to be out of spirits",
-		vrn: { 'yairamkoiki': [ 1 ] }
+		alt: 'yaotcikoykip',
+		native: "land game (animals of prey)",
+		vrn: { 'yaotcikoykip': [ 1 ] }
 	},
 	'ヤㇰ':
 	{
@@ -4686,17 +6204,17 @@ const dictionary =
 		native: "(even if) even if (even if) \'Upas as yakka, sonno k=ek kus ne wa.\' \"even if it snows, I\'ll come\"",
 		vrn: { 'yakka': [ 1 ] }
 	},
+	'ヤㇰネ':
+	{
+		alt: 'yakne',
+		native: "Assumptions and conditions that give rise to judgments of right and wrong. Expressing \"if..., if...\" / Same as yak (if, then, then) (assumptions that give rise to judgments of good and bad)",
+		vrn: { 'yakne': [ 1, 2 ] }
+	},
 	'ヤクン':
 	{
 		alt: 'yakun',
 		native: "(General assumption) If so, then \'E=arpa yakun e=eraman.\' \"You will understand when you go\"",
 		vrn: { 'yakun': [ 1 ] }
-	},
-	'ヤㇱパ':
-	{
-		alt: 'yaspa',
-		native: "v.t. to tear",
-		vrn: { 'yaspa': [ 1 ] }
 	},
 	'ヤラ':
 	{
@@ -4722,11 +6240,23 @@ const dictionary =
 		native: "a sacrificial offering???",
 		vrn: { 'yangep': [ 1 ] }
 	},
+	'ユㇰ':
+	{
+		alt: 'yuk',
+		native: "Deer [yuk generally refers to something that is prey. Also refers to bear. ＞",
+		vrn: { 'yuk': [ 1 ] }
+	},
 	'ユプケ':
 	{
 		alt: 'yupke',
 		native: "Strong, tight, tight \'Tanto rera yupke siri ne kusu, ikakustep kor wa arpa.\' \"It looks like it\'s going to be windy today, so bring your jacket.\"",
 		vrn: { 'yupke': [ 1 ] }
+	},
+	'ユペッ':
+	{
+		alt: 'yupet',
+		native: "Yubetsu [Place name]",
+		vrn: { 'yupet': [ 1 ] }
 	},
 	'ラ':
 	{
@@ -4739,6 +6269,18 @@ const dictionary =
 		alt: 'rai',
 		native: "death, die / terribly, violently (prefix before intransitive verb)",
 		vrn: { 'rai': [ 1, 2 ] }
+	},
+	'ライ':
+	{
+		alt: 'ray',
+		native: "death, die / terribly, violently (prefix before intransitive verb)",
+		vrn: { 'ray': [ 1, 2 ] }
+	},
+	'ライケ':
+	{
+		alt: 'rayke',
+		native: "kill (something) \'Kamuy or wa aynu a-rayke.\' \"A person was killed by a bear\", \'Urki ka tayki ka opitta a=rayke yak wen na.\' \"It\'s no good to kill everything, be it lice or fleas.\"",
+		vrn: { 'rayke': [ 1 ] }
 	},
 	'ラクダ':
 	{
@@ -4764,11 +6306,23 @@ const dictionary =
 		native: "Falling apart, falling apart, flopping",
 		vrn: { 'rapapse': [ 1 ] }
 	},
+	'ラプテ':
+	{
+		alt: 'rapte',
+		native: "[plural] put down (to) [Shizunai]",
+		vrn: { 'rapte': [ 1 ] }
+	},
 	'ラペㇺベ':
 	{
 		alt: 'rapembe',
 		native: "reed plant, thatch, cat-tail, reed mace",
 		vrn: { 'rapembe': [ 1 ] }
+	},
+	'ラポㇰケ':
+	{
+		alt: 'rapokke',
+		native: "Eventually, during that time, \'Rapokke ta menoko utar sito kar.\' \"In the meantime, the women make shito.\", \'Rapokke ta hos ka yar.\' \"Eventually, the leg ties also broke.\"",
+		vrn: { 'rapokke': [ 1 ] }
 	},
 	'ラポケタ':
 	{
@@ -4793,12 +6347,6 @@ const dictionary =
 		alt: 'ramu',
 		native: "n. and v.i. the mind, the soul, the seat of the feeling, to think, to understand, to consider, As: - \'Iteki anun siri ne ramu wa kore wa en kore\' \"please do not consider me a stranger\"",
 		vrn: { 'ramu': [ 1 ] }
-	},
-	'ラムオㇰナタラ':
-	{
-		alt: 'ramuoknatara',
-		native: "adj/v.t. to be unhappy",
-		vrn: { 'ramuoknatara': [ 1 ] }
 	},
 	'ラムオㇱマ':
 	{
@@ -4835,6 +6383,24 @@ const dictionary =
 		alt: 'range',
 		native: "part. this word has an adverbial force, As: - \'Kesto range\' \"daily\", \'Hembara ne yakka ene moire range\' \"he is always thus late\", \'Sinen range\' \"one by one\" / v.t. to let down, to unload",
 		vrn: { 'range': [ 1, 2 ] }
+	},
+	'ランケ':
+	{
+		alt: 'ranke',
+		native: "(after the verb) to do ~ many times (often) \'nanu pirpa ranke\' \"to wipe one\'s face often\" / A, B, repeat \'arpa ranke ek ranke\' \"going back and forth\"　 / Each time you do ~, sinep ranke (one by one) / Put down (from top to bottom, put things in high places down)",
+		vrn: { 'ranke': [ 1, 2, 3, 4 ] }
+	},
+	'リキン':
+	{
+		alt: 'rikin',
+		native: "go up, rise (to the sky)",
+		vrn: { 'rikin': [ 1 ] }
+	},
+	'リㇰ':
+	{
+		alt: 'rik',
+		native: "adv. above, over, high",
+		vrn: { 'rik': [ 1 ] }
 	},
 	'リㇰタ':
 	{
@@ -4878,11 +6444,23 @@ const dictionary =
 		native: "Does that mean? (When asking questions or checking) / Footprints / Status, place / Thick / adv. yes, it is, so, ruwe is sometimes used after a person has been speaking as a kind of doubtful affirmative particle. thus - \'ruwe?; \"is it so?\" syn : a. e. ruwe ne, ruwe ne wa, opunki / part. this word is often used as an affirmative ending to verbs, and is usually followed by \'ne\' or \'tap an na\', after nouns ruwe is preceded by ne, as:- \'ainu ne ruwe ne\', \"it is a man\" / ~ did",
 		vrn: { 'ruwe': [ 1, 2, 3, 4, 5, 6, 7 ] }
 	},
+	'ルㇱカ':
+	{
+		alt: 'ruska',
+		native: "get angry (at), get angry (at) →iruska (get angry at)",
+		vrn: { 'ruska': [ 1 ] }
+	},
 	'ルスイ':
 	{
 		alt: 'rusui',
 		native: "aux. to want to do something, feel like doing something",
 		vrn: { 'rusui': [ 1 ] }
+	},
+	'ルスイ':
+	{
+		alt: 'rusuy',
+		native: "aux. to want to do something, feel like doing something",
+		vrn: { 'rusuy': [ 1 ] }
 	},
 	'ルスイベ':
 	{
@@ -4896,6 +6474,12 @@ const dictionary =
 		native: "Gums / Meaning of \"to make each other ~\", \'Compare\' \"~\" with each other kiror (power) → ukirorpakte (to compare strength) / Name Name / Suffixes that form the causative form (to) / Three (no) \' Sanku no tei",
 		vrn: { 're': [ 1, 2, 3, 4, 5 ] }
 	},
+	'レイェプ':
+	{
+		alt: 'reyep',
+		native: "dog (polite expression) → seta",
+		vrn: { 'reyep': [ 1 ] }
+	},
 	'レイヘイ':
 	{
 		alt: 'reihei',
@@ -4908,11 +6492,23 @@ const dictionary =
 		native: "v.i. to stop or lodge at a place, to abide at a place",
 		vrn: { 'reusi': [ 1 ] }
 	},
+	'レウシ':
+	{
+		alt: 'rewsi',
+		native: "Stay overnight, spend the night (somewhere other than one\'s home) \'Tuymano an utar rewsipa.\' \"Those who live far away stayed overnight\"",
+		vrn: { 'rewsi': [ 1 ] }
+	},
 	'レㇱパ':
 	{
 		alt: 'respa',
 		native: "v.t. to raise (pl of resu)",
 		vrn: { 'respa': [ 1 ] }
+	},
+	'レス':
+	{
+		alt: 'resu',
+		native: "Raise, keep, feed, support",
+		vrn: { 'resu': [ 1 ] }
 	},
 	'レタラ':
 	{
@@ -4920,17 +6516,35 @@ const dictionary =
 		native: "adj. white",
 		vrn: { 'retara': [ 1 ] }
 	},
+	'レタㇽ':
+	{
+		alt: 'retar',
+		native: "white \' retar seta\' \"white dog\"",
+		vrn: { 'retar': [ 1 ] }
+	},
 	'レプトㇱ':
 	{
 		alt: 'reptos',
 		native: "small coins???",
 		vrn: { 'reptos': [ 1 ] }
 	},
+	'レポッチコイキプ':
+	{
+		alt: 'repotcikoykip',
+		native: "sea game (animals of prey)",
+		vrn: { 'repotcikoykip': [ 1 ] }
+	},
 	'レラ':
 	{
 		alt: 'rera',
 		native: "1. Wind 2. Epidemic disease (smallpox) / Obtain (buy) through trade / The wind blows, the wind rises \'Huci mawsiro akusu rera as.\' \"When the old woman whistles, the wind arises\" / no wind",
 		vrn: { 'rera': [ 1, 2, 3, 4 ] }
+	},
+	'レㇽコ':
+	{
+		alt: 'rerko',
+		native: "Three days (three days) [pronounced LEREKO]",
+		vrn: { 'rerko': [ 1 ] }
 	},
 	'レレコ':
 	{
@@ -4943,6 +6557,12 @@ const dictionary =
 		alt: 'rengaine',
 		native: "adv. as one likes, according to circumstance, As:- \'Ku rengaine hawe an?\' \"is it my fault (is it owing to me?)\"",
 		vrn: { 'rengaine': [ 1 ] }
+	},
+	'レンカイネ':
+	{
+		alt: 'renkayne',
+		native: "according to the will of God",
+		vrn: { 'renkayne': [ 1 ] }
 	},
 	'レンガプ':
 	{
@@ -4992,6 +6612,12 @@ const dictionary =
 		native: "Water, hot water (both cold and hot water, may include soft drinks and alcohol) Drinking hot water/tea → usey",
 		vrn: { 'wakka': [ 1 ] }
 	},
+	'ワㇰカタ':
+	{
+		alt: 'wakkata',
+		native: "Fetch water, Fetch water",
+		vrn: { 'wakkata': [ 1 ] }
+	},
 	'ワタ':
 	{
 		alt: 'wata',
@@ -5015,5 +6641,17 @@ const dictionary =
 		alt: 'wan',
 		native: "10~, 10 pieces~ \'wan sike\' \"10 pieces of luggage\" \'How does one mean ten? I don\'t ask about that (Towan), give it to me!",
 		vrn: { 'wan': [ 1 ] }
+	},
+	'ヲㇽ':
+	{
+		alt: 'wor',
+		native: "underwater",
+		vrn: { 'wor': [ 1 ] }
+	},
+	'ンタ':
+	{
+		alt: 'hnta',
+		native: "=hemanta What / =hunna, heta (prompting word) Come on.",
+		vrn: { 'hnta': [ 1, 2 ] }
 	}
 };
