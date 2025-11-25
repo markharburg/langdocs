@@ -129,6 +129,33 @@
 		}
 
 
+		/* Tone colorization — strong, distinct on white background */
+		.char-tone 
+		{
+			font-weight: 500;						/* make color pop */
+			padding: 0 0.05em;					 /* small breathing room */
+			border-radius: 3px;
+			display: inline-block;
+			line-height: 1;
+			/* subtle outline to help light colors on white */
+			text-shadow: 0 0 1px rgba(0,0,0,0.08);
+		}
+
+		/* tone-1: high (macron, e.g. "e") -> orange */
+		.tone-1 { color: #ff7f0e; }		/* orange */
+
+		/* tone-2: rising (acute, e.g. "á") -> green */
+		.tone-2 { color: #2ca02c; }		/* green */
+
+		/* tone-3: falling-rising (caron, e.g. "a") -> blue */
+		.tone-3 { color: #1f77b4; }		/* blue */
+
+		/* tone-4: falling (grave, e.g. "ù") -> red */
+		.tone-4 { color: #d62728; }		/* red */
+
+		/* optional: slightly dim neutral-tone text so colored tones pop */
+		.neutral-tone { color: #555; font-weight: 500; }
+
 	</style>
 	</head>
 	<body>
@@ -476,4 +503,5 @@
 
 	</body>
 </html>
+
 
