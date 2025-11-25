@@ -249,6 +249,22 @@ function renderSlide(slide)
 	}
 	panel.appendChild(sentenceEl);
 
+	// *** minimal addition: colorize tones if enabled and pinyin available ***
+
+	if (document.getElementById('toggleColorTone').checked)
+	{
+		showColorizedTones = true;
+	}
+	else
+	{
+		showColorizedTones = false;
+	}
+
+	if (typeof showColorizedTones !== 'undefined' && showColorizedTones && slide.alt)
+	{
+		colorizeTones(sentenceEl, slide.alt);
+	}
+
 	if ((document.getElementById('toggleAlt').checked) &&
 		(slide.alt))
 	{
@@ -292,6 +308,194 @@ function splitByLineLength(str, maxLength)
 	}
 	return result.trim(); // remove trailing newline
 }
+
+/**
+ * colorizeTones(sentenceEl, pinyin)
+ *
+ * sentenceEl: the container element (the <h2> element created in renderSlide)
+ * pinyin: the slide.alt string containing pinyin with diacritics
+ *
+ * This looks for the word spans (class 'word') that were created by renderSlide,
+ * finds their text nodes (the Chinese characters), and replaces each character
+ * with a small span that has a tone class (tone-1..tone-4) according to the
+ * diacritic on the next pinyin syllable.
+ */
+function colorizeTones(sentenceEl, pinyin)
+{
+	if (!sentenceEl || !pinyin) return;
+
+	const tonQltLst = splitPinyinToTonalQuality(pinyin);
+
+	// regex to extract pinyin syllables — ensures one syllable per match by requiring a diacritic vowel per syllable
+	// includes vowels with tone diacritics and ü/ǖ variants.
+	const syllableRegex = /[A-Za-z]*[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜü][A-Za-z]*/g;
+	const syllables = (pinyin.match(syllableRegex) || []).map(s => s.trim());
+
+	// helper: determine tone number from a pinyin syllable containing a diacritic vowel
+	function toneFromSyllable(syl)
+	{
+		// characters for each tone (diacritics)
+		const t1 = 'āēīōūǖ';
+		const t2 = 'áéíóúǘ';
+		const t3 = 'ǎěǐǒǔǚ';
+		const t4 = 'àèìòùǜ';
+		for (const ch of syl)
+		{
+			if (t1.indexOf(ch) >= 0) return 1;
+			if (t2.indexOf(ch) >= 0) return 2;
+			if (t3.indexOf(ch) >= 0) return 3;
+			if (t4.indexOf(ch) >= 0) return 4;
+		}
+		// if no diacritic present, treat as neutral (0)
+		return 0;
+	}
+
+	// utility to detect punctuation/whitespace (unicode aware)
+	// Uses Unicode property escape for punctuation; fall back to basic ASCII checks if unsupported.
+	let isPunctOrSpace;
+	try
+	{
+		// If the runtime supports \p{P}, use it.
+		const re = /\p{P}|\s/u;
+		isPunctOrSpace = ch => re.test(ch);
+	} catch (e)
+	{
+		// Fallback basic set (covers common Chinese punctuation too)
+		const fallback = /[\s\.,;:!?，。；：？！…—\-()（）〈〉「」『』“”"']/;
+		isPunctOrSpace = ch => fallback.test(ch);
+	}
+
+	// Iterate through each word span and replace only the text nodes (the Chinese characters)
+	let syllIdx = 0;
+	const wordSpans = sentenceEl.querySelectorAll('span.word');
+
+	wordSpans.forEach(wordSpan =>
+	{
+		// Find text nodes that contain the word characters (exclude the tooltip span)
+		// We'll gather child text nodes (nodeType === 3)
+		const childNodes = Array.from(wordSpan.childNodes);
+		childNodes.forEach(node =>
+		{
+			if (node.nodeType !== Node.TEXT_NODE) return; // leave non-text (tooltip span etc.) intact
+
+			const text = node.nodeValue;
+			if (!text) return;
+
+			const frag = document.createDocumentFragment();
+
+			for (let i = 0; i < text.length; i++)
+			{
+				const ch = text[i];
+
+				if (isPunctOrSpace(ch))
+				{
+					// keep punctuation/space as plain text or wrapped neutrally
+					const txt = document.createTextNode(ch);
+					frag.appendChild(txt);
+				} else
+				{
+					// get tone for this character from the current syllable (if available)
+//							const syl = syllables[syllIdx];
+//							const tone = syl ? toneFromSyllable(syl) : 0;
+					const tone = tonQltLst[syllIdx++];
+					// Only advance the syllable index when the character consumes one syllable.
+					// (We assume 1 character == 1 syllable mapping in most typical Mandarin text.)
+					// If there are more characters than syllables, remaining chars stay neutral.
+//							if (syl) syllIdx++;
+
+					const span = document.createElement('span');
+					span.textContent = ch;
+					span.classList.add('char-tone');
+
+					if (tone === 1) span.classList.add('tone-1');
+					else if (tone === 2) span.classList.add('tone-2');
+					else if (tone === 3) span.classList.add('tone-3');
+					else if (tone === 4) span.classList.add('tone-4');
+					else span.classList.add('neutral-tone');
+
+					frag.appendChild(span);
+				}
+			} // end for each char
+
+			// Replace original text node with the new fragment
+			wordSpan.replaceChild(frag, node);
+		}); // end text node loop
+	}); // end wordSpans loop
+}
+
+function splitPinyinToTonalQuality(input) 
+{
+	const retTonalQltLst = [];
+
+	// tone regexes mapping to quality number
+	const gPinyinToneRgx = 
+	{
+		"[āēīōūǖ]": 1,
+		"[áéíóúǘ]": 2,
+		"[ǎěǐǒǔǚ]": 3,
+		"[àèìòùǜ]": 4
+	};
+
+	// split into words (sequences containing vowels or consonants)
+	const words = input
+		.toLowerCase()
+		.split(/[^a-zāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/i)
+		.filter(Boolean);
+
+	for (let word of words) 
+	{
+		// insert '@' syllable dividers (repeat twice like in Perl)
+		for (let ii = 0; ii < 2; ii++) 
+		{
+			// vowel+cons + (sh/ch/zh + vowel)
+			word = word.replace(
+				/([aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ][qwrtypsdfghjklzxcvbnm]?)([szc]h[aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ])/gi,
+				"$1@$2"
+			);
+			// vowel+ng + cons
+			word = word.replace(
+				/([aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]ng)([qwrtypsdfghjklzxcvbnm])/gi,
+				"$1@$2"
+			);
+			// vowel + cons+vowel
+			word = word.replace(
+				/([aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ])([qwrtypsdfghjklzxcvbnm][aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ])/gi,
+				"$1@$2"
+			);
+			// vowel+cons + cons+vowel
+			word = word.replace(
+				/([aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ][qwrtypsdfghjklzxcvbnm])([qwrtypsdfghjklzxcvbnm][aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ])/gi,
+				"$1@$2"
+			);
+		}
+
+		const syllables = word.split("@");
+
+		for (let syl of syllables) 
+		{
+			if (!/[aeiouāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/i.test(syl)) 
+			{
+				continue; // no vowel at all → skip
+			}
+
+			let pyTonQlt = 5; // default no tone
+			for (let rgx in gPinyinToneRgx) 
+			{
+				const regex = new RegExp(rgx, "i");
+				if (regex.test(syl)) 
+				{
+					pyTonQlt = gPinyinToneRgx[rgx];
+					break;
+				}
+			}
+
+			retTonalQltLst.push(pyTonQlt);
+		}
+	}
+
+	return retTonalQltLst;
+}
+
 
 function doSpeak()
 {
