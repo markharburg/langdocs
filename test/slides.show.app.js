@@ -1019,6 +1019,11 @@ sentQuitQuizBtn.addEventListener('click', () =>
 	closeSentenceQuiz();
 });
 
+document.getElementById('toggleColorTone').addEventListener('change', () =>
+{
+	renderSlide(slideData[currentSlideNum]);
+});
+
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -1108,3 +1113,4 @@ function saveData(inKey, inData)
 	const ss = JSON.stringify(inData);
 	localStorage.setItem(inKey, ss);
 }
+
