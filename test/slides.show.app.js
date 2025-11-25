@@ -34,6 +34,8 @@ let currentWordOptLst = { };
 let gWrdOptsDiv;
 let gShowWrdOtpsBtn;
 
+let showColorizedTones = true;
+
 function initWebApp()
 {
 	wordTracker = loadData(wordStorageKey);
