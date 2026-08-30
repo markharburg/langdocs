@@ -906,6 +906,18 @@ function speakCurrentLine() {
     const utterance =
         new SpeechSynthesisUtterance(text);
 
+	utterance.lang = "en-US";
+
+	const voices = speechSynthesis.getVoices();
+
+	const englishVoice = voices.find(
+		voice => voice.lang.toLowerCase().startsWith("en")
+	);
+
+	if (englishVoice) {
+		utterance.voice = englishVoice;
+	}
+
 
     /*
         You can change these defaults if desired.
