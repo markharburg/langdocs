@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>Simple Text Editor</title>
+
+<style>
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        font-family: monospace;
+        background: white;
+    }
+
+    /*
+     * The entire page is the text canvas.
+     */
+    #editor {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        box-sizing: border-box;
+
+        border: none;
+        outline: none;
+        resize: none;
+
+        padding: 12px;
+
+        font-family: monospace;
+        font-size: 16px;
+        line-height: 1.3;
+
+        white-space: pre;
+
+        overflow-x: auto;
+        overflow-y: auto;
+
+        background: white;
+        color: black;
+    }
+
+
+    /*
+     * Popup menu container
+     */
+    #menuContainer {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+
+        z-index: 1000;
+    }
+
+
+    /*
+     * The round button which opens the menu.
+     */
+    #menuButton {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 50%;
+        border: 1px solid #666;
+
+        background: #eee;
+
+        font-family: sans-serif;
+        font-size: 22px;
+
+        cursor: pointer;
+
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+
+    #menuButton:hover {
+        background: #ddd;
+    }
+
+
+    /*
+     * Menu pops upward.
+     */
+    #popupMenu {
+        position: absolute;
+
+        right: 0;
+        bottom: 54px;
+
+        display: none;
+
+        min-width: 140px;
+
+        background: white;
+
+        border: 1px solid #888;
+        border-radius: 5px;
+
+        box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+
+        overflow: hidden;
+    }
+
+
+    #popupMenu button {
+        display: block;
+
+        width: 100%;
+
+        padding: 8px 14px;
+
+        border: none;
+        border-bottom: 1px solid #ddd;
+
+        background: white;
+
+        font-family: sans-serif;
+        font-size: 14px;
+
+        text-align: left;
+
+        cursor: pointer;
+    }
+
+
+    #popupMenu button:last-child {
+        border-bottom: none;
+    }
+
+
+    #popupMenu button:hover {
+        background: #eee;
+    }
+
+
+    /*
+     * Hidden file input used by Upload.
+     */
+    #fileInput {
+        display: none;
+    }
+
+</style>
+</head>
+
+
+<body>
+
+<textarea id="editor" spellcheck="false"></textarea>
+
+<input type="file" id="fileInput" accept=".txt,text/plain">
+
+
+<div id="menuContainer">
+
+    <div id="popupMenu">
+
+        <button data-action="upload">upload</button>
+        <button data-action="download">download</button>
+
+        <button data-action="zoomIn">zoom in</button>
+        <button data-action="zoomOut">zoom out</button>
+        <button data-action="recenter">recenter</button>
+
+        <button data-action="copy">copy</button>
+        <button data-action="paste">paste</button>
+
+        <button data-action="undo">undo</button>
+        <button data-action="redo">redo</button>
+
+        <button data-action="all">all</button>
+        <button data-action="tab">tab</button>
+
+    </div>
+
+    <button id="menuButton">☰</button>
+
+</div>
+
+
+<script>
+
+/********************************************************************
+ *
+ * CONFIGURATION
+ *
+ ********************************************************************/
+
+/*
+ * Normal zoom level.
+ */
+const NORMAL_ZOOM = 16;
+
+
+/*
+ * Minimum and maximum allowed zoom.
+ *
+ * Change these values to whatever range you want.
+ */
+const MIN_ZOOM = 8;
+const MAX_ZOOM = 48;
+
+
+/*
+ * Amount of zoom change per operation.
+ */
+const ZOOM_STEP = 2;
+
+
+/*
+ * localStorage key.
+ */
+const STORAGE_KEY = "simpleTextEditor.text";
+
+
+/*
+ * Maximum number of entries kept in our own undo stack.
+ */
+const MAX_UNDO = 200;
+
+
+/********************************************************************
+ *
+ * GLOBAL STATE
+ *
+ ********************************************************************/
+
+const editor = document.getElementById("editor");
+const fileInput = document.getElementById("fileInput");
+
+const menuButton = document.getElementById("menuButton");
+const popupMenu = document.getElementById("popupMenu");
+
+let zoom = NORMAL_ZOOM;
+
+
+/*
+ * Our own undo/redo stacks.
+ *
+ * Each entry contains:
+ *
+ *     text
+ *     selectionStart
+ *     selectionEnd
+ *
+ * This allows the cursor/selection to be restored as well.
+ */
+let undoStack = [];
+let redoStack = [];
+
+
+/*
+ * Used to prevent an undo operation from itself creating
+ * another undo entry.
+ */
+let restoringHistory = false;
+
+
+/********************************************************************
+ *
+ * PERSISTENCE
+ *
+ ********************************************************************/
+
+/*
+ * Save the current text to localStorage.
+ */
+function persistText() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        editor.value
+    );
+
+}
+
+
+/*
+ * Load the previously saved text.
+ */
+function loadPersistedText() {
+
+    const savedText = localStorage.getItem(STORAGE_KEY);
+
+    if (savedText !== null) {
+        editor.value = savedText;
+    }
+
+}
+
+
+/********************************************************************
+ *
+ * UNDO / REDO
+ *
+ ********************************************************************/
+
+/*
+ * Return a snapshot of the current editor state.
+ */
+function getSnapshot() {
+
+    return {
+        text: editor.value,
+        selectionStart: editor.selectionStart,
+        selectionEnd: editor.selectionEnd
+    };
+
+}
+
+
+/*
+ * Restore an editor snapshot.
+ */
+function restoreSnapshot(snapshot) {
+
+    restoringHistory = true;
+
+    editor.value = snapshot.text;
+
+    editor.selectionStart = Math.min(
+        snapshot.selectionStart,
+        editor.value.length
+    );
+
+    editor.selectionEnd = Math.min(
+        snapshot.selectionEnd,
+        editor.value.length
+    );
+
+    restoringHistory = false;
+
+}
+
+
+/*
+ * Record a new editing state.
+ *
+ * We use the input event, which fires after normal text editing,
+ * typing, deletion, etc.
+ */
+function recordEdit(previousSnapshot) {
+
+    if (restoringHistory) {
+        return;
+    }
+
+    /*
+     * Don't create a history entry if nothing actually changed.
+     */
+    if (previousSnapshot.text === editor.value) {
+        return;
+    }
+
+    undoStack.push(previousSnapshot);
+
+    if (undoStack.length > MAX_UNDO) {
+        undoStack.shift();
+    }
+
+    /*
+     * Once a new edit occurs, the redo branch disappears.
+     */
+    redoStack = [];
+
+    persistText();
+
+}
+
+
+/*
+ * Undo.
+ */
+function undo() {
+
+    if (undoStack.length === 0) {
+        return;
+    }
+
+    const current = getSnapshot();
+
+    const previous = undoStack.pop();
+
+    redoStack.push(current);
+
+    restoreSnapshot(previous);
+
+    persistText();
+
+}
+
+
+/*
+ * Redo.
+ */
+function redo() {
+
+    if (redoStack.length === 0) {
+        return;
+    }
+
+    const current = getSnapshot();
+
+    const next = redoStack.pop();
+
+    undoStack.push(current);
+
+    restoreSnapshot(next);
+
+    persistText();
+
+}
+
+
+/********************************************************************
+ *
+ * TRACK TEXT EDITS
+ *
+ ********************************************************************/
+
+/*
+ * We need the state immediately before an edit.
+ *
+ * Taking the snapshot on keydown works well for ordinary keyboard
+ * editing. Clipboard operations are handled separately below.
+ */
+let pendingEditSnapshot = null;
+
+
+editor.addEventListener("keydown", function(event) {
+
+    /*
+     * Don't capture Ctrl-Z / Ctrl-Y as ordinary edits.
+     */
+    if (
+        (event.ctrlKey || event.metaKey) &&
+        (
+            event.key.toLowerCase() === "z" ||
+            event.key.toLowerCase() === "y"
+        )
+    ) {
+        return;
+    }
+
+    /*
+     * Tab is handled specially.
+     */
+    if (event.key === "Tab") {
+        event.preventDefault();
+
+        const before = getSnapshot();
+
+        insertTextAtCursor("\t");
+
+        recordEdit(before);
+
+        return;
+    }
+
+
+    /*
+     * Keys that can modify text.
+     */
+    const editingKeys = [
+        "Backspace",
+        "Delete",
+        "Enter"
+    ];
+
+    if (
+        editingKeys.includes(event.key) ||
+        event.key.length === 1
+    ) {
+        pendingEditSnapshot = getSnapshot();
+    }
+
+});
+
+
+editor.addEventListener("input", function() {
+
+    if (restoringHistory) {
+        return;
+    }
+
+    if (pendingEditSnapshot !== null) {
+
+        recordEdit(pendingEditSnapshot);
+
+        pendingEditSnapshot = null;
+
+    } else {
+
+        /*
+         * This catches edits initiated by mechanisms other than
+         * the keyboard.
+         */
+        persistText();
+
+    }
+
+});
+
+
+/*
+ * Standard keyboard undo/redo.
+ */
+editor.addEventListener("keydown", function(event) {
+
+    if ((event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "z") {
+
+        event.preventDefault();
+
+        undo();
+
+        return;
+    }
+
+
+    if ((event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "y") {
+
+        event.preventDefault();
+
+        redo();
+
+        return;
+    }
+
+});
+
+
+/********************************************************************
+ *
+ * TEXT INSERTION
+ *
+ ********************************************************************/
+
+/*
+ * Insert text at the current cursor/selection.
+ *
+ * If text is selected, it is replaced.
+ */
+function insertTextAtCursor(text) {
+
+    const start = editor.selectionStart;
+    const end = editor.selectionEnd;
+
+    const oldText = editor.value;
+
+    editor.value =
+        oldText.substring(0, start) +
+        text +
+        oldText.substring(end);
+
+
+    const newCursorPosition = start + text.length;
+
+    editor.selectionStart = newCursorPosition;
+    editor.selectionEnd = newCursorPosition;
+
+    editor.focus();
+
+}
+
+
+/********************************************************************
+ *
+ * COPY
+ *
+ ********************************************************************/
+
+function copySelectedText() {
+
+    const selectedText =
+        editor.value.substring(
+            editor.selectionStart,
+            editor.selectionEnd
+        );
+
+    if (selectedText.length === 0) {
+        return;
+    }
+
+
+    /*
+     * Modern Clipboard API.
+     */
+    if (navigator.clipboard &&
+        navigator.clipboard.writeText) {
+
+        navigator.clipboard.writeText(selectedText)
+            .catch(function() {
+                fallbackCopy();
+            });
+
+        return;
+    }
+
+
+    fallbackCopy();
+
+}
+
+
+/*
+ * Fallback copy method.
+ */
+function fallbackCopy() {
+
+    editor.focus();
+
+    document.execCommand("copy");
+
+}
+
+
+/********************************************************************
+ *
+ * PASTE
+ *
+ ********************************************************************/
+
+async function pasteFromClipboard() {
+
+    /*
+     * Save the state before the paste.
+     */
+    const before = getSnapshot();
+
+    try {
+
+        const text =
+            await navigator.clipboard.readText();
+
+        insertTextAtCursor(text);
+
+        recordEdit(before);
+
+    }
+    catch (error) {
+
+        /*
+         * Clipboard API may be unavailable depending on browser
+         * security restrictions.
+         */
+        alert(
+            "The browser did not allow clipboard access. " +
+            "You can use the normal Ctrl+V keyboard shortcut instead."
+        );
+
+    }
+
+}
+
+
+/********************************************************************
+ *
+ * SELECT ALL
+ *
+ ********************************************************************/
+
+function selectAllText() {
+
+    editor.focus();
+
+    editor.select();
+
+}
+
+
+/********************************************************************
+ *
+ * ZOOM
+ *
+ ********************************************************************/
+
+function applyZoom() {
+
+    editor.style.fontSize = zoom + "px";
+
+}
+
+
+/*
+ * Zoom in.
+ */
+function zoomIn() {
+
+    zoom += ZOOM_STEP;
+
+    if (zoom > MAX_ZOOM) {
+        zoom = MAX_ZOOM;
+    }
+
+    applyZoom();
+
+}
+
+
+/*
+ * Zoom out.
+ */
+function zoomOut() {
+
+    zoom -= ZOOM_STEP;
+
+    if (zoom < MIN_ZOOM) {
+        zoom = MIN_ZOOM;
+    }
+
+    applyZoom();
+
+}
+
+
+/*
+ * Return to normal zoom.
+ */
+function recenter() {
+
+    zoom = NORMAL_ZOOM;
+
+    applyZoom();
+
+}
+
+
+/********************************************************************
+ *
+ * FILE UPLOAD
+ *
+ ********************************************************************/
+
+function uploadFile() {
+
+    fileInput.value = "";
+
+    fileInput.click();
+
+}
+
+
+fileInput.addEventListener("change", function() {
+
+    if (!fileInput.files ||
+        fileInput.files.length === 0) {
+
+        return;
+    }
+
+    const file = fileInput.files[0];
+
+    const reader = new FileReader();
+
+
+    reader.onload = function(event) {
+
+        const before = getSnapshot();
+
+        editor.value = event.target.result;
+
+        editor.selectionStart = 0;
+        editor.selectionEnd = 0;
+
+        undoStack.push(before);
+
+        redoStack = [];
+
+        persistText();
+
+        editor.focus();
+
+    };
+
+
+    reader.readAsText(file);
+
+});
+
+
+/********************************************************************
+ *
+ * FILE DOWNLOAD
+ *
+ ********************************************************************/
+
+function downloadFile() {
+
+    const blob = new Blob(
+        [editor.value],
+        {
+            type: "text/plain;charset=utf-8"
+        }
+    );
+
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    link.download = "text.txt";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/********************************************************************
+ *
+ * POPUP MENU
+ *
+ ********************************************************************/
+
+menuButton.addEventListener("click", function(event) {
+
+    event.stopPropagation();
+
+    if (popupMenu.style.display === "block") {
+        popupMenu.style.display = "none";
+    }
+    else {
+        popupMenu.style.display = "block";
+    }
+
+});
+
+
+/*
+ * Clicking outside the menu closes it.
+ */
+document.addEventListener("click", function() {
+
+    popupMenu.style.display = "none";
+
+});
+
+
+/*
+ * Don't let clicks inside the popup close it before the
+ * selected operation runs.
+ */
+popupMenu.addEventListener("click", function(event) {
+
+    event.stopPropagation();
+
+});
+
+
+/********************************************************************
+ *
+ * MENU ACTIONS
+ *
+ ********************************************************************/
+
+popupMenu.addEventListener("click", function(event) {
+
+    const button =
+        event.target.closest("button");
+
+    if (!button) {
+        return;
+    }
+
+    const action =
+        button.dataset.action;
+
+
+    switch (action) {
+
+        case "upload":
+            uploadFile();
+            break;
+
+        case "download":
+            downloadFile();
+            break;
+
+        case "zoomIn":
+            zoomIn();
+            break;
+
+        case "zoomOut":
+            zoomOut();
+            break;
+
+        case "recenter":
+            recenter();
+            break;
+
+        case "copy":
+            copySelectedText();
+            break;
+
+        case "paste":
+            pasteFromClipboard();
+            break;
+
+        case "undo":
+            undo();
+            break;
+
+        case "redo":
+            redo();
+            break;
+
+        case "all":
+            selectAllText();
+            break;
+
+        case "tab": {
+
+            const before = getSnapshot();
+
+            insertTextAtCursor("\t");
+
+            recordEdit(before);
+
+            break;
+        }
+
+    }
+
+
+    /*
+     * Leave the menu open for repeated operations such as
+     * zooming, but close it for file operations.
+     */
+    if (
+        action === "upload" ||
+        action === "download"
+    ) {
+        popupMenu.style.display = "none";
+    }
+
+});
+
+
+/********************************************************************
+ *
+ * INITIALIZATION
+ *
+ ********************************************************************/
+
+loadPersistedText();
+
+applyZoom();
+
+editor.focus();
+
+</script>
+
+</body>
+</html>
