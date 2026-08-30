@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Text Reader</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: monospace;
+        background: white;
+        color: black;
+    }
+
+    /* Main reading area */
+    #reader {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        padding: 20px 30px 100px 30px;
+
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    /* One displayed sentence */
+    .line {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        padding: 2px 0;
+    }
+
+    .line-number {
+        flex: 0 0 auto;
+        width: 55px;
+        margin-right: 12px;
+
+        text-align: right;
+
+        color: #666;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .line-number:hover {
+        color: black;
+        text-decoration: underline;
+    }
+
+    .line-text {
+        flex: 1 1 auto;
+        min-width: 0;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    /* Current line */
+    .line.current .line-text {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    /* Floating menu */
+    #menu-container {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 1000;
+    }
+
+    #menu-button {
+        width: 48px;
+        height: 48px;
+
+        border: 1px solid #555;
+        border-radius: 50%;
+
+        background: white;
+        color: black;
+
+        font-family: monospace;
+        font-size: 22px;
+
+        cursor: pointer;
+
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    #menu-button:hover {
+        background: #eee;
+    }
+
+    /* Menu items pop upward from the button */
+    #menu {
+        position: absolute;
+        right: 0;
+        bottom: 58px;
+
+        display: none;
+
+        min-width: 150px;
+
+        border: 1px solid #777;
+        background: white;
+
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    #menu.open {
+        display: block;
+    }
+
+    .menu-item {
+        width: 100%;
+        padding: 9px 14px;
+
+        border: 0;
+        border-bottom: 1px solid #ddd;
+
+        background: white;
+        color: black;
+
+        font-family: monospace;
+        font-size: 15px;
+
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .menu-item:last-child {
+        border-bottom: none;
+    }
+
+    .menu-item:hover {
+        background: #eee;
+    }
+
+    .menu-status {
+        padding: 8px 14px;
+        border-bottom: 1px solid #ddd;
+
+        font-size: 13px;
+        color: #555;
+
+        cursor: default;
+    }
+
+    /* Hidden file input */
+    #file-input {
+        display: none;
+    }
+
+    /* Dialog */
+    #dialog-overlay {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        z-index: 2000;
+
+        background: rgba(0,0,0,0.25);
+    }
+
+    #dialog-overlay.open {
+        display: flex;
+    }
+
+    #jump-dialog {
+        width: 300px;
+        padding: 20px;
+
+        border: 1px solid #555;
+        background: white;
+
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+        font-family: monospace;
+    }
+
+    #jump-dialog h3 {
+        margin: 0 0 15px 0;
+        font-size: 17px;
+    }
+
+    #jump-dialog p {
+        margin: 8px 0;
+    }
+
+    #jump-input {
+        width: 100%;
+        padding: 6px;
+
+        border: 1px solid #777;
+
+        font-family: monospace;
+        font-size: 16px;
+    }
+
+    #dialog-buttons {
+        margin-top: 15px;
+        text-align: right;
+    }
+
+    #dialog-buttons button {
+        margin-left: 8px;
+        padding: 6px 14px;
+
+        font-family: monospace;
+        cursor: pointer;
+    }
+
+    /* Empty state */
+    #empty-message {
+        color: #666;
+        font-style: italic;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="reader"></div>
+
+<input
+    type="file"
+    id="file-input"
+    accept=".txt,text/plain"
+>
+
+<div id="menu-container">
+
+    <div id="menu">
+
+        <div class="menu-status" id="status">
+            Paused
+        </div>
+
+        <button class="menu-item" id="upload-button">
+            Upload
+        </button>
+
+        <button class="menu-item" id="jump-button">
+            Jump
+        </button>
+
+        <button class="menu-item" id="line-number-button">
+            Line-numbers: On
+        </button>
+
+        <button class="menu-item" id="start-button">
+            Start
+        </button>
+
+        <button class="menu-item" id="stop-button">
+            Stop
+        </button>
+
+    </div>
+
+    <button id="menu-button" title="Menu">
+        ☰
+    </button>
+
+</div>
+
+
+<!-- Jump dialog -->
+
+<div id="dialog-overlay">
+
+    <div id="jump-dialog">
+
+        <h3>Jump to Line</h3>
+
+        <p>
+            Enter a line number from
+            <span id="line-range"></span>.
+        </p>
+
+        <input
+            type="number"
+            id="jump-input"
+            min="1"
+            step="1"
+        >
+
+        <div id="dialog-buttons">
+            <button id="jump-cancel">Cancel</button>
+            <button id="jump-ok">Ok</button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+"use strict";
+
+/*
+    ============================================================
+    Persistent application state
+    ============================================================
+*/
+
+const STORAGE_TEXT = "simpleReader_text";
+const STORAGE_CURRENT_LINE = "simpleReader_currentLine";
+const STORAGE_LINE_NUMBERS = "simpleReader_lineNumbers";
+
+
+let sourceText = "";
+
+let displaySentences = [];
+let spokenSentences = [];
+
+let currentLine = 0;
+
+let lineNumbersVisible = true;
+
+let reading = false;
+
+
+/*
+    ============================================================
+    DOM references
+    ============================================================
+*/
+
+const reader = document.getElementById("reader");
+
+const fileInput = document.getElementById("file-input");
+
+const menuButton = document.getElementById("menu-button");
+const menu = document.getElementById("menu");
+
+const uploadButton = document.getElementById("upload-button");
+const jumpButton = document.getElementById("jump-button");
+const lineNumberButton =
+    document.getElementById("line-number-button");
+
+const startButton = document.getElementById("start-button");
+const stopButton = document.getElementById("stop-button");
+
+const statusElement = document.getElementById("status");
+
+const dialogOverlay =
+    document.getElementById("dialog-overlay");
+
+const lineRange =
+    document.getElementById("line-range");
+
+const jumpInput =
+    document.getElementById("jump-input");
+
+const jumpCancel =
+    document.getElementById("jump-cancel");
+
+const jumpOk =
+    document.getElementById("jump-ok");
+
+
+/*
+    ============================================================
+    Initialization
+    ============================================================
+*/
+
+window.addEventListener("load", function() {
+
+    loadState();
+
+    renderReader();
+
+    updateMenu();
+
+});
+
+
+/*
+    ============================================================
+    Persistent state
+    ============================================================
+*/
+
+function loadState() {
+
+    sourceText = localStorage.getItem(STORAGE_TEXT) || "";
+
+    let savedLine =
+        localStorage.getItem(STORAGE_CURRENT_LINE);
+
+    if (savedLine !== null) {
+        currentLine = parseInt(savedLine, 10);
+
+        if (isNaN(currentLine)) {
+            currentLine = 0;
+        }
+    }
+
+    let savedLineNumbers =
+        localStorage.getItem(STORAGE_LINE_NUMBERS);
+
+    if (savedLineNumbers !== null) {
+        lineNumbersVisible =
+            savedLineNumbers === "true";
+    }
+
+    if (sourceText.length > 0) {
+
+        createSentenceLists();
+
+        if (displaySentences.length === 0) {
+            currentLine = 0;
+        }
+        else if (currentLine >= displaySentences.length) {
+            currentLine = displaySentences.length - 1;
+        }
+    }
+}
+
+
+function saveText() {
+
+    localStorage.setItem(STORAGE_TEXT, sourceText);
+}
+
+
+function saveCurrentLine() {
+
+    localStorage.setItem(
+        STORAGE_CURRENT_LINE,
+        String(currentLine)
+    );
+}
+
+
+function saveLineNumberSetting() {
+
+    localStorage.setItem(
+        STORAGE_LINE_NUMBERS,
+        String(lineNumbersVisible)
+    );
+}
+
+
+/*
+    ============================================================
+    Sentence processing
+    ============================================================
+*/
+
+
+/*
+    Split source text into sentences.
+
+    This deliberately uses a relatively simple sentence splitter.
+    It recognizes '.', '!', '?' and their common combinations.
+
+    Newlines are also treated as potential sentence boundaries.
+*/
+
+function splitIntoSentences(text) {
+
+    if (!text) {
+        return [];
+    }
+
+    /*
+        Normalize line endings.
+    */
+    text = text.replace(/\r\n/g, "\n");
+    text = text.replace(/\r/g, "\n");
+
+    /*
+        Split after sentence-ending punctuation.
+
+        Example:
+
+            Hello there. How are you?
+
+        becomes:
+
+            Hello there.
+            How are you?
+    */
+
+    let pieces =
+        text.match(
+            /[^.!?\n]+(?:[.!?]+|$)/g
+        ) || [];
+
+    let result = [];
+
+    for (let piece of pieces) {
+
+        piece = piece.trim();
+
+        if (piece.length > 0) {
+            result.push(piece);
+        }
+    }
+
+    /*
+        Lines that didn't contain sentence punctuation
+        are retained as sentences.
+    */
+
+    return result;
+}
+
+
+/*
+    Create the two parallel sentence lists.
+
+        displaySentences
+            Original sentence text.
+
+        spokenSentences
+            Cleaned version intended for speech synthesis.
+*/
+
+function createSentenceLists() {
+
+    displaySentences =
+        splitIntoSentences(sourceText);
+
+    spokenSentences =
+        displaySentences.map(
+            function(sentence) {
+                return cleanForSpeech(sentence);
+            }
+        );
+}
+
+
+/*
+    Clean a sentence for speech synthesis.
+
+    The intent is to retain ordinary spoken material while
+    removing unusual symbols.
+
+    Examples:
+
+        "John's book — #2"
+            -> "John's book 2"
+
+        "(Hello!)"
+            -> "Hello!"
+
+    Apostrophes inside words are retained.
+
+    Numbers are retained when they occur as independent
+    numeric tokens.
+
+    Basic punctuation is retained.
+*/
+
+function cleanForSpeech(sentence) {
+
+    /*
+        Normalize various Unicode apostrophes to "'".
+    */
+
+    sentence =
+        sentence.replace(/[‘’‛′]/g, "'");
+
+
+    /*
+        Normalize quotation marks.
+    */
+
+    sentence =
+        sentence.replace(/[“”„‟]/g, '"');
+
+
+    /*
+        Keep:
+          A-Z / a-z
+          digits
+          whitespace
+          apostrophe
+          quotation mark
+          basic punctuation
+    */
+
+    sentence =
+        sentence.replace(
+            /[^A-Za-z0-9\s'",.!?;:()-]/g,
+            " "
+        );
+
+
+    /*
+        Remove hyphens when they are being used as
+        unusual dashes.
+
+        Keep ordinary hyphenated words.
+    */
+
+    sentence =
+        sentence.replace(/\s*[-–—]\s*/g, " ");
+
+
+    /*
+        Collapse repeated whitespace.
+    */
+
+    sentence =
+        sentence.replace(/\s+/g, " ").trim();
+
+
+    return sentence;
+}
+
+
+/*
+    ============================================================
+    Rendering
+    ============================================================
+*/
+
+function renderReader() {
+
+    reader.innerHTML = "";
+
+    if (displaySentences.length === 0) {
+
+        const message =
+            document.createElement("div");
+
+        message.id = "empty-message";
+
+        message.textContent =
+            "Upload a text file to begin.";
+
+        reader.appendChild(message);
+
+        return;
+    }
+
+
+    for (
+        let i = 0;
+        i < displaySentences.length;
+        i++
+    ) {
+
+        const line =
+            document.createElement("div");
+
+        line.className = "line";
+
+        if (i === currentLine) {
+            line.classList.add("current");
+        }
+
+
+        /*
+            Line number
+        */
+
+        if (lineNumbersVisible) {
+
+            const number =
+                document.createElement("div");
+
+            number.className = "line-number";
+
+            /*
+                User-facing numbers are 1-based.
+                currentLine itself remains zero-based.
+            */
+
+            number.textContent = String(i + 1);
+
+            number.addEventListener(
+                "click",
+                function() {
+                    setCurrentLine(i);
+                }
+            );
+
+            line.appendChild(number);
+        }
+
+
+        /*
+            Sentence text
+        */
+
+        const text =
+            document.createElement("div");
+
+        text.className = "line-text";
+
+        text.textContent =
+            displaySentences[i];
+
+        line.appendChild(text);
+
+
+        reader.appendChild(line);
+    }
+
+
+    /*
+        Center the current line vertically if possible.
+    */
+
+    scrollCurrentLineIntoView();
+}
+
+
+/*
+    ============================================================
+    Current line
+    ============================================================
+*/
+
+function setCurrentLine(index) {
+
+    if (displaySentences.length === 0) {
+        currentLine = 0;
+        return;
+    }
+
+    if (index < 0) {
+        index = 0;
+    }
+
+    if (index >= displaySentences.length) {
+        index = displaySentences.length - 1;
+    }
+
+    currentLine = index;
+
+    saveCurrentLine();
+
+    renderReader();
+}
+
+
+/*
+    Scroll current line approximately to the vertical
+    center of the reader.
+*/
+
+function scrollCurrentLineIntoView() {
+
+    const current =
+        reader.querySelector(".line.current");
+
+    if (!current) {
+        return;
+    }
+
+
+    const readerRect =
+        reader.getBoundingClientRect();
+
+    const lineRect =
+        current.getBoundingClientRect();
+
+
+    /*
+        Position of line relative to reader's visible area.
+    */
+
+    const lineCenter =
+        lineRect.top + lineRect.height / 2;
+
+    const readerCenter =
+        readerRect.top + readerRect.height / 2;
+
+    const difference =
+        lineCenter - readerCenter;
+
+
+    /*
+        Adjust only when scrolling is possible.
+    */
+
+    if (reader.scrollHeight > reader.clientHeight) {
+
+        reader.scrollTop += difference;
+    }
+}
+
+
+/*
+    ============================================================
+    Reading / speech
+    ============================================================
+*/
+
+function startReading() {
+
+    if (displaySentences.length === 0) {
+        return;
+    }
+
+    if (reading) {
+        return;
+    }
+
+    reading = true;
+
+    updateMenu();
+
+    speakCurrentLine();
+}
+
+
+function stopReading() {
+
+    reading = false;
+
+    /*
+        Cancel any currently spoken utterance.
+    */
+
+    window.speechSynthesis.cancel();
+
+    updateMenu();
+}
+
+
+/*
+    Speak the current sentence.
+
+    The next line is selected only after the current
+    utterance has completed.
+*/
+
+function speakCurrentLine() {
+
+    if (!reading) {
+        return;
+    }
+
+
+    /*
+        End of document.
+    */
+
+    if (
+        currentLine < 0 ||
+        currentLine >= spokenSentences.length
+    ) {
+
+        reading = false;
+
+        updateMenu();
+
+        return;
+    }
+
+
+    const text =
+        spokenSentences[currentLine];
+
+
+    /*
+        If the cleaning process produced nothing,
+        simply move to the next line.
+    */
+
+    if (!text) {
+
+        advanceLine();
+
+        return;
+    }
+
+
+    /*
+        Re-render so the current line is visible before
+        speech begins.
+    */
+
+    renderReader();
+
+
+    const utterance =
+        new SpeechSynthesisUtterance(text);
+
+
+    /*
+        You can change these defaults if desired.
+    */
+
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+
+
+    utterance.onend = function() {
+
+        /*
+            Stop may have been pressed while speech was
+            occurring. In that case don't advance.
+        */
+
+        if (!reading) {
+            return;
+        }
+
+        advanceLine();
+    };
+
+
+    utterance.onerror = function(event) {
+
+        console.log(
+            "Speech synthesis error:",
+            event.error
+        );
+
+        /*
+            Do not continue automatically on a speech
+            synthesis error.
+        */
+
+        reading = false;
+
+        updateMenu();
+    };
+
+
+    window.speechSynthesis.speak(utterance);
+}
+
+
+/*
+    Move to the next line and persist the position.
+*/
+
+function advanceLine() {
+
+    currentLine++;
+
+    /*
+        Persist immediately.
+
+        This means that if the browser is closed after a
+        sentence has completed, reopening the application
+        starts at the next sentence.
+    */
+
+    saveCurrentLine();
+
+
+    /*
+        End of document.
+    */
+
+    if (currentLine >= displaySentences.length) {
+
+        currentLine =
+            displaySentences.length - 1;
+
+        saveCurrentLine();
+
+        reading = false;
+
+        renderReader();
+
+        updateMenu();
+
+        return;
+    }
+
+
+    renderReader();
+
+    speakCurrentLine();
+}
+
+
+/*
+    ============================================================
+    File upload
+    ============================================================
+*/
+
+uploadButton.addEventListener(
+    "click",
+    function() {
+
+        fileInput.click();
+
+        closeMenu();
+    }
+);
+
+
+fileInput.addEventListener(
+    "change",
+    function(event) {
+
+        const file =
+            event.target.files[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        const readerObject =
+            new FileReader();
+
+
+        readerObject.onload =
+            function(e) {
+
+                /*
+                    Stop any existing reading.
+                */
+
+                stopReading();
+
+
+                sourceText =
+                    e.target.result;
+
+
+                /*
+                    Store complete source text.
+                */
+
+                saveText();
+
+
+                /*
+                    Build sentence lists.
+                */
+
+                createSentenceLists();
+
+
+                /*
+                    A new document starts at line zero.
+                */
+
+                currentLine = 0;
+
+                saveCurrentLine();
+
+
+                renderReader();
+
+                updateMenu();
+            };
+
+
+        readerObject.readAsText(file);
+
+
+        /*
+            Allow selecting the same file again later.
+        */
+
+        fileInput.value = "";
+    }
+);
+
+
+/*
+    ============================================================
+    Line-number toggle
+    ============================================================
+*/
+
+lineNumberButton.addEventListener(
+    "click",
+    function() {
+
+        lineNumbersVisible =
+            !lineNumbersVisible;
+
+        saveLineNumberSetting();
+
+        renderReader();
+
+        updateMenu();
+    }
+);
+
+
+/*
+    ============================================================
+    Jump dialog
+    ============================================================
+*/
+
+jumpButton.addEventListener(
+    "click",
+    function() {
+
+        closeMenu();
+
+        if (displaySentences.length === 0) {
+            return;
+        }
+
+        lineRange.textContent =
+            "1 to " + displaySentences.length;
+
+        jumpInput.min = "1";
+        jumpInput.max =
+            String(displaySentences.length);
+
+        jumpInput.value =
+            String(currentLine + 1);
+
+        dialogOverlay.classList.add("open");
+
+        jumpInput.focus();
+
+        jumpInput.select();
+    }
+);
+
+
+jumpCancel.addEventListener(
+    "click",
+    function() {
+
+        closeJumpDialog();
+    }
+);
+
+
+jumpOk.addEventListener(
+    "click",
+    function() {
+
+        jumpToEnteredLine();
+    }
+);
+
+
+jumpInput.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            jumpToEnteredLine();
+        }
+
+        else if (event.key === "Escape") {
+
+            closeJumpDialog();
+        }
+    }
+);
+
+
+function jumpToEnteredLine() {
+
+    let value =
+        parseInt(jumpInput.value, 10);
+
+
+    if (isNaN(value)) {
+        return;
+    }
+
+
+    /*
+        User enters 1-based line number.
+        Internal currentLine is zero-based.
+    */
+
+    if (value < 1) {
+        value = 1;
+    }
+
+    if (value > displaySentences.length) {
+        value = displaySentences.length;
+    }
+
+
+    /*
+        Stop reading before jumping.
+    */
+
+    stopReading();
+
+
+    currentLine =
+        value - 1;
+
+    saveCurrentLine();
+
+    renderReader();
+
+    closeJumpDialog();
+}
+
+
+function closeJumpDialog() {
+
+    dialogOverlay.classList.remove("open");
+}
+
+
+/*
+    ============================================================
+    Start / Stop
+    ============================================================
+*/
+
+startButton.addEventListener(
+    "click",
+    function() {
+
+        closeMenu();
+
+        startReading();
+    }
+);
+
+
+stopButton.addEventListener(
+    "click",
+    function() {
+
+        closeMenu();
+
+        stopReading();
+    }
+);
+
+
+/*
+    ============================================================
+    Menu
+    ============================================================
+*/
+
+menuButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        menu.classList.toggle("open");
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !menu.contains(event.target) &&
+            event.target !== menuButton
+        ) {
+
+            closeMenu();
+        }
+    }
+);
+
+
+function closeMenu() {
+
+    menu.classList.remove("open");
+}
+
+
+/*
+    Update menu status and labels.
+*/
+
+function updateMenu() {
+
+    if (reading) {
+
+        statusElement.textContent =
+            "Reading — line " +
+            (currentLine + 1) +
+            " of " +
+            displaySentences.length;
+
+    }
+    else {
+
+        statusElement.textContent =
+            "Paused — line " +
+            (
+                displaySentences.length > 0
+                    ? currentLine + 1
+                    : 0
+            ) +
+            " of " +
+            displaySentences.length;
+    }
+
+
+    lineNumberButton.textContent =
+        "Line-numbers: " +
+        (
+            lineNumbersVisible
+                ? "On"
+                : "Off"
+        );
+}
+
+
+/*
+    ============================================================
+    Keep menu status synchronized while speech is occurring.
+    ============================================================
+*/
+
+setInterval(
+    function() {
+
+        if (reading) {
+            updateMenu();
+        }
+
+    },
+    250
+);
+
+
+/*
+    ============================================================
+    Browser speech-synthesis cleanup
+    ============================================================
+*/
+
+window.addEventListener(
+    "beforeunload",
+    function() {
+
+        /*
+            Stop speech when the page is closed.
+        */
+
+        window.speechSynthesis.cancel();
+
+        /*
+            currentLine is already persisted after every
+            completed sentence and every manual jump.
+        */
+
+        saveCurrentLine();
+    }
+);
+
+</script>
+
+</body>
+</html>
