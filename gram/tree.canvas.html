@@ -1886,6 +1886,9 @@ function resyncGrammar()
 
 			const node = tree.nodes[nodeId];
 
+			// ignore error nodes...
+			if ((node.err != null) && (node.err)) { continue; }
+
 			const rdxSym = node.label;
 
 			// if this wasn't an added node - we don't care about it...
@@ -2333,6 +2336,32 @@ function setChar(rowArr, x, ch)
 	rowArr[x] = ch;
 }
 
+/*
+
+const gCnxCharTbl =
+[
+	"\u2192",	// →
+	"\u2500",	// ─
+	"\u2502",	// │
+	"\u2510",	// ┐
+	"\u2534",	// ┴
+	"\u250C",	// ┌
+	"\u252C"	// ┬
+];
+
+*/
+
+const gCnxCharTbl =
+[
+	"\u2192",	// →
+	"\u002D",	// ─
+	"\u007C",	// │
+	"\u002B",	// ┐
+	"\u002B",	// ┴
+	"\u002B",	// ┌
+	"\u002B"	// ┬
+];
+
 function drawConnectors(inTree, inRowOf, inCenter, chars)
 {
 	for (const nodeId in inTree.nodes)
@@ -2347,33 +2376,33 @@ function drawConnectors(inTree, inRowOf, inCenter, chars)
 		const pCent = inCenter[nodeId];
 
 		// 2. the "out" connector, centred beneath the parent label
-		setChar(chars[pRow + 1], pCent, "\u2502");	 // │
+		setChar(chars[pRow + 1], pCent, gCnxCharTbl[2]);	 // │
 
 		// 3. the "span" connector
 		const spanRow = pRow + 2;
 
 		if (kids.length === 1)
 		{
-			setChar(chars[spanRow], inCenter[kids[0]], "\u2502");   // │
+			setChar(chars[spanRow], inCenter[kids[0]], gCnxCharTbl[2]);   // │
 		}
 		else
 		{
 			const lft = inCenter[kids[0]];
 			const rgt = inCenter[kids[kids.length - 1]];
 
-			setChar(chars[spanRow], lft, "\u250C");				 // ┌
-			setChar(chars[spanRow], rgt, "\u2510");				 // ┐
+			setChar(chars[spanRow], lft, gCnxCharTbl[5]);				 // ┌
+			setChar(chars[spanRow], rgt, gCnxCharTbl[3]);				 // ┐
 
 			for (let cx = lft + 1; cx < rgt; cx++)
 			{
-				setChar(chars[spanRow], cx, "\u2500");			  // ─
+				setChar(chars[spanRow], cx, gCnxCharTbl[1]);			  // ─
 			}
 
-			setChar(chars[spanRow], pCent, "\u2534");			   // ┴
+			setChar(chars[spanRow], pCent, gCnxCharTbl[4]);			   // ┴
 
 			for (let ii = 1; ii < kids.length - 1; ii++)
 			{
-				setChar(chars[spanRow], inCenter[kids[ii]], "\u252C"); // ┬
+				setChar(chars[spanRow], inCenter[kids[ii]], gCnxCharTbl[6]); // ┬
 			}
 		}
 
@@ -2387,10 +2416,10 @@ function drawConnectors(inTree, inRowOf, inCenter, chars)
 
 			for (let rr = spanRow + 1; rr <= kIn; rr++)
 			{
-				setChar(chars[rr], inCenter[kId], "\u2502");		 // │
+				setChar(chars[rr], inCenter[kId], gCnxCharTbl[2]);		 // │
 			}
 
-			setChar(chars[kIn], inCenter[kId], "\u2502");		   // │
+			setChar(chars[kIn], inCenter[kId], gCnxCharTbl[2]);		   // │
 		}
 	}
 }
@@ -2589,7 +2618,7 @@ function renderTree(inTreeId)
 	// ---- the little "→" action item ---------------------------------------
 	const act = document.createElement("div");
 	act.className = "tree-action";
-	act.textContent = "\u2192";
+	act.textContent = gCnxCharTbl[0];
 	act.title = 'reparseTree("' + inTreeId + '")';
 	act.addEventListener("click", function () { reparseTree(inTreeId, gGrammar, gTreeModel); });
 	block.appendChild(act);
