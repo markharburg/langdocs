@@ -1,0 +1,3124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tree Canvas</title>
+
+<style>
+	/* ------------------------------------------------------------------
+		 Page / canvas
+		 ------------------------------------------------------------------ */
+	html, body {
+		margin: 0;
+		padding: 0;
+		background: #ffffff;
+		color: #000000;
+	}
+
+	body {
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Liberation Mono",
+					 "Courier New", monospace;
+		font-size: 14px;
+		line-height: 1.2;
+		padding: 12px 12px 90px 12px;	  /* bottom padding keeps content clear of the menu */
+	}
+
+	#canvas {
+		display: block;
+		/* the page itself scrolls horizontally & vertically when a tree is too wide */
+	}
+
+	.tree-block {
+		margin-bottom: 30px;
+	}
+
+	.tree-row {
+		white-space: pre;				  /* preserve the layout spacing exactly */
+		height: 1.2em;
+		line-height: 1.2em;
+		font-family: inherit;
+	}
+
+	.tree-row .node-label {
+		cursor: pointer;
+		border-radius: 2px;
+	}
+
+	.tree-row .node-label:hover {
+		outline: 1px dotted #9a9a9a;
+	}
+
+	.tree-annotation {
+		white-space: pre;
+		color: #555555;
+		margin-top: 8px;
+		font-family: inherit;
+	}
+
+	.tree-action {
+		display: inline-block;
+		white-space: pre;
+		color: #0066cc;
+		cursor: pointer;
+		margin-top: 2px;
+		user-select: none;
+		-webkit-user-select: none;
+		font-family: inherit;
+	}
+
+	.tree-action:hover {
+		text-decoration: underline;
+	}
+
+	/* ------------------------------------------------------------------
+		 Floating pop-up menu (bottom right, opens upward)
+		 ------------------------------------------------------------------ */
+	#menu-icon {
+		position: fixed;
+		right: 12px;
+		bottom: 12px;
+		width: 36px;
+		height: 36px;
+		line-height: 34px;
+		text-align: center;
+		font-size: 18px;
+		background: #f2f2f2;
+		border: 1px solid #bbbbbb;
+		border-radius: 5px;
+		cursor: pointer;
+		z-index: 100;
+		user-select: none;
+		-webkit-user-select: none;
+		box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+	}
+
+	#menu-icon:hover { background: #e4e4e4; }
+
+	#menu-popup {
+		position: fixed;
+		right: 12px;
+		bottom: 56px;
+		min-width: 150px;
+		background: #ffffff;
+		border: 1px solid #bbbbbb;
+		border-radius: 5px;
+		box-shadow: 0 3px 12px rgba(0,0,0,0.22);
+		padding: 4px 0;
+		z-index: 101;
+	}
+
+	#menu-popup.hidden { display: none; }
+
+	.menu-item {
+		padding: 6px 16px;
+		cursor: pointer;
+		white-space: nowrap;
+		user-select: none;
+		-webkit-user-select: none;
+	}
+
+	.menu-item:hover { background: #eaf2fb; }
+
+	.menu-sep {
+		height: 1px;
+		background: #dddddd;
+		margin: 4px 0;
+	}
+
+	/* ------------------------------------------------------------------
+		 Tool tip
+		 ------------------------------------------------------------------ */
+	.node-tooltip {
+		position: fixed;
+		background: #ffffe4;
+		border: 1px solid #999999;
+		padding: 4px 8px;
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+		font-size: 12px;
+		line-height: 1.3;
+		white-space: pre;
+		pointer-events: none;
+		z-index: 300;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.22);
+	}
+
+	/* ------------------------------------------------------------------
+		 Pop-up dialog (centred over the canvas)
+		 ------------------------------------------------------------------ */
+	#add-dialog {
+		position: fixed;
+		top: 0; left: 0; right: 0; bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.18);
+		z-index: 200;
+	}
+
+	#add-dialog.hidden { display: none; }
+
+	/* ------------------------------------------------------------------ */
+
+	#edit-dialog {
+		position: fixed;
+		top: 0; left: 0; right: 0; bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.18);
+		z-index: 200;
+	}
+
+	#edit-dialog.hidden { display: none; }
+
+	/* ------------------------------------------------------------------ */
+
+	#remove-dialog {
+		position: fixed;
+		top: 0; left: 0; right: 0; bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.18);
+		z-index: 200;
+	}
+
+	#remove-dialog.hidden { display: none; }
+
+	/* ------------------------------------------------------------------ */
+
+	#grammar-dialog {
+		position: fixed;
+		top: 0; left: 0; right: 0; bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.18);
+		z-index: 200;
+	}
+
+	#grammar-dialog.hidden { display: none; }
+
+	/* ------------------------------------------------------------------ */
+
+	#dialog-box {
+		background: #ffffff;
+		border: 1px solid #888888;
+		border-radius: 6px;
+		box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+		padding: 16px 18px;
+		min-width: 300px;
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+		font-size: 13px;
+	}
+
+	#ne-dialog-box {
+		background: #ffffff;
+		border: 1px solid #888888;
+		border-radius: 6px;
+		box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+		padding: 16px 18px;
+		min-width: 300px;
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+		font-size: 13px;
+	}
+
+	#nr-dialog-box {
+		background: #ffffff;
+		border: 1px solid #888888;
+		border-radius: 6px;
+		box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+		padding: 16px 18px;
+		min-width: 300px;
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+		font-size: 13px;
+	}
+
+	#rl-dialog-box {
+		background: #ffffff;
+		border: 1px solid #888888;
+		border-radius: 6px;
+		box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+		padding: 16px 18px;
+		min-width: 300px;
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+		font-size: 13px;
+	}
+
+	.dlg-row {
+		display: flex;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+
+	.dlg-row > label {
+		width: 42px;
+		flex: 0 0 42px;
+	}
+
+	.dlg-row > input[type="text"] {
+		flex: 1 1 auto;
+		font-family: inherit;
+		font-size: inherit;
+		padding: 2px 4px;
+	}
+
+	.dlg-row > select {
+		flex: 1 1 auto;
+		font-family: inherit;
+		font-size: inherit;
+	}
+
+	.dlg-buttons {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+		margin-top: 12px;
+	}
+
+	.dlg-buttons button {
+		font-family: inherit;
+		font-size: inherit;
+		padding: 4px 14px;
+		cursor: pointer;
+	}
+</style>
+</head>
+
+<body>
+
+<!-- ===================== canvas ===================== -->
+<div id="canvas"></div>
+
+<!-- ===================== pop-up menu ===================== -->
+<div id="menu-icon" title="Menu">&#9776;</div>
+
+<div id="menu-popup" class="hidden">
+  <div class="menu-item" data-action="loadTree">Load instance</div>
+  <div class="menu-item" data-action="loadText">Load text</div>
+  <div class="menu-item" data-action="loadGrammar">Load grammar</div>
+  <div class="menu-item" data-action="loadDictionary">Load dictionary</div>
+  <div class="menu-item" data-action="dumpTree">Dump instance</div>
+  <div class="menu-item" data-action="dumpGrammar">Dump grammar</div>
+  <div class="menu-sep"></div>
+  <div class="menu-item" data-action="editNode">Edit node</div>
+  <div class="menu-item" data-action="addNode">Add node</div>
+  <div class="menu-item" data-action="removeNode">Remove node</div>
+  <div class="menu-sep"></div>
+  <div class="menu-item" data-action="editGrammar">Edit grammar</div>
+  <div class="menu-item" data-action="resyncGrammar">Resync grammar</div>
+  <div class="menu-sep"></div>
+  <div class="menu-item" data-action="undoNodeEdit">Undo</div>
+  <div class="menu-item" data-action="redoNodeEdit">Redo</div>
+</div>
+
+<!-- ===================== pop-up dialog ===================== -->
+<div id="add-dialog" class="hidden">
+  <div id="dialog-box">
+	<div class="dlg-row">
+	  <label for="na-dlg-name">name:</label>
+	  <input type="text" id="na-dlg-name">
+	</div>
+	<div class="dlg-row">
+	  <label for="na-dlg-prolif">prolif:</label>
+	  <input type="checkbox" id="na-dlg-prolif">
+	</div>
+	<div class="dlg-row">
+	  <label for="dlg-cc">cc:</label>
+	  <span id="dlg-cc"></span>
+	</div>
+	<div class="dlg-row">
+	  <label for="dlg-dd">dd:</label>
+	  <select id="dlg-dd" multiple size="4"></select>
+	</div>
+	<div class="dlg-buttons">
+	  <button id="na-dlg-ok">Ok</button>
+	  <button id="na-dlg-cancel">Cancel</button>
+	</div>
+  </div>
+</div>
+
+<div id="edit-dialog" class="hidden">
+  <div id="ne-dialog-box">
+	<div class="dlg-row">
+	  <label for="ne-dlg-name">name:</label>
+	  <input type="text" id="ne-dlg-name">
+	</div>
+	<div class="dlg-row">
+	  <label for="ne-dlg-prolif">prolif:</label>
+	  <input type="checkbox" id="ne-dlg-prolif">
+	</div>
+	<div class="dlg-buttons">
+	  <button id="ne-dlg-ok">Ok</button>
+	  <button id="ne-dlg-cancel">Cancel</button>
+	</div>
+  </div>
+</div>
+
+<div id="remove-dialog" class="hidden">
+  <div id="nr-dialog-box">
+	<div class="dlg-row">
+	  <label for="nr-dlg-name">name:</label>
+	  <span id="nr-dlg-name"></span>
+	</div>
+	<div class="dlg-row">
+	  <label for="nr-dlg-prolif">prolif:</label>
+	  <input type="checkbox" id="nr-dlg-prolif">
+	</div>
+	<div class="dlg-buttons">
+	  <button id="nr-dlg-ok">Ok</button>
+	  <button id="nr-dlg-cancel">Cancel</button>
+	</div>
+  </div>
+</div>
+
+<div id="grammar-dialog" class="hidden">
+  <div id="rl-dialog-box">
+	<div class="dlg-row">
+	  <label for="rl-dlg-grammar">grammar:</label>
+	</div>
+	<div class="dlg-row">
+	  <textarea id="rl-dlg-grammar" cols="40" rows="20"></textarea>
+	</div>
+	<div class="dlg-buttons">
+	  <button id="rl-dlg-ok">Ok</button>
+	  <button id="rl-dlg-cancel">Cancel</button>
+	</div>
+  </div>
+</div>
+
+<script language="javascript" src="local-storage.js"></script>
+<script language="javascript" src="grammar.js"></script>
+<script language="javascript" src="sequence.js"></script>
+
+<script>
+"use strict";
+
+/* =====================================================================
+ *  Global state
+ * ===================================================================== */
+
+let gTreeBlocks   = {};   // treeId -> the <div class="tree-block"> element
+let gNodeElements = {};   // treeId -> nodeId -> the <span class="node-label">
+let gTooltipEl	= null; // the currently visible tool-tip element (or null)
+//let pendingClick = null; // used to distinguish single- from double-clicks
+
+/* minimum number of characters reserved for a grid column */
+const MIN_COL_WDT = 3;
+
+const gCLICK_PAUSE_MS = 200;
+
+/* =====================================================================
+ *  0.  Stub model functions  (section 2.5 / 4.1)
+ * ===================================================================== */
+
+let gTreeModel =
+{
+	inv: [ "mm", "nn", "oo" ],
+	tbl:
+	{
+		"mm":
+		{
+			root: "mm",
+			annotation: "this is the 'mm' instance.",
+			nodes:
+			{
+				"mm":
+				{
+					label: "MMM",
+					child: [ "bb", "cc" ]
+				},
+				"bb":
+				{
+					label: "BBB",
+					err: true,
+					child: [ "dd", "xx" ]
+				},
+				"cc":
+				{
+					label: "CCC",
+					child: [ "yy" ]
+				},
+				"dd":
+				{
+					label: "DDD",
+					child: [ "zz" ]
+				},
+				"xx":
+				{
+					label: "XXX"
+				},
+				"yy":
+				{
+					label: "YYY"
+				},
+				"zz":
+				{
+					label: "ZZZ"
+				}
+			}
+		},
+		"nn":
+		{
+			root: "nn",
+			annotation: "this is the 'nn' instance.",
+			nodes:
+			{
+				"nn":
+				{
+					label: "NNN",
+					child: [ "bb", "cc" ]
+				},
+				"bb":
+				{
+					label: "BBB",
+					child: [ "dd", "xx" ]
+				},
+				"cc":
+				{
+					label: "CCC",
+					child: [ "yy" ]
+				},
+				"dd":
+				{
+					label: "DDD",
+					child: [ "zz" ]
+				},
+				"xx":
+				{
+					label: "XXX"
+				},
+				"yy":
+				{
+					label: "YYY"
+				},
+				"zz":
+				{
+					label: "ZZZ"
+				}
+			}
+		},
+		"oo":
+		{
+			root: "oo",
+			annotation: "this is the 'oo' instance.",
+			nodes:
+			{
+				"oo":
+				{
+					label: "OOO",
+					child: [ "bb", "cc" ]
+				},
+				"bb":
+				{
+					label: "BBB",
+					child: [ "dd", "xx" ]
+				},
+				"cc":
+				{
+					label: "CCC",
+					child: [ "yy" ]
+				},
+				"dd":
+				{
+					label: "DDD",
+					child: [ "zz" ]
+				},
+				"xx":
+				{
+					label: "XXX"
+				},
+				"yy":
+				{
+					label: "YYY"
+				},
+				"zz":
+				{
+					label: "ZZZ"
+				}
+			}
+		}
+	}
+};
+
+let gGrammar =
+{
+	kv:
+	{
+		root: "a"
+	},
+	rdx:
+	{
+		"a":
+		[
+			[
+				{ ref: "X", min: 1, max: 1 },
+				{ ref: "b", min: 1, max: 1 }
+			]
+		],
+		"b":
+		[
+			[
+				{ ref: "c", min: 1, max: 1 },
+				{ ref: "Z", min: 1, max: 1 }
+			]
+		],
+		"c":
+		[
+			[
+				{ ref: "Y", min: 1, max: 1 }
+			]
+		]
+	},
+	tok:
+	{
+		"X": { "MMM": 1, "NNN": 1, "ggg": 1 },
+		"Y": { "OOO": 1, "PPP": 1, "kkk": 1 },
+		"Z": { "QQQ": 1, "RRR": 1 },
+		"NOUN": { "apricot": 1, "hat": 1, "ocean": 1, "train": 1, "tiger": 1, "house": 1 },
+		"VERB": { "are": 1 },
+		"ADJ": { "blue": 1, "green": 1, "big": 1, "great": 1, "pacific": 1 }
+	},
+	rgx:
+	{
+		"QUO": "\"",
+		"PER": "\\.",
+		"COM": ","
+	}
+};
+
+let gAddedNodes = { };
+
+let gDictionary = {};
+
+let gSelectionPanel = {};
+
+function getAllTreeIds()
+{
+	return gTreeModel.inv;
+}
+
+function getTree(inTreeId)
+{
+	return gTreeModel.tbl[inTreeId];
+}
+
+function deepCpyTree(inTreeId)
+{
+	const retCpyTree = { };
+
+	const tree = getTree(inTreeId);
+
+	retCpyTree.root = tree.root;
+	if (tree.annotation != null)
+	{
+		retCpyTree.annotation = tree.annotation;
+	}
+	retCpyTree.nodes = { };
+
+	const nodeIdLst = Object.keys(tree.nodes);
+
+	for (let ii=0; ii<nodeIdLst.length; ii++)
+	{
+		const nodeId = nodeIdLst[ii];
+
+		const node = tree.nodes[nodeId];
+
+		retCpyTree.nodes[nodeId] = { };
+
+		retCpyTree.nodes[nodeId].label = node.label;
+
+		if (node.err != null)
+		{
+			retCpyTree.nodes[nodeId].err = node.err;
+		}
+
+		if (node.child != null)
+		{
+			retCpyTree.nodes[nodeId].child = [];
+
+			for (let jj=0; jj<node.child.length; jj++)
+			{
+				retCpyTree.nodes[nodeId].child.push(node.child[jj]);
+			}
+		}
+	}
+
+	return retCpyTree;
+}
+
+// gUniqueNodeId is global across the whole model, not per-tree.
+const gUniqueNodeId = {};
+
+function makeUniqueId(inBaseLabel)
+{
+	if (gUniqueNodeId[inBaseLabel] == null) {
+		gUniqueNodeId[inBaseLabel] = 0;
+	}
+
+	gUniqueNodeId[inBaseLabel] += 1;
+
+	let num = String(gUniqueNodeId[inBaseLabel]);
+	while (num.length < 2) {
+		num = "0" + num;
+	}
+
+	return inBaseLabel + "-" + num;
+}
+
+/**
+ * Parses a tree-model text file into a tree-model data structure.
+ *
+ * @param {string} inTreeModelText
+ * @returns {{ inv: string[], tbl: Object }}
+ */
+function parseTreeModel(inTreeModelText, inTxtFl)
+{
+	const retTreeModel = { inv: [], tbl: {} };
+
+	let txt = String(inTreeModelText).replace(/\r\n?/g, "\n");
+
+	let curTreeID   = null;
+	let curTree	 = null;
+	let nodeIdStack = null;
+
+	const treeIdWithAnno = /^\s*>\s*([a-z][a-z0-9_\-]*)\s*:\s*([^\s].*?)\s*$/i;
+	const treeIdNoAnno   = /^\s*>\s*([a-z][a-z0-9_\-]*)\s*$/i;
+	const nodeWithVal	= /^([\t]*)([a-z][a-z0-9_]*)\s*:\s*([^\s].*?)\s*$/i;
+	const nodeNoVal	  = /^([\t]*)([a-z][a-z0-9_]*)\s*$/i;
+
+	const lines = txt.split("\n");
+
+	for (let ii = 0; ii < lines.length; ii++)
+	{
+		let line	= lines[ii];
+		const lineNo = ii + 1;
+
+		// Remove "---" and "===" comments from the line.
+		line = line.replace(/(?:---|===).*$/, "");
+
+		// Skip blank / whitespace-only lines.
+		if (line.trim() === "") {
+			continue;
+		}
+
+		// ---------------------------------------------------------------
+		// tree ID line with annotation
+		// ---------------------------------------------------------------
+		let mm = line.match(treeIdWithAnno);
+
+		if (mm) {
+			const treeId	 = mm[1];
+			const annotation = mm[2] || "";
+
+			if (retTreeModel.tbl[treeId]) {
+				syntaxError(lineNo, line, inTxtFl, "Duplicate tree ID: " + treeId);
+			}
+
+			retTreeModel.inv.push(treeId);
+
+			curTree = {
+				root: null,
+				annotation: annotation,
+				nodes: {}
+			};
+
+			retTreeModel.tbl[treeId] = curTree;
+			curTreeID   = treeId;
+			nodeIdStack = [];
+			continue;
+		}
+
+		// ---------------------------------------------------------------
+		// tree ID line without annotation
+		// ---------------------------------------------------------------
+		mm = line.match(treeIdNoAnno);
+
+		if (mm) {
+			const treeId = mm[1];
+
+			if (retTreeModel.tbl[treeId]) {
+				syntaxError(lineNo, line, inTxtFl, "Duplicate tree ID: " + treeId);
+			}
+
+			retTreeModel.inv.push(treeId);
+
+			curTree = {
+				root: null,
+				annotation: "",
+				nodes: {}
+			};
+
+			retTreeModel.tbl[treeId] = curTree;
+			curTreeID   = treeId;
+			nodeIdStack = [];
+			continue;
+		}
+
+		// ---------------------------------------------------------------
+		// Node line (with or without a leaf value)
+		// ---------------------------------------------------------------
+		let hasValue = false;
+		let tabCnt;
+		let label;
+		let value = null;
+
+		mm = line.match(nodeWithVal);
+
+		if (mm) {
+			hasValue = true;
+			tabCnt   = mm[1].length;
+			label	= mm[2];
+			value	= mm[3];
+		}
+		else {
+			mm = line.match(nodeNoVal);
+
+			if (mm) {
+				hasValue = false;
+				tabCnt   = mm[1].length;
+				label	= mm[2];
+			}
+			else {
+				syntaxError(lineNo, line, inTxtFl, "Unrecognized line");
+			}
+		}
+
+		if (!curTreeID || !curTree) {
+			syntaxError(lineNo, line, inTxtFl, "Node found before any tree ID");
+		}
+
+		const uniqNodeId = makeUniqueId(label);
+
+		curTree.nodes[uniqNodeId] = {
+			label: label
+		};
+
+		// ---------------------------------------------------------------
+		// Root node
+		// ---------------------------------------------------------------
+		if (tabCnt === 0) {
+			if (curTree.root != null) {
+				syntaxError(lineNo, line, inTxtFl, "tree already has a root");
+			}
+
+			if (nodeIdStack.length !== 0) {
+				syntaxError(lineNo, line, inTxtFl, "Root node cannot appear after other nodes");
+			}
+
+			curTree.root = uniqNodeId;
+			nodeIdStack.push({ nodeId: uniqNodeId, depth: 0 });
+		}
+		// ---------------------------------------------------------------
+		// Indented node
+		// ---------------------------------------------------------------
+		else {
+			if (nodeIdStack.length === 0) {
+				syntaxError(lineNo, line, inTxtFl, "Indented node without a parent");
+			}
+
+			let prnNodeId = null;
+
+			while (nodeIdStack.length > 0 && prnNodeId === null) {
+				const top = nodeIdStack[nodeIdStack.length - 1];
+
+				if (top.depth === tabCnt - 1) {
+					prnNodeId = top.nodeId;
+				}
+				else if (top.depth >= tabCnt) {
+					nodeIdStack.pop();
+				}
+				else {
+					syntaxError(lineNo, line, inTxtFl, "Indentation jumps more than one level");
+				}
+			}
+
+			if (nodeIdStack.length === 0 || prnNodeId === null) {
+				syntaxError(lineNo, line, inTxtFl, "Could not find parent for indented node");
+			}
+
+			if (!curTree.nodes[prnNodeId].child) {
+				curTree.nodes[prnNodeId].child = [];
+			}
+
+			curTree.nodes[prnNodeId].child.push(uniqNodeId);
+
+			nodeIdStack.push({ nodeId: uniqNodeId, depth: tabCnt });
+		}
+
+		// ---------------------------------------------------------------
+		// Leaf value
+		// ---------------------------------------------------------------
+		if (hasValue) {
+			const valLabel = label + "_val";
+			const uniqValNodeId = makeUniqueId(valLabel);
+
+			curTree.nodes[uniqValNodeId] = {
+				label: value
+			};
+
+			if (!curTree.nodes[uniqNodeId].child) {
+				curTree.nodes[uniqNodeId].child = [];
+			}
+
+			curTree.nodes[uniqNodeId].child.push(uniqValNodeId);
+		}
+	}
+
+	return retTreeModel;
+}
+
+/**
+ * Parse a tab-delimited dictionary file into an association array.
+ *
+ * Columns (tab separated, exactly 5):
+ *	 word  variation  phonology  part-of-speech  definition
+ *
+ * Rules:
+ *   - Blank lines are ignored.
+ *   - Lines beginning with "---" or "===" are comments (to end of line) and are ignored.
+ *   - The first non-blank/non-comment line MAY be a header
+ *	 ("word" TAB "variation" ...) and is skipped if present.
+ *   - Every other line must have exactly 5 tab-delimited fields.
+ *
+ * @param  {string} inText	  Full text content of the file.
+ * @param  {string} inTxtFl	 File name (used only for error messages).
+ * @param  {number} [inLno=1]   Line number of the first line in inText.
+ * @returns {Object}			{ word: [ { phon, pos, def }, ... ], ... }
+ */
+function parseDictionary(inText, inTxtFl, inLno)
+{
+	let retDict = { };
+
+	const txtFl = (inTxtFl == null) ? "" : String(inTxtFl);
+	const startLineNo = (Number.isFinite(inLno) && inLno > 0) ? Math.floor(inLno) : 1;
+
+	// normalize newlines (and drop a BOM if present) so line numbers stay consistent
+	let txt = String(inText == null ? "" : inText).replace(/\r\n?/g, "\n");
+	if (txt.charCodeAt(0) === 0xFEFF) { txt = txt.slice(1); }
+
+	const lines = txt.split("\n");
+
+	// Use a Map internally so words like "__proto__" can't corrupt a plain object.
+	const acc = new Map();	// word -> { list: [entry,...], varNos: Set }
+	let sawContent	= false;
+	let headerSkipped = false;
+
+	for (let ii = 0; ii < lines.length; ii++)
+	{
+		const rawLine   = lines[ii];
+		const curLineNo = startLineNo + ii;
+
+		// 1. blank line → ignore
+		if (rawLine.trim() === "")
+		{
+			continue;
+		}
+
+		// 2. comment line → ignore
+		if (rawLine.startsWith("---") || rawLine.startsWith("==="))
+		{
+			continue;
+		}
+
+		// 3. optional header line (only the first content line may be a header)
+		if (!sawContent && !headerSkipped)
+		{
+			const ff = rawLine.split("\t");
+			if (ff.length >= 2 &&
+				ff[0].trim().toLowerCase() === "word" &&
+				ff[1].trim().toLowerCase() === "variation")
+			{
+				headerSkipped = true;
+				continue;
+			}
+		}
+
+		sawContent = true;
+
+		// 4. data line → must have exactly 5 fields
+		const fields = rawLine.split("\t");
+
+		if (fields.length !== 5)
+		{
+			syntaxError(curLineNo, rawLine, txtFl,
+				"expected 5 tab-delimited fields, found " + fields.length);
+		}
+
+		const word  = fields[0].trim();
+		const varNo = fields[1].trim();
+		const phon  = fields[2].trim();
+		const pos   = fields[3].trim();
+		const def   = fields[4].trim();
+
+		if (word === "")
+		{
+			syntaxError(curLineNo, rawLine, txtFl, "empty 'word' field");
+		}
+		if (def === "")
+		{
+			syntaxError(curLineNo, rawLine, txtFl, "empty 'definition' field");
+		}
+		if (varNo !== "" && !/^\d+$/.test(varNo))
+		{
+			syntaxError(curLineNo, rawLine, txtFl,
+				"invalid 'variation' field (expected a non-negative integer, got \"" + varNo + "\")");
+		}
+
+		// 5. accumulate into the bucket for this word
+		let bucket = acc.get(word);
+		if (!bucket)
+		{
+			bucket = { list: [], varNos: new Set() };
+			acc.set(word, bucket);
+		}
+
+		if (varNo !== "")
+		{
+			if (bucket.varNos.has(varNo))
+			{
+				syntaxError(curLineNo, rawLine, txtFl,
+					"duplicate variation number \"" + varNo + "\" for word \"" + word + "\"");
+			}
+			bucket.varNos.add(varNo);
+		}
+
+		bucket.list.push({ phon: phon, pos: pos, def: def });
+	}
+
+	// Map → plain object.  Object.fromEntries safely creates own properties
+	// (including awkward keys like "__proto__").
+	retDict = Object.fromEntries(
+		Array.from(acc, ([word, bucket]) => [ word, bucket.list ])
+	);
+
+	return retDict;
+}
+
+function syntaxError(inLineNo, inLineText, inTextFile, inMsg)
+{
+	throw new Error(
+		"Syntax error - file: " + inTextFile + ", line: " + inLineNo + ": " + inMsg + "\n\t" + inLineText
+	);
+}
+
+function parseText(inText, inTxtFl, inGrammar)
+{
+	const toks = tokenize(inText);
+
+	gTreeModel = cvtTokensToTreeModel(toks, inGrammar);
+
+	renderCanvas();
+
+	// this is a stub function - don't try to implement.
+	console.log("parseText() stub called with " + inText.length + " characters.");
+}
+
+function cvtTokensToTreeModel(inTokens, inGrammar)
+{
+	const retTreeModel = { inv: [], tbl: {} };
+
+	for (let ii=0; ii<inTokens.length; ii++)
+	{
+		const tokEnt = inTokens[ii];
+
+		const annot = (tokEnt.annot != null) ? tokEnt.annot : "";
+
+		const inst = parseSentence(tokEnt.toks, inGrammar);
+
+		const treeId = makeUniqueId("tree");
+
+		const tree = instanceToTree(inst, annot);
+
+		retTreeModel.inv.push(treeId);
+		retTreeModel.tbl[treeId] = tree;
+	}
+
+	return retTreeModel;
+}
+
+function findToken(inTokVal, inGrammar)
+{
+	let retTok = null;
+
+	const tokKeys = Object.keys(inGrammar.tok);
+
+	for (let ii=0; ((ii<tokKeys.length) && (retTok == null)); ii++)
+	{
+		const tokKey = tokKeys[ii];
+		const tok = inGrammar.tok[tokKey];
+
+		if (tok[inTokVal] != null)
+		{
+			retTok = tokKey;
+		}
+	}
+
+	if (retTok == null)
+	{
+		const rgxKeys = Object.keys(inGrammar.rgx);
+		for (let ii=0; ((ii<rgxKeys.length) && (retTok == null)); ii++)
+		{
+			const tokKey = rgxKeys[ii];
+			const rgx = inGrammar.rgx[tokKey];
+			const regex = new RegExp(`^${rgx}$`, 'i');
+
+			if (regex.test(inTokVal))
+			{
+				retTok = tokKey;
+			}
+		}
+	}
+
+	return retTok;
+}
+
+function formatTreeModel()
+{
+	// this is a stub function - don't try to implement.
+	let retTxt = "This is just some stub text.";
+	return retTxt;
+}
+
+/* =====================================================================
+ *  1. Interaction callbacks
+ * ===================================================================== */
+
+// inTreeId: identifies the tree.
+function reparseTree(inTreeId, inGrammar, ioTreeModel)
+{
+	const oldTree = deepCpyTree(inTreeId);
+
+	const toks = getTokens(inTreeId);
+
+	const inst = parseSentence(toks, inGrammar);
+
+	const tree = instanceToTree(inst, ioTreeModel.tbl[inTreeId].annotation);
+
+	gTreeModel.tbl[inTreeId] = tree;
+
+	const rctRcdLst = replaceTreeRcd(inTreeId, tree, oldTree);
+	gUndoStack.push(rctRcdLst);
+
+	renderTree(inTreeId);
+}
+
+function instanceToTree(inInstance, inAnnotation)
+{
+	let retTree = { root: null, nodes: { }, annotation: inAnnotation };
+
+	let stk = [ { inst: inInstance, prnNode: null } ];
+
+	while (stk.length > 0)
+	{
+		const {inst, prnNode} = stk.pop();
+
+		const nodeId = makeUniqueId(inst.label);
+
+		if (retTree.root == null)
+		{
+			retTree.root = nodeId;
+		}
+
+		if (prnNode != null)
+		{
+			if (prnNode.child == null)
+			{
+				prnNode.child = [ ];
+			}
+			prnNode.child.push(nodeId);
+		}
+
+		retTree.nodes[nodeId] = { label: inst.label };
+
+		if (inst.err)
+		{
+			retTree.nodes[nodeId].err = true;
+		}
+
+		if (Array.isArray(inst.value))
+		{
+			for (let ii=inst.value.length - 1; ii>=0; ii--)
+			{
+				stk.push({ inst: inst.value[ii], prnNode: retTree.nodes[nodeId] } );
+			}
+		}
+		else
+		{
+			const valNodeId = makeUniqueId(inst.label + "_val");
+
+			retTree.nodes[valNodeId] = { label: inst.value };
+
+			retTree.nodes[nodeId].child = [ valNodeId ];
+		}
+	}
+
+	return retTree;
+}
+
+function getTokens(inTreeId)
+{
+	let retTokens = [ ];
+
+	const tree = getTree(inTreeId);
+
+	let stk = [ tree.root ];
+
+	while (stk.length > 0)
+	{
+		const nodeId = stk.pop();
+
+		const node = tree.nodes[nodeId];
+
+		if ((node.child != null) &&
+			(node.child.length > 0))
+		{
+			for (let ii = node.child.length - 1; ii >= 0; ii--)
+			{
+				stk.push(node.child[ii]);
+			}
+		}
+		else
+		{
+			retTokens.push(node.label);
+		}
+	}
+
+	return retTokens;
+}
+
+// inTreeId: identifies the tree.
+// inNodeId: identifies the node in the tree.
+function selectNode(inTreeId, inNodeId)
+{
+	if (gSelectionPanel.treeId != inTreeId)
+	{
+		unhighlightAllNodes();
+
+		gSelectionPanel.nodeTyp = { };
+	}
+
+	gSelectionPanel.treeId = inTreeId;
+
+	if (gSelectionPanel.nodeTyp[inNodeId] != null)
+	{
+		delete gSelectionPanel.nodeTyp[inNodeId];
+
+		const tree = getTree(inTreeId);
+
+		const typ = (tree.nodes[inNodeId].err) ? 3 : 0;
+
+		highlightNode(inTreeId, inNodeId, typ);
+	}
+	else
+	{
+		gSelectionPanel.nodeTyp[inNodeId] = 1;
+
+		highlightNode(inTreeId, inNodeId, 2);
+	}
+}
+
+// changes the text background color for a given tree node.
+// inType values:
+//	0: unset / clear
+//	1: light gray
+//	2: light blue
+//	3: light red
+function highlightNode(inTreeId, inNodeId, inType)
+{
+	const el = getNodeElement(inTreeId, inNodeId);
+	if (!el) { return; }
+
+	if (inType === 1)		{ el.style.backgroundColor = "#dcdcdc"; }  // light gray
+	else if (inType === 2)	{ el.style.backgroundColor = "#bcd8f5"; }  // light blue
+	else if (inType === 3)	{ el.style.backgroundColor = "#f5bcbc"; }  // light red
+	else					{ el.style.backgroundColor = "";		 }  // clear
+}
+
+// utility function - clears all highlighting on a given tree.
+function unhighlightTree(inTreeId)
+{
+	const tree = getTree(inTreeId);
+	if (!tree || !tree.nodes) { return; }
+
+	for (const nodeId in tree.nodes) {
+		const typ = (tree.nodes[nodeId].err) ? 3 : 0;
+		highlightNode(inTreeId, nodeId, typ);
+	}
+}
+
+// utility function - clears all highlighting on all trees in canvas.
+function unhighlightAllNodes()
+{
+	const ids = getAllTreeIds();
+	for (let ii = 0; ii < ids.length; ii++) {
+		unhighlightTree(ids[ii]);
+	}
+}
+
+function getToolTip(inTreeId, inNodeId)
+{
+	const tree = getTree(inTreeId);
+	const node  = tree.nodes[inNodeId];
+
+	const wrd = node.label;
+
+	let msg = "inTreeId: " + inTreeId + ", inNodeId: " + inNodeId;
+
+	if (gDictionary[wrd] != null)
+	{
+		for (let ii=0; ii<gDictionary[wrd].length; ii++)
+		{
+			msg = gDictionary[wrd][ii].def + "\n" + msg;
+		}
+	}
+
+	return msg;
+
+//	return "getToolTip(inTreeId: " + inTreeId + ", inNodeId: " + inNodeId + ", rand: " + Math.random() + ")";
+}
+
+/* -----------------------------------------------------------------------------
+node commands: this is the plumbing layer to get to the node operations below.
+----------------------------------------------------------------------------- */
+
+let gSbjTreeId = null;
+let gSbjNodeId = null;
+let gSbjChldNodeIds = null;
+
+function editNodeCmd()
+{
+	if (gSelectionPanel.treeId != null)
+	{
+		const nodLst = Object.keys(gSelectionPanel.nodeTyp);
+
+		if (nodLst.length == 1)
+		{
+			gSbjTreeId = gSelectionPanel.treeId;
+
+			const tree = getTree(gSbjTreeId);
+
+			gSbjNodeId = nodLst[0];
+
+			const node  = tree.nodes[gSbjNodeId];
+
+			popUpEditNodeDialog(node.label);
+		}
+		else
+		{
+			alert("Must select 1 and only 1 node in tree");
+		}
+	}
+	else
+	{
+		alert("Must select 1 node from a tree");
+	}
+}
+
+function addNodeCmd()
+{
+	if (gSelectionPanel.treeId != null)
+	{
+		const nodLst = Object.keys(gSelectionPanel.nodeTyp);
+
+		const tree = getTree(gSelectionPanel.treeId);
+
+		let prnNodeId = null;
+		let childPosTbl = { };
+
+		for (let ii=0; ii<nodLst.length; ii++)
+		{
+			const nodeId = nodLst[ii];
+
+			if (nodeId != tree.root)
+			{
+				const { parentNodeId, childPosition }  = findParent(tree.nodes, nodeId);
+
+				if (parentNodeId != null)
+				{
+					if ((prnNodeId == null) || (prnNodeId == parentNodeId))
+					{
+						if (childPosTbl[childPosition] == null)
+						{
+							prnNodeId = parentNodeId;
+							childPosTbl[childPosition] = nodeId;
+						}
+						else
+						{
+							throw("Internal error - multiple nodes to be added from the same child position.");
+						}
+					}
+					else
+					{
+						throw("All nodes to add must have same parent.");
+					}
+				}
+				else
+				{
+					throw("Internal error - cannot find parent node.");
+				}
+			}
+			else
+			{
+				throw("Cannot add to a tree's root node.");
+			}
+		}
+
+		if (prnNodeId != null)
+		{
+			const chPosLst = Object.keys(childPosTbl).sort();
+
+			let lstPos = null;
+			let chdNodeIds = [];
+
+			for (let ii=0; ii<chPosLst.length; ii++)
+			{
+				const pos = chPosLst[ii];
+
+				chdNodeIds.push(childPosTbl[pos]);
+
+				if ((lstPos != null) && (lstPos != (pos - 1)))
+				{
+					throw("Must select contiguous children to add.");
+				}
+				lstPos = pos;
+			}
+
+			gSbjTreeId = gSelectionPanel.treeId;
+			gSbjNodeId = prnNodeId;
+			gSbjChldNodeIds = chdNodeIds;
+
+			const prnNode = tree.nodes[prnNodeId];
+
+			const nodeLabelLst = getLikelyLabels(gSelectionPanel.treeId, chdNodeIds);
+
+			popUpAddNodeDialog("aa", true, "cc", nodeLabelLst);
+		}
+	}
+	else
+	{
+		throw("Must select at least 1 node from a tree");
+	}
+}
+
+function removeNodeCmd()
+{
+	if (gSelectionPanel.treeId != null)
+	{
+		const nodLst = Object.keys(gSelectionPanel.nodeTyp);
+
+		if (nodLst.length == 1)
+		{
+			const tree = getTree(gSelectionPanel.treeId);
+
+			const nodeId = nodLst[0];
+
+			if (nodeId != tree.root)
+			{
+				const node  = tree.nodes[nodeId];
+
+				if ((node.child != null) && (node.child.length > 0))
+				{
+					const { parentNodeId, childPosition }  = findParent(tree.nodes, nodeId);
+
+					const prnNode  = tree.nodes[parentNodeId];
+
+					gSbjTreeId = gSelectionPanel.treeId;
+					gSbjNodeId = parentNodeId;
+					gSbjChldNodeIds = [ nodeId ];
+
+					popUpRemoveNodeDialog(node.label);
+
+				}
+				else
+				{
+					alert("Cannot remove a tree's leaf node.");
+				}
+			}
+			else
+			{
+				alert("Cannot remove a tree's root node.");
+			}
+		}
+		else
+		{
+			alert("Must select 1 and only 1 node in tree");
+		}
+	}
+	else
+	{
+		alert("Must select 1 node from a tree");
+	}
+}
+
+// currently just gets every label in its order.
+// TODO: find most likely labels
+function getLikelyLabels(inTreeId, inNodeIds)
+{
+	let retNodeLabelLst = [ ];
+
+	const selTree = getTree(inTreeId);
+
+	let blkLbl = {};
+
+	for (let ii=0; ii<inNodeIds.length; ii++)
+	{
+		const nodeId = inNodeIds[ii];
+		const node = selTree.nodes[nodeId];
+		blkLbl[node.label] = 1;
+	}
+
+	let lblTbl = {};
+
+	const treeIds = getAllTreeIds();
+
+	for (let ii = 0; ii < treeIds.length; ii++)
+	{
+		const treeId = treeIds[ii];
+
+		const tree = getTree(treeId);
+
+		const nodeIds = Object.keys(tree.nodes);
+
+		for (let jj=0; jj < nodeIds.length; jj++)
+		{
+			const nodeId = nodeIds[jj];
+
+			const node = tree.nodes[nodeId];
+
+			if ((node.child != null) &&
+				(node.child.length > 0) &&
+				(blkLbl[node.label] == null))
+			{
+				lblTbl[node.label] = 1;
+			}
+		}
+	}
+
+	retNodeLabelLst = Object.keys(lblTbl).sort();
+
+	return retNodeLabelLst;
+}
+
+/* -----------------------------------------------------------------------------
+node operations
+----------------------------------------------------------------------------- */
+
+function editNode(inTreeId, inNodeId, inName, inProlif)
+{
+	let retEditRcdLst = [ ];
+
+	const tree = getTree(inTreeId);
+	const node  = tree.nodes[inNodeId];
+
+	if (inProlif)
+	{
+		const nodeIdLst = getNodeIdsByName(node.label);
+
+		for (let ii=0; ii<nodeIdLst.length; ii++)
+		{
+			const { treeId, nodeId } = nodeIdLst[ii];
+
+			const pTree = getTree(treeId);
+			const pNode  = pTree.nodes[nodeId];
+
+			retEditRcdLst.push({cmd: "edit", treeId: treeId, nodeId: nodeId, fromLabel: pNode.label, toLabel: inName});
+
+			pNode.label = inName;
+		}
+	}
+	else
+	{
+		retEditRcdLst.push({cmd: "edit", treeId: inTreeId, nodeId: inNodeId, fromLabel: node.label, toLabel: inName});
+
+		node.label = inName;
+		if (node.err != null)
+		{
+			node.err = false;
+		}
+	}
+
+	return retEditRcdLst;
+}
+
+// inName:		name for new node
+// inNodeId:	node ID for new node (re-add) - or null for new add.
+function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif)
+{
+	let retAddRcdLst = [ ];
+
+	const tree = getTree(inTreeId);
+	const prnNode  = tree.nodes[inPrnNodeId];
+
+	// create new node to add...
+
+	let nodeId = inNodeId;
+
+	if (inNodeId == null)
+	{
+		nodeId = makeUniqueId(inName);
+	}
+
+	tree.nodes[nodeId] = { label: inName, child: [ ] };
+
+	// used to determine if node is new rule - used for grammar resync process.
+	const gramRefTbl = makeGrammarRefTbl(gGrammar.rdx);
+
+	////////////////////////////////////////////////////////////////////////////
+	// 1. add new nodes children
+	// also - build a table to look up child nodes and remove from parent.
+
+	let chldNodeIdTbl = { };
+
+	// used for grammar resync management
+	let sig = "";
+
+	for (let ii=0; ii<inChdNodeIds.length; ii++)
+	{
+		const chNodeId = inChdNodeIds[ii];
+
+		chldNodeIdTbl[chNodeId] = 1;
+		tree.nodes[nodeId].child.push(chNodeId);
+
+		if (sig.length > 0) { sig += "::"; }
+		sig += tree.nodes[chNodeId].label;
+	}
+
+	// record this new added node to later resync with grammar if not in rules
+	if ((gramRefTbl[inName] == null) || (gramRefTbl[inName][sig] == null))
+	{
+		if (gAddedNodes[inName] == null) { gAddedNodes[inName] = { }; }
+
+		gAddedNodes[inName][sig] = 1;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+	// 2. add new node to its parent
+	// create a new child list for parent node.
+	// insert newly created node where removing nodes are.
+
+	let newChilds = [ ];
+	let insertedNew = false;
+
+	let prnSig = "";
+
+	for (let ii=0; ii<prnNode.child.length; ii++)
+	{
+		const chNodeId = prnNode.child[ii];
+		if (chldNodeIdTbl[chNodeId] == null)
+		{
+			newChilds.push(chNodeId);
+
+			if (prnSig.length > 0) { prnSig += "::"; }
+			prnSig += tree.nodes[chNodeId].label;
+		}
+		else if (! insertedNew)
+		{
+			newChilds.push(nodeId);
+			insertedNew = true;
+
+			if (prnSig.length > 0) { prnSig += "::"; }
+			prnSig += inName;
+		}
+	}
+
+	prnNode.child = newChilds;
+
+	///////////////////////////////////////////////////////////////////////////
+	// record this new added node to later resync with grammar if not in rules
+	const prnRdxSym = prnNode.label;
+
+	if ((gramRefTbl[prnRdxSym] == null) || (gramRefTbl[prnRdxSym][prnSig] == null))
+	{
+		if (gAddedNodes[prnRdxSym] == null) { gAddedNodes[prnRdxSym] = { }; }
+
+		gAddedNodes[prnRdxSym][prnSig] = 1;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	// create add node record for undo stack...
+
+	retAddRcdLst.push({cmd: "add", treeId: inTreeId, prnNodeId: inPrnNodeId, newNodeName: inName, newNodeId: nodeId, childNodeIds: inChdNodeIds});
+
+	return retAddRcdLst;
+}
+
+function removeNode(inTreeId, inPrnNodeId, inNodeId)
+{
+	let retRemRcdLst = [ ];
+
+	const tree = getTree(inTreeId);
+	const prnNode  = tree.nodes[inPrnNodeId];
+	const node  = tree.nodes[inNodeId];
+
+	// create a new child list for parent node.
+	// insert newly created node where removing nodes are.
+
+	let newChilds = [ ];
+
+	for (let ii=0; ii<prnNode.child.length; ii++)
+	{
+		const chNodeId = prnNode.child[ii];
+		if (chNodeId != inNodeId)
+		{
+			newChilds.push(chNodeId);
+		}
+		else
+		{
+			for (let jj=0; ((node.child != null) && (jj < node.child.length)); jj++)
+			{
+				const gchNodeId = node.child[jj];
+				newChilds.push(gchNodeId);
+			}
+		}
+	}
+
+	prnNode.child = newChilds;
+
+	// create remove node record for undo stack...
+
+	retRemRcdLst.push({cmd: "remove", treeId: inTreeId, prnNodeId: inPrnNodeId, remName: node.label, remNodeId: inNodeId, childNodeIds: node.child });
+
+	// remove the node from the tree...
+
+	delete tree.nodes[inNodeId];
+
+	return retRemRcdLst;
+}
+
+// create an undo/redo record for replacing an entire tree
+function replaceTreeRcd(inTreeId, inNewTree, inOldTree)
+{
+	const retRcdLst = [];
+
+	const tree = getTree(inTreeId);
+
+	retRcdLst.push({cmd: "rpl-tree", treeId: inTreeId, newTree: inNewTree, oldTree: inOldTree });
+
+	return retRcdLst;
+}
+
+function getNodeIdsByName(inName)
+{
+	let retNodeIdLst = [ ];
+
+	const treeIds = getAllTreeIds();
+
+	for (let ii = 0; ii < treeIds.length; ii++)
+	{
+		const treeId = treeIds[ii];
+
+		const tree = getTree(treeId);
+
+		const nodeIds = Object.keys(tree.nodes);
+
+		for (let jj=0; jj < nodeIds.length; jj++)
+		{
+			const nodeId = nodeIds[jj];
+
+			const node = tree.nodes[nodeId];
+
+			if (node.label == inName)
+			{
+				retNodeIdLst.push({ treeId: treeId, nodeId: nodeId });
+			}
+		}
+	}
+
+	return retNodeIdLst;
+}
+
+function findParent(inTreeNodes, inChildNodeId)
+{
+	let retNodeInfo = { parentNodeId: null, childPosition: null };
+
+	const nodeLst = Object.keys(inTreeNodes);
+
+	for (let ii=0; ((ii<nodeLst.length) && (retNodeInfo.parentNodeId == null)); ii++)
+	{
+		const prnNodeId  = nodeLst[ii];
+
+		const prnNode  = inTreeNodes[prnNodeId];
+
+		if (prnNode.child != null)
+		{
+			for (let jj=0; ((jj<prnNode.child.length) && (retNodeInfo.parentNodeId == null)); jj++)
+			{
+				const chNodeId  = prnNode.child[jj];
+
+				if (chNodeId == inChildNodeId)
+				{
+					retNodeInfo.parentNodeId = prnNodeId;
+					retNodeInfo.childPosition = jj;
+				}
+			}
+		}
+	}
+
+	return retNodeInfo;
+}
+
+/* -----------------------------------------------------------------------------
+undo / redo node operations
+----------------------------------------------------------------------------- */
+
+let gUndoStack = [ ];
+let gRedoStack = [ ];
+
+function undoNodeEdit()
+{
+	if (gUndoStack.length > 0)
+	{
+		const edtRcdLst = gUndoStack.pop();
+
+		gRedoStack.push(edtRcdLst);
+
+		for (let ii=0; ii<edtRcdLst.length; ii++)
+		{
+			const edtRcd = edtRcdLst[ii];
+
+			if (edtRcd.cmd == "edit")
+			{
+				const {cmd, treeId, nodeId, fromLabel, toLabel} = edtRcd;
+
+				const tree = getTree(treeId);
+				const node  = tree.nodes[nodeId];
+
+				node.label = fromLabel;
+			}
+			else if (edtRcd.cmd == "add")
+			{
+				const {cmd, treeId, prnNodeId, newNodeName, newNodeId, childNodeIds} = edtRcd;
+
+				removeNode(treeId, prnNodeId, newNodeId);
+			}
+			else if (edtRcd.cmd == "remove")
+			{
+				const {cmd, treeId, prnNodeId, remName, remNodeId, childNodeIds} = edtRcd;
+
+				addNode(treeId, prnNodeId, childNodeIds, remName, remNodeId, false);
+			}
+			else if (edtRcd.cmd == "rpl-tree")
+			{
+				const {cmd, treeId, newTree, oldTree} = edtRcd;
+
+				gTreeModel.tbl[treeId] = oldTree;
+			}
+		}
+		renderCanvas();
+	}
+}
+
+function redoNodeEdit()
+{
+	if (gRedoStack.length > 0)
+	{
+		const edtRcdLst = gRedoStack.pop();
+
+		gUndoStack.push(edtRcdLst);
+
+		for (let ii=0; ii<edtRcdLst.length; ii++)
+		{
+			const edtRcd = edtRcdLst[ii];
+
+			if (edtRcd.cmd == "edit")
+			{
+				const {cmd, treeId, nodeId, fromLabel, toLabel} = edtRcd;
+
+				const tree = getTree(treeId);
+				const node  = tree.nodes[nodeId];
+
+				node.label = toLabel;
+			}
+			else if (edtRcd.cmd == "add")
+			{
+				const {cmd, treeId, prnNodeId, newNodeName, newNodeId, childNodeIds} = edtRcd;
+
+				addNode(treeId, prnNodeId, childNodeIds, newNodeName, newNodeId, false);
+			}
+			else if (edtRcd.cmd == "remove")
+			{
+				const {cmd, treeId, prnNodeId, remName, remNodeId, childNodeIds} = edtRcd;
+
+				removeNode(treeId, prnNodeId, remNodeId);
+			}
+			else if (edtRcd.cmd == "rpl-tree")
+			{
+				const {cmd, treeId, newTree, oldTree} = edtRcd;
+
+				gTreeModel.tbl[treeId] = newTree;
+			}
+		}
+		renderCanvas();
+	}
+}
+
+/* -----------------------------------------------------------------------------
+grammar
+----------------------------------------------------------------------------- */
+
+function editGrammar()
+{
+	popUpGrammarDialog(gGrammar);
+}
+
+// TODO: remove rules that were added by node inserts, but later removed.
+function resyncGrammar()
+{
+	const gramRefTbl = makeGrammarRefTbl(gGrammar.rdx);
+
+	// iterate through each tree to find added nodes to sync to grammar...
+
+	const treeIds = getAllTreeIds();
+
+	for (let ii = 0; ii < treeIds.length; ii++)
+	{
+		const treeId = treeIds[ii];
+
+		const tree = getTree(treeId);
+
+		const nodeIds = Object.keys(tree.nodes);
+
+		for (let jj=0; jj < nodeIds.length; jj++)
+		{
+			const nodeId = nodeIds[jj];
+
+			const node = tree.nodes[nodeId];
+
+			const rdxSym = node.label;
+
+			// if this wasn't an added node - we don't care about it...
+			if (gAddedNodes[rdxSym] == null) { continue; }
+
+			// this node has children - add it to grammar rule?
+			if (node.child != null)
+			{
+				// e.g., sig = "ch1::ch2::ch3".
+				let sig = "";
+
+				// build rule in case we want to add it to grammar
+				let rule = [ ];
+
+				// step through possible new node's children...
+				for (let kk=0; kk<node.child.length; kk++)
+				{
+					const chNodeId = node.child[kk];
+
+					const chNode = tree.nodes[chNodeId];
+
+					const refSym = chNode.label;
+
+					if (sig.length > 0) { sig += "::"; }
+
+					sig += refSym;
+
+					rule.push( { ref: refSym, min: 1, max: 1 } );
+				}
+
+				// sig says this wasn't an added node - we don't care about it
+				if (gAddedNodes[rdxSym][sig] == null) { continue; }
+
+				// if not already in the grammar - add it...
+				if ((gramRefTbl[rdxSym] == null) ||
+					(gramRefTbl[rdxSym][sig] == null))
+				{
+					if (gGrammar.rdx[rdxSym] == null) { gGrammar.rdx[rdxSym] = []; }
+					gGrammar.rdx[rdxSym].push(rule);
+				}
+			}
+		}
+	}
+
+	return gTreeModel.inv;
+}
+
+function makeGrammarRefTbl(inRdxTbl)
+{
+	const retTbl = { };
+
+	const symLst = Object.keys(inRdxTbl);
+
+	for (let ii=0; ii<symLst.length; ii++)
+	{
+		const rdxSym = symLst[ii];
+
+		for (let oo=0; oo<inRdxTbl[rdxSym].length; oo++)
+		{
+			let sig = "";
+			let hasNoItr = false;
+
+			for (let rr=0; rr<inRdxTbl[rdxSym][oo].length; rr++)
+			{
+				const { ref, min, max } = inRdxTbl[rdxSym][oo][rr];
+
+				if (sig.length > 0) { sig += "::"; }
+
+				sig += ref;
+
+				if ((min == 1) && (max == 1))
+				{
+					hasNoItr = true;
+				}
+			}
+
+			if (retTbl[rdxSym] == null) { retTbl[rdxSym] = { }; }
+
+			retTbl[rdxSym][sig] = ((retTbl[rdxSym][sig] != null) && (retTbl[rdxSym][sig])) ? true : hasNoItr;
+		}
+	}
+
+	return retTbl;
+}
+
+/* -----------------------------------------------------------------------------
+pop up dialog call backs
+----------------------------------------------------------------------------- */
+
+function editDialogCallback(inName, inProlif)
+{
+	editNodeHandler(inName, inProlif);
+}
+
+function addNodeDialogCallback(inName, inProlif)
+{
+	addNodeHandler(inName, inProlif);
+}
+
+function removeDialogCallback(inProlif)
+{
+	removeNodeHandler(gSbjTreeId, gSbjNodeId, gSbjChldNodeIds, inProlif);
+}
+
+function grammarDialogCallback(inGrammarTxt)
+{
+alert("grammarDialogCallback(inGrammarTxt: " + inGrammarTxt + ")");
+}
+
+/* -----------------------------------------------------------------------------
+node modification functions - handle undo stack, rendering...
+----------------------------------------------------------------------------- */
+
+function editNodeHandler(inName, inProlif)
+{
+	// make edit...
+
+	const edtRcdLst = editNode(gSbjTreeId, gSbjNodeId, inName, inProlif);
+
+	// register edits on undo stack...
+
+	gUndoStack.push(edtRcdLst);
+	gRedoStack = [ ];
+
+	// render changes...
+
+	if (inProlif)
+	{
+		renderCanvas();
+	}
+	else
+	{
+		renderTree(gSbjTreeId);
+	}
+
+	// cleanup...
+
+	gSelectionPanel = {}
+	unhighlightAllNodes();
+
+	gSbjTreeId = null;
+	gSbjNodeId = null;
+}
+
+function addNodeHandler(inName, inProlif)
+{
+	// make edit...
+
+	const addRcdLst = addNode(gSbjTreeId, gSbjNodeId, gSbjChldNodeIds, inName, null, inProlif);
+
+	// register edits on undo stack...
+
+	gUndoStack.push(addRcdLst);
+	gRedoStack = [ ];
+
+	// render changes...
+
+	if (inProlif)
+	{
+		renderCanvas();
+	}
+	else
+	{
+		renderTree(gSbjTreeId);
+	}
+
+	// cleanup...
+
+	gSelectionPanel = {}
+	unhighlightAllNodes();
+
+	gSbjTreeId = null;
+	gSbjNodeId = null;
+}
+
+function removeNodeHandler(inTreeId, inPrnNodeId, inNodeIdLst, inProlif)
+{
+	for (let ii=0; ii<inNodeIdLst.length; ii++)
+	{
+		const nodeId = inNodeIdLst[ii];
+
+		const remRcdLst = removeNode(inTreeId, inPrnNodeId, nodeId);
+
+		// register edits on undo stack...
+
+		gUndoStack.push(remRcdLst);
+		gRedoStack = [ ];
+	}
+
+	// render changes...
+
+//		renderCanvas();
+	renderTree(inTreeId);
+
+	// cleanup...
+
+	gSelectionPanel = {}
+	unhighlightAllNodes();
+}
+
+/* =====================================================================
+ *  2.1  Build the tree grid
+ * ===================================================================== */
+
+function buildGrid(inTreeId)
+{
+	let retGrid = {};
+
+	const tree = getTree(inTreeId);		// see 2.5
+	if (!tree || !tree.nodes || !tree.nodes[tree.root]) { return retGrid; }
+
+	rcrsBuildTree(retGrid, tree.root, tree, 0);
+
+	return retGrid;
+}
+
+// use recursion to locate each node into the grid, including its row,
+// starting column and ending column.
+// returns { row, col, maxCol } for the subtree rooted at inNodeId.
+function rcrsBuildTree(outGrid, inNodeId, inTree, inCol)
+{
+	let retDim = { row: 0, col: inCol, maxCol: inCol };
+
+	const node = inTree.nodes[inNodeId];
+	if (!node) { return retDim; }
+
+	const kids = Array.isArray(node.child) ? node.child : [];
+
+	if (kids.length > 0)
+	{
+		// which columns do I span - i.e. the column of my left child and
+		// the column of my right child.
+		let lftCol;
+		let rgtCol;
+		let maxRow = -1;
+		let maxCol = inCol;
+		let nextCol = inCol;
+
+		for (let ii = 0; ii < kids.length; ii++)
+		{
+			const dim = rcrsBuildTree(outGrid, kids[ii], inTree, nextCol);
+
+			if (dim.row	> maxRow) { maxRow = dim.row; }
+			if (dim.maxCol > maxCol) { maxCol = dim.maxCol; }
+
+			if (lftCol === undefined) { lftCol = dim.col; }
+			rgtCol = dim.col;
+
+			nextCol = dim.maxCol + 1;	  // the next sibling starts to the right
+		}
+
+		retDim.row	= maxRow + 1;
+		retDim.col	= lftCol + Math.floor((rgtCol - lftCol) / 2);
+		retDim.maxCol = maxCol;
+
+		outGrid[inNodeId] = { row: retDim.row, col: retDim.col,
+							  lftCol: lftCol, rgtCol: rgtCol };
+	}
+	else
+	{
+		retDim.row	= 0;
+		retDim.col	= inCol;
+		retDim.maxCol = inCol;
+
+		outGrid[inNodeId] = { row: 0, col: inCol, lftCol: inCol, rgtCol: inCol };
+	}
+
+	return retDim;
+}
+
+/* =====================================================================
+ *  2.2  Column widths, node centres and vertical placement
+ * ===================================================================== */
+
+function determineMaxColumnWidths(inGrid, inTree)
+{
+	let retWdt = {};
+
+	// iterate over all nodeIds in the inGrid variable.
+	for (const nodeId in inGrid)
+	{
+		const gg	= inGrid[nodeId];
+		const node = inTree.nodes[nodeId];
+		if (!node) { continue; }
+
+		const label  = (node.label != null) ? String(node.label) : nodeId;
+		const lblWdt = label.length;
+
+		// number of grid columns that this label has to be spread over
+		const span = (gg.rgtCol - gg.lftCol) + 1;
+
+		const avgColWdt = Math.max(1, Math.ceil(lblWdt / span));
+
+		for (let cc = gg.lftCol; cc <= gg.rgtCol; cc++)
+		{
+			retWdt[cc] = ((retWdt[cc] == null) || (retWdt[cc] < avgColWdt))
+						? avgColWdt : retWdt[cc];
+		}
+	}
+
+	// enforce a small minimum so that the connector art has room to breathe
+	for (const cc in retWdt)
+	{
+		if (retWdt[cc] < MIN_COL_WDT) { retWdt[cc] = MIN_COL_WDT; }
+	}
+
+	return retWdt;
+}
+
+// character position of each node's label centre.
+function computeCenters(inTree, inGrid, inColCenter, inNodeId, outCenters)
+{
+	const node = inTree.nodes[inNodeId];
+	const kids = (node && Array.isArray(node.child)) ? node.child : [];
+
+	let ret;
+
+	if (kids.length === 0)
+	{
+		const gg = inGrid[inNodeId];
+		const cc = gg ? gg.col : 0;
+		ret = (inColCenter[cc] != null) ? inColCenter[cc] : 0;
+	}
+	else
+	{
+		let first = null;
+		let last  = null;
+
+		for (let ii = 0; ii < kids.length; ii++)
+		{
+			const kc = computeCenters(inTree, inGrid, inColCenter, kids[ii], outCenters);
+			if (first === null) { first = kc; }
+			last = kc;
+		}
+
+		ret = Math.floor((first + last) / 2);
+	}
+
+	outCenters[inNodeId] = ret;
+	return ret;
+}
+
+// vertical offset of each node's label measured from the bottom (leaf) row.
+//   leaf			  -> 0
+//   parent's "in" row -> child offset + 1
+//   parent's "span"   -> max(child "in") + 1
+//   parent's "out"	-> span + 1
+//   parent's label	-> out + 1
+function computeOffsets(inTree, inNodeId, outOffsets)
+{
+	const node = inTree.nodes[inNodeId];
+	const kids = (node && Array.isArray(node.child)) ? node.child : [];
+
+	let ret;
+
+	if (kids.length === 0)
+	{
+		ret = 0;
+	}
+	else
+	{
+		let maxIn = 0;
+
+		for (let ii = 0; ii < kids.length; ii++)
+		{
+			const ko = computeOffsets(inTree, kids[ii], outOffsets);
+			if ((ko + 1) > maxIn) { maxIn = ko + 1; }
+		}
+
+		ret = maxIn + 3;
+	}
+
+	outOffsets[inNodeId] = ret;
+	return ret;
+}
+
+/* =====================================================================
+ *  2.2  Build the tree text
+ * ===================================================================== */
+
+function buildTreeText(inTreeId)
+{
+	const tree = getTree(inTreeId);
+	if (!tree || !tree.nodes || !tree.nodes[tree.root]) { return null; }
+
+	// ---- step 1 : the grid ------------------------------------------------
+	const grid = buildGrid(inTreeId);
+
+	let maxCol = 0;
+	for (const nodeId in grid)
+	{
+		if (grid[nodeId].rgtCol > maxCol) { maxCol = grid[nodeId].rgtCol; }
+	}
+
+	// ---- column widths / character positions ------------------------------
+	const widths = determineMaxColumnWidths(grid, tree);
+
+	const colStart  = {};
+	const colCenter = {};
+	let x = 0;
+
+	for (let cc = 0; cc <= maxCol; cc++)
+	{
+		const w = (widths[cc] != null) ? widths[cc] : MIN_COL_WDT;
+		colStart[cc]  = x;
+		colCenter[cc] = x + Math.floor((w - 1) / 2);
+		x += w + 1;					   // one blank character between columns
+	}
+
+	// ---- node centres -----------------------------------------------------
+	const center = {};
+	computeCenters(tree, grid, colCenter, tree.root, center);
+
+	// ---- vertical placement ----------------------------------------------
+	const off = {};
+	computeOffsets(tree, tree.root, off);
+
+	const numRows = off[tree.root] + 1;
+	const rowOf   = {};
+
+	for (const nodeId in off)
+	{
+		rowOf[nodeId] = numRows - 1 - off[nodeId];
+	}
+
+	// ---- rasterise --------------------------------------------------------
+	const chars = [];
+	for (let rr = 0; rr < numRows; rr++) { chars.push([]); }
+
+	drawConnectors(tree, rowOf, center, chars);
+	const labelsByRow = drawLabels(tree, rowOf, center, chars, numRows);
+
+	return {
+		tree:		tree,
+		numRows:		numRows,
+		chars:			chars,
+		labelsByRow:	labelsByRow
+	};
+}
+
+function setChar(rowArr, x, ch)
+{
+	if (x < 0) { return; }
+	while (rowArr.length <= x) { rowArr.push(" "); }
+	rowArr[x] = ch;
+}
+
+function drawConnectors(inTree, inRowOf, inCenter, chars)
+{
+	for (const nodeId in inTree.nodes)
+	{
+		const node = inTree.nodes[nodeId];
+		const kids = (node && Array.isArray(node.child)) ? node.child : [];
+
+		if (kids.length === 0)	  { continue; }
+		if (inRowOf[nodeId] == null) { continue; }
+
+		const pRow  = inRowOf[nodeId];
+		const pCent = inCenter[nodeId];
+
+		// 2. the "out" connector, centred beneath the parent label
+		setChar(chars[pRow + 1], pCent, "\u2502");	 // │
+
+		// 3. the "span" connector
+		const spanRow = pRow + 2;
+
+		if (kids.length === 1)
+		{
+			setChar(chars[spanRow], inCenter[kids[0]], "\u2502");   // │
+		}
+		else
+		{
+			const lft = inCenter[kids[0]];
+			const rgt = inCenter[kids[kids.length - 1]];
+
+			setChar(chars[spanRow], lft, "\u250C");				 // ┌
+			setChar(chars[spanRow], rgt, "\u2510");				 // ┐
+
+			for (let cx = lft + 1; cx < rgt; cx++)
+			{
+				setChar(chars[spanRow], cx, "\u2500");			  // ─
+			}
+
+			setChar(chars[spanRow], pCent, "\u2534");			   // ┴
+
+			for (let ii = 1; ii < kids.length - 1; ii++)
+			{
+				setChar(chars[spanRow], inCenter[kids[ii]], "\u252C"); // ┬
+			}
+		}
+
+		// 4./6. the "in" connector and any "extend" connectors for each child
+		for (let ii = 0; ii < kids.length; ii++)
+		{
+			const kId = kids[ii];
+			const kIn = inRowOf[kId] - 1;
+
+			if (kIn < 0) { continue; }
+
+			for (let rr = spanRow + 1; rr <= kIn; rr++)
+			{
+				setChar(chars[rr], inCenter[kId], "\u2502");		 // │
+			}
+
+			setChar(chars[kIn], inCenter[kId], "\u2502");		   // │
+		}
+	}
+}
+
+function drawLabels(inTree, inRowOf, inCenter, chars, numRows)
+{
+	const labelsByRow = [];
+	for (let rr = 0; rr < numRows; rr++) { labelsByRow.push([]); }
+
+	for (const nodeId in inTree.nodes)
+	{
+		if (inRowOf[nodeId] == null) { continue; }
+
+		const node  = inTree.nodes[nodeId];
+		const label = (node.label != null) ? String(node.label) : String(nodeId);
+		const len   = label.length;
+		const row   = inRowOf[nodeId];
+
+		let start = inCenter[nodeId] - Math.floor(len / 2);
+		if (start < 0) { start = 0; }
+
+		// very defensive: never let two labels occupy the same characters
+		let moved = true;
+		while (moved)
+		{
+			moved = false;
+			const placed = labelsByRow[row];
+			for (let ii = 0; ii < placed.length; ii++)
+			{
+				const pl = placed[ii];
+				if ((start < pl.start + pl.len) && (pl.start < start + len))
+				{
+					start = pl.start + pl.len + 1;
+					moved = true;
+				}
+			}
+		}
+
+		for (let ii = 0; ii < len; ii++)
+		{
+			setChar(chars[row], start + ii, label.charAt(ii));
+		}
+
+		labelsByRow[row].push({ nodeId: nodeId, start: start, len: len, label: label });
+	}
+
+	return labelsByRow;
+}
+
+/* turn one rasterised row into a list of segments
+   (either plain text or a clickable node label).					  */
+function rowToSegments(charsRow, labels)
+{
+	const sorted = labels.slice().sort(function (a, b) { return a.start - b.start; });
+
+	// work out where the row really ends (ignore trailing blanks)
+	let end = charsRow.length;
+	while (end > 0 && (charsRow[end - 1] === " " || charsRow[end - 1] === undefined))
+	{
+		end--;
+	}
+	for (let ii = 0; ii < sorted.length; ii++)
+	{
+		if (sorted[ii].start + sorted[ii].len > end)
+		{
+			end = sorted[ii].start + sorted[ii].len;
+		}
+	}
+
+	const segs = [];
+	let x  = 0;
+	let li = 0;
+
+	while (x < end)
+	{
+		if (li < sorted.length && sorted[li].start === x)
+		{
+			segs.push({ type: "node", nodeId: sorted[li].nodeId, label: sorted[li].label });
+			x += sorted[li].len;
+			li++;
+		}
+		else if (li < sorted.length && sorted[li].start < x)
+		{
+			li++;								   // (should never happen)
+		}
+		else
+		{
+			const stop = (li < sorted.length) ? sorted[li].start : end;
+			let s = "";
+
+			while (x < stop && x < end)
+			{
+				s += (charsRow[x] !== undefined) ? charsRow[x] : " ";
+				x++;
+			}
+
+			if (s.length > 0) { segs.push({ type: "text", text: s }); }
+		}
+	}
+
+	return segs;
+}
+
+/* =====================================================================
+ *  2.4  Rendering functions
+ * ===================================================================== */
+
+// this function renders the entire canvas.
+function renderCanvas()
+{
+	const canvas = document.getElementById("canvas");
+
+	canvas.innerHTML = "";
+	gTreeBlocks   = {};
+	gNodeElements = {};
+	hideToolTip();
+
+	const treeIds = getAllTreeIds();
+
+	for (let ii = 0; ii < treeIds.length; ii++)
+	{
+		renderTree(treeIds[ii]);
+	}
+}
+
+// renders (or re-renders) a single tree in place on the canvas.
+function renderTree(inTreeId)
+{
+	const canvas = document.getElementById("canvas");
+
+	let block = gTreeBlocks[inTreeId];
+
+	if (!block)
+	{
+		block = document.createElement("div");
+		block.className = "tree-block";
+		block.setAttribute("data-tree-id", inTreeId);
+		canvas.appendChild(block);
+		gTreeBlocks[inTreeId] = block;
+	}
+
+	// rebuild the contents; the block element itself is reused so that the
+	// tree stays exactly where it was on the page.
+	block.innerHTML = "";
+	gNodeElements[inTreeId] = {};
+
+	const layout = buildTreeText(inTreeId);
+	if (!layout) { return; }
+
+	const tree = getTree(inTreeId);
+
+	// ---- the tree text ----------------------------------------------------
+	for (let rr = 0; rr < layout.numRows; rr++)
+	{
+		const rowDiv = document.createElement("div");
+		rowDiv.className = "tree-row";
+
+		const segs = rowToSegments(layout.chars[rr], layout.labelsByRow[rr]);
+
+		for (let ii = 0; ii < segs.length; ii++)
+		{
+			const seg = segs[ii];
+
+			if (seg.type === "text")
+			{
+				rowDiv.appendChild(document.createTextNode(seg.text));
+			}
+			else
+			{
+				const span = document.createElement("span");
+				span.className = "node-label";
+				span.textContent = seg.label;
+				span.setAttribute("data-tree-id", inTreeId);
+				span.setAttribute("data-node-id", seg.nodeId);
+
+				attachNodeHandlers(span, inTreeId, seg.nodeId);
+
+				gNodeElements[inTreeId][seg.nodeId] = span;
+				rowDiv.appendChild(span);
+
+				const typ = (tree.nodes[seg.nodeId].err) ? 3 : 0;
+
+				highlightNode(inTreeId, seg.nodeId, typ);
+			}
+		}
+
+		block.appendChild(rowDiv);
+	}
+
+	// ---- the annotation ---------------------------------------------------
+	const ann = document.createElement("div");
+	ann.className = "tree-annotation";
+	ann.textContent = (layout.tree.annotation != null) ? String(layout.tree.annotation) : "";
+	block.appendChild(ann);
+
+	// ---- the little "→" action item ---------------------------------------
+	const act = document.createElement("div");
+	act.className = "tree-action";
+	act.textContent = "\u2192";
+	act.title = 'reparseTree("' + inTreeId + '")';
+	act.addEventListener("click", function () { reparseTree(inTreeId, gGrammar, gTreeModel); });
+	block.appendChild(act);
+}
+
+function getNodeElement(inTreeId, inNodeId)
+{
+	const perTree = gNodeElements[inTreeId];
+	if (!perTree) { return null; }
+	return perTree[inNodeId] || null;
+}
+
+/* =====================================================================
+ *  1.1.2  Node selection (single vs. double click)
+ * ===================================================================== */
+
+function attachNodeHandlers(el, treeId, nodeId)
+{
+	el.addEventListener("click", function (ev) {
+		ev.stopPropagation();
+		selectNode(treeId, nodeId);
+	});
+
+	el.addEventListener("mouseenter", function () {
+		showToolTip(treeId, nodeId, el);
+	});
+
+	el.addEventListener("mouseleave", function () {
+		hideToolTip();
+	});
+}
+
+/* =====================================================================
+ *  1.1.4  Tool tips
+ * ===================================================================== */
+
+function showToolTip(treeId, nodeId, anchorEl)
+{
+	hideToolTip();
+
+	const text = getToolTip(treeId, nodeId);
+
+	gTooltipEl = document.createElement("div");
+	gTooltipEl.className = "node-tooltip";
+	gTooltipEl.textContent = text;
+	document.body.appendChild(gTooltipEl);
+
+	// top-left corner of the tool tip sits on the bottom-left corner of the label
+	const rr = anchorEl.getBoundingClientRect();
+	let left = rr.left;
+	let top  = rr.bottom;
+
+	const w = gTooltipEl.offsetWidth;
+	const h = gTooltipEl.offsetHeight;
+
+	if (left + w > window.innerWidth  - 4) { left = window.innerWidth  - w - 4; }
+	if (left < 4)						  { left = 4; }
+	if (top + h > window.innerHeight - 4)  { top  = rr.top - h; }
+	if (top < 4)						   { top  = 4; }
+
+	gTooltipEl.style.left = left + "px";
+	gTooltipEl.style.top  = top  + "px";
+}
+
+function hideToolTip()
+{
+	if (gTooltipEl)
+	{
+		gTooltipEl.remove();
+		gTooltipEl = null;
+	}
+}
+
+/* =====================================================================
+ *  1.2  Pop-up menu
+ * ===================================================================== */
+
+function initMenu()
+{
+	const icon  = document.getElementById("menu-icon");
+	const popup = document.getElementById("menu-popup");
+
+	icon.addEventListener("click", function (ev) {
+		ev.stopPropagation();
+		popup.classList.toggle("hidden");
+	});
+
+	popup.addEventListener("click", function (ev) {
+		ev.stopPropagation();
+	});
+
+	document.addEventListener("click", function () {
+		popup.classList.add("hidden");
+	});
+
+	const items = popup.querySelectorAll(".menu-item");
+	for (let ii = 0; ii < items.length; ii++)
+	{
+		items[ii].addEventListener("click", function () {
+			popup.classList.add("hidden");
+			const action = items[ii].getAttribute("data-action");
+
+			try
+			{
+				if	  (action === "loadTree") { loadTreeModel(); }
+				else if (action === "loadText") { loadText();	  }
+				else if (action === "loadGrammar") { loadGrammar();	  }
+				else if (action === "loadDictionary") { loadDictionary();	  }
+
+				else if (action === "dumpTree") { dumpTreeModel(); }
+				else if (action === "dumpGrammar") { dumpGrammar(gGrammar); }
+
+				else if (action === "editNode")  { editNodeCmd();	   }
+				else if (action === "addNode")  { addNodeCmd();	   }
+				else if (action === "removeNode")  { removeNodeCmd();	   }
+
+				else if (action === "undoNodeEdit")  { undoNodeEdit();	   }
+				else if (action === "redoNodeEdit")  { redoNodeEdit();	   }
+
+				else if (action === "editGrammar")  { editGrammar();	   }
+				else if (action === "resyncGrammar")  { resyncGrammar();	   }
+			}
+			catch (err)
+			{
+				alert(err);
+			}
+		});
+	}
+}
+
+function initKeyboard()
+{
+	document.addEventListener("keydown", function (ev) {
+		// CTL + "z" behaves exactly like selecting "Action A" from the menu
+		if ((ev.ctrlKey || ev.metaKey) && (ev.key === "z"))
+		{
+			ev.preventDefault();
+			undoNodeEdit();
+			return;
+		}
+		else if ((ev.ctrlKey || ev.metaKey) && (ev.key === "y"))
+		{
+			ev.preventDefault();
+			redoNodeEdit();
+			return;
+		}
+		else if ((ev.ctrlKey || ev.metaKey) && (ev.key === "e"))
+		{
+			ev.preventDefault();
+			editNodeCmd();
+			return;
+		}
+		else if ((ev.ctrlKey || ev.metaKey) && (ev.key === "n"))
+		{
+			ev.preventDefault();
+			addNodeCmd();
+			return;
+		}
+		else if ((ev.ctrlKey || ev.metaKey) && (ev.key === "g"))
+		{
+			ev.preventDefault();
+			editGrammar();
+			return;
+		}
+		else if (ev.key === "Delete")
+		{
+			ev.preventDefault();
+			removeNodeCmd();
+			return;
+		}
+
+		// ESC closes the pop-up dialog
+		else if (ev.key === "Escape")
+		{
+			document.getElementById("edit-dialog").classList.add("hidden");
+			document.getElementById("add-dialog").classList.add("hidden");
+			document.getElementById("remove-dialog").classList.add("hidden");
+			document.getElementById("grammar-dialog").classList.add("hidden");
+		}
+	});
+}
+
+/* =====================================================================
+ *  1.3  Pop-up dialog
+ * ===================================================================== */
+
+function popUpEditNodeDialog(inName)
+{
+	document.getElementById("ne-dlg-name").value   = (inName != null) ? String(inName) : "";
+	document.getElementById("ne-dlg-prolif").checked = false;
+
+	document.getElementById("edit-dialog").classList.remove("hidden");
+	document.getElementById("ne-dlg-name").focus();
+}
+
+function popUpAddNodeDialog(inAa, inBb, inCc, inDd)
+{
+	// populate the fields...
+	document.getElementById("na-dlg-name").value   = (inAa != null) ? String(inAa) : "";
+	document.getElementById("na-dlg-prolif").checked = !!inBb;
+	document.getElementById("dlg-cc").textContent = (inCc != null) ? String(inCc) : "";
+
+	const sel = document.getElementById("dlg-dd");
+	sel.innerHTML = "";
+
+	const options = Array.isArray(inDd) ? inDd : [];
+	for (let ii = 0; ii < options.length; ii++)
+	{
+		const opt = document.createElement("option");
+		opt.value = String(options[ii]);
+		opt.textContent = String(options[ii]);
+		sel.appendChild(opt);
+	}
+
+	document.getElementById("add-dialog").classList.remove("hidden");
+	document.getElementById("na-dlg-name").focus();
+}
+
+function popUpRemoveNodeDialog(inName)
+{
+	document.getElementById("nr-dlg-name").textContent = (inName != null) ? String(inName) : "";
+	document.getElementById("nr-dlg-prolif").checked = false;
+
+	document.getElementById("remove-dialog").classList.remove("hidden");
+	document.getElementById("nr-dlg-ok").focus();
+}
+
+function popUpGrammarDialog(inGrammar)
+{
+	const grammarTxt = fmtGrammar(inGrammar);
+
+	document.getElementById("rl-dlg-grammar").value = grammarTxt;
+
+	document.getElementById("grammar-dialog").classList.remove("hidden");
+	document.getElementById("rl-dlg-ok").focus();
+}
+
+function initDialogs()
+{
+	initNodeEditDialog();
+
+	initNodeAddDialog();
+
+	initNodeRemoveDialog();
+
+	initGrammarDialog();
+}
+
+function initNodeEditDialog()
+{
+	document.getElementById("ne-dlg-ok").addEventListener("click", function () {
+		const name = document.getElementById("ne-dlg-name").value;
+		const prolif = document.getElementById("ne-dlg-prolif").checked;
+
+		document.getElementById("edit-dialog").classList.add("hidden");
+		editDialogCallback(name, prolif);
+	});
+
+	document.getElementById("ne-dlg-cancel").addEventListener("click", function () {
+		document.getElementById("edit-dialog").classList.add("hidden");
+	});
+
+	// clicking the dim backdrop cancels as well
+	document.getElementById("edit-dialog").addEventListener("click", function (ev) {
+		if (ev.target === document.getElementById("edit-dialog"))
+		{
+			document.getElementById("edit-dialog").classList.add("hidden");
+		}
+	});
+}
+
+function initNodeAddDialog()
+{
+	document.getElementById("na-dlg-ok").addEventListener("click", function () {
+		const name = document.getElementById("na-dlg-name").value;
+		const prolif = document.getElementById("na-dlg-prolif").checked;
+
+		document.getElementById("add-dialog").classList.add("hidden");
+		addNodeDialogCallback(name, prolif);
+	});
+
+	document.getElementById("na-dlg-cancel").addEventListener("click", function () {
+		document.getElementById("add-dialog").classList.add("hidden");
+	});
+
+	// clicking the dim backdrop cancels as well
+	document.getElementById("add-dialog").addEventListener("click", function (ev) {
+		if (ev.target === document.getElementById("add-dialog"))
+		{
+			document.getElementById("add-dialog").classList.add("hidden");
+		}
+	});
+}
+
+function initNodeRemoveDialog()
+{
+	document.getElementById("nr-dlg-ok").addEventListener("click", function () {
+		const prolif = document.getElementById("nr-dlg-prolif").checked;
+
+		document.getElementById("remove-dialog").classList.add("hidden");
+		removeDialogCallback(prolif);
+	});
+
+	document.getElementById("nr-dlg-cancel").addEventListener("click", function () {
+		document.getElementById("remove-dialog").classList.add("hidden");
+	});
+
+	// clicking the dim backdrop cancels as well
+	document.getElementById("remove-dialog").addEventListener("click", function (ev) {
+		if (ev.target === document.getElementById("remove-dialog"))
+		{
+			document.getElementById("remove-dialog").classList.add("hidden");
+		}
+	});
+}
+
+function initGrammarDialog()
+{
+	document.getElementById("rl-dlg-ok").addEventListener("click", function () {
+		const grammarTxt = document.getElementById("rl-dlg-grammar").value;
+
+		document.getElementById("grammar-dialog").classList.add("hidden");
+		grammarDialogCallback(grammarTxt);
+	});
+
+	document.getElementById("rl-dlg-cancel").addEventListener("click", function () {
+		document.getElementById("grammar-dialog").classList.add("hidden");
+	});
+
+	// clicking the dim backdrop cancels as well
+	document.getElementById("grammar-dialog").addEventListener("click", function (ev) {
+		if (ev.target === document.getElementById("grammar-dialog"))
+		{
+			document.getElementById("grammar-dialog").classList.add("hidden");
+		}
+	});
+}
+
+/* =====================================================================
+ *  3.  Jumping to tree views
+ * ===================================================================== */
+
+function jumpToTree(inTreeId)
+{
+	const block = gTreeBlocks[inTreeId];
+	if (!block) { return; }
+
+	const rect = block.getBoundingClientRect();
+	const top  = rect.top + window.pageYOffset - 12;
+
+	window.scrollTo({ top: top, left: 0, behavior: "auto" });
+}
+
+/* =====================================================================
+ *  4.  Load / dump functionality
+ * ===================================================================== */
+
+function loadTreeModel()
+{
+	// 1. prompt the user to select a text file from their hard drive.
+	// 2. read this into text and pass text to "parseTreeModel()".
+	// 3. invoke renderCanvas().
+	pickTextFile(function (inText, inTxtFl)
+	{
+		gTreeModel = parseTreeModel(inText, inTxtFl);
+
+		renderCanvas();
+
+		gUndoStack = [ ];
+		gRedoStack = [ ];
+	});
+}
+
+function loadText()
+{
+	pickTextFile(function (inText, inTxtFl) {
+		parseText(inText, inTxtFl, gGrammar);
+		renderCanvas();
+
+		gUndoStack = [ ];
+		gRedoStack = [ ];
+	});
+}
+
+function loadGrammar()
+{
+	pickTextFile(function (inText, inTxtFl)
+	{
+		try
+		{
+			gGrammar = parseGrammar(inText, inTxtFl, 0);
+
+			popUpGrammarDialog(gGrammar);
+		}
+		catch (err)
+		{
+			alert(err);
+		}
+//		renderCanvas();
+	});
+}
+
+function loadDictionary()
+{
+	pickTextFile(function (inText, inTxtFl)
+	{
+		try
+		{
+			gDictionary = parseDictionary(inText, inTxtFl.name, 0);
+		}
+		catch (err)
+		{
+			alert(err);
+		}
+	});
+}
+
+function dumpTreeModel()
+{
+	const text = formatTreeModel();
+	downloadTextFile(text, "tree-model.txt");
+}
+
+
+function dumpGrammar(inGrammar)
+{
+	const text = fmtGrammar(inGrammar);
+	downloadTextFile(text, "grammar.txt");
+}
+
+function pickTextFile(callback)
+{
+	const input = document.createElement("input");
+	input.type = "file";
+	input.accept = ".txt,text/plain";
+	input.style.display = "none";
+	document.body.appendChild(input);
+
+	input.addEventListener("change", function () {
+		const file = input.files && input.files[0];
+		if (!file) { input.remove(); return; }
+
+		const reader = new FileReader();
+		reader.onload = function () {
+			input.remove();
+			callback(String(reader.result), file);
+		};
+		reader.onerror = function () {
+			input.remove();
+			console.log("Could not read the selected file.");
+		};
+		reader.readAsText(file);
+	});
+
+	input.click();
+}
+
+function downloadTextFile(text, filename)
+{
+	const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+	const url  = URL.createObjectURL(blob);
+
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = filename;
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
+
+	setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+}
+
+/* =====================================================================
+ *  Boot
+ * ===================================================================== */
+
+function initApp()
+{
+	renderCanvas();
+	initMenu();
+	initDialogs();
+	initKeyboard();
+
+	// hide any lingering tool tip when the page scrolls
+	window.addEventListener("scroll", hideToolTip, true);
+	window.addEventListener("resize", hideToolTip);
+
+	// if the URL carries "?tree=treeId" jump to that tree
+	const params = new URLSearchParams(window.location.search);
+	const treeId = params.get("tree");
+	if (treeId) { jumpToTree(treeId); }
+}
+
+initApp();
+
+/* =============================================================================
+TODO
+
+- grammar resync
+	1. track added unique nodes to allow deletion on resync
+	2. traverse trees and resync grammar
+		a. disregard "error" nodes that should not be automatically added to grammar
+		b. don't delete rule unless it is in tracked added unique nodes list
+- edit
+	1. add 'prolif' functionality
+		a. "remove node"
+		b. "add node"
+- persist
+	1. nodes
+	2. grammar
+- annotate nodes
+	1. allow for intermediate annotation of nodes
+- measure rdx quality
+	1. entropy metric
+	2. efficiency metric
+- dump tree
+	1. format tree
+- jump to tree
+	1. menu item
+	2. dialog box
+- sequence
+	1. update "add node" dialog to order recommended symbols by sequence
+- ui details
+	1. zoom in and out of canvas without zooming menu
+	2. multi-level menu pop-ups
+
+============================================================================= */
+
+</script>
+
+</body>
+</html>
