@@ -202,6 +202,20 @@
 
 	/* ------------------------------------------------------------------ */
 
+	#resync-dialog {
+		position: fixed;
+		top: 0; left: 0; right: 0; bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.18);
+		z-index: 200;
+	}
+
+	#resync-dialog.hidden { display: none; }
+
+	/* ------------------------------------------------------------------ */
+
 	#dialog-box {
 		background: #ffffff;
 		border: 1px solid #888888;
@@ -236,6 +250,17 @@
 	}
 
 	#rl-dialog-box {
+		background: #ffffff;
+		border: 1px solid #888888;
+		border-radius: 6px;
+		box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+		padding: 16px 18px;
+		min-width: 300px;
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+		font-size: 13px;
+	}
+
+	#rs-dialog-box {
 		background: #ffffff;
 		border: 1px solid #888888;
 		border-radius: 6px;
@@ -388,9 +413,22 @@
   </div>
 </div>
 
-<script language="javascript" src="local-storage.js"></script>
+<div id="resync-dialog" class="hidden">
+  <div id="rs-dialog-box">
+	<div class="dlg-row">
+	  <label for="rs-dlg-full">full:</label>
+	  <input type="checkbox" id="rs-dlg-full">
+	</div>
+	<div class="dlg-buttons">
+	  <button id="rs-dlg-ok">Ok</button>
+	  <button id="rs-dlg-cancel">Cancel</button>
+	</div>
+  </div>
+</div>
+
+<script language="javascript" src="local-object-storage.js"></script>
 <script language="javascript" src="grammar.js"></script>
-<script language="javascript" src="sequence.js"></script>
+<!-- script language="javascript" src="sequence.js"></script -->
 
 <script>
 "use strict";
@@ -408,6 +446,34 @@ let gTooltipEl	= null; // the currently visible tool-tip element (or null)
 const MIN_COL_WDT = 3;
 
 const gCLICK_PAUSE_MS = 200;
+
+/* -------------------------------------------------------------------------- */
+
+const gIsPhn = true;
+
+const gLapCnxCharTbl =
+[
+	"\u2192",	// →
+	"\u2500",	// ─
+	"\u2502",	// │
+	"\u2510",	// ┐
+	"\u2534",	// ┴
+	"\u250C",	// ┌
+	"\u252C"	// ┬
+];
+
+const gPhnCnxCharTbl =
+[
+	"\u003E",	// →
+	"\u002D",	// ─
+	"\u007C",	// │
+	"\u002B",	// ┐
+	"\u002B",	// ┴
+	"\u002B",	// ┌
+	"\u002B"	// ┬
+];
+
+const gCnxCharTbl = (gIsPhn) ? gPhnCnxCharTbl : gLapCnxCharTbl;
 
 /* =====================================================================
  *  0.  Stub model functions  (section 2.5 / 4.1)
@@ -587,8 +653,6 @@ let gGrammar =
 		"COM": ","
 	}
 };
-
-let gAddedNodes = { };
 
 let gDictionary = {};
 
@@ -1005,14 +1069,18 @@ function syntaxError(inLineNo, inLineText, inTextFile, inMsg)
 
 function parseText(inText, inTxtFl, inGrammar)
 {
+	let retText = null;
+
 	const toks = tokenize(inText);
 
-	gTreeModel = cvtTokensToTreeModel(toks, inGrammar);
+	retText = cvtTokensToTreeModel(toks, inGrammar);
 
-	renderCanvas();
+//	renderCanvas();
 
 	// this is a stub function - don't try to implement.
-	console.log("parseText() stub called with " + inText.length + " characters.");
+//	console.log("parseText() stub called with " + inText.length + " characters.");
+
+	return retText;
 }
 
 function cvtTokensToTreeModel(inTokens, inGrammar)
@@ -1511,10 +1579,11 @@ function editNode(inTreeId, inNodeId, inName, inProlif)
 
 	const tree = getTree(inTreeId);
 	const node  = tree.nodes[inNodeId];
+	const origName = node.label;
 
 	if (inProlif)
 	{
-		const nodeIdLst = getNodeIdsByName(node.label);
+		const nodeIdLst = getNodeIdsByName(origName);
 
 		for (let ii=0; ii<nodeIdLst.length; ii++)
 		{
@@ -1562,17 +1631,11 @@ function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif
 
 	tree.nodes[nodeId] = { label: inName, child: [ ] };
 
-	// used to determine if node is new rule - used for grammar resync process.
-	const gramRefTbl = makeGrammarRefTbl(gGrammar.rdx);
-
 	////////////////////////////////////////////////////////////////////////////
 	// 1. add new nodes children
 	// also - build a table to look up child nodes and remove from parent.
 
 	let chldNodeIdTbl = { };
-
-	// used for grammar resync management
-	let sig = "";
 
 	for (let ii=0; ii<inChdNodeIds.length; ii++)
 	{
@@ -1580,17 +1643,6 @@ function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif
 
 		chldNodeIdTbl[chNodeId] = 1;
 		tree.nodes[nodeId].child.push(chNodeId);
-
-		if (sig.length > 0) { sig += "::"; }
-		sig += tree.nodes[chNodeId].label;
-	}
-
-	// record this new added node to later resync with grammar if not in rules
-	if ((gramRefTbl[inName] == null) || (gramRefTbl[inName][sig] == null))
-	{
-		if (gAddedNodes[inName] == null) { gAddedNodes[inName] = { }; }
-
-		gAddedNodes[inName][sig] = 1;
 	}
 
 	////////////////////////////////////////////////////////////////////////////
@@ -1601,40 +1653,21 @@ function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif
 	let newChilds = [ ];
 	let insertedNew = false;
 
-	let prnSig = "";
-
 	for (let ii=0; ii<prnNode.child.length; ii++)
 	{
 		const chNodeId = prnNode.child[ii];
 		if (chldNodeIdTbl[chNodeId] == null)
 		{
 			newChilds.push(chNodeId);
-
-			if (prnSig.length > 0) { prnSig += "::"; }
-			prnSig += tree.nodes[chNodeId].label;
 		}
 		else if (! insertedNew)
 		{
 			newChilds.push(nodeId);
 			insertedNew = true;
-
-			if (prnSig.length > 0) { prnSig += "::"; }
-			prnSig += inName;
 		}
 	}
 
 	prnNode.child = newChilds;
-
-	///////////////////////////////////////////////////////////////////////////
-	// record this new added node to later resync with grammar if not in rules
-	const prnRdxSym = prnNode.label;
-
-	if ((gramRefTbl[prnRdxSym] == null) || (gramRefTbl[prnRdxSym][prnSig] == null))
-	{
-		if (gAddedNodes[prnRdxSym] == null) { gAddedNodes[prnRdxSym] = { }; }
-
-		gAddedNodes[prnRdxSym][prnSig] = 1;
-	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// create add node record for undo stack...
@@ -1727,6 +1760,343 @@ function getNodeIdsByName(inName)
 	}
 
 	return retNodeIdLst;
+}
+
+// reconcile the instances so that the grammar reflects the rules
+function resyncGrammar(ioGrammar, inIsFull)
+{
+	const gramPthTbl = makeGrammarPathTbl(ioGrammar);
+
+	let instPthTbl = {};
+
+	////////////////////////////////////////////////////////////////////////////
+	// 1. add new rules
+	// iterate through each tree to find added nodes to sync to grammar...
+
+	const treeIds = getAllTreeIds();
+
+	for (let ii = 0; ii < treeIds.length; ii++)
+	{
+		const treeId = treeIds[ii];
+
+		const tree = getTree(treeId);
+
+		// iterate through nodes in tree...
+		const nodeIds = Object.keys(tree.nodes);
+
+		for (let jj=0; jj < nodeIds.length; jj++)
+		{
+			const nodeId = nodeIds[jj];
+
+			const node = tree.nodes[nodeId];
+
+			// ignore error nodes...
+			if ((node.err != null) && (node.err)) { continue; }
+
+			const sym = node.label;
+
+//			if (ioGrammar.rgx[sym] != null) { continue; }
+
+			// this node has children - add it to grammar rule?
+			if (node.child != null)
+			{
+				// e.g., pth = "ch1::ch2::ch3".
+				let pth = "";
+				let lastRef = null;
+
+				let isToken = null;
+
+				// build rule/value in case we want to add it to grammar
+				let rule = [ ];
+				let value = null;
+
+				// step through possible new node's children...
+				for (let kk=0; kk<node.child.length; kk++)
+				{
+					const chNodeId = node.child[kk];
+
+					const chNode = tree.nodes[chNodeId];
+
+					////////////////////////////////////////////////////////////
+					// check to see if this is an rdx or token relationship
+
+					// if this is a leaf token symbol
+					if (chNode.child == null)
+					{
+						if (isToken == null)
+						{
+							isToken = true;
+						}
+						else if (! isToken)
+						{
+							throw "Cannot have nodes contain both leaf and non-leaf nodes: " + node.label + " in tree " + treeId;
+						}
+
+						// verify that tokens only have one child node (the value)...
+						if (node.child.length != 1)
+						{
+							throw "Leaf nodes Must be 1 parent (token) and 1 child (value) nodes: " + node.label + " in tree " + treeId;
+						}
+					}
+					// else if this is an rdx symbol
+					else
+					{
+						if (isToken == null)
+						{
+							isToken = false;
+						}
+						else if (isToken)
+						{
+							throw "Cannot have nodes contain both leaf and non-leaf nodes: " + node.label + " in tree " + treeId;
+						}
+					}
+
+					////////////////////////////////////////////////////////////
+					// build rule / signature
+
+					const refSym = chNode.label;
+
+					// didn't just see the same symbol reference...
+					if ((lastRef == null) || (lastRef != refSym))
+					{
+						if (pth.length > 0) { pth += "::"; }
+
+						pth += refSym;
+
+						if (isToken)
+						{
+							value = refSym;
+						}
+						else
+						{
+							rule.push( { ref: refSym, min: 1, max: 1 } );
+						}
+					}
+					// same symbol reference in a row means iteration...
+					else if (lastRef != null)
+					{
+						rule[rule.length - 1].max = 0;
+					}
+
+					lastRef = refSym;
+				}
+
+				if (instPthTbl[sym] == null) { instPthTbl[sym] = { }; }
+
+				instPthTbl[sym][pth] = 1;
+
+				////////////////////////////////////////////////////////////////
+				// if not already in the grammar - add it...
+				if ((gramPthTbl[sym] == null) ||
+					((gramPthTbl[sym][pth] == null) &&
+					(gramPthTbl[sym][""] == null)))
+				{
+					if (isToken)
+					{
+						if (ioGrammar.tok[sym] == null) { ioGrammar.tok[sym] = { }; }
+						ioGrammar.tok[sym][value] = 1;
+					}
+					else
+					{
+						if (ioGrammar.rdx[sym] == null) { ioGrammar.rdx[sym] = []; }
+						ioGrammar.rdx[sym].push(rule);
+					}
+				}
+			}
+		}
+	}
+
+// TODO: don't remove rules that were loaded from file unless flagged to.
+
+	////////////////////////////////////////////////////////////////////////////
+	// 2. remove rules not in current instances
+	//		ignore "prescribed" rules - those loaded
+
+	// remove unused rdx rules
+
+	const rdxLst = Object.keys(ioGrammar.rdx);
+
+	for (let ii=0; ii<rdxLst.length; ii++)
+	{
+		const sym = rdxLst[ii];
+
+		let newOpts = [];
+
+		for (let oo=0; oo<ioGrammar.rdx[sym].length; oo++)
+		{
+			let pth = "";
+			let lstRef = null;
+
+			for (let rr=0; rr<ioGrammar.rdx[sym][oo].length; rr++)
+			{
+				const { ref, min, max } = ioGrammar.rdx[sym][oo][rr];
+
+				if ((lstRef == null) || (lstRef != ref))
+				{
+					if (pth.length > 0) { pth += "::"; }
+					pth += ref;
+				}
+
+				lstRef = ref;
+			}
+
+			if ((instPthTbl[sym] != null) &&
+				(instPthTbl[sym][pth] != null))
+			{
+				newOpts.push(ioGrammar.rdx[sym][oo]);
+			}
+		}
+
+		if (newOpts.length == 0)
+		{
+			delete ioGrammar.rdx[sym];
+		}
+		else if (newOpts.length != ioGrammar.rdx[sym].length)
+		{
+			ioGrammar.rdx[sym] = newOpts;
+		}
+	}
+
+	// remove unused token rules
+
+	const tokLst = Object.keys(ioGrammar.tok);
+
+	for (let ii=0; ii<tokLst.length; ii++)
+	{
+		const sym = tokLst[ii];
+
+		const valLst = Object.keys(ioGrammar.tok[sym]);
+
+		for (let jj=0; jj<valLst.length; jj++)
+		{
+			const val = valLst[jj];
+
+			if ((instPthTbl[sym] == null) ||
+				(instPthTbl[sym][val] == null))
+			{
+				delete ioGrammar.tok[sym][val];
+			}
+		}
+
+		const newValLst = Object.keys(ioGrammar.tok[sym]);
+
+		if (newValLst.length == 0)
+		{
+			delete ioGrammar.tok[sym];
+		}
+	}
+
+	// remove unused regex rules
+
+	const rgxLst = Object.keys(ioGrammar.rgx);
+
+	for (let ii=0; ii<rgxLst.length; ii++)
+	{
+		const sym = rgxLst[ii];
+
+		if (instPthTbl[sym] == null)
+		{
+			delete ioGrammar.rgx[sym];
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+	// pop up grammar dialog for user to review
+
+	popUpGrammarDialog(ioGrammar);
+}
+
+function makeGrammarPathTbl(inGrammar)
+{
+	const retTbl = { };
+
+	////////////////////////////////////////////////////////////////////////////
+	// register rdx
+
+	const rdxTbl = inGrammar.rdx;
+
+	const symLst = Object.keys(rdxTbl);
+
+	for (let ii=0; ii<symLst.length; ii++)
+	{
+		const rdxSym = symLst[ii];
+
+		for (let oo=0; oo<rdxTbl[rdxSym].length; oo++)
+		{
+			let pth = "";
+			let lastRef = null;
+			let hasItr = false;
+
+			for (let rr=0; rr<rdxTbl[rdxSym][oo].length; rr++)
+			{
+				const { ref, min, max } = rdxTbl[rdxSym][oo][rr];
+
+				// didn't just see same symbol reference...
+				if ((lastRef == null) || (lastRef != ref))
+				{
+					if (pth.length > 0) { pth += "::"; }
+
+					pth += ref;
+
+					if ((min != 1) || (max != 1))
+					{
+						hasItr = true;
+					}
+				}
+				// two or more of same symbol reference means iteration...
+				else (lastRef != null)
+				{
+					hasItr = true;
+				}
+				lastRef = ref;
+			}
+
+			if (retTbl[rdxSym] == null) { retTbl[rdxSym] = { }; }
+
+			retTbl[rdxSym][pth] = ((retTbl[rdxSym][pth] != null) && (retTbl[rdxSym][pth])) ? true : hasItr;
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+	// register tokens
+
+	const tokTbl = inGrammar.tok;
+
+	const tokSymLst = Object.keys(tokTbl);
+
+	for (let ii=0; ii<tokSymLst.length; ii++)
+	{
+		const sym = tokSymLst[ii];
+
+		const valLst = Object.keys(tokTbl[sym]);
+
+		for (let jj=0; jj<valLst.length; jj++)
+		{
+			const val = valLst[jj];
+
+			if (retTbl[sym] == null) { retTbl[sym] = { }; }
+
+			retTbl[sym][val] = false;
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+	// register regexes
+
+	const rgxTbl = inGrammar.rgx;
+
+	const rgxSymLst = Object.keys(rgxTbl);
+
+	for (let ii=0; ii<rgxSymLst.length; ii++)
+	{
+		const sym = rgxSymLst[ii];
+
+		if (retTbl[sym] == null) { retTbl[sym] = { }; }
+
+		retTbl[sym][""] = false;
+	}
+
+	return retTbl;
 }
 
 function findParent(inTreeNodes, inChildNodeId)
@@ -1858,120 +2228,14 @@ function redoNodeEdit()
 grammar
 ----------------------------------------------------------------------------- */
 
-function editGrammar()
+function editGrammarCmd()
 {
 	popUpGrammarDialog(gGrammar);
 }
 
-// TODO: remove rules that were added by node inserts, but later removed.
-function resyncGrammar()
+function resyncGrammarCmd()
 {
-	const gramRefTbl = makeGrammarRefTbl(gGrammar.rdx);
-
-	// iterate through each tree to find added nodes to sync to grammar...
-
-	const treeIds = getAllTreeIds();
-
-	for (let ii = 0; ii < treeIds.length; ii++)
-	{
-		const treeId = treeIds[ii];
-
-		const tree = getTree(treeId);
-
-		const nodeIds = Object.keys(tree.nodes);
-
-		for (let jj=0; jj < nodeIds.length; jj++)
-		{
-			const nodeId = nodeIds[jj];
-
-			const node = tree.nodes[nodeId];
-
-			// ignore error nodes...
-			if ((node.err != null) && (node.err)) { continue; }
-
-			const rdxSym = node.label;
-
-			// if this wasn't an added node - we don't care about it...
-			if (gAddedNodes[rdxSym] == null) { continue; }
-
-			// this node has children - add it to grammar rule?
-			if (node.child != null)
-			{
-				// e.g., sig = "ch1::ch2::ch3".
-				let sig = "";
-
-				// build rule in case we want to add it to grammar
-				let rule = [ ];
-
-				// step through possible new node's children...
-				for (let kk=0; kk<node.child.length; kk++)
-				{
-					const chNodeId = node.child[kk];
-
-					const chNode = tree.nodes[chNodeId];
-
-					const refSym = chNode.label;
-
-					if (sig.length > 0) { sig += "::"; }
-
-					sig += refSym;
-
-					rule.push( { ref: refSym, min: 1, max: 1 } );
-				}
-
-				// sig says this wasn't an added node - we don't care about it
-				if (gAddedNodes[rdxSym][sig] == null) { continue; }
-
-				// if not already in the grammar - add it...
-				if ((gramRefTbl[rdxSym] == null) ||
-					(gramRefTbl[rdxSym][sig] == null))
-				{
-					if (gGrammar.rdx[rdxSym] == null) { gGrammar.rdx[rdxSym] = []; }
-					gGrammar.rdx[rdxSym].push(rule);
-				}
-			}
-		}
-	}
-
-	return gTreeModel.inv;
-}
-
-function makeGrammarRefTbl(inRdxTbl)
-{
-	const retTbl = { };
-
-	const symLst = Object.keys(inRdxTbl);
-
-	for (let ii=0; ii<symLst.length; ii++)
-	{
-		const rdxSym = symLst[ii];
-
-		for (let oo=0; oo<inRdxTbl[rdxSym].length; oo++)
-		{
-			let sig = "";
-			let hasNoItr = false;
-
-			for (let rr=0; rr<inRdxTbl[rdxSym][oo].length; rr++)
-			{
-				const { ref, min, max } = inRdxTbl[rdxSym][oo][rr];
-
-				if (sig.length > 0) { sig += "::"; }
-
-				sig += ref;
-
-				if ((min == 1) && (max == 1))
-				{
-					hasNoItr = true;
-				}
-			}
-
-			if (retTbl[rdxSym] == null) { retTbl[rdxSym] = { }; }
-
-			retTbl[rdxSym][sig] = ((retTbl[rdxSym][sig] != null) && (retTbl[rdxSym][sig])) ? true : hasNoItr;
-		}
-	}
-
-	return retTbl;
+	popUpResyncDialog();
 }
 
 /* -----------------------------------------------------------------------------
@@ -1995,8 +2259,31 @@ function removeDialogCallback(inProlif)
 
 function grammarDialogCallback(inGrammarTxt)
 {
-alert("grammarDialogCallback(inGrammarTxt: " + inGrammarTxt + ")");
+	try
+	{
+		gGrammar = parseGrammar(inGrammarTxt, "dialog", 0);
+
+		storeToLocalStorage("app", "en", "grammar", gGrammar);
+	}
+	catch (err)
+	{
+		alert(err);
+	}
 }
+
+function resyncDialogCallback(inIsFull)
+{
+	try
+	{
+		resyncGrammar(gGrammar, inIsFull);
+		storeToLocalStorage("app", "en", "grammar", gGrammar);
+	}
+	catch (err)
+	{
+		alert(err);
+	}
+}
+
 
 /* -----------------------------------------------------------------------------
 node modification functions - handle undo stack, rendering...
@@ -2335,32 +2622,6 @@ function setChar(rowArr, x, ch)
 	while (rowArr.length <= x) { rowArr.push(" "); }
 	rowArr[x] = ch;
 }
-
-/*
-
-const gCnxCharTbl =
-[
-	"\u2192",	// →
-	"\u2500",	// ─
-	"\u2502",	// │
-	"\u2510",	// ┐
-	"\u2534",	// ┴
-	"\u250C",	// ┌
-	"\u252C"	// ┬
-];
-
-*/
-
-const gCnxCharTbl =
-[
-	"\u2192",	// →
-	"\u002D",	// ─
-	"\u007C",	// │
-	"\u002B",	// ┐
-	"\u002B",	// ┴
-	"\u002B",	// ┌
-	"\u002B"	// ┬
-];
 
 function drawConnectors(inTree, inRowOf, inCenter, chars)
 {
@@ -2738,8 +2999,8 @@ function initMenu()
 				else if (action === "undoNodeEdit")  { undoNodeEdit();	   }
 				else if (action === "redoNodeEdit")  { redoNodeEdit();	   }
 
-				else if (action === "editGrammar")  { editGrammar();	   }
-				else if (action === "resyncGrammar")  { resyncGrammar();	   }
+				else if (action === "editGrammar")  { editGrammarCmd();	   }
+				else if (action === "resyncGrammar") { resyncGrammarCmd(); }
 			}
 			catch (err)
 			{
@@ -2780,7 +3041,7 @@ function initKeyboard()
 		else if ((ev.ctrlKey || ev.metaKey) && (ev.key === "g"))
 		{
 			ev.preventDefault();
-			editGrammar();
+			editGrammarCmd();
 			return;
 		}
 		else if (ev.key === "Delete")
@@ -2797,6 +3058,7 @@ function initKeyboard()
 			document.getElementById("add-dialog").classList.add("hidden");
 			document.getElementById("remove-dialog").classList.add("hidden");
 			document.getElementById("grammar-dialog").classList.add("hidden");
+			document.getElementById("resync-dialog").classList.add("hidden");
 		}
 	});
 }
@@ -2856,6 +3118,15 @@ function popUpGrammarDialog(inGrammar)
 	document.getElementById("rl-dlg-ok").focus();
 }
 
+function popUpResyncDialog(inFull)
+{
+	document.getElementById("rs-dlg-full").checked = inFull;
+
+	document.getElementById("resync-dialog").classList.remove("hidden");
+	document.getElementById("rs-dlg-ok").focus();
+
+}
+
 function initDialogs()
 {
 	initNodeEditDialog();
@@ -2865,6 +3136,8 @@ function initDialogs()
 	initNodeRemoveDialog();
 
 	initGrammarDialog();
+
+	initResyncDialog();
 }
 
 function initNodeEditDialog()
@@ -2875,6 +3148,7 @@ function initNodeEditDialog()
 
 		document.getElementById("edit-dialog").classList.add("hidden");
 		editDialogCallback(name, prolif);
+		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	});
 
 	document.getElementById("ne-dlg-cancel").addEventListener("click", function () {
@@ -2898,6 +3172,7 @@ function initNodeAddDialog()
 
 		document.getElementById("add-dialog").classList.add("hidden");
 		addNodeDialogCallback(name, prolif);
+		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	});
 
 	document.getElementById("na-dlg-cancel").addEventListener("click", function () {
@@ -2920,6 +3195,7 @@ function initNodeRemoveDialog()
 
 		document.getElementById("remove-dialog").classList.add("hidden");
 		removeDialogCallback(prolif);
+		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	});
 
 	document.getElementById("nr-dlg-cancel").addEventListener("click", function () {
@@ -2953,6 +3229,28 @@ function initGrammarDialog()
 		if (ev.target === document.getElementById("grammar-dialog"))
 		{
 			document.getElementById("grammar-dialog").classList.add("hidden");
+		}
+	});
+}
+
+function initResyncDialog()
+{
+	document.getElementById("rs-dlg-ok").addEventListener("click", function () {
+		const isFull = document.getElementById("rs-dlg-full").checked;
+
+		document.getElementById("resync-dialog").classList.add("hidden");
+		resyncDialogCallback(isFull);
+	});
+
+	document.getElementById("rs-dlg-cancel").addEventListener("click", function () {
+		document.getElementById("resync-dialog").classList.add("hidden");
+	});
+
+	// clicking the dim backdrop cancels as well
+	document.getElementById("resync-dialog").addEventListener("click", function (ev) {
+		if (ev.target === document.getElementById("resync-dialog"))
+		{
+			document.getElementById("resync-dialog").classList.add("hidden");
 		}
 	});
 }
@@ -2995,7 +3293,10 @@ function loadTreeModel()
 function loadText()
 {
 	pickTextFile(function (inText, inTxtFl) {
-		parseText(inText, inTxtFl, gGrammar);
+		gTreeModel = parseText(inText, inTxtFl, gGrammar);
+
+		storeToLocalStorage("app", "en", "tree", gTreeModel);
+
 		renderCanvas();
 
 		gUndoStack = [ ];
@@ -3010,6 +3311,8 @@ function loadGrammar()
 		try
 		{
 			gGrammar = parseGrammar(inText, inTxtFl, 0);
+
+			storeToLocalStorage("app", "en", "grammar", gGrammar);
 
 			popUpGrammarDialog(gGrammar);
 		}
@@ -3028,6 +3331,8 @@ function loadDictionary()
 		try
 		{
 			gDictionary = parseDictionary(inText, inTxtFl.name, 0);
+
+			storeToLocalStorage("app", "en", "dictionary", gDictionary);
 		}
 		catch (err)
 		{
@@ -3097,6 +3402,30 @@ function downloadTextFile(text, filename)
 
 function initApp()
 {
+	////////////////////////////////////////////////////////////////////////////
+	// load data
+
+	let gram = retrieveFromLocalStorage("app", "en", "grammar");
+	if (gram != null)
+	{
+		gGrammar = gram;
+	}
+
+	let dict = retrieveFromLocalStorage("app", "en", "dictionary");
+	if (dict != null)
+	{
+		gDictionary = dict;
+	}
+
+	let tree = retrieveFromLocalStorage("app", "en", "tree");
+	if (tree != null)
+	{
+		gTreeModel = tree;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+	// render
+
 	renderCanvas();
 	initMenu();
 	initDialogs();
@@ -3118,10 +3447,8 @@ initApp();
 TODO
 
 - grammar resync
-	1. track added unique nodes to allow deletion on resync
-	2. traverse trees and resync grammar
-		a. disregard "error" nodes that should not be automatically added to grammar
-		b. don't delete rule unless it is in tracked added unique nodes list
+	1. remove rules reflecting added nodes later removed from grammar
+	2. edit added nodes tracking when node is renamed.
 - edit
 	1. add 'prolif' functionality
 		a. "remove node"
