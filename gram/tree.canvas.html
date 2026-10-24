@@ -1461,7 +1461,7 @@ function addNodeCmd()
 
 			const nodeLabelLst = getLikelyLabels(gSelectionPanel.treeId, chdNodeIds);
 
-			popUpAddNodeDialog("aa", true, "cc", nodeLabelLst);
+			popUpAddNodeDialog("aa", false, "cc", nodeLabelLst);
 		}
 	}
 	else
@@ -1617,105 +1617,215 @@ function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif
 {
 	let retAddRcdLst = [ ];
 
-	const tree = getTree(inTreeId);
-	const prnNode  = tree.nodes[inPrnNodeId];
+	let nodeIdTbl = {};
 
-	// create new node to add...
-
-	let nodeId = inNodeId;
-
-	if (inNodeId == null)
+	if ((! inProlif) || (inNodeId != null))
 	{
-		nodeId = makeUniqueId(inName);
+		nodeIdTbl[inNodeId] = { chIds: inChdNodeIds, prnId: inPrnNodeId, treeId: inTreeId };
 	}
-
-	tree.nodes[nodeId] = { label: inName, child: [ ] };
-
-	////////////////////////////////////////////////////////////////////////////
-	// 1. add new nodes children
-	// also - build a table to look up child nodes and remove from parent.
-
-	let chldNodeIdTbl = { };
-
-	for (let ii=0; ii<inChdNodeIds.length; ii++)
+	// seek all similar nodes to add (same parent name and child names)...
+	else
 	{
-		const chNodeId = inChdNodeIds[ii];
+		const tree = getTree(inTreeId);
+		const prnNode  = tree.nodes[inPrnNodeId];
 
-		chldNodeIdTbl[chNodeId] = 1;
-		tree.nodes[nodeId].child.push(chNodeId);
-	}
+		let chldNodeLblLst = [ ];
 
-	////////////////////////////////////////////////////////////////////////////
-	// 2. add new node to its parent
-	// create a new child list for parent node.
-	// insert newly created node where removing nodes are.
-
-	let newChilds = [ ];
-	let insertedNew = false;
-
-	for (let ii=0; ii<prnNode.child.length; ii++)
-	{
-		const chNodeId = prnNode.child[ii];
-		if (chldNodeIdTbl[chNodeId] == null)
+		for (let ii=0; ii<inChdNodeIds.length; ii++)
 		{
-			newChilds.push(chNodeId);
+			const chNodeId = inChdNodeIds[ii];
+			const chNode  = tree.nodes[chNodeId];
+
+			chldNodeLblLst.push(chNode.label);
 		}
-		else if (! insertedNew)
+
+		const prnChIds = findAllPrnChIds(prnNode.label, chldNodeLblLst);
+
+		const prnIdLst = Object.keys(prnChIds);
+
+		for (let pp=0; pp<prnIdLst.length; pp++)
 		{
-			newChilds.push(nodeId);
-			insertedNew = true;
+			const prnId = prnIdLst[pp];
+			const treeId = prnChIds[prnId].treeId;
+			const chIdLst = prnChIds[prnId].chIdLst;
+
+			const nodeId = makeUniqueId(inName);
+
+			nodeIdTbl[nodeId] = { chIds: chIdLst, prnId: prnId, treeId: treeId };
 		}
 	}
 
-	prnNode.child = newChilds;
+	const nodeIdLst = Object.keys(nodeIdTbl);
 
-	///////////////////////////////////////////////////////////////////////////
-	// create add node record for undo stack...
+	for (let nn=0; nn<nodeIdLst.length; nn++)
+	{
+		const nodeId = nodeIdLst[nn];
 
-	retAddRcdLst.push({cmd: "add", treeId: inTreeId, prnNodeId: inPrnNodeId, newNodeName: inName, newNodeId: nodeId, childNodeIds: inChdNodeIds});
+		const { chIds, prnId, treeId } = nodeIdTbl[nodeId];
+
+		const tree = getTree(treeId);
+		const prnNode  = tree.nodes[prnId];
+
+		tree.nodes[nodeId] = { label: inName, child: [ ] };
+
+		////////////////////////////////////////////////////////////////////////
+		// 1. add new nodes children
+		// also - build a table to look up child nodes and remove from parent.
+
+		let chldNodeIdTbl = { };
+
+		for (let ii=0; ii<chIds.length; ii++)
+		{
+			const chNodeId = chIds[ii];
+
+			chldNodeIdTbl[chNodeId] = 1;
+			tree.nodes[nodeId].child.push(chNodeId);
+		}
+
+		////////////////////////////////////////////////////////////////////////
+		// 2. add new node to its parent
+		// create a new child list for parent node.
+		// insert newly created node where removing nodes are.
+
+		let newChilds = [ ];
+		let insertedNew = false;
+
+		for (let ii=0; ii<prnNode.child.length; ii++)
+		{
+			const chNodeId = prnNode.child[ii];
+			if (chldNodeIdTbl[chNodeId] == null)
+			{
+				newChilds.push(chNodeId);
+			}
+			else if (! insertedNew)
+			{
+				newChilds.push(nodeId);
+				insertedNew = true;
+			}
+		}
+
+		prnNode.child = newChilds;
+
+		///////////////////////////////////////////////////////////////////////
+		// create add node record for undo stack...
+
+		retAddRcdLst.push({cmd: "add", treeId: treeId, prnNodeId: prnId, newNodeName: inName, newNodeId: nodeId, childNodeIds: chIds});
+	}
 
 	return retAddRcdLst;
 }
 
-function removeNode(inTreeId, inPrnNodeId, inNodeId)
+function removeNode(inTreeId, inPrnNodeId, inNodeId, inProlifKind, inProlifAll)
 {
 	let retRemRcdLst = [ ];
 
-	const tree = getTree(inTreeId);
-	const prnNode  = tree.nodes[inPrnNodeId];
-	const node  = tree.nodes[inNodeId];
+	let nodeIdTbl = {};
 
-	// create a new child list for parent node.
-	// insert newly created node where removing nodes are.
-
-	let newChilds = [ ];
-
-	for (let ii=0; ii<prnNode.child.length; ii++)
+	// remove any node with similar children profile (i.e., remove option)
+	if (inProlifKind)
 	{
-		const chNodeId = prnNode.child[ii];
-		if (chNodeId != inNodeId)
+		const findTree = getTree(inTreeId);
+		const findNode  = findTree.nodes[inNodeId];
+
+		if ((findNode.child == null) ||
+			(findNode.child.length <= 0))
 		{
-			newChilds.push(chNodeId);
+			throw "Internal error (removeNode) - cannot remove node that has no children.";
 		}
-		else
+
+		let chldNodeLblLst = [ ];
+
+		for (let ii=0; ii<findNode.child.length; ii++)
 		{
-			for (let jj=0; ((node.child != null) && (jj < node.child.length)); jj++)
-			{
-				const gchNodeId = node.child[jj];
-				newChilds.push(gchNodeId);
-			}
+			const chNodeId = findNode.child[ii];
+			const chNode  = findTree.nodes[chNodeId];
+
+			chldNodeLblLst.push(chNode.label);
+		}
+
+		const nodeChIds = findAllPrnChIds(findNode.label, chldNodeLblLst);
+
+		const nodeIdLst = Object.keys(nodeChIds);
+
+		for (let pp=0; pp<nodeIdLst.length; pp++)
+		{
+			const nodeId = nodeIdLst[pp];
+			const treeId = nodeChIds[nId].treeId;
+			const tree = getTree(treeId);
+
+			const { parentNodeId, childPosition }  = findParent(tree.nodes, nodeId);
+
+			nodeIdTbl[nodeId] = { prnId: parentNodeId, treeId: treeId };
 		}
 	}
+	// remove any node instance with this name
+	else if (inProlifAll)
+	{
+		const findTree = getTree(inTreeId);
+		const findNode  = findTree.nodes[inNodeId];
 
-	prnNode.child = newChilds;
+		const nodeIdLst = getNodeIdsByName(findNode.label);
 
-	// create remove node record for undo stack...
+		for (let ii=0; ii<nodeIdLst.length; ii++)
+		{
+			const { treeId, nodeId } = nodeIdLst[ii];
+			const tree = getTree(treeId);
 
-	retRemRcdLst.push({cmd: "remove", treeId: inTreeId, prnNodeId: inPrnNodeId, remName: node.label, remNodeId: inNodeId, childNodeIds: node.child });
+			const { parentNodeId, childPosition }  = findParent(tree.nodes, nodeId);
 
-	// remove the node from the tree...
+			nodeIdTbl[nodeId] = { prnId: parentNodeId, treeId: treeId };
+		}
+	}
+	// just remove this instance of the node
+	else
+	{
+		nodeIdTbl[inNodeId] = { prnId: inPrnNodeId, treeId: inTreeId };
+	}
 
-	delete tree.nodes[inNodeId];
+	const nodeIdLst = Object.keys(nodeIdTbl);
+
+	for (let nn=0; nn<nodeIdLst.length; nn++)
+	{
+		const nodeId = nodeIdLst[nn];
+
+		const { prnId, treeId } = nodeIdTbl[nodeId];
+
+		const tree = getTree(treeId);
+		const prnNode  = tree.nodes[prnId];
+		const node  = tree.nodes[nodeId];
+
+		// create a new child list for parent node.
+		// insert newly created node where removing nodes are.
+
+		let newChilds = [ ];
+
+		for (let ii=0; ii<prnNode.child.length; ii++)
+		{
+			const chNodeId = prnNode.child[ii];
+			if (chNodeId != nodeId)
+			{
+				newChilds.push(chNodeId);
+			}
+			else
+			{
+				for (let jj=0; ((node.child != null) && (jj < node.child.length)); jj++)
+				{
+					const gchNodeId = node.child[jj];
+					newChilds.push(gchNodeId);
+				}
+			}
+		}
+
+		prnNode.child = newChilds;
+
+		// create remove node record for undo stack...
+
+		retRemRcdLst.push({cmd: "remove", treeId: treeId, prnNodeId: prnId, remName: node.label, remNodeId: nodeId, childNodeIds: node.child });
+
+		// remove the node from the tree...
+
+		delete tree.nodes[nodeId];
+	}
 
 	return retRemRcdLst;
 }
@@ -1765,7 +1875,7 @@ function getNodeIdsByName(inName)
 // reconcile the instances so that the grammar reflects the rules
 function resyncGrammar(ioGrammar, inIsFull)
 {
-	const gramPthTbl = makeGrammarPathTbl(ioGrammar);
+	let gramPthTbl = makeGrammarPathTbl(ioGrammar);
 
 	let instPthTbl = {};
 
@@ -1901,6 +2011,9 @@ function resyncGrammar(ioGrammar, inIsFull)
 						if (ioGrammar.rdx[sym] == null) { ioGrammar.rdx[sym] = []; }
 						ioGrammar.rdx[sym].push(rule);
 					}
+
+					if (gramPthTbl[sym] == null) { gramPthTbl[sym] = { }; }
+					gramPthTbl[sym][pth] = 1;
 				}
 			}
 		}
@@ -2129,6 +2242,61 @@ function findParent(inTreeNodes, inChildNodeId)
 	return retNodeInfo;
 }
 
+function findAllPrnChIds(inPrnName, inChNameLst)
+{
+	let retTbl = { };
+
+	const treeIds = getAllTreeIds();
+
+	for (let ii = 0; ii < treeIds.length; ii++)
+	{
+		const treeId = treeIds[ii];
+
+		const tree = getTree(treeId);
+
+		const nodeIds = Object.keys(tree.nodes);
+
+		for (let jj=0; jj < nodeIds.length; jj++)
+		{
+			const prnNodeId = nodeIds[jj];
+
+			const prnNode = tree.nodes[prnNodeId];
+
+			if ((prnNode.label == inPrnName) &&
+				(prnNode.child != null) &&
+				(prnNode.child.length >= inChNameLst.length))
+			{
+				let chIds = [];
+
+				for (let mm=0; ((mm<=(prnNode.child.length - inChNameLst.length)) && (chIds.length < inChNameLst.length)); mm++)
+				{
+					for (let nn=0; nn<inChNameLst.length; nn++)
+					{
+						const chNodeId = prnNode.child[mm+nn];
+						const chNode = tree.nodes[chNodeId];
+						if (chNode.label == inChNameLst[nn])
+						{
+							chIds.push(chNodeId);
+						}
+						else
+						{
+							chIds = [];
+							break;
+						}
+					}
+				}
+
+				if (chIds.length == inChNameLst.length)
+				{
+					retTbl[prnNodeId] = { treeId: treeId, chIdLst: chIds };
+				}
+			}
+		}
+	}
+
+	return retTbl;
+}
+
 /* -----------------------------------------------------------------------------
 undo / redo node operations
 ----------------------------------------------------------------------------- */
@@ -2161,7 +2329,7 @@ function undoNodeEdit()
 			{
 				const {cmd, treeId, prnNodeId, newNodeName, newNodeId, childNodeIds} = edtRcd;
 
-				removeNode(treeId, prnNodeId, newNodeId);
+				removeNode(treeId, prnNodeId, newNodeId, false, false);
 			}
 			else if (edtRcd.cmd == "remove")
 			{
@@ -2177,6 +2345,8 @@ function undoNodeEdit()
 			}
 		}
 		renderCanvas();
+
+		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	}
 }
 
@@ -2211,7 +2381,7 @@ function redoNodeEdit()
 			{
 				const {cmd, treeId, prnNodeId, remName, remNodeId, childNodeIds} = edtRcd;
 
-				removeNode(treeId, prnNodeId, remNodeId);
+				removeNode(treeId, prnNodeId, remNodeId, false, false);
 			}
 			else if (edtRcd.cmd == "rpl-tree")
 			{
@@ -2221,6 +2391,8 @@ function redoNodeEdit()
 			}
 		}
 		renderCanvas();
+
+		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	}
 }
 
@@ -2252,9 +2424,9 @@ function addNodeDialogCallback(inName, inProlif)
 	addNodeHandler(inName, inProlif);
 }
 
-function removeDialogCallback(inProlif)
+function removeDialogCallback(inProlifKind, inProlifAll)
 {
-	removeNodeHandler(gSbjTreeId, gSbjNodeId, gSbjChldNodeIds, inProlif);
+	removeNodeHandler(gSbjTreeId, gSbjNodeId, gSbjChldNodeIds, inProlifKind, inProlifAll);
 }
 
 function grammarDialogCallback(inGrammarTxt)
@@ -2351,13 +2523,13 @@ function addNodeHandler(inName, inProlif)
 	gSbjNodeId = null;
 }
 
-function removeNodeHandler(inTreeId, inPrnNodeId, inNodeIdLst, inProlif)
+function removeNodeHandler(inTreeId, inPrnNodeId, inNodeIdLst, inProlifKind, inProlifAll)
 {
 	for (let ii=0; ii<inNodeIdLst.length; ii++)
 	{
 		const nodeId = inNodeIdLst[ii];
 
-		const remRcdLst = removeNode(inTreeId, inPrnNodeId, nodeId);
+		const remRcdLst = removeNode(inTreeId, inPrnNodeId, nodeId, inProlifKind, inProlifAll);
 
 		// register edits on undo stack...
 
@@ -2367,8 +2539,14 @@ function removeNodeHandler(inTreeId, inPrnNodeId, inNodeIdLst, inProlif)
 
 	// render changes...
 
-//		renderCanvas();
-	renderTree(inTreeId);
+	if (inProlifKind || inProlifAll)
+	{
+		renderCanvas();
+	}
+	else
+	{
+		renderTree(inTreeId);
+	}
 
 	// cleanup...
 
@@ -3076,11 +3254,11 @@ function popUpEditNodeDialog(inName)
 	document.getElementById("ne-dlg-name").focus();
 }
 
-function popUpAddNodeDialog(inAa, inBb, inCc, inDd)
+function popUpAddNodeDialog(inName, inProlif, inCc, inDd)
 {
 	// populate the fields...
-	document.getElementById("na-dlg-name").value   = (inAa != null) ? String(inAa) : "";
-	document.getElementById("na-dlg-prolif").checked = !!inBb;
+	document.getElementById("na-dlg-name").value   = (inName != null) ? String(inName) : "";
+	document.getElementById("na-dlg-prolif").checked = inProlif;
 	document.getElementById("dlg-cc").textContent = (inCc != null) ? String(inCc) : "";
 
 	const sel = document.getElementById("dlg-dd");
@@ -3194,7 +3372,7 @@ function initNodeRemoveDialog()
 		const prolif = document.getElementById("nr-dlg-prolif").checked;
 
 		document.getElementById("remove-dialog").classList.add("hidden");
-		removeDialogCallback(prolif);
+		removeDialogCallback(false, prolif);
 		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	});
 
@@ -3282,6 +3460,8 @@ function loadTreeModel()
 	pickTextFile(function (inText, inTxtFl)
 	{
 		gTreeModel = parseTreeModel(inText, inTxtFl);
+
+		storeToLocalStorage("app", "en", "tree", gTreeModel);
 
 		renderCanvas();
 
@@ -3447,22 +3627,17 @@ initApp();
 TODO
 
 - grammar resync
-	1. remove rules reflecting added nodes later removed from grammar
-	2. edit added nodes tracking when node is renamed.
-- edit
-	1. add 'prolif' functionality
-		a. "remove node"
-		b. "add node"
-- persist
-	1. nodes
-	2. grammar
+	1. track rules from grammar load
+		a. don't delete rules from grammar load unless "full" resync
 - annotate nodes
 	1. allow for intermediate annotation of nodes
 - measure rdx quality
 	1. entropy metric
 	2. efficiency metric
-- dump tree
-	1. format tree
+- load/dump instance tree
+	1. format instance tree
+		a. track "error" nodes
+	2. add error flags in parseTreeModel()
 - jump to tree
 	1. menu item
 	2. dialog box
