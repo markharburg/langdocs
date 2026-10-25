@@ -333,9 +333,12 @@
   <div class="menu-sep"></div>
   <div class="menu-item" data-action="editGrammar">Edit grammar</div>
   <div class="menu-item" data-action="resyncGrammar">Resync grammar</div>
+  <div class="menu-item" data-action="parseAllTrees">Parse all</div>
+<!--
   <div class="menu-sep"></div>
   <div class="menu-item" data-action="undoNodeEdit">Undo</div>
   <div class="menu-item" data-action="redoNodeEdit">Redo</div>
+-->
 </div>
 
 <!-- ===================== pop-up dialog ===================== -->
@@ -653,6 +656,8 @@ let gGrammar =
 		"COM": ","
 	}
 };
+
+let gGramLoadPthTbl = {};
 
 let gDictionary = {};
 
@@ -1069,18 +1074,50 @@ function syntaxError(inLineNo, inLineText, inTextFile, inMsg)
 
 function parseText(inText, inTxtFl, inGrammar)
 {
-	let retText = null;
+	let retTreeModel = { inv: [], tbl: {} };
 
 	const toks = tokenize(inText);
 
-	retText = cvtTokensToTreeModel(toks, inGrammar);
+	for (let ii=0; ii<toks.length; ii++)
+	{
+		const tokEnt = toks[ii];
 
-//	renderCanvas();
+		const annot = (tokEnt.annot != null) ? tokEnt.annot : "";
+
+		const treeId = makeUniqueId("tree");
+
+		const rootId = makeUniqueId("root");
+		let rootNode = { label: "\$root", child: [ ], err: true };
+
+		let tree = { root: rootId, nodes: { }, annotation: annot };
+
+		for (let jj=0; jj<tokEnt.toks.length; jj++)
+		{
+			const val = tokEnt.toks[jj];
+			const tokValId = makeUniqueId("val");
+			const tokNodeId = makeUniqueId("tok");
+
+			const tokNode = { label: "\$tok", child: [ tokValId ], err: true };
+			const valNode = { label: val };
+
+			rootNode.child.push(tokNodeId);
+
+			tree.nodes[tokValId] = valNode;
+			tree.nodes[tokNodeId] = tokNode;
+		}
+
+		tree.nodes[rootId] = rootNode;
+
+		retTreeModel.inv.push(treeId);
+		retTreeModel.tbl[treeId] = tree;
+	}
+
+//	retTreeModel = cvtTokensToTreeModel(toks, inGrammar);
 
 	// this is a stub function - don't try to implement.
 //	console.log("parseText() stub called with " + inText.length + " characters.");
 
-	return retText;
+	return retTreeModel;
 }
 
 function cvtTokensToTreeModel(inTokens, inGrammar)
@@ -1384,6 +1421,7 @@ function editNodeCmd()
 	}
 }
 
+// gather node info - kick off add node dialog
 function addNodeCmd()
 {
 	if (gSelectionPanel.treeId != null)
@@ -1391,6 +1429,10 @@ function addNodeCmd()
 		const nodLst = Object.keys(gSelectionPanel.nodeTyp);
 
 		const tree = getTree(gSelectionPanel.treeId);
+
+		////////////////////////////////////////////////////////////////////////
+		// 1. gather parent node ID and child positions
+		//	validate single parent, parent not root
 
 		let prnNodeId = null;
 		let childPosTbl = { };
@@ -1433,6 +1475,10 @@ function addNodeCmd()
 			}
 		}
 
+		////////////////////////////////////////////////////////////////////////
+		// 2. kick off dialog
+		//	validate childs are contiguous
+
 		if (prnNodeId != null)
 		{
 			const chPosLst = Object.keys(childPosTbl).sort();
@@ -1453,13 +1499,17 @@ function addNodeCmd()
 				lstPos = pos;
 			}
 
+			// gather these so dialog callback knows the nodes to operate on.
+
 			gSbjTreeId = gSelectionPanel.treeId;
 			gSbjNodeId = prnNodeId;
 			gSbjChldNodeIds = chdNodeIds;
 
-			const prnNode = tree.nodes[prnNodeId];
+			// get node labels user might want to assign as parent.
 
 			const nodeLabelLst = getLikelyLabels(gSelectionPanel.treeId, chdNodeIds);
+
+			// kick off pop up
 
 			popUpAddNodeDialog("aa", false, "cc", nodeLabelLst);
 		}
@@ -1611,17 +1661,30 @@ function editNode(inTreeId, inNodeId, inName, inProlif)
 	return retEditRcdLst;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Add node into tree(s)
+//
 // inName:		name for new node
 // inNodeId:	node ID for new node (re-add) - or null for new add.
 function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif)
 {
 	let retAddRcdLst = [ ];
 
+	////////////////////////////////////////////////////////////////////////////
+	// 1. gather which trees, parents, childs, new nodes to add
+
 	let nodeIdTbl = {};
 
+	// don't proliferate if told not to or a node ID is given (undo/redo op)
 	if ((! inProlif) || (inNodeId != null))
 	{
-		nodeIdTbl[inNodeId] = { chIds: inChdNodeIds, prnId: inPrnNodeId, treeId: inTreeId };
+		let nodeId = inNodeId;
+		if (nodeId == null)
+		{
+			nodeId = makeUniqueId(inName);
+		}
+
+		nodeIdTbl[nodeId] = { chIds: inChdNodeIds, prnId: inPrnNodeId, treeId: inTreeId };
 	}
 	// seek all similar nodes to add (same parent name and child names)...
 	else
@@ -1655,7 +1718,37 @@ function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif
 		}
 	}
 
+	////////////////////////////////////////////////////////////////////////////
+	// 2. validate no recursion will exist.
+
 	const nodeIdLst = Object.keys(nodeIdTbl);
+
+	for (let nn=0; nn<nodeIdLst.length; nn++)
+	{
+		const nodeId = nodeIdLst[nn];
+
+		const { chIds, prnId, treeId } = nodeIdTbl[nodeId];
+
+		const tree = getTree(treeId);
+		const prnNode  = tree.nodes[prnId];
+
+		let abvPth = null;
+		let belPth = null;
+
+		if (prnNode.label != inName)
+		{
+			abvPth = findNodeIdAbove(treeId, prnId, inName);
+			belPth = findNodeIdBelow(treeId, prnId, inName);
+		}
+
+		if ((prnNode.label == inName) || (abvPth != null) || (belPth != null))
+		{
+			throw "Recursion error - cannot add " + inName + " to " + prnNode.label + " in tree " + treeId;
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+	// 3. add nodes
 
 	for (let nn=0; nn<nodeIdLst.length; nn++)
 	{
@@ -2053,8 +2146,13 @@ function resyncGrammar(ioGrammar, inIsFull)
 				lstRef = ref;
 			}
 
-			if ((instPthTbl[sym] != null) &&
-				(instPthTbl[sym][pth] != null))
+			// add back into rule if rule exists in current instance (instPthTbl)
+			//	or if rule exists in loaded version (gGramLoadPthTbl).
+			if (((instPthTbl[sym] != null) &&
+				(instPthTbl[sym][pth] != null)) ||
+				((gGramLoadPthTbl[sym] != null) &&
+				((gGramLoadPthTbl[sym][pth] != null) ||
+				(gGramLoadPthTbl[sym][""] != null))))
 			{
 				newOpts.push(ioGrammar.rdx[sym][oo]);
 			}
@@ -2117,6 +2215,30 @@ function resyncGrammar(ioGrammar, inIsFull)
 	// pop up grammar dialog for user to review
 
 	popUpGrammarDialog(ioGrammar);
+}
+
+function parseAllTreesCmd()
+{
+	try
+	{
+		parseAllTrees(gTreeModel, gGrammar);
+	}
+	catch (err)
+	{
+		alert(err);
+	}
+}
+
+function parseAllTrees(ioTreeModel, inGrammar)
+{
+	const treeIds = getAllTreeIds();
+
+	for (let ii = 0; ii < treeIds.length; ii++)
+	{
+		const treeId = treeIds[ii];
+
+		reparseTree(treeId, inGrammar, ioTreeModel);
+	}
 }
 
 function makeGrammarPathTbl(inGrammar)
@@ -2296,6 +2418,82 @@ function findAllPrnChIds(inPrnName, inChNameLst)
 
 	return retTbl;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// find node path with inNodeName above inNodeId.
+function findNodeIdAbove(inTreeId, inNodeId, inNodeName)
+{
+	let retNodeIdPth = null;
+
+	let tmpIdPth = [];
+
+	const tree = getTree(inTreeId);
+	let curNodeId = inNodeId;
+
+	while ((curNodeId != null) &&
+			(retNodeIdPth == null))
+	{
+		tmpIdPth.push(curNodeId);
+
+		const curNode  = tree.nodes[curNodeId];
+
+		if (curNode.label == inNodeName)
+		{
+			retNodeIdPth = tmpIdPth;
+		}
+		else
+		{
+			const nodeInfo = findParent(tree.nodes, curNodeId);
+
+			curNodeId = nodeInfo.parentNodeId;
+		}
+	}
+
+	return retNodeIdPth;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// find node path with inNodeName in below inNodeId
+function findNodeIdBelow(inTreeId, inNodeId, inNodeName)
+{
+	let retNodeIdPth = null;
+
+	let stk = [ { nodeId: inNodeId, lst: null } ];
+
+	const tree = getTree(inTreeId);
+
+	while ((stk.length > 0) &&
+			(retNodeIdPth == null))
+	{
+		const frm = stk.pop();
+		const { nodeId, lst } = frm;
+
+		const node  = tree.nodes[nodeId];
+
+		if (node.label == inNodeName)
+		{
+			retNodeIdPth = [];
+			let ff = frm;
+			while (ff != null)
+			{
+				const { nodeId: nn, lst: ll } = ff;
+				retNodeIdPth.push(nn);
+				ff = ll;
+			}
+		}
+		else
+		{
+			if (node.child != null)
+			{
+				for (let ii=0; ii<node.child.length; ii++)
+				{
+					stk.push( { nodeId: node.child[ii], lst: frm } );
+				}
+			}
+		}
+	}
+
+	return retNodeIdPth;}
 
 /* -----------------------------------------------------------------------------
 undo / redo node operations
@@ -2496,28 +2694,35 @@ function addNodeHandler(inName, inProlif)
 {
 	// make edit...
 
-	const addRcdLst = addNode(gSbjTreeId, gSbjNodeId, gSbjChldNodeIds, inName, null, inProlif);
-
-	// register edits on undo stack...
-
-	gUndoStack.push(addRcdLst);
-	gRedoStack = [ ];
-
-	// render changes...
-
-	if (inProlif)
+	try
 	{
-		renderCanvas();
+		const addRcdLst = addNode(gSbjTreeId, gSbjNodeId, gSbjChldNodeIds, inName, null, inProlif);
+
+		// register edits on undo stack...
+
+		gUndoStack.push(addRcdLst);
+		gRedoStack = [ ];
+
+		// render changes...
+
+		if (inProlif)
+		{
+			renderCanvas();
+		}
+		else
+		{
+			renderTree(gSbjTreeId);
+		}
+
+		// cleanup...
+
+		gSelectionPanel = {}
+		unhighlightAllNodes();
 	}
-	else
+	catch (err)
 	{
-		renderTree(gSbjTreeId);
+		alert(err);
 	}
-
-	// cleanup...
-
-	gSelectionPanel = {}
-	unhighlightAllNodes();
 
 	gSbjTreeId = null;
 	gSbjNodeId = null;
@@ -3179,6 +3384,7 @@ function initMenu()
 
 				else if (action === "editGrammar")  { editGrammarCmd();	   }
 				else if (action === "resyncGrammar") { resyncGrammarCmd(); }
+				else if (action === "parseAllTrees") { parseAllTreesCmd(); }
 			}
 			catch (err)
 			{
@@ -3325,7 +3531,7 @@ function initNodeEditDialog()
 		const prolif = document.getElementById("ne-dlg-prolif").checked;
 
 		document.getElementById("edit-dialog").classList.add("hidden");
-		editDialogCallback(name, prolif);
+		editDialogCallback(name.trim(), prolif);
 		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	});
 
@@ -3349,7 +3555,7 @@ function initNodeAddDialog()
 		const prolif = document.getElementById("na-dlg-prolif").checked;
 
 		document.getElementById("add-dialog").classList.add("hidden");
-		addNodeDialogCallback(name, prolif);
+		addNodeDialogCallback(name.trim(), prolif);
 		storeToLocalStorage("app", "en", "tree", gTreeModel);
 	});
 
@@ -3491,6 +3697,8 @@ function loadGrammar()
 		try
 		{
 			gGrammar = parseGrammar(inText, inTxtFl, 0);
+
+			gGramLoadPthTbl = makeGrammarPathTbl(gGrammar);
 
 			storeToLocalStorage("app", "en", "grammar", gGrammar);
 
