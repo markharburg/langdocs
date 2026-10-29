@@ -904,9 +904,6 @@ function step(inThdFrm, inGrammar, inValueLst)
 	// Destructure the frame
 	const { scr, bad, elm, inst, pos, vpt } = inThdFrm;
 
-const dbgInst = dbgInstToTxt(instStackToObj(inst));
-const dbgPos = dbgPosToTxt(pos, scr, inGrammar);
-
 	// Destructure the position
 	const { rdx, opt, pnt, itr, parent, base } = pos;
 
@@ -940,11 +937,6 @@ const dbgPos = dbgPosToTxt(pos, scr, inGrammar);
 			inst: cpyInst,
 			vpt: vpt
 		});
-
-const dbgInst2 = dbgInstToTxt(instStackToObj(cpyInst));
-const dbgPos2 = dbgPosToTxt(pos.parent, scr, inGrammar);
-const ll = "REDUCE";
-
 	}
 	// ADVANCE, SHIFT, or TOKENIZE
 	else
@@ -977,10 +969,6 @@ const ll = "REDUCE";
 			inst: inst,
 			vpt: vpt
 		});
-
-const dbgInst2 = dbgInstToTxt(instStackToObj(inst));
-const dbgPos2 = dbgPosToTxt(retNxt[retNxt.length-1].pos, nxtScr, inGrammar);
-const ll = "ADVANCE";
 
 		// --- Prepare common values for SHIFT / TOKENIZE ---
 		// Calculate "overage" for shift/tokenize
@@ -1034,11 +1022,6 @@ const ll = "ADVANCE";
 					inst: nxtInst,
 					vpt: vpt
 				});
-
-const dbgInst3 = dbgInstToTxt(instStackToObj(nxtInst));
-const dbgPos3 = dbgPosToTxt(retNxt[retNxt.length-1].pos, nxtScr, inGrammar);
-const ll = "SHIFT";
-
 			}
 		}
 		// --- TOKENIZE: Terminal symbol ---
@@ -1098,11 +1081,6 @@ const ll = "SHIFT";
 				inst: nxtInst,
 				vpt: vpt + 1
 			});
-
-const dbgInst4 = dbgInstToTxt(instStackToObj(nxtInst));
-const dbgPos5 = dbgPosToTxt(retNxt[retNxt.length-1].pos, nxtScr, inGrammar);
-const ll = "TOKENIZE";
-
 		}
 	}
 
@@ -1192,6 +1170,54 @@ function instStackToObj(inInstStkFrm)
 	}
 
 	return retInst;
+}
+
+// check for recursion in rule
+function findRecursion(inGrammar)
+{
+	let retRcrSym = null;
+
+	let stk = [ { sym: inGrammar.kv["root"], lst: null } ];
+
+	while (stk.length > 0)
+	{
+		const frm = stk.pop();
+		const {sym, lst} = frm;
+
+		if (inGrammar.rdx[sym] != null)
+		{
+			let dedupe = { };
+
+			for (let oo=0; ((oo<inGrammar.rdx[sym].length) && (retRcrSym == null)); oo++)
+			{
+				for (let rr=0; ((rr<inGrammar.rdx[sym][oo].length) && (retRcrSym == null)); rr++)
+				{
+					const { ref, min, max } = inGrammar.rdx[sym][oo][rr];
+
+					let pt = frm;
+
+					while ((pt != null) && (retRcrSym == null))
+					{
+						if (ref == pt.sym)
+						{
+							retRcrSym = ref;
+						}
+
+						pt = pt.lst;
+					}
+
+					if ((retRcrSym == null) && (dedupe[ref] == null))
+					{
+						stk.push( { sym: ref, lst: frm } );
+
+						dedupe[ref] = 1;
+					}
+				}
+			}
+		}
+	}
+
+	return retRcrSym;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1321,20 +1347,11 @@ function parseSentence(inLine, inGrammar)
 
 		const { scr, bad, elm, inst, pos, vpt } = thdFrm;
 
-const dbgInst = dbgInstToTxt(instStackToObj(inst));
-const dbgPos = dbgPosToTxt(pos, scr, inGrammar);
-const ll = "PULL";
-
 		if (isAtGrammarEnd(pos, inGrammar))
 		{
 			if (vpt >= inLine.length)
 			{
 				retInst = instStackToObj(inst);
-
-const dbgInst = dbgInstToTxt(instStackToObj(bestInst));
-const dbgPos = dbgPosToTxt(pos, scr, inGrammar);
-const ll = "RET INST";
-
 			}
 			else if ((bestInst == null) ||
 					(bestLen < vpt) ||
@@ -1343,11 +1360,6 @@ const ll = "RET INST";
 				bestScr = scr;
 				bestLen = vpt;
 				bestInst = inst;
-
-const dbgInst = dbgInstToTxt(instStackToObj(bestInst));
-const dbgPos = dbgPosToTxt(pos, scr, inGrammar);
-const ll = "BEST INST";
-
 			}
 		}
 		else
@@ -1356,12 +1368,6 @@ const ll = "BEST INST";
 
 			for (thd of nxtThds)
 			{
-
-
-const dbgInst = dbgInstToTxt(instStackToObj(thd.inst));
-const dbgPos = dbgPosToTxt(thd.pos, thd.scr, inGrammar);
-const ll = "THREAD";
-
 				insertIntoThreadPool(thrdPool, thd);
 			}
 		}
@@ -1378,8 +1384,6 @@ const ll = "THREAD";
 	{
 		retInst = instStackToObj(bestInst);
 	}
-
-const dbgInst = dbgInstToTxt(retInst);
 
 	return retInst;
 }

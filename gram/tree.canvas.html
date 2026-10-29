@@ -216,6 +216,20 @@
 
 	/* ------------------------------------------------------------------ */
 
+	#manage-dialog {
+		position: fixed;
+		top: 0; left: 0; right: 0; bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.18);
+		z-index: 200;
+	}
+
+	#manage-dialog.hidden { display: none; }
+
+	/* ------------------------------------------------------------------ */
+
 	#dialog-box {
 		background: #ffffff;
 		border: 1px solid #888888;
@@ -261,6 +275,17 @@
 	}
 
 	#rs-dialog-box {
+		background: #ffffff;
+		border: 1px solid #888888;
+		border-radius: 6px;
+		box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+		padding: 16px 18px;
+		min-width: 300px;
+		font-family: "Consolas", "Menlo", "DejaVu Sans Mono", "Courier New", monospace;
+		font-size: 13px;
+	}
+
+	#mg-dialog-box {
 		background: #ffffff;
 		border: 1px solid #888888;
 		border-radius: 6px;
@@ -320,12 +345,7 @@
 <div id="menu-icon" title="Menu">&#9776;</div>
 
 <div id="menu-popup" class="hidden">
-  <div class="menu-item" data-action="loadTree">Load instance</div>
-  <div class="menu-item" data-action="loadText">Load text</div>
-  <div class="menu-item" data-action="loadGrammar">Load grammar</div>
-  <div class="menu-item" data-action="loadDictionary">Load dictionary</div>
-  <div class="menu-item" data-action="dumpTree">Dump instance</div>
-  <div class="menu-item" data-action="dumpGrammar">Dump grammar</div>
+  <div class="menu-item" data-action="manageProject">Manage</div>
   <div class="menu-sep"></div>
   <div class="menu-item" data-action="editNode">Edit node</div>
   <div class="menu-item" data-action="addNode">Add node</div>
@@ -429,6 +449,38 @@
   </div>
 </div>
 
+<div id="manage-dialog" class="hidden">
+	<div id="mg-dialog-box">
+		<div class="dlg-row">
+			<label for="mg-dlg-lang">Lang:</label>
+			<select id="mg-dlg-lang" name="langs">
+			</select>
+		</div>
+		<div class="dlg-row">
+			<label for="mg-dlg-name">new:</label>
+			<input type="text" id="mg-dlg-name">
+			<button id="mg-dlg-add">Add</button>
+			<button id="mg-dlg-rem">Remove</button>
+		</div>
+		<div class="dlg-row">
+			<label>load:</label>
+			<button id="mg-dlg-load-inst">Instance</button>
+			<button id="mg-dlg-load-text">Text</button>
+			<button id="mg-dlg-load-gram">Grammar</button>
+			<button id="mg-dlg-load-dict">Dictionary</button>
+		</div>
+		<div class="dlg-row">
+			<label>dump:</label>
+			<button id="mg-dlg-dump-inst">Instance</button>
+			<button id="mg-dlg-dump-gram">Grammar</button>
+		</div>
+		<div class="dlg-buttons">
+			<button id="mg-dlg-ok">Ok</button>
+			<button id="mg-dlg-cancel">Cancel</button>
+		</div>
+	</div>
+</div>
+
 <script language="javascript" src="local-object-storage.js"></script>
 <script language="javascript" src="grammar.js"></script>
 <!-- script language="javascript" src="sequence.js"></script -->
@@ -452,6 +504,7 @@ const gCLICK_PAUSE_MS = 200;
 
 /* -------------------------------------------------------------------------- */
 
+// when this is true it uses simple ascii that mono spaces on a phone.
 const gIsPhn = true;
 
 const gLapCnxCharTbl =
@@ -481,6 +534,10 @@ const gCnxCharTbl = (gIsPhn) ? gPhnCnxCharTbl : gLapCnxCharTbl;
 /* =====================================================================
  *  0.  Stub model functions  (section 2.5 / 4.1)
  * ===================================================================== */
+
+let gLang = "--";
+
+let gLangTbl = { };
 
 let gTreeModel =
 {
@@ -657,9 +714,9 @@ let gGrammar =
 	}
 };
 
-let gGramLoadPthTbl = {};
+let gGramLoadPthTbl = { };
 
-let gDictionary = {};
+let gDictionary = { };
 
 let gSelectionPanel = {};
 
@@ -1671,6 +1728,24 @@ function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif
 	let retAddRcdLst = [ ];
 
 	////////////////////////////////////////////////////////////////////////////
+	// 0. chech if node violates recursion rules...
+
+	const tmpTree = getTree(inTreeId);
+	const tmpPrnNode  = tmpTree.nodes[inPrnNodeId];
+
+	let tmpGrammar = structuredClone(gGrammar);
+	if (tmpGrammar.rdx[tmpPrnNode.label] != null)
+	{
+		tmpGrammar.rdx[tmpPrnNode.label].push([ { ref: inName, min: 1, max: 1 } ]);
+
+		const rcrsSym = findRecursion(tmpGrammar);
+		if (rcrsSym != null)
+		{
+			throw "Recursion error on symbol: \"" + rcrsSym + "\"";
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////
 	// 1. gather which trees, parents, childs, new nodes to add
 
 	let nodeIdTbl = {};
@@ -2112,8 +2187,6 @@ function resyncGrammar(ioGrammar, inIsFull)
 		}
 	}
 
-// TODO: don't remove rules that were loaded from file unless flagged to.
-
 	////////////////////////////////////////////////////////////////////////////
 	// 2. remove rules not in current instances
 	//		ignore "prescribed" rules - those loaded
@@ -2210,11 +2283,6 @@ function resyncGrammar(ioGrammar, inIsFull)
 			delete ioGrammar.rgx[sym];
 		}
 	}
-
-	////////////////////////////////////////////////////////////////////////////
-	// pop up grammar dialog for user to review
-
-	popUpGrammarDialog(ioGrammar);
 }
 
 function parseAllTreesCmd()
@@ -2222,6 +2290,7 @@ function parseAllTreesCmd()
 	try
 	{
 		parseAllTrees(gTreeModel, gGrammar);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
 	}
 	catch (err)
 	{
@@ -2544,7 +2613,7 @@ function undoNodeEdit()
 		}
 		renderCanvas();
 
-		storeToLocalStorage("app", "en", "tree", gTreeModel);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
 	}
 }
 
@@ -2590,7 +2659,7 @@ function redoNodeEdit()
 		}
 		renderCanvas();
 
-		storeToLocalStorage("app", "en", "tree", gTreeModel);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
 	}
 }
 
@@ -2606,6 +2675,11 @@ function editGrammarCmd()
 function resyncGrammarCmd()
 {
 	popUpResyncDialog();
+}
+
+function manageProjectCmd()
+{
+	popUpManageDialog(gLang);
 }
 
 /* -----------------------------------------------------------------------------
@@ -2631,9 +2705,17 @@ function grammarDialogCallback(inGrammarTxt)
 {
 	try
 	{
-		gGrammar = parseGrammar(inGrammarTxt, "dialog", 0);
+		const tmpGrammar = parseGrammar(inGrammarTxt, "dialog", 0);
 
-		storeToLocalStorage("app", "en", "grammar", gGrammar);
+		const rcrsSym = findRecursion(tmpGrammar);
+		if (rcrsSym != null)
+		{
+			throw "Recursion error on symbol: \"" + rcrsSym + "\"";
+		}
+
+		gGrammar = tmpGrammar;
+
+		storeToLocalStorage("app", gLang, "grammar", gGrammar);
 	}
 	catch (err)
 	{
@@ -2645,15 +2727,27 @@ function resyncDialogCallback(inIsFull)
 {
 	try
 	{
-		resyncGrammar(gGrammar, inIsFull);
-		storeToLocalStorage("app", "en", "grammar", gGrammar);
+		let tmpGrammar = structuredClone(gGrammar);
+		resyncGrammar(tmpGrammar, inIsFull);
+
+		const rcrsSym = findRecursion(tmpGrammar);
+		if (rcrsSym != null)
+		{
+			throw "Recursion error on symbol: \"" + rcrsSym + "\"";
+		}
+
+		gGrammar = tmpGrammar;
+
+		storeToLocalStorage("app", gLang, "grammar", gGrammar);
+
+		popUpGrammarDialog(gGrammar);
+
 	}
 	catch (err)
 	{
 		alert(err);
 	}
 }
-
 
 /* -----------------------------------------------------------------------------
 node modification functions - handle undo stack, rendering...
@@ -3264,7 +3358,11 @@ function renderTree(inTreeId)
 	act.className = "tree-action";
 	act.textContent = gCnxCharTbl[0];
 	act.title = 'reparseTree("' + inTreeId + '")';
-	act.addEventListener("click", function () { reparseTree(inTreeId, gGrammar, gTreeModel); });
+	act.addEventListener("click", function ()
+	{
+		reparseTree(inTreeId, gGrammar, gTreeModel);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
+	});
 	block.appendChild(act);
 }
 
@@ -3367,13 +3465,7 @@ function initMenu()
 
 			try
 			{
-				if	  (action === "loadTree") { loadTreeModel(); }
-				else if (action === "loadText") { loadText();	  }
-				else if (action === "loadGrammar") { loadGrammar();	  }
-				else if (action === "loadDictionary") { loadDictionary();	  }
-
-				else if (action === "dumpTree") { dumpTreeModel(); }
-				else if (action === "dumpGrammar") { dumpGrammar(gGrammar); }
+				if (action === "manageProject") { manageProjectCmd(); }
 
 				else if (action === "editNode")  { editNodeCmd();	   }
 				else if (action === "addNode")  { addNodeCmd();	   }
@@ -3428,6 +3520,12 @@ function initKeyboard()
 			editGrammarCmd();
 			return;
 		}
+		else if ((ev.ctrlKey || ev.metaKey) && (ev.key === "m"))
+		{
+			ev.preventDefault();
+			manageProjectCmd();
+			return;
+		}
 		else if (ev.key === "Delete")
 		{
 			ev.preventDefault();
@@ -3443,6 +3541,7 @@ function initKeyboard()
 			document.getElementById("remove-dialog").classList.add("hidden");
 			document.getElementById("grammar-dialog").classList.add("hidden");
 			document.getElementById("resync-dialog").classList.add("hidden");
+			document.getElementById("manage-dialog").classList.add("hidden");
 		}
 	});
 }
@@ -3450,6 +3549,29 @@ function initKeyboard()
 /* =====================================================================
  *  1.3  Pop-up dialog
  * ===================================================================== */
+
+function popUpManageDialog(inLang)
+{
+	gSbjLangTbl = structuredClone(gLangTbl);
+	gSbjTreeModel = structuredClone(gTreeModel);
+	gSbjGrammar = structuredClone(gGrammar);
+	gSbjDictionary = { };
+
+	gSbjLangLstChg = false;
+	gSbjTreeModelChg = false;
+	gSbjGrammarChg = false;
+	gSbjDictionaryChg = false;
+
+	document.getElementById("mg-dlg-load-inst").style.backgroundColor = "";
+	document.getElementById("mg-dlg-load-text").style.backgroundColor = "";
+	document.getElementById("mg-dlg-load-gram").style.backgroundColor = "";
+	document.getElementById("mg-dlg-load-dict").style.backgroundColor = "";
+
+	document.getElementById('mg-dlg-lang').value = gLang;
+
+	document.getElementById("manage-dialog").classList.remove("hidden");
+	document.getElementById("mg-dlg-ok").focus();
+}
 
 function popUpEditNodeDialog(inName)
 {
@@ -3513,6 +3635,8 @@ function popUpResyncDialog(inFull)
 
 function initDialogs()
 {
+	initManageDialog();
+
 	initNodeEditDialog();
 
 	initNodeAddDialog();
@@ -3524,6 +3648,200 @@ function initDialogs()
 	initResyncDialog();
 }
 
+let gSbjLangTbl = { };
+let gSbjTreeModel = { };
+let gSbjGrammar = { };
+let gSbjDictionary = { };
+
+let gSbjLangLstChg = false;
+let gSbjTreeModelChg = false;
+let gSbjGrammarChg = false;
+let gSbjDictionaryChg = false;
+
+function initManageDialog()
+{
+	// OK
+	document.getElementById("mg-dlg-ok").addEventListener("click", function () {
+		const select = document.getElementById('mg-dlg-lang');
+		const lang = select.value;
+
+		const langSelChg = (gLang != lang) ? true : false;
+
+		gLang = lang;
+
+		////////////////////////////////////////////////////////////////////////
+		// if lang elements added - store the content
+
+		if (gSbjGrammarChg)
+		{
+			gGrammar = gSbjGrammar;
+			gGramLoadPthTbl = makeGrammarPathTbl(gGrammar);
+			storeToLocalStorage("app", gLang, "grammar", gGrammar);
+		}
+
+		if (gSbjDictionaryChg)
+		{
+			gDictionary = gSbjDictionary;
+
+			storeToLocalStorage("app", gLang, "dictionary", gDictionary);
+		}
+
+		if (gSbjTreeModelChg)
+		{
+			gTreeModel = gSbjTreeModel;
+
+			storeToLocalStorage("app", gLang, "tree", gTreeModel);
+		}
+
+		////////////////////////////////////////////////////////////////////////
+		// if langs removed, erase their content
+
+		if (gSbjLangLstChg)
+		{
+			const lngLst = Object.keys(gLangTbl);
+
+			for (const lng of lngLst)
+			{
+				if (gSbjLangTbl[lng] == null)
+				{
+					removeFromLocalStorage("app", lng, "grammar");
+					removeFromLocalStorage("app", lng, "dictionary");
+					removeFromLocalStorage("app", lng, "tree");
+				}
+			}
+
+			gLangTbl = gSbjLangTbl;
+
+			storeToLocalStorage("app", "--", "langs", gLangTbl);
+		}
+
+		////////////////////////////////////////////////////////////////////////
+		// if there was a change in the selected language or tree model rerender
+
+		if ((langSelChg) || (gSbjTreeModelChg))
+		{
+			renderCanvas();
+			gUndoStack = [ ];
+			gRedoStack = [ ];
+		}
+
+		if (langSelChg)
+		{
+			const url = new URL(window.location.href);
+			url.searchParams.set("lang", gLang);
+			history.replaceState(null, "", url);
+		}
+
+		document.getElementById("manage-dialog").classList.add("hidden");
+		manageProject(lang);
+	});
+
+	// Add lang
+	document.getElementById("mg-dlg-add").addEventListener("click", function () {
+		const name = document.getElementById("mg-dlg-name").value;
+		document.getElementById("mg-dlg-name").value = "";
+
+		gSbjLangTbl[name] = 1;
+
+		const select = document.getElementById('mg-dlg-lang');
+
+		const opt = document.createElement('option');
+		opt.value = name;
+		opt.textContent = name;
+		opt.selected = true;
+		select.appendChild(opt);
+
+		const newLang = select.value;
+		setSbjModel(newLang);
+
+		gSbjLangLstChg = true;
+		gSbjTreeModelChg = true;
+		gSbjGrammarChg = true;
+		gSbjDictionaryChg = true;
+	});
+
+	// Remove lang
+	document.getElementById("mg-dlg-rem").addEventListener("click", function () {
+		const select = document.getElementById('mg-dlg-lang');
+		const lang = select.value;
+
+		delete gSbjLangTbl[lang];
+
+		const optionToRemove = Array.from(select.options)
+		  .find(opt => opt.value === lang);
+
+		if (optionToRemove) optionToRemove.remove();
+
+		const newLang = select.value;
+		setSbjModel(newLang);
+
+		gSbjLangLstChg = true;
+		gSbjTreeModelChg = true;
+		gSbjGrammarChg = true;
+		gSbjDictionaryChg = true;
+	});
+
+	// Change lang
+	document.getElementById("mg-dlg-lang").addEventListener("change", function () {
+		const select = document.getElementById('mg-dlg-lang');
+		const lang = select.value;
+
+		setSbjModel(lang);
+	});
+
+	// LOAD INSTANCE
+	document.getElementById("mg-dlg-load-inst").addEventListener("click", function () {
+		loadTreeModel();
+	});
+
+	// LOAD TEXT
+	document.getElementById("mg-dlg-load-text").addEventListener("click", function () {
+		loadText();
+	});
+
+	// LOAD GRAMMAR
+	document.getElementById("mg-dlg-load-gram").addEventListener("click", function () {
+		loadGrammar();
+	});
+
+	// LOAD DICTIONARY
+	document.getElementById("mg-dlg-load-dict").addEventListener("click", function () {
+		loadDictionary();
+	});
+
+	// DUMP INSTANCE
+	document.getElementById("mg-dlg-dump-inst").addEventListener("click", function () {
+		dumpTreeModel(gTreeModel);
+	});
+
+	// DUMP GRAMMAR
+	document.getElementById("mg-dlg-dump-gram").addEventListener("click", function () {
+		dumpGrammar(gGrammar);
+	});
+
+	// CANCEL
+	document.getElementById("mg-dlg-cancel").addEventListener("click", function () {
+		document.getElementById("manage-dialog").classList.add("hidden");
+	});
+
+	// clicking the dim backdrop cancels as well
+	document.getElementById("manage-dialog").addEventListener("click", function (ev) {
+		if (ev.target === document.getElementById("manage-dialog"))
+		{
+			document.getElementById("manage-dialog").classList.add("hidden");
+		}
+	});
+}
+
+function setSbjModel(inLang)
+{
+	loadModelFromStore(inLang);
+
+	gSbjTreeModel = structuredClone(gTreeModel);
+	gSbjGrammar = structuredClone(gGrammar);
+	gSbjDictionary = structuredClone(gDictionary);
+}
+
 function initNodeEditDialog()
 {
 	document.getElementById("ne-dlg-ok").addEventListener("click", function () {
@@ -3532,7 +3850,7 @@ function initNodeEditDialog()
 
 		document.getElementById("edit-dialog").classList.add("hidden");
 		editDialogCallback(name.trim(), prolif);
-		storeToLocalStorage("app", "en", "tree", gTreeModel);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
 	});
 
 	document.getElementById("ne-dlg-cancel").addEventListener("click", function () {
@@ -3556,7 +3874,7 @@ function initNodeAddDialog()
 
 		document.getElementById("add-dialog").classList.add("hidden");
 		addNodeDialogCallback(name.trim(), prolif);
-		storeToLocalStorage("app", "en", "tree", gTreeModel);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
 	});
 
 	document.getElementById("na-dlg-cancel").addEventListener("click", function () {
@@ -3579,7 +3897,7 @@ function initNodeRemoveDialog()
 
 		document.getElementById("remove-dialog").classList.add("hidden");
 		removeDialogCallback(false, prolif);
-		storeToLocalStorage("app", "en", "tree", gTreeModel);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
 	});
 
 	document.getElementById("nr-dlg-cancel").addEventListener("click", function () {
@@ -3658,6 +3976,14 @@ function jumpToTree(inTreeId)
  *  4.  Load / dump functionality
  * ===================================================================== */
 
+// set the current project to inLang
+
+function manageProject(inLang)
+{
+
+
+}
+
 function loadTreeModel()
 {
 	// 1. prompt the user to select a text file from their hard drive.
@@ -3665,28 +3991,18 @@ function loadTreeModel()
 	// 3. invoke renderCanvas().
 	pickTextFile(function (inText, inTxtFl)
 	{
-		gTreeModel = parseTreeModel(inText, inTxtFl);
-
-		storeToLocalStorage("app", "en", "tree", gTreeModel);
-
-		renderCanvas();
-
-		gUndoStack = [ ];
-		gRedoStack = [ ];
+		gSbjTreeModel = parseTreeModel(inText, inTxtFl);
+		gSbjTreeModelChg = true;
+		document.getElementById("mg-dlg-load-inst").style.backgroundColor = "pink";
 	});
 }
 
 function loadText()
 {
 	pickTextFile(function (inText, inTxtFl) {
-		gTreeModel = parseText(inText, inTxtFl, gGrammar);
-
-		storeToLocalStorage("app", "en", "tree", gTreeModel);
-
-		renderCanvas();
-
-		gUndoStack = [ ];
-		gRedoStack = [ ];
+		gSbjTreeModel = parseText(inText, inTxtFl, gGrammar);
+		gSbjTreeModelChg = true;
+		document.getElementById("mg-dlg-load-text").style.backgroundColor = "pink";
 	});
 }
 
@@ -3696,13 +4012,9 @@ function loadGrammar()
 	{
 		try
 		{
-			gGrammar = parseGrammar(inText, inTxtFl, 0);
-
-			gGramLoadPthTbl = makeGrammarPathTbl(gGrammar);
-
-			storeToLocalStorage("app", "en", "grammar", gGrammar);
-
-			popUpGrammarDialog(gGrammar);
+			gSbjGrammar = parseGrammar(inText, inTxtFl, 0);
+			gSbjGrammarChg = true;
+			document.getElementById("mg-dlg-load-gram").style.backgroundColor = "pink";
 		}
 		catch (err)
 		{
@@ -3718,9 +4030,9 @@ function loadDictionary()
 	{
 		try
 		{
-			gDictionary = parseDictionary(inText, inTxtFl.name, 0);
-
-			storeToLocalStorage("app", "en", "dictionary", gDictionary);
+			gSbjDictionary = parseDictionary(inText, inTxtFl.name, 0);
+			gSbjDictionaryChg = true;
+			document.getElementById("mg-dlg-load-dict").style.backgroundColor = "pink";
 		}
 		catch (err)
 		{
@@ -3729,12 +4041,11 @@ function loadDictionary()
 	});
 }
 
-function dumpTreeModel()
+function dumpTreeModel(inTreeModel)
 {
 	const text = formatTreeModel();
 	downloadTextFile(text, "tree-model.txt");
 }
-
 
 function dumpGrammar(inGrammar)
 {
@@ -3784,6 +4095,97 @@ function downloadTextFile(text, filename)
 	setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
 }
 
+function loadModelFromStore(inLang)
+{
+	let gram = retrieveFromLocalStorage("app", inLang, "grammar");
+	if (gram != null)
+	{
+		gGrammar = gram;
+	}
+	else
+	{
+		gGrammar =
+		{
+			kv:
+			{
+				root: "a"
+			},
+			rdx:
+			{
+				"a":
+				[
+					[
+						{ ref: "b", min: 1, max: 1 }
+					]
+				],
+				"b":
+				[
+					[
+						{ ref: "X", min: 1, max: 1 }
+					]
+				]
+			},
+			tok:
+			{
+				"X": { "xxx": 1 }
+			},
+			rgx:
+			{
+			}
+		};
+	}
+
+	let dict = retrieveFromLocalStorage("app", inLang, "dictionary");
+	if (dict != null)
+	{
+		gDictionary = dict;
+	}
+
+	let tree = retrieveFromLocalStorage("app", inLang, "tree");
+	if (tree != null)
+	{
+		gTreeModel = tree;
+	}
+	else
+	{
+		gTreeModel =
+		{
+			inv: [ "tt" ],
+			tbl:
+			{
+				"tt":
+				{
+					root: "a1",
+					annotation: "this is a dummy instance.",
+					nodes:
+					{
+						"a1":
+						{
+							label: "a",
+							child: [ "b1" ]
+						},
+						"b1":
+						{
+							label: "b",
+							err: true,
+							child: [ "x1" ]
+						},
+						"x1":
+						{
+							label: "X",
+							child: [ "xval1" ]
+						},
+						"xval1":
+						{
+							label: "xxx"
+						}
+					}
+				}
+			}
+		};
+	}
+}
+
 /* =====================================================================
  *  Boot
  * ===================================================================== */
@@ -3793,22 +4195,32 @@ function initApp()
 	////////////////////////////////////////////////////////////////////////////
 	// load data
 
-	let gram = retrieveFromLocalStorage("app", "en", "grammar");
-	if (gram != null)
+	const params = new URLSearchParams(window.location.search);
+
+	gLang = params.get("lang") || "--";
+
+	loadModelFromStore(gLang);
+
+	let lngTbl = retrieveFromLocalStorage("app", "--", "langs");
+	let lngLst = [ "--" ];
+
+	if (lngTbl != null)
 	{
-		gGrammar = gram;
+		gLangTbl = lngTbl;
+
+		lngLst = Object.keys(gLangTbl).sort();
 	}
 
-	let dict = retrieveFromLocalStorage("app", "en", "dictionary");
-	if (dict != null)
-	{
-		gDictionary = dict;
-	}
+	const select = document.getElementById('mg-dlg-lang');
 
-	let tree = retrieveFromLocalStorage("app", "en", "tree");
-	if (tree != null)
+	for (const lang of lngLst)
 	{
-		gTreeModel = tree;
+		// Add one option
+		const opt = document.createElement('option');
+		opt.value = lang;
+		opt.textContent = lang;
+		opt.selected = true;
+		select.appendChild(opt);
 	}
 
 	////////////////////////////////////////////////////////////////////////////
@@ -3823,8 +4235,6 @@ function initApp()
 	window.addEventListener("scroll", hideToolTip, true);
 	window.addEventListener("resize", hideToolTip);
 
-	// if the URL carries "?tree=treeId" jump to that tree
-	const params = new URLSearchParams(window.location.search);
 	const treeId = params.get("tree");
 	if (treeId) { jumpToTree(treeId); }
 }
@@ -3834,9 +4244,6 @@ initApp();
 /* =============================================================================
 TODO
 
-- grammar resync
-	1. track rules from grammar load
-		a. don't delete rules from grammar load unless "full" resync
 - annotate nodes
 	1. allow for intermediate annotation of nodes
 - measure rdx quality
