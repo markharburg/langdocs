@@ -65,6 +65,7 @@
 		user-select: none;
 		-webkit-user-select: none;
 		font-family: inherit;
+		font-size: 26px;
 	}
 
 	.tree-action:hover {
@@ -505,28 +506,30 @@ const gCLICK_PAUSE_MS = 200;
 /* -------------------------------------------------------------------------- */
 
 // when this is true it uses simple ascii that mono spaces on a phone.
-const gIsPhn = true;
+const gIsPhn = false;
 
 const gLapCnxCharTbl =
 [
-	"\u2192",	// →
+	"\u219F",	// ↟
 	"\u2500",	// ─
 	"\u2502",	// │
 	"\u2510",	// ┐
 	"\u2534",	// ┴
 	"\u250C",	// ┌
-	"\u252C"	// ┬
+	"\u252C",	// ┬
+	"\u219D"	// ↝
 ];
 
 const gPhnCnxCharTbl =
 [
-	"\u003E",	// →
+	"\u0050",	// P
 	"\u002D",	// ─
 	"\u007C",	// │
 	"\u002B",	// ┐
 	"\u002B",	// ┴
 	"\u002B",	// ┌
-	"\u002B"	// ┬
+	"\u002B",	// ┬
+	"\u0047"	// G
 ];
 
 const gCnxCharTbl = (gIsPhn) ? gPhnCnxCharTbl : gLapCnxCharTbl;
@@ -730,6 +733,7 @@ function getTree(inTreeId)
 	return gTreeModel.tbl[inTreeId];
 }
 
+/*
 function deepCpyTree(inTreeId)
 {
 	const retCpyTree = { };
@@ -772,6 +776,103 @@ function deepCpyTree(inTreeId)
 	}
 
 	return retCpyTree;
+}
+*/
+
+function deepClone(inObj)
+{
+	let retObj = null;
+
+	let stk = [ { obj: inObj, prn: null, pos: null, key: null } ];
+
+	const seen = new WeakMap();
+
+	while (stk.length > 0)
+	{
+		const { obj, prn, pos, key } = stk.pop();
+
+		let newObj = null;
+
+		if (seen.has(obj))
+		{
+			newObj = seen.get(obj);
+		}
+		else if (Array.isArray(obj))
+		{
+			newObj = [];
+
+			for (let ii=0; ii<obj.length; ii++)
+			{
+				stk.push({ obj: obj[ii], prn: newObj, pos: ii, key: null });
+			}
+
+			seen.set(obj, newObj);
+		}
+		else if (isPlainObject(obj))
+		{
+			newObj = Object.create(Object.getPrototypeOf(obj));
+
+			const keyLst = Object.keys(obj);
+
+			for (const kk of Reflect.ownKeys(obj))
+			{
+				stk.push({ obj: obj[kk], prn: newObj, pos: -1, key: kk });
+			}
+
+			seen.set(obj, newObj);
+		}
+		else if (obj === null || typeof obj !== 'object')
+		{
+			newObj = obj;
+		}
+		else
+		{
+			throw new TypeError(`deepClone: unsupported ${Object.prototype.toString.call(obj)}`); // #5
+		}
+
+		// place new object into parent...
+
+		if (prn != null)
+		{
+			if (pos >= 0)
+			{
+				while (prn.length <= pos)
+				{
+					prn.push(null);
+				}
+				prn[pos] = newObj;
+			}
+			else
+			{
+				prn[key] = newObj;
+			}
+		}
+		else
+		{
+			retObj = newObj;
+		}
+	}
+
+	return retObj;
+}
+
+function isPlainObject(inObj)
+{
+	if (inObj === null || typeof inObj !== 'object') return false;
+	if (Object.prototype.toString.call(inObj) !== '[object Object]') return false;
+
+	const proto = Object.getPrototypeOf(inObj);
+	if (proto === null) return true;           // Object.create(null)
+
+	// Walk to the top of the prototype chain; a plain object's chain
+	// ends at Object.prototype whose own proto is null.
+	const ctor = Object.prototype.hasOwnProperty.call(proto, 'constructor')
+	&& proto.constructor;
+	return (
+		typeof ctor === 'function' &&
+			ctor instanceof ctor &&
+			Function.prototype.toString.call(ctor) === Function.prototype.toString.call(Object)
+	);
 }
 
 // gUniqueNodeId is global across the whole model, not per-tree.
@@ -1250,7 +1351,8 @@ function formatTreeModel()
 // inTreeId: identifies the tree.
 function reparseTree(inTreeId, inGrammar, ioTreeModel)
 {
-	const oldTree = deepCpyTree(inTreeId);
+	//was deepCpyTree
+	const oldTree = deepClone(inTreeId);
 
 	const toks = getTokens(inTreeId);
 
@@ -1264,6 +1366,11 @@ function reparseTree(inTreeId, inGrammar, ioTreeModel)
 	gUndoStack.push(rctRcdLst);
 
 	renderTree(inTreeId);
+}
+
+function generateTree(inTreeId, inGrammar, ioTreeModel)
+{
+
 }
 
 function instanceToTree(inInstance, inAnnotation)
@@ -1733,7 +1840,8 @@ function addNode(inTreeId, inPrnNodeId, inChdNodeIds, inName, inNodeId, inProlif
 	const tmpTree = getTree(inTreeId);
 	const tmpPrnNode  = tmpTree.nodes[inPrnNodeId];
 
-	let tmpGrammar = structuredClone(gGrammar);
+//	let tmpGrammar = structuredClone(gGrammar);
+	let tmpGrammar = deepClone(gGrammar);
 	if (tmpGrammar.rdx[tmpPrnNode.label] != null)
 	{
 		tmpGrammar.rdx[tmpPrnNode.label].push([ { ref: inName, min: 1, max: 1 } ]);
@@ -2727,7 +2835,7 @@ function resyncDialogCallback(inIsFull)
 {
 	try
 	{
-		let tmpGrammar = structuredClone(gGrammar);
+		let tmpGrammar = deepClone(gGrammar);
 		resyncGrammar(tmpGrammar, inIsFull);
 
 		const rcrsSym = findRecursion(tmpGrammar);
@@ -3052,14 +3160,14 @@ function buildTreeText(inTreeId)
 
 	const colStart  = {};
 	const colCenter = {};
-	let x = 0;
+	let xx = 0;
 
 	for (let cc = 0; cc <= maxCol; cc++)
 	{
 		const w = (widths[cc] != null) ? widths[cc] : MIN_COL_WDT;
-		colStart[cc]  = x;
-		colCenter[cc] = x + Math.floor((w - 1) / 2);
-		x += w + 1;					   // one blank character between columns
+		colStart[cc]  = xx;
+		colCenter[cc] = xx + Math.floor((w - 1) / 2);
+		xx += w + 1;					   // one blank character between columns
 	}
 
 	// ---- node centres -----------------------------------------------------
@@ -3093,11 +3201,11 @@ function buildTreeText(inTreeId)
 	};
 }
 
-function setChar(rowArr, x, ch)
+function setChar(rowArr, xx, ch)
 {
-	if (x < 0) { return; }
-	while (rowArr.length <= x) { rowArr.push(" "); }
-	rowArr[x] = ch;
+	if (xx < 0) { return; }
+	while (rowArr.length <= xx) { rowArr.push(" "); }
+	rowArr[xx] = ch;
 }
 
 function drawConnectors(inTree, inRowOf, inCenter, chars)
@@ -3228,18 +3336,18 @@ function rowToSegments(charsRow, labels)
 	}
 
 	const segs = [];
-	let x  = 0;
+	let xx  = 0;
 	let li = 0;
 
-	while (x < end)
+	while (xx < end)
 	{
-		if (li < sorted.length && sorted[li].start === x)
+		if (li < sorted.length && sorted[li].start === xx)
 		{
 			segs.push({ type: "node", nodeId: sorted[li].nodeId, label: sorted[li].label });
-			x += sorted[li].len;
+			xx += sorted[li].len;
 			li++;
 		}
-		else if (li < sorted.length && sorted[li].start < x)
+		else if (li < sorted.length && sorted[li].start < xx)
 		{
 			li++;								   // (should never happen)
 		}
@@ -3248,10 +3356,10 @@ function rowToSegments(charsRow, labels)
 			const stop = (li < sorted.length) ? sorted[li].start : end;
 			let s = "";
 
-			while (x < stop && x < end)
+			while (xx < stop && xx < end)
 			{
-				s += (charsRow[x] !== undefined) ? charsRow[x] : " ";
-				x++;
+				s += (charsRow[xx] !== undefined) ? charsRow[xx] : " ";
+				xx++;
 			}
 
 			if (s.length > 0) { segs.push({ type: "text", text: s }); }
@@ -3353,17 +3461,32 @@ function renderTree(inTreeId)
 	ann.textContent = (layout.tree.annotation != null) ? String(layout.tree.annotation) : "";
 	block.appendChild(ann);
 
-	// ---- the little "→" action item ---------------------------------------
-	const act = document.createElement("div");
-	act.className = "tree-action";
-	act.textContent = gCnxCharTbl[0];
-	act.title = 'reparseTree("' + inTreeId + '")';
-	act.addEventListener("click", function ()
+	// ---- the reparse "↟" action item ---------------------------------------
+	const reparse = document.createElement("div");
+	reparse.className = "tree-action";
+	reparse.textContent = gCnxCharTbl[0];
+	reparse.title = 'reparseTree("' + inTreeId + '")';
+	reparse.addEventListener("click", function ()
 	{
 		reparseTree(inTreeId, gGrammar, gTreeModel);
 		storeToLocalStorage("app", gLang, "tree", gTreeModel);
 	});
-	block.appendChild(act);
+
+	block.appendChild(reparse);
+
+	// ---- the generate "↝" action item ---------------------------------------
+	const gen = document.createElement("div");
+	gen.className = "tree-action";
+	gen.textContent = gCnxCharTbl[7];
+	gen.title = 'generateTree("' + inTreeId + '")';
+	gen.addEventListener("click", function ()
+	{
+		generateTree(inTreeId, gGrammar, gTreeModel);
+		storeToLocalStorage("app", gLang, "tree", gTreeModel);
+	});
+
+	block.appendChild(gen);
+
 }
 
 function getNodeElement(inTreeId, inNodeId)
@@ -3552,9 +3675,9 @@ function initKeyboard()
 
 function popUpManageDialog(inLang)
 {
-	gSbjLangTbl = structuredClone(gLangTbl);
-	gSbjTreeModel = structuredClone(gTreeModel);
-	gSbjGrammar = structuredClone(gGrammar);
+	gSbjLangTbl = deepClone(gLangTbl);
+	gSbjTreeModel = deepClone(gTreeModel);
+	gSbjGrammar = deepClone(gGrammar);
 	gSbjDictionary = { };
 
 	gSbjLangLstChg = false;
@@ -3733,7 +3856,7 @@ function initManageDialog()
 		}
 
 		document.getElementById("manage-dialog").classList.add("hidden");
-		manageProject(lang);
+//		manageProject(lang);
 	});
 
 	// Add lang
@@ -3837,9 +3960,9 @@ function setSbjModel(inLang)
 {
 	loadModelFromStore(inLang);
 
-	gSbjTreeModel = structuredClone(gTreeModel);
-	gSbjGrammar = structuredClone(gGrammar);
-	gSbjDictionary = structuredClone(gDictionary);
+	gSbjTreeModel = deepClone(gTreeModel);
+	gSbjGrammar = deepClone(gGrammar);
+	gSbjDictionary = deepClone(gDictionary);
 }
 
 function initNodeEditDialog()
@@ -3975,14 +4098,6 @@ function jumpToTree(inTreeId)
 /* =====================================================================
  *  4.  Load / dump functionality
  * ===================================================================== */
-
-// set the current project to inLang
-
-function manageProject(inLang)
-{
-
-
-}
 
 function loadTreeModel()
 {
@@ -4244,11 +4359,20 @@ initApp();
 /* =============================================================================
 TODO
 
+- resync grammar
+	1. when "inFull", ignore loaded grammar tracker while removing rules
+- generic edit text
+	1. convert edit grammar to a generic text editor
+	2. capture tabs and insert them into text at cursor
+	3. add token text edit
+	4. after uploading text or grammar (in manage project), display text edit view.
 - annotate nodes
 	1. allow for intermediate annotation of nodes
 - measure rdx quality
 	1. entropy metric
 	2. efficiency metric
+- sequence
+	1. update "add node" dialog to order recommended symbols by sequence
 - load/dump instance tree
 	1. format instance tree
 		a. track "error" nodes
@@ -4256,11 +4380,8 @@ TODO
 - jump to tree
 	1. menu item
 	2. dialog box
-- sequence
-	1. update "add node" dialog to order recommended symbols by sequence
 - ui details
 	1. zoom in and out of canvas without zooming menu
-	2. multi-level menu pop-ups
 
 ============================================================================= */
 
